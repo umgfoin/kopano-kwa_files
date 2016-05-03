@@ -1,0 +1,656 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Files Plugin\n"
+"POT-Creation-Date: 2016-05-03 07:00+0100\n"
+"PO-Revision-Date: 2016-05-03 07:00+0100\n"
+"Last-Translator: Björn Neumann <b.neumann@kopano.com>\n"
+"Language-Team: Kopano <info@kopano.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-KeywordsList: dgettext:1c,2\n"
+"X-Poedit-Basepath: ..\\..\\..\\js\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: AttachFromFilesPlugin.js:52 data/Actions.js:80
+msgid "Add attachment from {0}"
+msgstr "Add attachment from {0}"
+
+#: AttachFromFilesPlugin.js:106 settings/SettingsFilesComponentsWidget.js:27
+msgid "Attach a file from {0}"
+msgstr "Attach a file from {0}"
+
+#: FilesPlugin.js:84
+msgid "{0} Plugin"
+msgstr "{0} Plugin"
+
+#: SaveToFilesPlugin.js:39
+msgid "Add attachment to {0}"
+msgstr "Add attachment to {0}"
+
+#: SaveToFilesPlugin.js:65
+msgid "Please wait"
+msgstr "Please wait"
+
+#: SaveToFilesPlugin.js:66
+msgid "Loading attachment"
+msgstr "Loading attachment"
+
+#: SaveToFilesPlugin.js:67
+msgid "Initializing"
+msgstr "Initializing"
+
+#: SaveToFilesPlugin.js:178 settings/SettingsFilesComponentsWidget.js:34
+msgid "Save received attachments to {0}"
+msgstr "Save received attachments to {0}"
+
+#: context/FilesContext.js:220 dialogs/FilesUploadContentPanel.js:34
+#: ui/UploadButton.js:47
+msgid "Upload file"
+msgstr "Upload file"
+
+#: context/FilesContext.js:238 context/FilesContext.js:270
+#: context/FilesContext.js:272
+msgid "Send file"
+msgstr "Send file"
+
+#: context/FilesContext.js:273
+msgid "Create a new email message with some files attached."
+msgstr "Create a new email message with some files attached."
+
+#: context/FilesContext.js:323 context/FilesContext.js:325
+msgid "No preview"
+msgstr "No preview"
+
+#: context/FilesContext.js:331 context/FilesContext.js:333
+msgid "Right preview"
+msgstr "Right preview"
+
+#: context/FilesContext.js:339 context/FilesContext.js:341
+msgid "Bottom preview"
+msgstr "Bottom preview"
+
+#: context/FilesContext.js:361
+msgid "Switch view"
+msgstr "Switch view"
+
+#: context/FilesContext.js:373 context/FilesContext.js:374
+#: context/FilesContext.js:375
+msgid "List"
+msgstr "List"
+
+#: context/FilesContext.js:381 context/FilesContext.js:382
+#: context/FilesContext.js:383
+msgid "Icons"
+msgstr "Icons"
+
+#: context/FilesContextModel.js:109 context/FilesContextModel.js:113
+#: ui/FilesMainPanel.js:92
+msgid "Files"
+msgstr "Files"
+
+#: data/Actions.js:189 ui/FilesPreviewPanelToolbarButtons.js:92
+msgid "Confirm deletion"
+msgstr "Confirm deletion"
+
+#: data/Actions.js:189 ui/FilesPreviewPanelToolbarButtons.js:92
+msgid "Are you sure?"
+msgstr "Are you sure?"
+
+#: data/Actions.js:277
+msgid "Folder name"
+msgstr "Folder name"
+
+#: data/Actions.js:277 dialogs/SaveToFilesTreePanel.js:134
+msgid "Please enter a foldername"
+msgstr "Please enter a foldername"
+
+#: data/Actions.js:300 dialogs/SaveToFilesTreePanel.js:151
+msgid "Incorrect foldername"
+msgstr "Incorrect foldername"
+
+#: data/Actions.js:302 dialogs/SaveToFilesTreePanel.js:184
+msgid "Folder already exists"
+msgstr "Folder already exists"
+
+#: data/Actions.js:414 data/Actions.js:674
+#: dialogs/FilesUploadContentPanel.js:204 dialogs/SaveToFilesTreePanel.js:199
+#: ui/UploadPanel.js:132
+msgid "Confirm overwrite"
+msgstr "Confirm overwrite"
+
+#: data/Actions.js:415 data/Actions.js:675
+#: dialogs/FilesUploadContentPanel.js:205 dialogs/SaveToFilesTreePanel.js:200
+#: ui/UploadPanel.js:133
+msgid "File already exists. Do you want to overwrite it?"
+msgstr "File already exists. Do you want to overwrite it?"
+
+#: data/Actions.js:487 ui/FilesFileGridContextMenu.js:125
+#: ui/FilesPreviewPanelToolbarButtons.js:46
+#: ui/FilesPreviewPanelToolbarButtons.js:47
+msgid "Rename"
+msgstr "Rename"
+
+#: data/Actions.js:487
+msgid "Please enter a new name"
+msgstr "Please enter a new name"
+
+#: data/Actions.js:513
+msgid "Incorrect filename"
+msgstr "Incorrect filename"
+
+#: data/Actions.js:515
+msgid "Foldername already exists"
+msgstr "Foldername already exists"
+
+#: data/Actions.js:515
+msgid "Filename already exists"
+msgstr "Filename already exists"
+
+#: data/Actions.js:602
+msgid "Downloading"
+msgstr "Downloading"
+
+#: data/Actions.js:602
+msgid "Download started... please wait!"
+msgstr "Download started... please wait!"
+
+#: data/Actions.js:638 dialogs/FilesUploadContentPanel.js:225
+#: ui/UploadPanel.js:157
+msgid "Uploading files"
+msgstr "Uploading files"
+
+#: data/Actions.js:664 data/DirectoryLoader.js:92 data/ResponseHandler.js:132
+#: data/ResponseHandler.js:139 dialogs/FilesUploadContentPanel.js:232
+#: dialogs/FilesUploadContentPanel.js:270 ui/UploadPanel.js:183
+#: ui/UploadPanel.js:212
+msgid "Error"
+msgstr "Error"
+
+#: data/Actions.js:665
+msgid "File is too large! Maximum allowed filesize: {0}."
+msgstr "File is too large! Maximum allowed filesize: {0}."
+
+#: data/Actions.js:721 dialogs/SaveToFilesTreePanel.js:119
+msgid "Uploaded"
+msgstr "Uploaded"
+
+#: data/Actions.js:723
+msgid "Storing file on backend. Please wait"
+msgstr "Storing file on backend. Please wait."
+
+#: data/Actions.js:783 dialogs/AttachFromFilesTreePanel.js:95
+#: dialogs/AttachFromFilesTreePanel.js:104
+#: dialogs/AttachFromFilesTreePanel.js:118
+#: dialogs/AttachFromFilesTreePanel.js:139
+#: ui/FilesPreviewPanelToolbarButtons.js:64
+#: ui/FilesPreviewPanelToolbarButtons.js:118
+msgid "Warning"
+msgstr "Warning"
+
+#: data/DirectoryLoader.js:33
+msgid "Loading failed"
+msgstr "Loading failed"
+
+#: data/Helper.js:201
+msgid "l d/m/Y G:i"
+msgstr "l d/m/Y G:i"
+
+#: data/Helper.js:201
+msgid "Never"
+msgstr "Never"
+
+#: data/Version.js:90
+msgid "Unknown"
+msgstr "Unknown"
+
+#: dialogs/AttachFromFilesContentPanel.js:26
+#: dialogs/SaveToFilesContentPanel.js:21
+msgid "{0} Attachment"
+msgstr "{0} Attachment"
+
+#: dialogs/AttachFromFilesTreePanel.js:57
+#: dialogs/AttachFromFilesTreePanel.js:59
+msgid "Add attachment"
+msgstr "Add attachment"
+
+#: dialogs/AttachFromFilesTreePanel.js:60
+msgid "Add selected attachment from files to email attachment."
+msgstr "Add selected attachment from files to email attachment."
+
+#: dialogs/AttachFromFilesTreePanel.js:96
+#: dialogs/AttachFromFilesTreePanel.js:105
+msgid "The file {0} is too large!"
+msgstr "The file {0} is too large!"
+
+#: dialogs/AttachFromFilesTreePanel.js:96
+#: dialogs/AttachFromFilesTreePanel.js:105
+msgid "max"
+msgstr "max"
+
+#: dialogs/AttachFromFilesTreePanel.js:119
+msgid "You have to choose at least one file!"
+msgstr "You have to choose at least one file!"
+
+#: dialogs/FilesUploadContentPanel.js:80
+msgid "Select a file"
+msgstr "Select a file"
+
+#: dialogs/FilesUploadContentPanel.js:80
+#: settings/SettingsFilesVersionWidget.js:36 ui/UploadPanel.js:67
+msgid "Maximum upload size"
+msgstr "Maximum upload size"
+
+#: dialogs/FilesUploadContentPanel.js:113
+msgid "Select upload folder"
+msgstr "Select upload folder"
+
+#: dialogs/FilesUploadContentPanel.js:146 ui/UploadPanel.js:74
+msgid "Upload"
+msgstr "Upload"
+
+#: dialogs/FilesUploadContentPanel.js:148
+msgid "Store selected file"
+msgstr "Store selected file"
+
+#: dialogs/FilesUploadContentPanel.js:157
+#: dialogs/FilesUploadContentPanel.js:159 ui/UploadPanel.js:82
+msgid "Cancel"
+msgstr "Cancel"
+
+#: dialogs/FilesUploadContentPanel.js:160
+msgid "Close this window"
+msgstr "Close this window"
+
+#: dialogs/FilesUploadContentPanel.js:271 ui/UploadPanel.js:213
+msgid "File \"{0}\" is too large! Maximum allowed filesize: {1}."
+msgstr "File \"{0}\" is too large! Maximum allowed filesize: {1}."
+
+#: dialogs/SaveToFilesTreePanel.js:64 dialogs/SaveToFilesTreePanel.js:66
+msgid "New folder"
+msgstr "New folder"
+
+#: dialogs/SaveToFilesTreePanel.js:67
+msgid "Create a new folder"
+msgstr "Create a new folder"
+
+#: dialogs/SaveToFilesTreePanel.js:74
+msgid "Save"
+msgstr "Save"
+
+#: dialogs/SaveToFilesTreePanel.js:76
+msgid "Store attachment"
+msgstr "Store attachment"
+
+#: dialogs/SaveToFilesTreePanel.js:77
+msgid "Store attachment to the selected {0} folder."
+msgstr "Store attachment to the selected {0} folder."
+
+#: dialogs/SaveToFilesTreePanel.js:91 dialogs/SaveToFilesTreePanel.js:132
+msgid "You have to choose a folder!"
+msgstr "You have to choose a folder!"
+
+#: dialogs/SaveToFilesTreePanel.js:119
+msgid "Attachment successfully stored to {0}"
+msgstr "Attachment successfully stored to {0}"
+
+#: dialogs/SaveToFilesTreePanel.js:121
+msgid "Upload Failed"
+msgstr "Upload Failed"
+
+#: dialogs/SaveToFilesTreePanel.js:121
+msgid "Attachment could not be stored in {0}! Error:"
+msgstr "Attachment could not be stored in {0}! Error:"
+
+#: dialogs/SaveToFilesTreePanel.js:134
+msgid "Folder Name"
+msgstr "Folder Name"
+
+#: dialogs/SaveToFilesTreePanel.js:267
+msgid "Created"
+msgstr "Created"
+
+#: dialogs/SaveToFilesTreePanel.js:267
+msgid "Directory created!"
+msgstr "Directory created!"
+
+#: dialogs/SaveToFilesTreePanel.js:284
+msgid "Creation failed"
+msgstr "Creation failed"
+
+#: dialogs/SaveToFilesTreePanel.js:284
+msgid "Directory not created!"
+msgstr "Directory not created!"
+
+#: dialogs/ShowFilesFileContentPanel.js:23 ui/FilesFileInfo.js:92
+msgid "File information"
+msgstr "File information"
+
+#: settings/SettingsFilesComponentsWidget.js:21
+msgid "Enable/Disable {0} components"
+msgstr "Enable/Disable {0} components"
+
+#: settings/SettingsFilesComponentsWidget.js:41
+msgid "Enable file browser"
+msgstr "Enable file browser"
+
+#: settings/SettingsFilesQuotaWidget.js:20
+msgid "Quota information"
+msgstr "Quota information"
+
+#: settings/SettingsFilesQuotaWidget.js:36
+msgid "Quota information is not available."
+msgstr "Quota information is not available."
+
+#: settings/SettingsFilesQuotaWidget.js:62
+msgid "{0} of disk space is used."
+msgstr "{0} of disk space is used."
+
+#: settings/SettingsFilesQuotaWidget.js:104
+msgid ""
+"You have exceeded quota ({0}), you can not store more files on the server."
+msgstr ""
+"You have exceeded quota ({0}), you can not store more files on the server."
+
+#: settings/SettingsFilesQuotaWidget.js:106
+msgid "At {0} you won't be able to store files on the server."
+msgstr "At {0} you won't be able to store files on the server."
+
+#: settings/SettingsFilesResetSettingsWidget.js:27
+#: settings/SettingsFilesResetSettingsWidget.js:35
+#: settings/SettingsFilesResetSettingsWidget.js:58
+msgid "Reset Files settings"
+msgstr "Reset Files settings"
+
+#: settings/SettingsFilesResetSettingsWidget.js:32
+msgid "Resets Files settings to their original defaults"
+msgstr "Resets Files settings to their original defaults"
+
+#: settings/SettingsFilesResetSettingsWidget.js:52
+msgid ""
+"Your Files's settings will be restored to their default condition. Are you "
+"sure you want to reset all Files settings?"
+msgstr ""
+"Your Files's settings will be restored to their default condition. Are you "
+"sure you want to reset all Files settings?"
+
+#: settings/SettingsFilesResetSettingsWidget.js:54
+msgid ""
+"WebApp will automatically restart in order for these changes to take effect"
+msgstr ""
+"WebApp will automatically restart in order for these changes to take effect"
+
+#: settings/SettingsFilesResetSettingsWidget.js:63
+msgid "Reset"
+msgstr "Reset"
+
+#: settings/SettingsFilesResetSettingsWidget.js:88
+msgid "Webapp is reloading, Please wait."
+msgstr "Webapp is reloading, Please wait."
+
+#: settings/SettingsFilesVersionWidget.js:20
+msgid "Version information"
+msgstr "Version information"
+
+#: settings/SettingsFilesVersionWidget.js:24
+msgid "Files Backend"
+msgstr "Files Backend"
+
+#: settings/SettingsFilesVersionWidget.js:30
+msgid "Plugin"
+msgstr "Plugin"
+
+#: settings/SettingsFilesWidget.js:25
+msgid "Webdav"
+msgstr "Webdav"
+
+#: settings/SettingsFilesWidget.js:28
+msgid "FTP"
+msgstr "FTP"
+
+#: settings/SettingsFilesWidget.js:34
+msgid "General {0} settings"
+msgstr "General {0} settings"
+
+#: settings/SettingsFilesWidget.js:40
+msgid "Server address"
+msgstr "Server address"
+
+#: settings/SettingsFilesWidget.js:48
+msgid "Server port"
+msgstr "Server port"
+
+#: settings/SettingsFilesWidget.js:56
+msgid "Server SSL port"
+msgstr "Server SSL port"
+
+#: settings/SettingsFilesWidget.js:64
+msgid "Path to {0}"
+msgstr "Path to {0}"
+
+#: settings/SettingsFilesWidget.js:69
+msgid "No trailing slashes!"
+msgstr "No trailing slashes!"
+
+#: settings/SettingsFilesWidget.js:79
+msgid "Use Kopano credentials for authentication"
+msgstr "Use Kopano credentials for authentication"
+
+#: settings/SettingsFilesWidget.js:90
+msgid "Username"
+msgstr "Username"
+
+#: settings/SettingsFilesWidget.js:99
+msgid "Password"
+msgstr "Password"
+
+#: settings/SettingsFilesWidget.js:107
+msgid "Use SSL connections"
+msgstr "Use SSL connections"
+
+#: settings/SettingsFilesWidget.js:118
+msgid "Backend to use"
+msgstr "Backend to use"
+
+#: settings/SettingsFilesWidget.js:234
+msgid "Session updated!"
+msgstr "Session updated!"
+
+#: settings/SettingsFilesWidget.js:234
+msgid "Settings applied successfully."
+msgstr "Settings applied successfully."
+
+#: settings/SettingsFilesWidget.js:236
+msgid "Session update failed!"
+msgstr "Session update failed!"
+
+#: settings/SettingsFilesWidget.js:236
+msgid "Session update failed, please log in again."
+msgstr "Session update failed, please log in again."
+
+#: ui/FilesFileGrid.js:97 ui/FilesIconView.js:58
+msgid "Loading files"
+msgstr "Loading files"
+
+#: ui/FilesFileGridColumnModel.js:67 ui/FilesFileGridColumnModel.js:121
+msgid "Sort by: Type"
+msgstr "Sort by: Type"
+
+#: ui/FilesFileGridColumnModel.js:74
+msgid "Sort by: ID"
+msgstr "Sort by: ID"
+
+#: ui/FilesFileGridColumnModel.js:81
+msgid "Sort by: Path"
+msgstr "Sort by: Path"
+
+#: ui/FilesFileGridColumnModel.js:84 ui/FilesFileGridColumnModel.js:124
+#: ui/FilesFileInfo.js:100
+msgid "Filename"
+msgstr "Filename"
+
+#: ui/FilesFileGridColumnModel.js:87 ui/FilesFileGridColumnModel.js:127
+msgid "Sort by: Filename"
+msgstr "Sort by: Filename"
+
+#: ui/FilesFileGridColumnModel.js:90 ui/FilesFileGridColumnModel.js:130
+#: ui/FilesFileInfo.js:114
+msgid "Last modified"
+msgstr "Last modified"
+
+#: ui/FilesFileGridColumnModel.js:94 ui/FilesFileGridColumnModel.js:134
+msgid "Sort by: Last modified"
+msgstr "Sort by: Last modified"
+
+#: ui/FilesFileGridColumnModel.js:97 ui/FilesFileGridColumnModel.js:137
+msgid "Size"
+msgstr "Size"
+
+#: ui/FilesFileGridColumnModel.js:102 ui/FilesFileGridColumnModel.js:143
+msgid "Sort by: Size"
+msgstr "Sort by: Size"
+
+#: ui/FilesFileGridContextMenu.js:112
+msgid "Open"
+msgstr "Open"
+
+#: ui/FilesFileGridContextMenu.js:135
+msgid "Attach to mail"
+msgstr "Attach to mail"
+
+#: ui/FilesFileGridContextMenu.js:165 ui/FilesPreviewPanelToolbarButtons.js:37
+#: ui/FilesPreviewPanelToolbarButtons.js:38
+msgid "Delete"
+msgstr "Delete"
+
+#: ui/FilesFileGridContextMenu.js:175
+msgid "Info"
+msgstr "Info"
+
+#: ui/FilesFileGridContextMenu.js:248
+msgid "Attaching"
+msgstr "Attaching"
+
+#: ui/FilesFileGridContextMenu.js:248
+msgid "Creating email... Please wait!"
+msgstr "Creating email... Please wait!"
+
+#: ui/FilesFileInfo.js:107
+msgid "Filesize"
+msgstr "Filesize"
+
+#: ui/FilesFileInfo.js:121
+msgid "Type"
+msgstr "Type"
+
+#: ui/FilesFileInfo.js:151
+msgid "File preview"
+msgstr "File preview"
+
+#: ui/FilesFileInfo.js:201
+msgid "Sorry - no preview for this PDF file!"
+msgstr "Sorry - no preview for this PDF file!"
+
+#: ui/FilesFileInfo.js:236 ui/FilesFileInfo.js:265
+msgid "JW FLV Player is not installed/available."
+msgstr "JW FLV Player is not installed/available."
+
+#: ui/FilesFileInfo.js:312
+msgid "d.m.Y G:i"
+msgstr "d/m/Y G:i"
+
+#: ui/FilesFileInfo.js:313
+msgid "File ({0})"
+msgstr "File ({0})"
+
+#: ui/FilesFileInfo.js:313
+msgid "Folder"
+msgstr "Folder"
+
+#: ui/FilesIconView.js:61
+msgid "There are no items to show in this view"
+msgstr "There are no items to show in this view"
+
+#: ui/FilesPreviewPanelToolbarButtons.js:65
+msgid "You can only rename one file!"
+msgstr "You can only rename one file!"
+
+#: ui/FilesPreviewPanelToolbarButtons.js:119
+msgid "You cannot delete the parent folder!"
+msgstr "You cannot delete the parent folder!"
+
+#: ui/FilesToolbar.js:26
+msgid "Create something new"
+msgstr "Create something new"
+
+#: ui/FilesToolbar.js:28
+msgid "New"
+msgstr "New"
+
+#: ui/FilesToolbar.js:29
+msgid "Upload file / Create folder"
+msgstr "Upload file / Create folder"
+
+#: ui/FilesToolbar.js:36
+msgid "Up"
+msgstr "Up"
+
+#: ui/FilesToolbar.js:37 ui/FilesToolbar.js:39
+msgid "Go to parent directory"
+msgstr "Go to parent directory"
+
+#: ui/FilesToolbar.js:49 ui/FilesToolbar.js:50
+msgid "Clear cache"
+msgstr "Clear cache"
+
+#: ui/UploadButton.js:55
+msgid "Create folder"
+msgstr "Create folder"
+
+#: ui/UploadPanel.js:40
+msgid "Select file"
+msgstr "Select file"
+
+#~ msgid "Moving"
+#~ msgstr "Moving"
+
+#~ msgid "Moving the selected records!"
+#~ msgstr "Moving the selected records!"
+
+#~ msgid "Upload file to the selected {0} folder"
+#~ msgstr "Upload file to the selected {0} folder"
+
+#~ msgid "Browse"
+#~ msgstr "Browse"
+
+#~ msgid "Filename must not contain a slash!"
+#~ msgstr "Filename must not contain a slash!"
+
+#~ msgid "All text fields"
+#~ msgstr "All text fields"
+
+#~ msgid "Modificationdate"
+#~ msgstr "Modificationdate"
+
+#~ msgid "Filetype"
+#~ msgstr "Filetype"
+
+#~ msgid "The file"
+#~ msgstr "Die Datei"
+
+#~ msgid "Enable/Disable"
+#~ msgstr "Aktivieren/Deaktivieren von"
+
+#~ msgid "components"
+#~ msgstr "Komponenten"
+
+#~ msgid "General"
+#~ msgstr "Allgemeine"
+
+#~ msgid "settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Sorry"
+#~ msgstr "Entschuldigung, es gibt keine Vorschau für diese Datei!"

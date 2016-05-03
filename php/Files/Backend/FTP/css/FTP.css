@@ -1,0 +1,27 @@
+/* FTP BACKEND STYLES */
+
+/* The main icon for the backend*/
+/* Naming convention: icon_<size>_<backend name> */
+.icon_16_FTP {
+        background-image: url(../resources/icons/backends/ftp16.png)!important;
+        background-repeat: no-repeat;
+}
+
+.icon_24_FTP {
+        background-image: url(../resources/icons/backends/ftp24.png)!important;
+        background-repeat: no-repeat;
+}
+
+.icon_256_FTP {
+        background-image: url(../resources/icons/backends/ftp256.png)!important;
+        background-repeat: no-repeat;
+}
+
+.icon_16_logo_FTP {
+    background-image: url(../resources/icons/backends/ftp_logo16.png)!important;
+    background-repeat: no-repeat;
+}
+
+.x-treenode-load-silent .x-tree-node-icon .icon_16_FTP{
+    background-image: url(../resources/icons/backends/ftp16.png)!important;
+}

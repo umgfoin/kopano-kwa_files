@@ -1,0 +1,847 @@
+.icon_files {
+	background-image:url(../resources/icons/files_icon.png) !important;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.icon_files_category {
+	background-image:url(../resources/icons/files_icon_category.png)
+}
+.x-btn .x-btn-large .icon_files_category{
+	background-image:url(../resources/icons/files_icon_category_large.png)
+}
+
+.icon_files_category_white {
+	background-image:url(../resources/icons/files_icon_category_white.png);
+	background-position: 5% center !important;
+}
+
+.icon_cache {
+	background-image:url(../resources/icons/icon_refresh.png) !important;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.icon_info {
+	background-image:url(../resources/icons/icon_info_small.png) !important;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.icon_viewswitch {
+	background-image:url(../resources/icons/icon_viewswitch.png) !important;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.icon_action_cancel {
+    background-image:url(../resources/icons/actions/cancel.png) !important;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+span.error_files {
+	color: #CC3333 !important;
+}
+
+/** tree panel */
+.x-treenode-load-silent .x-tree-node-icon {
+    background-image: url(../../../client/resources/icons/new/folder.png)!important;
+}
+
+/** top toolbar */
+.files_top_toolbar .x-toolbar-left table{
+    width: 100%;
+}
+
+/** quota bar */
+.files_quota_bar_snippet .img{
+    width: 16px;
+    height: 16px;
+    background-image: url('../resources/icons/ajax-loader.gif');
+    border: none!important;
+}
+.files_quota_bar_container {
+    margin-top: 3px;
+}
+.files_quota_bar {
+    border: 1px solid #505050;
+}
+.files_quota_bar .x-progress-inner{
+    background-image: none;
+    background-color: transparent;
+}
+.files_quota_bar .x-progress-bar{
+    background-image: none;
+    background: #505050;
+    border-color: #505050;
+}
+
+/** Upload panel */
+.fp_upload_canceled {
+    border-color: #831505;
+}
+.fp_upload_canceled .x-progress-bar {
+    background-image: none;
+    background-color: #fd104e;
+    border-color: #831505;
+}
+.fp_upload_header {
+    font-size: 12px!important;
+    font-weight: bold;
+}
+.files_type_hidden {
+	display: none;
+}
+
+.files_image {
+	height:50px;
+	width:40px;
+}
+
+/** add + delete */
+.filesplugin_icon_delete {
+	background: url(../resources/icons/delete_icon.png) no-repeat !important;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 16px!important;
+}
+.filesplugin_icon_add {
+	background: url(../resources/icons/add_icon.png) no-repeat !important;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 16px!important;
+}
+
+.files_backend_selector {
+    width: 25px;
+    display: inline-block;
+}
+
+/* Status icons for the account list */
+.zarafa-files-account-ok {
+	background-image: url(../resources/icons/accstat/ok.png);
+}
+
+.zarafa-files-account-new {
+	background-image: url(../resources/icons/accstat/new.png);
+}
+
+.zarafa-files-account-error {
+	background-image: url(../resources/icons/accstat/error.png);
+}
+
+.zarafa-files-account-unknown {
+	background-image: url(../resources/icons/accstat/unknown.png);
+}
+
+/* Sharing Icons */
+.files_icon_16_share {
+	background-image: url(../resources/icons/share_icon_16.png)!important;
+	background-repeat: no-repeat;
+}
+.files_icon_12_share {
+	background-image: url(../resources/icons/share_icon_12.png)!important;
+	background-repeat: no-repeat;
+}
+
+/* Icons for the feature list */
+.zarafa-files-feature-spacer {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+.zarafa-files-accfeature-quota {
+	background-image: url(../resources/icons/features/quota.png);
+}
+
+.zarafa-files-accfeature-info {
+	background-image: url(../resources/icons/features/info.png);
+}
+
+.zarafa-files-accfeature-sharing {
+	background-image: url(../resources/icons/features/sharing.png);
+}
+.zarafa-files-accfeature-streaming {
+    background-image: url(../resources/icons/features/streaming.png);
+}
+
+
+/* extjs overwrite */
+/* used in fieldsets */
+.x-tool.x-tool-toggle {
+	background-image: url(../resources/icons/icon_toggle.png);
+	background-position: center;
+}
+
+/* icon view */
+.zarafa-files-iconview {
+	 background-color: white;
+}
+.zarafa-files-iconview-container {
+	float:left;
+	word-wrap: break-word;
+	height: 95px;
+	margin:5px;
+	overflow:hidden;
+	padding-left:2px;
+	padding-right:2px;
+	padding-top:2px;
+	text-align:center;
+	width:70px;
+	border:2px solid #fff;
+	text-overflow:ellipsis;
+}
+.zarafa-files-iconview-thumb {
+	background-position:50% 10%;
+	background-repeat:no-repeat;
+	height:62px;
+	width:62px;
+	border:2px solid #fff;
+}
+
+.zarafa-files-iconview-over {
+	background-color:#EFEFFF;
+	border:2px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	color:#0E62BB;
+}
+.zarafa-files-iconview-selected	{
+	background-color:#CEE3F6;
+	border:2px solid #7EACD6;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	color:#0E62BB;
+}
+.zarafa-files-iconview-subject {
+	color: #000;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+
+.zarafa-files-listview-icon {
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* account view */
+.zarafa-files-accountview {
+	background-color: white;
+}
+
+.zarafa-files-iconview-over {
+	background-color:#EFEFFF;
+	border:2px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	color:#0E62BB;
+}
+.zarafa-files-iconview-selected	{
+	background-color:#CEE3F6;
+	border:2px solid #7EACD6;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	color:#0E62BB;
+}
+
+.zarafa-files-iconview-thumb {
+	background-position:50% 10%;
+	background-repeat:no-repeat;
+	height:62px;
+	width:62px;
+	border:2px solid #fff;
+}
+
+.zarafa-files-accountview-container {
+	float:left;
+	word-wrap: break-word;
+	height: 95px;
+	margin:5px;
+	overflow:hidden;
+	padding-left:2px;
+	padding-right:2px;
+	padding-top:2px;
+	text-align:center;
+	width:300px;
+	border:2px solid #fff;
+	text-overflow:ellipsis;
+}
+
+.zarafa-files-account-background {
+	width: 80px;
+	height: 80px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%!important;
+	margin-right: 10px;
+	float: left;
+}
+
+.zarafa-files-accountview-selected {
+	background-color:#CEE3F6;
+	border:2px solid #7EACD6;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	color:#0E62BB;
+}
+
+.zarafa-files-accountview-over {
+	background-color:#EFEFFF;
+	border:2px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	color:#0E62BB;
+}
+
+.zarafa-files-account-info {
+	float:left;
+	text-align: left;
+}
+
+.zarafa-files-accountview-subject {
+	font-size: large;
+	display: block;
+}
+
+.zarafa-files-accountview-account {
+	font-size: small;
+	display: block;
+}
+
+.zarafa-files-accountview-quota {
+	font-size: small;
+	display: block;
+}
+
+
+
+/* file type icons 48px */
+.files48icon_folder {
+	background-image: url(../resources/icons/iconview/48px/folder.png);
+}
+
+.files48icon_blank {
+	background-image: url(../resources/icons/iconview/48px/_blank.png);
+}
+
+.files48icon_aac {
+	background-image: url(../resources/icons/iconview/48px/aac.png);
+}
+
+.files48icon_ai {
+	background-image: url(../resources/icons/iconview/48px/ai.png);
+}
+
+.files48icon_aiff {
+	background-image: url(../resources/icons/iconview/48px/aiff.png);
+}
+
+.files48icon_apk {
+	background-image: url(../resources/icons/iconview/48px/apk.png);
+}
+
+.files48icon_avi {
+	background-image: url(../resources/icons/iconview/48px/avi.png);
+}
+
+.files48icon_bmp {
+	background-image: url(../resources/icons/iconview/48px/bmp.png);
+}
+
+.files48icon_c {
+	background-image: url(../resources/icons/iconview/48px/c.png);
+}
+
+.files48icon_cpp, .files48icon_cc {
+	background-image: url(../resources/icons/iconview/48px/cpp.png);
+}
+
+.files48icon_css {
+	background-image: url(../resources/icons/iconview/48px/css.png);
+}
+
+.files48icon_csv {
+	background-image: url(../resources/icons/iconview/48px/csv.png);
+}
+
+.files48icon_dat {
+	background-image: url(../resources/icons/iconview/48px/dat.png);
+}
+
+.files48icon_dmg {
+	background-image: url(../resources/icons/iconview/48px/dmg.png);
+}
+
+.files48icon_doc, .files48icon_docx {
+	background-image: url(../resources/icons/iconview/48px/doc.png);
+}
+
+.files48icon_dotx {
+	background-image: url(../resources/icons/iconview/48px/dotx.png);
+}
+
+.files48icon_dwg {
+	background-image: url(../resources/icons/iconview/48px/dwg.png);
+}
+
+.files48icon_dxf {
+	background-image: url(../resources/icons/iconview/48px/dxf.png);
+}
+
+.files48icon_eps {
+	background-image: url(../resources/icons/iconview/48px/eps.png);
+}
+
+.files48icon_exe {
+	background-image: url(../resources/icons/iconview/48px/exe.png);
+}
+
+.files48icon_flv {
+	background-image: url(../resources/icons/iconview/48px/flv.png);
+}
+
+.files48icon_gif {
+	background-image: url(../resources/icons/iconview/48px/gif.png);
+}
+
+.files48icon_h {
+	background-image: url(../resources/icons/iconview/48px/h.png);
+}
+
+.files48icon_hpp {
+	background-image: url(../resources/icons/iconview/48px/hpp.png);
+}
+
+.files48icon_html{
+	background-image: url(../resources/icons/iconview/48px/html.png);
+}
+
+.files48icon_ics {
+	background-image: url(../resources/icons/iconview/48px/ics.png);
+}
+
+.files48icon_iso {
+	background-image: url(../resources/icons/iconview/48px/iso.png);
+}
+
+.files48icon_java {
+	background-image: url(../resources/icons/iconview/48px/java.png);
+}
+
+.files48icon_jpg {
+	background-image: url(../resources/icons/iconview/48px/jpg.png);
+}
+
+.files48icon_js {
+	background-image: url(../resources/icons/iconview/48px/js.png);
+}
+
+.files48icon_key {
+	background-image: url(../resources/icons/iconview/48px/key.png);
+}
+
+.files48icon_less {
+	background-image: url(../resources/icons/iconview/48px/less.png);
+}
+
+.files48icon_mid {
+	background-image: url(../resources/icons/iconview/48px/mid.png);
+}
+
+.files48icon_mp3 {
+	background-image: url(../resources/icons/iconview/48px/mp3.png);
+}
+
+.files48icon_mp4 {
+	background-image: url(../resources/icons/iconview/48px/mp4.png);
+}
+
+.files48icon_mpg {
+	background-image: url(../resources/icons/iconview/48px/mpg.png);
+}
+
+.files48icon_odf {
+	background-image: url(../resources/icons/iconview/48px/odf.png);
+}
+
+.files48icon_ods {
+	background-image: url(../resources/icons/iconview/48px/ods.png);
+}
+
+.files48icon_odt {
+	background-image: url(../resources/icons/iconview/48px/odt.png);
+}
+
+.files48icon_otp {
+	background-image: url(../resources/icons/iconview/48px/otp.png);
+}
+
+.files48icon_ots {
+	background-image: url(../resources/icons/iconview/48px/ots.png);
+}
+
+.files48icon_ott {
+	background-image: url(../resources/icons/iconview/48px/ott.png);
+}
+
+.files48icon_pdf {
+	background-image: url(../resources/icons/iconview/48px/pdf.png);
+}
+
+.files48icon_php {
+	background-image: url(../resources/icons/iconview/48px/php.png);
+}
+
+.files48icon_png {
+	background-image: url(../resources/icons/iconview/48px/png.png);
+}
+
+.files48icon_ppt, .files48icon_pptx {
+	background-image: url(../resources/icons/iconview/48px/ppt.png);
+}
+
+.files48icon_psd {
+	background-image: url(../resources/icons/iconview/48px/psd.png);
+}
+
+.files48icon_py {
+	background-image: url(../resources/icons/iconview/48px/py.png);
+}
+
+.files48icon_qt {
+	background-image: url(../resources/icons/iconview/48px/qt.png);
+}
+
+.files48icon_rar {
+	background-image: url(../resources/icons/iconview/48px/rar.png);
+}
+
+.files48icon_rb {
+	background-image: url(../resources/icons/iconview/48px/rb.png);
+}
+
+.files48icon_rtf {
+	background-image: url(../resources/icons/iconview/48px/rtf.png);
+}
+
+.files48icon_sass {
+	background-image: url(../resources/icons/iconview/48px/sass.png);
+}
+
+.files48icon_scss {
+	background-image: url(../resources/icons/iconview/48px/scss.png);
+}
+
+.files48icon_sql {
+	background-image: url(../resources/icons/iconview/48px/sql.png);
+}
+
+.files48icon_tga {
+	background-image: url(../resources/icons/iconview/48px/tga.png);
+}
+
+.files48icon_tgz, .files48icon_gz {
+	background-image: url(../resources/icons/iconview/48px/tgz.png);
+}
+
+.files48icon_tiff {
+	background-image: url(../resources/icons/iconview/48px/tiff.png);
+}
+
+.files48icon_txt {
+	background-image: url(../resources/icons/iconview/48px/txt.png);
+}
+
+.files48icon_wav {
+	background-image: url(../resources/icons/iconview/48px/wav.png);
+}
+
+.files48icon_xls {
+	background-image: url(../resources/icons/iconview/48px/xls.png);
+}
+
+.files48icon_xlsx {
+	background-image: url(../resources/icons/iconview/48px/xlsx.png);
+}
+
+.files48icon_xml {
+	background-image: url(../resources/icons/iconview/48px/xml.png);
+}
+
+.files48icon_yml {
+	background-image: url(../resources/icons/iconview/48px/yml.png);
+}
+
+.files48icon_zip {
+	background-image: url(../resources/icons/iconview/48px/zip.png);
+}
+
+/* file type icons 16px */
+.files16icon_folder {
+	background-image: url(../resources/icons/iconview/16px/folder.png);
+}
+
+.files16icon_blank {
+	background-image: url(../resources/icons/iconview/16px/_blank.png);
+}
+
+.files16icon_aac {
+	background-image: url(../resources/icons/iconview/16px/aac.png);
+}
+
+.files16icon_ai {
+	background-image: url(../resources/icons/iconview/16px/ai.png);
+}
+
+.files16icon_aiff {
+	background-image: url(../resources/icons/iconview/16px/aiff.png);
+}
+
+.files16icon_apk {
+	background-image: url(../resources/icons/iconview/16px/apk.png);
+}
+
+.files16icon_avi {
+	background-image: url(../resources/icons/iconview/16px/avi.png);
+}
+
+.files16icon_bmp {
+	background-image: url(../resources/icons/iconview/16px/bmp.png);
+}
+
+.files16icon_c {
+	background-image: url(../resources/icons/iconview/16px/c.png);
+}
+
+.files16icon_cpp, .files16icon_cc {
+	background-image: url(../resources/icons/iconview/16px/cpp.png);
+}
+
+.files16icon_css {
+	background-image: url(../resources/icons/iconview/16px/css.png);
+}
+
+.files16icon_csv {
+	background-image: url(../resources/icons/iconview/16px/csv.png);
+}
+
+.files16icon_dat {
+	background-image: url(../resources/icons/iconview/16px/dat.png);
+}
+
+.files16icon_dmg {
+	background-image: url(../resources/icons/iconview/16px/dmg.png);
+}
+
+.files16icon_doc, .files16icon_docx {
+	background-image: url(../resources/icons/iconview/16px/doc.png);
+}
+
+.files16icon_dotx {
+	background-image: url(../resources/icons/iconview/16px/dotx.png);
+}
+
+.files16icon_dwg {
+	background-image: url(../resources/icons/iconview/16px/dwg.png);
+}
+
+.files16icon_dxf {
+	background-image: url(../resources/icons/iconview/16px/dxf.png);
+}
+
+.files16icon_eps {
+	background-image: url(../resources/icons/iconview/16px/eps.png);
+}
+
+.files16icon_exe {
+	background-image: url(../resources/icons/iconview/16px/exe.png);
+}
+
+.files16icon_flv {
+	background-image: url(../resources/icons/iconview/16px/flv.png);
+}
+
+.files16icon_gif {
+	background-image: url(../resources/icons/iconview/16px/gif.png);
+}
+
+.files16icon_h {
+	background-image: url(../resources/icons/iconview/16px/h.png);
+}
+
+.files16icon_hpp {
+	background-image: url(../resources/icons/iconview/16px/hpp.png);
+}
+
+.files16icon_html{
+	background-image: url(../resources/icons/iconview/16px/html.png);
+}
+
+.files16icon_ics {
+	background-image: url(../resources/icons/iconview/16px/ics.png);
+}
+
+.files16icon_iso {
+	background-image: url(../resources/icons/iconview/16px/iso.png);
+}
+
+.files16icon_java {
+	background-image: url(../resources/icons/iconview/16px/java.png);
+}
+
+.files16icon_jpg {
+	background-image: url(../resources/icons/iconview/16px/jpg.png);
+}
+
+.files16icon_js {
+	background-image: url(../resources/icons/iconview/16px/js.png);
+}
+
+.files16icon_key {
+	background-image: url(../resources/icons/iconview/16px/key.png);
+}
+
+.files16icon_less {
+	background-image: url(../resources/icons/iconview/16px/less.png);
+}
+
+.files16icon_mid {
+	background-image: url(../resources/icons/iconview/16px/mid.png);
+}
+
+.files16icon_mp3 {
+	background-image: url(../resources/icons/iconview/16px/mp3.png);
+}
+
+.files16icon_mp4 {
+	background-image: url(../resources/icons/iconview/16px/mp4.png);
+}
+
+.files16icon_mpg {
+	background-image: url(../resources/icons/iconview/16px/mpg.png);
+}
+
+.files16icon_odf {
+	background-image: url(../resources/icons/iconview/16px/odf.png);
+}
+
+.files16icon_ods {
+	background-image: url(../resources/icons/iconview/16px/ods.png);
+}
+
+.files16icon_odt {
+	background-image: url(../resources/icons/iconview/16px/odt.png);
+}
+
+.files16icon_otp {
+	background-image: url(../resources/icons/iconview/16px/otp.png);
+}
+
+.files16icon_ots {
+	background-image: url(../resources/icons/iconview/16px/ots.png);
+}
+
+.files16icon_ott {
+	background-image: url(../resources/icons/iconview/16px/ott.png);
+}
+
+.files16icon_pdf {
+	background-image: url(../resources/icons/iconview/16px/pdf.png);
+}
+
+.files16icon_php {
+	background-image: url(../resources/icons/iconview/16px/php.png);
+}
+
+.files16icon_png {
+	background-image: url(../resources/icons/iconview/16px/png.png);
+}
+
+.files16icon_ppt, .files16icon_pptx {
+	background-image: url(../resources/icons/iconview/16px/ppt.png);
+}
+
+.files16icon_psd {
+	background-image: url(../resources/icons/iconview/16px/psd.png);
+}
+
+.files16icon_py {
+	background-image: url(../resources/icons/iconview/16px/py.png);
+}
+
+.files16icon_qt {
+	background-image: url(../resources/icons/iconview/16px/qt.png);
+}
+
+.files16icon_rar {
+	background-image: url(../resources/icons/iconview/16px/rar.png);
+}
+
+.files16icon_rb {
+	background-image: url(../resources/icons/iconview/16px/rb.png);
+}
+
+.files16icon_rtf {
+	background-image: url(../resources/icons/iconview/16px/rtf.png);
+}
+
+.files16icon_sass {
+	background-image: url(../resources/icons/iconview/16px/sass.png);
+}
+
+.files16icon_scss {
+	background-image: url(../resources/icons/iconview/16px/scss.png);
+}
+
+.files16icon_sql {
+	background-image: url(../resources/icons/iconview/16px/sql.png);
+}
+
+.files16icon_tga {
+	background-image: url(../resources/icons/iconview/16px/tga.png);
+}
+
+.files16icon_tgz, .files16icon_gz {
+	background-image: url(../resources/icons/iconview/16px/tgz.png);
+}
+
+.files16icon_tiff {
+	background-image: url(../resources/icons/iconview/16px/tiff.png);
+}
+
+.files16icon_txt {
+	background-image: url(../resources/icons/iconview/16px/txt.png);
+}
+
+.files16icon_wav {
+	background-image: url(../resources/icons/iconview/16px/wav.png);
+}
+
+.files16icon_xls {
+	background-image: url(../resources/icons/iconview/16px/xls.png);
+}
+
+.files16icon_xlsx {
+	background-image: url(../resources/icons/iconview/16px/xlsx.png);
+}
+
+.files16icon_xml {
+	background-image: url(../resources/icons/iconview/16px/xml.png);
+}
+
+.files16icon_yml {
+	background-image: url(../resources/icons/iconview/16px/yml.png);
+}
+
+.files16icon_zip {
+	background-image: url(../resources/icons/iconview/16px/zip.png);
+}
+
+.files-context-navigation-node {
+	padding: 8px 0 6px;
+	border-right-style: none;
+	border-left-style: none;
+}
+
+.files-context-navigation-node .x-tree-node-el {
+	padding-left: 10px;
+}
+
+.zarafa-files-hierarchypanel-subpanel > .x-panel-header {
+	background-color: white;
+	padding: 8px 9px 8px 12px;
+}

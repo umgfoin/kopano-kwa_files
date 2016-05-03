@@ -1,0 +1,146 @@
+/*
+ * NAVBAR STYLES
+ */
+
+/** reset extjs styles */
+.files_navbar_button,
+.files_navbar_button.x-btn-over,
+.files_navbar_button.x-btn-focus,
+.files_navbar_button.x-btn-click,
+.files_navbar_button.x-btn-over.x-btn-click,
+.files_navbar_button .x-btn-arrow,
+.files_navbar_button .x-btn-arrow button {
+    background: none!important;
+    border: none!important;
+    border-radius: 0!important;
+    box-shadow: none!important;
+    padding: 0!important;
+    margin-left: -2px;
+}
+
+
+/** navbar container */
+.navbar_container {
+    width: 100%;
+}
+.navbar_container .x-column-inner {
+    width: 100%!important; /** override extjs size */
+}
+
+/** normal button state */
+.files_navbar_button::before{
+    content: url(../resources/images/navbar/left_open_normal.png);
+    height: 22px;
+    width: 6px;
+    float: left;
+}
+.files_navbar_button_last::before{
+    content: url(../resources/images/navbar/left_open_normal_last.png);
+    height: 23px;
+}
+.files_navbar_button::after{
+    content: url(../resources/images/navbar/right_open_normal.png);
+    height: 22px;
+    width: 6px;
+    float: left;
+}
+.files_navbar_button_last::after{
+    content: url(../resources/images/navbar/right_open_normal_last.png);
+    height: 23px;
+}
+.files_navbar_button .x-btn-small{
+    /* revert x-btn-text-icon */
+    background: url(../resources/images/navbar/middle_normal.png) no-repeat top left!important;
+    background-size: 100% 22px!important;
+    border: none!important;
+    border-radius: 0!important;
+    height: 22px;
+    box-shadow:none!important;
+    padding-right: 2px;
+    padding-left: 2px;
+    float: left;
+    padding-top: 1px;
+    margin-right: 0 !important;
+}
+.files_navbar_button_last .x-btn-small{
+    background: url(../resources/images/navbar/middle_normal_last.png) no-repeat top left!important;
+    background-size: 100% 23px!important;
+    height: 23px;
+}
+.files_navbar_button_last button {
+    font-weight: bold;
+}
+.files_navbar_button_first{
+    margin-left: 0!important;
+}
+.files_navbar_button_first .x-btn-small{
+    padding-left: 0;
+}
+.files_navbar_button_first::before{
+    content: url(../resources/images/navbar/left_closed_normal.png);
+    height: 22px;
+    width: 4px;
+    float: left;
+}
+.files_navbar_home {
+    background-image: url(../resources/icons/actions/home.png) !important;
+}
+
+
+/** hovered button state */
+.files_navbar_button.x-btn-over::before{
+    content: url(../resources/images/navbar/left_open_lighted.png);
+}
+.files_navbar_button_last.x-btn-over::before{
+    content: url(../resources/images/navbar/left_open_lighted_last.png);
+    height: 23px;
+}
+.files_navbar_button.x-btn-over::after{
+    content: url(../resources/images/navbar/right_open_lighted.png);
+}
+.files_navbar_button_last.x-btn-over::after{
+    content: url(../resources/images/navbar/right_open_lighted_last.png);
+    height: 23px;
+}
+.files_navbar_button.x-btn-over .x-btn-small{
+    background: url(../resources/images/navbar/middle_lighted.png) no-repeat top left!important;
+    background-size: 100% 22px!important;
+}
+.files_navbar_button_last.x-btn-over .x-btn-small{
+    background: url(../resources/images/navbar/middle_lighted_last.png) no-repeat top left!important;
+    background-size: 100% 23px!important;
+    height: 23px;
+}
+.files_navbar_button_first.x-btn-over::before {
+    content: url(../resources/images/navbar/left_closed_lighted.png);
+}
+
+
+/** clicked button state */
+.files_navbar_button.x-btn-click::before{
+    content: url(../resources/images/navbar/left_open_clicked.png);
+}
+.files_navbar_button_last.x-btn-click::before{
+    content: url(../resources/images/navbar/left_open_clicked_last.png);
+    height: 23px;
+}
+.files_navbar_button.x-btn-click::after{
+    content: url(../resources/images/navbar/right_open_clicked.png);
+}
+.files_navbar_button_last.x-btn-click::after{
+    content: url(../resources/images/navbar/right_open_clicked_last.png);
+    height: 23px;
+}
+.files_navbar_button.x-btn-click .x-btn-small{
+    background: url(../resources/images/navbar/middle_clicked.png) no-repeat top left!important;
+    background-size: 100% 22px!important;
+}
+.files_navbar_button_last.x-btn-click .x-btn-small{
+    background: url(../resources/images/navbar/middle_clicked_last.png) no-repeat top left!important;
+    background-size: 100% 23px!important;
+    height: 23px;
+}
+.files_navbar_button_first.x-btn-click::before {
+    content: url(../resources/images/navbar/left_closed_clicked.png);
+}
+
