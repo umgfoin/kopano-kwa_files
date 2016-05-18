@@ -2,9 +2,6 @@
 
 This plugin will integrate external storage providers in Kopano Webapp.
 
-### Current Version
-2.0 (06.2015)
-
 ### Dependencies
 
 This plugin requires the following dependencies:
