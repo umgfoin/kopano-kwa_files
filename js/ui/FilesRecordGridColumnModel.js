@@ -67,7 +67,6 @@ Zarafa.plugins.files.ui.FilesRecordGridColumnModel = Ext.extend(Zarafa.common.ui
 			{
 				header   : dgettext('plugin_files', 'Size'),
 				dataIndex: 'message_size',
-				css      : 'text-align:right;',
 				width    : 80,
 				renderer : Zarafa.plugins.files.data.Utils.Format.fileSizeList,
 				tooltip  : dgettext('plugin_files', 'Sort by: Size')
@@ -114,7 +113,6 @@ Zarafa.plugins.files.ui.FilesRecordGridColumnModel = Ext.extend(Zarafa.common.ui
 			{
 				header   : dgettext('plugin_files', 'Size'),
 				dataIndex: 'message_size',
-				css      : 'text-align:right;',
 				width    : 80,
 				hidden   : true,
 				renderer : Zarafa.plugins.files.data.Utils.Format.fileSizeList,
