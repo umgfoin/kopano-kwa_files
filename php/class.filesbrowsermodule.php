@@ -52,7 +52,15 @@ class FilesBrowserModule extends ListModule
 		parent::ListModule($id, $data);
 
 		$this->cache = phpFastCache();
-		$this->uid = $_SESSION["username"];
+		// For backward compatibility we will check if the Encryption store exists. If not,
+		// we will fall back to the old way of retrieving the password from the session.
+		if ( class_exists('EncryptionStore') ) {
+			// Get the username from the Encryption store
+			$encryptionStore = \EncryptionStore::getInstance();
+			$this->uid = $encryptionStore->get('username');
+		} else {
+			$this->uid = $_SESSION["username"];
+		}
 		Logger::debug(self::LOG_CONTEXT, "[constructor]: executing the module as uid: " . $this->uid);
 	}
 
