@@ -215,8 +215,8 @@
 				<!-- just copy files -->
 				<copy todir="${target-folder}/${plugin-folder}">
 					<fileset dir=".">
-						<include name="languages/**/*.mo"/>
-						<include name="languages/**/*.txt"/>
+						<include name="language/**/*.mo"/>
+						<include name="language/**/*.txt"/>
 					</fileset>
 				</copy>
 			</else>
