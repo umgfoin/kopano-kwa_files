@@ -37,7 +37,8 @@ class AccountStore
 	/**
 	 * @param $name
 	 * @param $backend
-	 * @param $backendConfig
+	 * @param Array $backendConfig Backend specific account settings 
+	 *     like username, password, serveraddress, ...
 	 *
 	 * @return Account
 	 */
@@ -185,7 +186,8 @@ class AccountStore
 
 	/**
 	 * @param AbstractBackend $backendInstance
-	 * @param Array $backendConfig
+	 * @param Array $backendConfig Backend specific account settings 
+	 *     like username, password, serveraddress, ...
 	 *
 	 * @return Array
 	 */
@@ -209,22 +211,22 @@ class AccountStore
 	}
 
 	/**
-	 * @param $backendConfig
+	 * @param Array $backendConfig Backend specific account settings 
+	 *     like username, password, serveraddress, ...
 	 *
-	 * @return string
+	 * @return  an unique id
 	 */
 	private function createNewId($backendConfig)
 	{
 		// lets create a hash
-		array_multisort($backendConfig);
-
-		return md5(json_encode($backendConfig)); // json_encode is faster than serialize
+		return md5(json_encode($backendConfig) . time()); // json_encode is faster than serialize
 	}
 
 	/**
 	 * Encrypt the backend configuration using the standard webapp key.
 	 *
-	 * @param $backendConfig
+	 * @param Array $backendConfig Backend specific account settings 
+	 *     like username, password, serveraddress, ...
 	 * @return array
 	 */
 	private function encryptBackendConfig($backendConfig) {
@@ -240,7 +242,8 @@ class AccountStore
 	/**
 	 * Decrypt the backend configuration using the standard webapp key.
 	 *
-	 * @param $backendConfig
+	 * @param Array $backendConfig Backend specific account settings 
+	 *     like username, password, serveraddress, ...
 	 * @return array
 	 */
 	private function decryptBackendConfig($backendConfig) {
