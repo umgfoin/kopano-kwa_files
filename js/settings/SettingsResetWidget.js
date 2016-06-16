@@ -49,7 +49,8 @@ Zarafa.plugins.files.settings.SettingsResetWidget = Ext.extend(Zarafa.settings.u
 	 * @private
 	 */
 	onResetSettings: function () {
-		var message = dgettext('plugin_files', 'Your Files\'s settings will be restored to their default condition. Are you sure you want to reset all Files settings?');
+		var message = dgettext('plugin_files', 'Your Files\'s settings will be restored to their default condition.')
+			+ ' ' + dgettext('plugin_files', 'Are you sure you want to reset all Files settings and remove all accounts?');
 		message += '<br/><br/>';
 		message += _('WebApp will automatically restart in order for these changes to take effect');
 		message += '<br/>';
@@ -81,6 +82,7 @@ Zarafa.plugins.files.settings.SettingsResetWidget = Ext.extend(Zarafa.settings.u
 		if (button === 'reset') {
 			var settingsModel = container.getSettingsModel();
 			settingsModel.reset('zarafa/v1/contexts/files');
+			settingsModel.reset('zarafa/v1/plugins/files');
 			settingsModel.save();
 
 			this.loadMask = new Zarafa.common.ui.LoadMask(Ext.getBody(), {
