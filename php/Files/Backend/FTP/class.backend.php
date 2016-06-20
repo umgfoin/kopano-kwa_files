@@ -243,7 +243,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 				"editor" => array(
 					"xtype" => "checkbox",
 					"listeners" => array(
-						"check" => "Zarafa.plugins.files.backend.FTP.FormConfig.onCheckCredentials" // this javascript function will be called!
+						"check" => "Zarafa.plugins.files.data.Actions.onCheckCredentials" // this javascript function will be called!
 					)
 				)
 			)
