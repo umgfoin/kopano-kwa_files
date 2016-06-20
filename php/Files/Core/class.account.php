@@ -18,6 +18,7 @@ class Account
 	private $backend;
 	private $backendConfig; // This array will hold the backend configuration variables
 	private $features;
+	private $sequence; // for ordering
 
 	/**
 	 * Status variables
@@ -36,7 +37,7 @@ class Account
 	 * @param       $backendConfig
 	 * @param array $features
 	 */
-	function __construct($id, $name, $status, $statusDescription, $backend, $backendConfig, $features = array())
+	function __construct($id, $name, $status, $statusDescription, $backend, $backendConfig, $features = array(), $sequence)
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -45,6 +46,7 @@ class Account
 		$this->backend = $backend;
 		$this->backendConfig = $backendConfig;
 		$this->features = $features;
+		$this->sequence = $sequence;
 	}
 
 	/**
@@ -197,5 +199,25 @@ class Account
 		$backendinstance->init_backend($this->backendConfig);
 		$backendinstance->open();
 		$backendinstance->beforeDeleteAccount($this);
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getSequence()
+	{
+		if(!$this->sequence) {
+			$this->sequence = 0;
+		}
+
+		return $this->sequence;
+	}
+
+	/**
+	 * @param int $sequence
+	 */
+	public function setSequence($sequence)
+	{
+		$this->sequence = $sequence;
 	}
 }

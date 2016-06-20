@@ -42,25 +42,26 @@ Zarafa.plugins.files.settings.ui.AccountGridColumnModel = Ext.extend(Zarafa.comm
 				dataIndex: 'id',
 				width    : 50,
 				hidden   : true,
+				sortable : false,
 				tooltip  : dgettext('plugin_files', 'Sort by: ID')
 			}, {
 				header   : dgettext('plugin_files', 'Status'),
 				dataIndex: 'status',
 				width    : 40,
-				sortable : true,
+				sortable : false,
 				renderer : Zarafa.plugins.files.settings.data.AccountRenderUtil.statusRenderer,
 				tooltip  : dgettext('plugin_files', 'Sort by: Status')
 			}, {
 				header   : dgettext('plugin_files', 'Name'),
 				dataIndex: 'name',
 				flex     : 1,
-				sortable : true,
+				sortable : false,
 				tooltip  : dgettext('plugin_files', 'Sort by: Name')
 			}, {
 				header   : dgettext('plugin_files', 'Backend'),
 				dataIndex: 'backend',
 				width    : 40,
-				sortable : true,
+				sortable : false,
 				renderer : Zarafa.plugins.files.settings.data.AccountRenderUtil.backendRenderer,
 				tooltip  : dgettext('plugin_files', 'Sort by: Backend')
 			}, {

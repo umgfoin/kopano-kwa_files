@@ -54,7 +54,10 @@ class AccountStore
 		// check backend_config for validity
 		$status = $this->checkBackendConfig($backendInstance, $backendConfig);
 
-		$newAccount = new Account($newID, strip_tags($name), $status[0], $status[1], strip_tags($backend), $backendConfig, $features);
+		// get sequence number
+		$sequence = $this->getNewSequenceNumber();
+
+		$newAccount = new Account($newID, strip_tags($name), $status[0], $status[1], strip_tags($backend), $backendConfig, $features, $sequence);
 
 		// now store all the values to the user settings
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/id", $newAccount->getId());
@@ -62,6 +65,7 @@ class AccountStore
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/status", $newAccount->getStatus());
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/status_description", $newAccount->getStatusDescription());
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/backend", $newAccount->getBackend());
+		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/account_sequence", $newAccount->getSequence());
 
 		// store all backend configurations
 		foreach ($newAccount->getBackendConfig() as $key => $value) {
@@ -110,6 +114,9 @@ class AccountStore
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/status", $account->getStatus());
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/status_description", $account->getStatusDescription());
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/backend", $account->getBackend());
+		// when getSequence returns 0, there is no account_sequence setting yet. So create one.
+		$account_sequence = ($account->getSequence() === 0 ? $this->getNewSequenceNumber() : $account->getSequence());
+		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/account_sequence", $account_sequence);
 
 		// store all backend configurations
 		foreach ($account->getBackendConfig() as $key => $value) {
@@ -177,7 +184,22 @@ class AccountStore
 				if (!isset($acc["backend_features"])) {
 					$acc["backend_features"] = array();
 				}
-				$this->accounts[$acc["id"]] = new Account($acc["id"], $acc["name"], $acc["status"], $acc["status_description"], $acc["backend"], $this->decryptBackendConfig($acc["backend_config"]), array_keys($acc["backend_features"]));
+				// account_sequence was introduced later. So set and save it if missing.
+				if (!isset($acc["account_sequence"])) {
+					$acc["account_sequence"] = $this->getNewSequenceNumber();
+					Logger::debug(self::LOG_CONTEXT, "Account sequence missing. New seq: " . $acc["account_sequence"]);
+					$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $acc["id"] . "/account_sequence", $acc["account_sequence"]);
+					$GLOBALS["settings"]->saveSettings();
+				}
+				$this->accounts[$acc["id"]] = new Account($acc["id"],
+					$acc["name"],
+					$acc["status"],
+					$acc["status_description"],
+					$acc["backend"],
+					$this->decryptBackendConfig($acc["backend_config"]),
+					array_keys($acc["backend_features"]),
+					$acc["account_sequence"]
+				);
 			}
 		}
 
@@ -220,6 +242,22 @@ class AccountStore
 	{
 		// lets create a hash
 		return md5(json_encode($backendConfig) . time()); // json_encode is faster than serialize
+	}
+
+	/**
+	 * Generate a new sequence number. It will always be the highest used sequence number +1.
+	 *
+	 * @return int
+	 */
+	private function getNewSequenceNumber() {
+		$seq = 0;
+		foreach($this->accounts as $acc) {
+			if($acc->getSequence() > $seq) {
+				$seq = $acc->getSequence();
+			}
+		}
+
+		return $seq + 1;
 	}
 
 	/**
