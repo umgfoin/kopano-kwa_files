@@ -15,13 +15,6 @@ class Pluginfiles extends Plugin
 {
 
 	/**
-	 * Constructor
-	 */
-	function Pluginfiles()
-	{
-	}
-
-	/**
 	 * Function initializes the Plugin and registers all hooks
 	 *
 	 * @return void
