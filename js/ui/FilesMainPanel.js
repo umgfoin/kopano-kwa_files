@@ -102,7 +102,7 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 			this.onViewModeChange(this.context, this.context.getCurrentViewMode());
 		}
 
-		Zarafa.core.ui.NavigationPanel.superclass.initEvents.apply(this, arguments);
+		Zarafa.plugins.files.ui.FilesMainPanel.superclass.initEvents.apply(this, arguments);
 	},
 
 	onViewChange: function (context, newView, oldView) {
