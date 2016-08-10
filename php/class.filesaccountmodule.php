@@ -27,7 +27,7 @@ class FilesAccountModule extends ListModule
 	 */
 	public function __construct($id, $data)
 	{
-		parent::ListModule($id, $data);
+		parent::__construct($id, $data);
 	}
 
 	/**

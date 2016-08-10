@@ -49,7 +49,7 @@ class FilesBrowserModule extends ListModule
 	 */
 	public function __construct($id, $data)
 	{
-		parent::ListModule($id, $data);
+		parent::__construct($id, $data);
 
 		$this->cache = phpFastCache();
 		// For backward compatibility we will check if the Encryption store exists. If not,
