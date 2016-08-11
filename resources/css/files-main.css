@@ -49,6 +49,11 @@ span.error_files {
     width: 100%;
 }
 
+.files_top_toolbar {
+	padding: 6px 0 5px 0 !important;
+	height: 25px !important;
+}
+
 /** quota bar */
 .files_quota_bar_snippet .img{
     width: 16px;
@@ -70,6 +75,7 @@ span.error_files {
     background-image: none;
     background: #505050;
     border-color: #505050;
+	height: 8px !important;
 }
 
 /** Upload panel */
