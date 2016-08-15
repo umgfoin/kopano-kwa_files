@@ -19,9 +19,7 @@ Zarafa.plugins.files.ui.MultipleFileUploadField = Ext.extend(Ext.ux.form.FileUpl
 			size: 1
 		};
 
-		if (Zarafa.supportsFilesAPI()) {
-			opt.multiple = 'multiple';
-		}
+		opt.multiple = 'multiple';
 		this.fileInput = this.wrap.createChild(opt);
 	},
 
@@ -43,7 +41,7 @@ Zarafa.plugins.files.ui.MultipleFileUploadField = Ext.extend(Ext.ux.form.FileUpl
 			},
 			change    : function () {
 				var v = this.fileInput.dom.value;
-				if (Zarafa.supportsFilesAPI() && this.fileInput.dom.files.length > 1) {
+				if (this.fileInput.dom.files.length > 1) {
 					v = this.fileInput.dom.files.length + ' ' + dgettext('plugin_files', 'files selected');
 				}
 				this.setValue(v);

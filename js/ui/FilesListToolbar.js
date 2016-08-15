@@ -237,11 +237,7 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 	 * @param {Object} form the form is contains {@link Ext.form.BasicForm bacisform} info.
 	 */
 	uploadCallback: function (files, form) {
-		if (Zarafa.supportsFilesAPI()) {
-			Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, Zarafa.plugins.files.data.ComponentBox.getStore());
-		} else {
-			Zarafa.plugins.files.data.Actions.uploadLegacyItems(files, form, Zarafa.plugins.files.data.ComponentBox.getStore());
-		}
+		Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, Zarafa.plugins.files.data.ComponentBox.getStore());
 	},
 
 	/**
