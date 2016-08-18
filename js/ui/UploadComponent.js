@@ -48,25 +48,15 @@ Zarafa.plugins.files.ui.UploadComponent = Ext.extend(Ext.Component, {
 	 * @private
 	 */
 	openUploadDialog: function () {
-		if (Zarafa.supportsFilesAPI()) {
-			var uploadEl = this.getUploadEl();
+		var uploadEl = this.getUploadEl();
 
-			// Register the change event handler
-			// so we detect when the user selects a file.
-			uploadEl.on('change', this.onFileInputChange, this);
+		// Register the change event handler
+		// so we detect when the user selects a file.
+		uploadEl.on('change', this.onFileInputChange, this);
 
-			// Mimick clicking on the <input> field
-			// to open the File Selection dialog.
-			uploadEl.dom.click();
-		} else {
-			// With legacy upload we need a valid form, and we cannot
-			// mimick clicking on the <input> field. Hence a secondary
-			// dialog which should handle that.
-			Zarafa.common.Actions.openLegacyFileSelectionContent({
-				callback: this.onLegacyFileInputChange,
-				scope   : this
-			});
-		}
+		// Mimick clicking on the <input> field
+		// to open the File Selection dialog.
+		uploadEl.dom.click();
 	},
 
 	/**
@@ -92,18 +82,6 @@ Zarafa.plugins.files.ui.UploadComponent = Ext.extend(Ext.Component, {
 
 		uploadEl = Ext.get(uploadEl);
 		return uploadEl;
-	},
-
-	/**
-	 * Event handler which is fired when the {@link Zarafa#supportsFilesAPI Files API} implementation for
-	 * selecting files could not be used.
-	 * @param {Ext.form.BasicForm} form The form
-	 * @private
-	 */
-	onLegacyFileInputChange: function (form) {
-		var files = Ext.pluck(form.items.items, 'value');
-
-		this.callback.call(this.scope, files, form);
 	},
 
 	/**

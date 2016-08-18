@@ -180,16 +180,7 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 			var form = field.ownerCt.ownerCt.getForm();
 
 			var files;
-			if (Zarafa.supportsFilesAPI()) {
-				files = this.mainuploadfield.fileInput.dom.files;
-			} else {
-				var legacyfiles = Ext.pluck(form.items.items, 'value');
-				// legacy mode only supports uploading of one file!
-				files = [{
-					name: Zarafa.plugins.files.data.Utils.File.getFileName(legacyfiles[0]),
-					size: 0
-				}];
-			}
+			files = this.mainuploadfield.fileInput.dom.files;
 
 			var filesTooLarge = false;
 			Ext.each(files, function (file) {
@@ -224,19 +215,10 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 	 */
 	doUpload: function () {
 		var form = this.mainuploadfield.ownerCt.ownerCt.getForm();
+		var files = this.mainuploadfield.fileInput.dom.files;
 
-		var files;
-
-		if (Zarafa.supportsFilesAPI()) {
-			files = this.mainuploadfield.fileInput.dom.files;
-			Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, this.targetFolder);
-			this.onClose();
-		} else {
-			files = Ext.pluck(form.items.items, 'value');
-			Zarafa.plugins.files.data.Actions.uploadLegacyItems(files, form, this.targetFolder);
-			form.on('actioncomplete', this.onClose, this, {delay: 5});
-			form.on('actionfailed', this.onClose, this, {delay: 5});
-		}
+		Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, this.targetFolder);
+		this.onClose();
 	},
 
 	/**
