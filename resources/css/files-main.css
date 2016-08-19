@@ -41,7 +41,7 @@ span.error_files {
 
 /** tree panel */
 .x-treenode-load-silent .x-tree-node-icon {
-    background-image: url(../../../client/resources/icons/new/folder.png)!important;
+    background-image: url(../../../client/resources/images/icons/folder.png)!important;
 }
 
 /** top toolbar */
