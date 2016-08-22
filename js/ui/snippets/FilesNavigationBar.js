@@ -196,16 +196,20 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 
 		if (!Ext.isEmpty(accountID) && Ext.isDefined(account)) {
 			var lastCls = (path.indexOf("/") === -1 || path === "/") ? " files_navbar_button_last" : "";
-
+			var accountName = Zarafa.plugins.files.data.Utils.Format.truncate(account.get("name"), this.maxStringBeforeTruncate);
 			var accButton = new Ext.Button({
 				cls: "files_navbar_button" + lastCls,
-				iconCls: "files_navbar icon_16_" + account.get("backend"),
 				path: "#R#" + accountID + "/", // backend root folder
 				listeners: {
 					click: this.doNavButtonClick
 				},
-				text   : Zarafa.plugins.files.data.Utils.Format.truncate(account.get("name"), this.maxStringBeforeTruncate)
+				text   : accountName
 			});
+
+			// If account name is not set by user then show account backend icon
+			if (accountName === '') {
+				accButton.setIconClass("files_navbar icon_16_" + account.get("backend"));
+			}
 			this.add(accButton);
 		}
 
