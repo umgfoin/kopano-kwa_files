@@ -914,5 +914,50 @@ Zarafa.plugins.files.data.Actions = {
 			icon   : Zarafa.common.dialogs.MessageBox.WARNING,
 			buttons: Zarafa.common.dialogs.MessageBox.OK
 		});
+	},
+
+	/**
+	 * Event handler called when the "use Zarafa credentials" checkbox has been modified
+	 *
+	 * @param {Ext.form.CheckBox} checkbox Checkbox element from which the event originated
+	 * @param {Boolean} checked State of the checkbox
+	 * @private
+	 */
+	onCheckCredentials: function (checkbox, checked) {
+		if (checked) {
+			this.usernameField.hide();
+			this.usernameField.setValue("");
+			this.usernameField.label.hide();
+			this.usernameField.allowBlank = true;
+                        this.usernameField.validate();
+			this.passwordField.hide();
+			this.passwordField.setValue("");
+			this.passwordField.label.hide();
+			this.passwordField.allowBlank = true;
+                        this.passwordField.validate()
+		} else {
+			this.usernameField.show();
+			this.usernameField.label.show();
+			this.usernameField.allowBlank = false;
+                        this.usernameField.validate();
+			this.passwordField.show();
+			this.passwordField.label.show();
+			this.passwordField.allowBlank = false;
+                        this.passwordField.validate()
+		}
+	},
+
+	/**
+	 * Event handler called when the "use ssl connection" checkbox has been modified
+	 *
+	 * @param {Ext.form.CheckBox} checkbox Checkbox element from which the event originated
+	 * @param {Boolean} checked State of the checkbox
+	 */
+	onCheckSSL: function (checkbox, checked) {
+		if (checked) {
+			this.portField.setValue("443");
+		} else {
+			this.portField.setValue("80");
+		}
 	}
 };

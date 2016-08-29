@@ -149,7 +149,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 				"editor" => array(
 					"xtype" => "checkbox",
 					"listeners" => array(
-						"check" => "Zarafa.plugins.files.backend.Webdav.FormConfig.onCheckSSL" // this javascript function will be called!
+						"check" => "Zarafa.plugins.files.data.Actions.onCheckSSL" // this javascript function will be called!
 					)
 				)
 			),
@@ -180,7 +180,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 				"editor" => array(
 					"xtype" => "checkbox",
 					"listeners" => array(
-						"check" => "Zarafa.plugins.files.backend.Webdav.FormConfig.onCheckCredentials" // this javascript function will be called!
+						"check" => "Zarafa.plugins.files.data.Actions.onCheckCredentials" // this javascript function will be called!
 					)
 				)
 			),
