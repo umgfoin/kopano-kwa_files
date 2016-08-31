@@ -177,23 +177,25 @@ class FilesAccountModule extends ListModule
 		$accounts = $accountStore->getAllAccounts();
 
 		$accountList = array();
-		foreach ($accounts as $account) {
+		if (is_array($accounts)) {
+			foreach ($accounts as $account) {
 
-			$accountList[$account->getId()] = array(
-				"props" => array(
-					"id" => $account->getId(),
-					"name" => $account->getName(),
-					"type" => "account", // to prevent warning while sorting
-					"status" => $account->getStatus(),
-					"status_description" => $account->getStatusDescription(),
-					"backend" => $account->getBackend(),
-					"backend_config" => $account->getBackendConfig(),
-					'backend_features' => $account->getFeatures()
-				),
-				'entryid' => $account->getId(),
-				'store_entryid' => 'filesaccount',
-				'parent_entryid' => 'accountstoreroot'
-			);
+				$accountList[$account->getId()] = array(
+					"props" => array(
+						"id" => $account->getId(),
+						"name" => $account->getName(),
+						"type" => "account", // to prevent warning while sorting
+						"status" => $account->getStatus(),
+						"status_description" => $account->getStatusDescription(),
+						"backend" => $account->getBackend(),
+						"backend_config" => $account->getBackendConfig(),
+						'backend_features' => $account->getFeatures()
+					),
+					'entryid' => $account->getId(),
+					'store_entryid' => 'filesaccount',
+					'parent_entryid' => 'accountstoreroot'
+				);
+			}
 		}
 
 		// sort the accounts
