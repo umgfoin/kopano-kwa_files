@@ -22,6 +22,7 @@ Zarafa.plugins.files.ui.FilesContextNavigatorBuilder =  {
 		return {
 			xtype  : 'zarafa.contextnavigation',
 			context: context,
+			bodyCssClass : "files_navbar_panel",
 			items  : [],
 			listeners: {
 				'afterrender': function() {
@@ -49,7 +50,7 @@ Zarafa.plugins.files.ui.FilesContextNavigatorBuilder =  {
 			store.each(function (account, index) {
 				if (account.get('status') === Zarafa.plugins.files.data.AccountRecordStatus.OK) {
 					filesNavPanel[0].add({
-						xtype  : 'panel',
+						xtype : 'panel',
 						autoHeight : true,
 						cls : 'zarafa-files-hierarchypanel-subpanel',
 						iconCls: 'icon_16_logo_' + account.get('backend'),
@@ -63,6 +64,7 @@ Zarafa.plugins.files.ui.FilesContextNavigatorBuilder =  {
 					});
 				}
 			});
+
 			filesNavPanel[0].doLayout();
 		} else {
 			// wait for the navpanel to render

@@ -62,3 +62,7 @@
 .files_quota_bar_snippet {
     margin-right: 12px;
 }
+
+.files_navbar_panel {
+    overflow-y: auto;
+}
