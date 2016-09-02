@@ -54,6 +54,7 @@ Zarafa.plugins.files.ui.FilesContextNavigatorBuilder =  {
 						cls : 'zarafa-files-hierarchypanel-subpanel',
 						iconCls: 'icon_16_logo_' + account.get('backend'),
 						title  : dgettext('plugin_files', account.get('backend')),
+						accId  : account.get('id'),
 						items  : [{
 							xtype        : 'filesplugin.navigatortreepanel',
 							accountFilter: account.get('id'),
@@ -75,7 +76,6 @@ Zarafa.plugins.files.ui.FilesContextNavigatorBuilder =  {
 	unselectAllNavPanels: function() {
 		var accStore = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
 
-		var navPanelItems = [];
 		accStore.each(function(account,index){
 			if(account.get('status') === Zarafa.plugins.files.data.AccountRecordStatus.OK) {
 				var navPanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(account.get('id'));
@@ -98,6 +98,27 @@ Zarafa.plugins.files.ui.FilesContextNavigatorBuilder =  {
 
 		// remove deleted accounts from the panel
 		accStore.on('remove', this.removeNavigatorPanel);
+
+		// reorder account panels
+		accStore.on('reorder', this.swapPanels, this);
+	},
+
+	/**
+	 * Swap two account panels.
+	 *
+	 * @param {Zarafa.plugins.files.data.AccountRecord} a The first account
+	 * @param {Zarafa.plugins.files.data.AccountRecord} b The second account
+	 * TODO: maybe improve this - do not rebuild the whole navigation tree.
+	 */
+	swapPanels: function(a, b) {
+		var context = Zarafa.plugins.files.data.ComponentBox.getContext();
+		var navPanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorPanel().centerPanel;
+		var mainContainer = navPanel.find('plugin', context);
+
+		if(mainContainer[0].rendered) {
+			mainContainer[0].removeAll(); // remove all, they will be readded afterwards
+			this.addInitialPanels(Zarafa.plugins.files.data.singleton.AccountStore.getStore());
+		}
 	},
 
 	/**

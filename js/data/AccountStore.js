@@ -18,10 +18,13 @@ Zarafa.plugins.files.data.AccountStore = Ext.extend(Zarafa.core.data.ListModuleS
 			autoSave             : true,
 			actionType           : Zarafa.core.Actions['list'],
 			defaultSortInfo      : {
-				field    : 'status',
+				field    : 'account_sequence',
 				direction: 'asc'
 			}
 		});
+
+		// add custom event
+		this.addEvents('reorder'); // reorder has two arguments: panel a and panel b, those got swapped
 	}
 });
 

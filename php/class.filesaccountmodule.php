@@ -122,7 +122,8 @@ class FilesAccountModule extends ListModule
 					'name' => $newAccount->getName(),
 					'backend' => $newAccount->getBackend(),
 					'backend_config' => $newAccount->getBackendConfig(),
-					'backend_features' => $newAccount->getFeatures()
+					'backend_features' => $newAccount->getFeatures(),
+					'account_sequence' => $newAccount->getSequence()
 				),
 			'entryid' => $newAccount->getId(),
 			'store_entryid' => 'filesaccount',
@@ -177,6 +178,7 @@ class FilesAccountModule extends ListModule
 		$accounts = $accountStore->getAllAccounts();
 
 		$accountList = array();
+
 		if (is_array($accounts)) {
 			foreach ($accounts as $account) {
 
@@ -189,7 +191,8 @@ class FilesAccountModule extends ListModule
 						"status_description" => $account->getStatusDescription(),
 						"backend" => $account->getBackend(),
 						"backend_config" => $account->getBackendConfig(),
-						'backend_features' => $account->getFeatures()
+						'backend_features' => $account->getFeatures(),
+						'account_sequence' => $account->getSequence()
 					),
 					'entryid' => $account->getId(),
 					'store_entryid' => 'filesaccount',
@@ -199,7 +202,7 @@ class FilesAccountModule extends ListModule
 		}
 
 		// sort the accounts
-		$sortKey = "status";
+		$sortKey = "account_sequence";
 		$sortDir = "ASC";
 
 		if (isset($data['sort'])) {
@@ -245,6 +248,9 @@ class FilesAccountModule extends ListModule
 		if (isset($actionData['props']['backend_config'])) { // we always get the whole backend config
 			$currentAccount->setBackendConfig($actionData['props']['backend_config']);
 		}
+		if (isset($actionData['props']['account_sequence'])) {
+			$currentAccount->setSequence($actionData['props']['account_sequence']);
+		}
 
 		// save changes
 		$accountStore->updateAccount($currentAccount);
@@ -259,7 +265,8 @@ class FilesAccountModule extends ListModule
 				"status_description" => $currentAccount->getStatusDescription(),
 				"backend" => $currentAccount->getBackend(),
 				"backend_config" => $currentAccount->getBackendConfig(),
-				'backend_features' => $currentAccount->getFeatures()
+				'backend_features' => $currentAccount->getFeatures(),
+				'account_sequence' => $currentAccount->getSequence()
 			),
 			'entryid' => $currentAccount->getId(),
 			'store_entryid' => 'filesaccount',

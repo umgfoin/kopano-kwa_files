@@ -326,8 +326,20 @@ class FilesBrowserModule extends ListModule
 					'expanded' => false, // TODO: should we autoload the account root?
 					'isFolder' => true, // needed to set class correctly
 					'iconCls' => "icon_16_" . $account->getBackend(),
-					'filename' => $account->getName()
+					'filename' => $account->getName(),
+					'account_sequence' => $account->getSequence()
 				);
+
+				// sort by account_sequence
+				$filter = array(
+					"sort" => array(
+						array(
+							"field" => "account_sequence",
+							"direction" => "ASC"
+						)
+					)
+				);
+				$nodes = $this->sortFolderContent($nodes, $filter, true);
 			}
 		} else { // load subfolder of store
 			$accountID = substr($nodeId, 3, (strpos($nodeId, '/') - 3)); // parse account id from node id
