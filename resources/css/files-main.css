@@ -144,6 +144,7 @@ span.error_files {
 .files_icon_12_share {
 	background-image: url(../resources/icons/share_icon_12.png)!important;
 	background-repeat: no-repeat;
+	top: 7px;
 }
 
 /* Icons for the feature list */

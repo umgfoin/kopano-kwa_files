@@ -75,6 +75,7 @@ Zarafa.plugins.files.ui.FilesRecordGridColumnModel = Ext.extend(Zarafa.common.ui
 				id       : 'isshared',
 				dataIndex: 'isshared',
 				header   : '<p class="files_icon_12_share">&nbsp;</p>',
+				headerCls: 'zarafa-icon-column icon',
 				renderer : Zarafa.plugins.files.data.Utils.Renderer.sharedRenderer,
 				listeners: {
 					click: this.doOnShareButtonClick
@@ -122,6 +123,7 @@ Zarafa.plugins.files.ui.FilesRecordGridColumnModel = Ext.extend(Zarafa.common.ui
 				id       : 'isshared',
 				dataIndex: 'isshared',
 				header   : '<p class="files_icon_12_share">&nbsp;</p>',
+				headerCls: 'zarafa-icon-column icon',
 				renderer : Zarafa.plugins.files.data.Utils.Renderer.sharedRenderer,
 				listeners: {
 					click: this.doOnShareButtonClick
