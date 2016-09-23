@@ -948,15 +948,17 @@ Zarafa.plugins.files.data.Actions = {
 	},
 
 	/**
-	 * Event handler called when the "use ssl connection" checkbox has been modified
+	 * Event handler called when the "use ssl connection" checkbox has been modified.
+	 * If checked and the server port is 80, switch it to 443, else if the port is unchecked
+	 * and the port is not 80, change it to the default.
 	 *
 	 * @param {Ext.form.CheckBox} checkbox Checkbox element from which the event originated
 	 * @param {Boolean} checked State of the checkbox
 	 */
 	onCheckSSL: function (checkbox, checked) {
-		if (checked) {
+		if (checked && this.portField.getValue() === "80") {
 			this.portField.setValue("443");
-		} else {
+		} else if (!checked && this.portField.getValue() === "443") {
 			this.portField.setValue("80");
 		}
 	}
