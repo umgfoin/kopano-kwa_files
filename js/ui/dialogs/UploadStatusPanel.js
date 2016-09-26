@@ -266,17 +266,18 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 			}
 
 
-			var item = this["fileuploadfield_" + index];
-			if (Ext.isDefined(oldloaded) && loaded != 0 && total != 0) {
-				if (loaded != oldloaded) {
-					item.speed.setValue(speed.toFixed(2) + speed_unit);
-					item.eta.setValue(parseInt(eta) + eta_unit);
+			var filesUploaderPanel = this["fileuploadfield_" + index];
+			if (Ext.isDefined(filesUploaderPanel)) {
+				if (Ext.isDefined(oldloaded) && loaded != 0 && total != 0) {
+					if (loaded != oldloaded) {
+						filesUploaderPanel.speed.setValue(speed.toFixed(2) + speed_unit);
+						filesUploaderPanel.eta.setValue(parseInt(eta) + eta_unit);
+					}
+				} else {
+					filesUploaderPanel.speed.setValue('- kB/s');
+					filesUploaderPanel.eta.setValue(dgettext('plugin_files', '- seconds left'));
 				}
-			} else {
-				item.speed.setValue('- kB/s');
-				item.eta.setValue(dgettext('plugin_files', '- seconds left'));
 			}
-
 		}, this);
 	},
 
@@ -288,17 +289,19 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 	 * @param index
 	 */
 	onUpdateProgress: function (event, index) {
-		var item = this["fileuploadfield_" + index];
+		var filesUploaderPanel = this["fileuploadfield_" + index];
 
-		if (event.lengthComputable) {
-			this.xhr[index].cust_loaded = event.loaded; // store loaded and total size to xhr element
-			this.xhr[index].cust_total = event.total;
+		if (Ext.isDefined(filesUploaderPanel)) {
+			if (event.lengthComputable) {
+				this.xhr[index].cust_loaded = event.loaded; // store loaded and total size to xhr element
+				this.xhr[index].cust_total = event.total;
 
-			var finished = ((event.loaded / event.total) * 100).toFixed(2);
-			item.progress.updateProgress((event.loaded / event.total), dgettext('plugin_files', 'Uploading: ') + finished + '%', true);
-			item.uploaded.setValue(Zarafa.plugins.files.data.Utils.Format.fileSizeList(event.loaded));
-		} else {
-			item.progress.updateProgress(0.5, dgettext('plugin_files', 'Upload status unavailable... please wait.'), true);
+				var finished = ((event.loaded / event.total) * 100).toFixed(2);
+				filesUploaderPanel.progress.updateProgress((event.loaded / event.total), dgettext('plugin_files', 'Uploading: ') + finished + '%', true);
+				filesUploaderPanel.uploaded.setValue(Zarafa.plugins.files.data.Utils.Format.fileSizeList(event.loaded));
+			} else {
+				filesUploaderPanel.progress.updateProgress(0.5, dgettext('plugin_files', 'Upload status unavailable... please wait.'), true);
+			}
 		}
 	},
 
@@ -311,14 +314,19 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 	 * @param index
 	 */
 	onFinishProgress: function (event, index) {
-		this["fileuploadfield_" + index].progress.updateProgress(1, dgettext('plugin_files', 'Upload finished!'), true);
+		var filesUploaderPanel = this["fileuploadfield_" + index];
+		// If files upload panel is not already closed then do go farther operations like
+		// disable the cancel button and update progress bar etc.
+		if (filesUploaderPanel) {
+			filesUploaderPanel.progress.updateProgress(1, dgettext('plugin_files', 'Upload finished!'), true);
 
-		// reset stats - to tell the timer to stop
-		this.xhr[index].cust_loaded = 0; // store loaded and total size to xhr element
-		this.xhr[index].cust_total = 0;
+			// reset stats - to tell the timer to stop
+			this.xhr[index].cust_loaded = 0; // store loaded and total size to xhr element
+			this.xhr[index].cust_total = 0;
 
-		this["fileuploadfield_" + index].cancel.disable();
-		this.checkTimerAlive();
+			filesUploaderPanel.cancel.disable();
+			this.checkTimerAlive();
+		}
 	},
 
 	/**
@@ -330,14 +338,17 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 	 * @param index
 	 */
 	onUploadAborted: function (event, index) {
-		var progressbar = this["fileuploadfield_" + index].progress;
-		progressbar.updateProgress(1, dgettext('plugin_files', 'Upload aborted!'), true);
-		progressbar.addClass("fp_upload_canceled");
-		this["fileuploadfield_" + index].cancel.disable();
+		var filesUploaderPanel = this["fileuploadfield_" + index];
+		if (Ext.isDefined(filesUploaderPanel)) {
+			var progressbar = filesUploaderPanel.progress;
+			progressbar.updateProgress(1, dgettext('plugin_files', 'Upload aborted!'), true);
+			progressbar.addClass("fp_upload_canceled");
+			filesUploaderPanel.cancel.disable();
 
-		// call callback
-		this.callbackUploadAborted(this.files[index], this.destination, event);
-		this.checkTimerAlive();
+			// call callback
+			this.callbackUploadAborted(this.files[index], this.destination, event);
+			this.checkTimerAlive();
+		}
 	},
 
 	/**
@@ -349,14 +360,17 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 	 * @param index
 	 */
 	onUploadFailed: function (event, index) {
-		var progressbar = this["fileuploadfield_" + index].progress;
-		progressbar.updateProgress(1, dgettext('plugin_files', 'Upload failed!'), true);
-		progressbar.addClass("fp_upload_canceled");
-		this["fileuploadfield_" + index].cancel.disable();
+		var filesUploaderPanel = this["fileuploadfield_" + index];
+		if (Ext.isDefined(filesUploaderPanel)) {
+			var progressbar = filesUploaderPanel.progress;
+			progressbar.updateProgress(1, dgettext('plugin_files', 'Upload failed!'), true);
+			progressbar.addClass("fp_upload_canceled");
+			filesUploaderPanel.cancel.disable();
 
-		// call callback
-		this.callbackUploadFailed(this.files[index], this.destination, event);
-		this.checkTimerAlive();
+			// call callback
+			this.callbackUploadFailed(this.files[index], this.destination, event);
+			this.checkTimerAlive();
+		}
 	},
 
 	/**
