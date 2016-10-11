@@ -225,11 +225,11 @@
 	</target>
 
 	<target name="msgfmt">
-		<propertyregex property="outfile" input="${file}" regexp=".*\/(language\/.*)\.po" replace="${target-folder}/${plugin-folder}\1\.mo"/>
+		<propertyregex property="outfile" input="${file}" regexp=".*\/(language\/.*)\.po" replace="${target-folder}/${plugin-folder}/\1\.mo"/>
 		<echo message="Converting ${file} to ${outfile}"/>
 		<dirname property="outdir" file="${outfile}"/>
 		<mkdir dir="${outdir}"/>
-		<exec executable="msgfmt" failonerror="true">
+		<exec executable="msgfmt" failonerror="true" logError="true">
 			<arg value="-v"/>
 			<arg value="-o"/>
 			<arg value="${outfile}"/>
