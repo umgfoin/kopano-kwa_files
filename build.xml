@@ -1,4 +1,5 @@
 <project default="all">
+	<property environment="env"/>
 	<property name="root-folder" value="${basedir}/../../"/>
 	<property name="tools-folder" value="${root-folder}/tools/"/>
 	<property name="target-folder" value="${root-folder}/deploy/plugins"/>
