@@ -1,3 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-10 14:40+0000\n"
+"PO-Revision-Date: 2016-10-10 14:40+0000\n"
+"Last-Translator: Klaus <klaus@linuxavdelingen.no>\n"
+"Language-Team: Norwegian Bokmål "
+"<http://translate.kopano.io/projects/kopano/files/nb_NO/>\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
+
 #: js/data/Actions.js:84
 msgid "Add attachment from {0}"
 msgstr ""
@@ -203,7 +219,7 @@ msgstr ""
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
 #: js/ui/dialogs/UploadStatusPanel.js:135
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: js/settings/SettingsResetWidget.js:87
 msgid "Webapp is reloading, Please wait."

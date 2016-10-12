@@ -1,345 +1,364 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-11 22:22+0000\n"
+"PO-Revision-Date: 2016-09-22 19:43+0000\n"
+"Last-Translator: Zoltan <zoltan.kiss@serverside.hu>\n"
+"Language-Team: Hungarian "
+"<http://translate.kopano.io/projects/kopano/files/hu/>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
+
 #: js/data/Actions.js:84
 msgid "Add attachment from {0}"
-msgstr ""
+msgstr "Melléklet hozzáadása innen: {0}"
 
 #: js/data/Actions.js:190 js/settings/ui/AccountGrid.js:172
 msgid "Confirm deletion"
-msgstr ""
+msgstr "Törlés megerősítése"
 
 #: js/data/Actions.js:190
 msgid "Are you sure?"
-msgstr ""
+msgstr "Biztos benne?"
 
 #: js/data/Actions.js:308 js/ui/dialogs/SaveToFilesTreePanel.js:285
 msgid "Folder already exists"
-msgstr ""
+msgstr "A mappa már létezik"
 
 #: js/data/Actions.js:310 js/ui/dialogs/SaveToFilesTreePanel.js:252
 msgid "Incorrect foldername"
-msgstr ""
+msgstr "Hibás mappanév"
 
 #: js/data/Actions.js:317
 msgid "This name already exists"
-msgstr ""
+msgstr "Ez a név már létezik"
 
 #: js/data/Actions.js:319
 msgid "Incorrect name"
-msgstr ""
+msgstr "Hibás név"
 
 #: js/data/Actions.js:328 js/data/Actions.js:936
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 msgid "Confirm overwrite"
-msgstr ""
+msgstr "Felülírás megerősítése"
 
 #: js/data/Actions.js:329 js/data/Actions.js:937
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "A fájl már létezik. Felül kívánja írni?"
 
 #: js/data/Actions.js:353
 msgid "Folder name"
-msgstr ""
+msgstr "Mappa név"
 
 #: js/data/Actions.js:353 js/ui/dialogs/SaveToFilesTreePanel.js:237
 msgid "Please enter a foldername"
-msgstr ""
+msgstr "Adjon meg egy mappanevet"
 
 #: js/data/Actions.js:429
 msgid "Folder could not be created!"
-msgstr ""
+msgstr "A mappát nem sikerült létrehozni!"
 
 #: js/data/Actions.js:600 js/ui/FilesListToolbar.js:117
 #: js/ui/FilesListToolbar.js:118 js/ui/FilesMainContextMenu.js:102
 #: js/ui/FilesTreeContextMenu.js:38
 msgid "Rename"
-msgstr ""
+msgstr "Átnevezés"
 
 #: js/data/Actions.js:601
 msgid "Please enter a new name"
-msgstr ""
+msgstr "Adjon meg egy új nevet"
 
 #: js/data/Actions.js:745
 msgid "Downloading"
-msgstr ""
+msgstr "Letöltés"
 
 #: js/data/Actions.js:745
 msgid "Download started... please wait!"
-msgstr ""
+msgstr "Letöltés megkezdve... kérem várjon!"
 
 #: js/data/Actions.js:813
 msgid "Uploading files"
-msgstr ""
+msgstr "Fájlok feltöltése"
 
 #: js/data/Actions.js:820 js/data/Actions.js:866
 #: js/data/NavigatorTreeLoader.js:108 js/data/ResponseHandler.js:128
 #: js/data/ResponseHandler.js:135 js/ui/dialogs/FilesUploadContentPanel.js:201
 #: js/ui/FilesRecordAccountView.js:128
 msgid "Error"
-msgstr ""
+msgstr "Hiba"
 
 #: js/data/Actions.js:821
 msgid "Uploading files failed!"
-msgstr ""
+msgstr "Fájlok feltöltése nem sikerült!"
 
 #: js/data/Actions.js:867
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
-msgstr ""
+msgstr "Valamelyik fájl túl nagy! A maximális engedélyezett fájlméret: {0}."
 
 #: js/data/Actions.js:986 js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:125
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:160
 msgid "Warning"
-msgstr ""
+msgstr "Figyelmeztetés"
 
 #: js/data/NavigatorTreeLoader.js:127
 msgid "Loading failed"
-msgstr ""
+msgstr "Betöltés sikertelen"
 
 #: js/data/Utils.js:232
 msgid "l d/m/Y G:i"
-msgstr ""
+msgstr "l Y/m/d G:i"
 
 #: js/data/Utils.js:232
 msgid "Never"
-msgstr ""
+msgstr "Újabb"
 
 #: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
 #: js/ui/FilesListToolbar.js:41
 msgid "Upload file"
-msgstr ""
+msgstr "Fájl feltöltés"
 
 #: js/FilesContext.js:224 js/ui/FilesListToolbar.js:42
 msgid "Upload one or more files"
-msgstr ""
+msgstr "Egy vagy több fájl feltöltése"
 
 #: js/FilesContext.js:244 js/FilesContext.js:277 js/FilesContext.js:279
 msgid "Send file"
-msgstr ""
+msgstr "Fájl küldése"
 
 #: js/FilesContext.js:280
 msgid "Create a new email message with some files attached."
-msgstr ""
+msgstr "Email üzenet létrehozása fájlok csatolásával."
 
 #: js/FilesContext.js:328 js/FilesContext.js:330
 msgid "No preview"
-msgstr ""
+msgstr "Nincs előnézet"
 
 #: js/FilesContext.js:336 js/FilesContext.js:338
 msgid "Right preview"
-msgstr ""
+msgstr "Jobb oldali előnézet"
 
 #: js/FilesContext.js:344 js/FilesContext.js:346
 msgid "Bottom preview"
-msgstr ""
+msgstr "Alsó előnézet"
 
 #: js/FilesContext.js:367
 msgid "Switch view"
-msgstr ""
+msgstr "Nézet változtatása"
 
 #: js/FilesContext.js:379 js/FilesContext.js:380 js/FilesContext.js:381
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: js/FilesContext.js:387 js/FilesContext.js:388 js/FilesContext.js:389
 msgid "Icons"
-msgstr ""
+msgstr "Ikonok"
 
 #: js/FilesContext.js:490 js/FilesContextModel.js:111
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
 msgid "Files"
-msgstr ""
+msgstr "Fájlok"
 
 #: js/FilesPlugin.js:78
 msgid "Add from Files"
-msgstr ""
+msgstr "Hozzáadás a Fájlokból"
 
 #: js/FilesPlugin.js:106 js/FilesPlugin.js:124
 msgid "Add to Files"
-msgstr ""
+msgstr "Hozzáadás a Fájlokhoz"
 
 #: js/FilesPlugin.js:138 js/ui/dialogs/AttachFromFilesContentPanel.js:25
 msgid "Add attachment from Files"
-msgstr ""
+msgstr "Melléklet csatolása a Fájlokból"
 
 #: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1282
 msgid "Untitled"
-msgstr ""
+msgstr "Névtelen"
 
 #: js/FilesPlugin.js:298
 msgid "Files Plugin"
-msgstr ""
+msgstr "Fájlok bővítmény"
 
 #: js/settings/SettingsAccountWidget.js:21
 msgid "Manage Accounts"
-msgstr ""
+msgstr "Fiókok kezelése"
 
 #: js/settings/SettingsResetWidget.js:27 js/settings/SettingsResetWidget.js:35
 #: js/settings/SettingsResetWidget.js:58
 msgid "Reset Files settings"
-msgstr ""
+msgstr "Fájlok beállításainak visszaállítása"
 
 #: js/settings/SettingsResetWidget.js:32
 msgid "Resets Files settings to their original defaults"
-msgstr ""
+msgstr "Fájlok beállításainak alaphelyzetbe állítása"
 
 #: js/settings/SettingsResetWidget.js:52
 msgid ""
 "Your Files's settings will be restored to their default condition. Are you "
 "sure you want to reset all Files settings?"
 msgstr ""
+"A Fájlok beállításai alaphelyzetbe állnak. Biztos benne, hogy alaphelyzetbe "
+"kívánja állítani?"
 
 #: js/settings/SettingsResetWidget.js:54
 msgid ""
 "WebApp will automatically restart in order for these changes to take effect"
 msgstr ""
+"A beállítások érvénybe lépéséhez a WebApp automatikusan újra fog indulni"
 
 #: js/settings/SettingsResetWidget.js:63
 msgid "Reset"
-msgstr ""
+msgstr "Visszaállítás"
 
 #: js/settings/SettingsResetWidget.js:66 js/settings/ui/AccountEditPanel.js:42
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
 #: js/ui/dialogs/UploadStatusPanel.js:135
 msgid "Cancel"
-msgstr ""
+msgstr "Mégse"
 
 #: js/settings/SettingsResetWidget.js:87
 msgid "Webapp is reloading, Please wait."
-msgstr ""
+msgstr "Betöltés folyamatban. Kérem várjon."
 
 #: js/settings/ui/AccountEditContentPanel.js:26
 msgid "Edit Account"
-msgstr ""
+msgstr "Fiók szerkesztése"
 
 #: js/settings/ui/AccountEditPanel.js:36
 #: js/ui/dialogs/SaveToFilesTreePanel.js:181
 msgid "Save"
-msgstr ""
+msgstr "Mentés"
 
 #: js/settings/ui/AccountEditPanel.js:137
 msgid "Account Information"
-msgstr ""
+msgstr "Fiók információ"
 
 #: js/settings/ui/AccountEditPanel.js:148
 msgid "Account name"
-msgstr ""
+msgstr "Fiók név"
 
 #: js/settings/ui/AccountEditPanel.js:156
 msgid "Account type"
-msgstr ""
+msgstr "Fiók típus"
 
 #: js/settings/ui/AccountEditPanel.js:168
 msgid "Select backend..."
-msgstr ""
+msgstr "Válasszon típust..."
 
 #: js/settings/ui/AccountEditPanel.js:182
 msgid "Account Configuration"
-msgstr ""
+msgstr "Fiók beállítások"
 
 #: js/settings/ui/AccountEditPanel.js:239
 msgid "Update"
-msgstr ""
+msgstr "Frissít"
 
 #: js/settings/ui/AccountGridColumnModel.js:41
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: js/settings/ui/AccountGridColumnModel.js:45
 #: js/ui/FilesRecordGridColumnModel.js:45
 msgid "Sort by: ID"
-msgstr ""
+msgstr "Rendezés: ID"
 
 #: js/settings/ui/AccountGridColumnModel.js:47
 msgid "Status"
-msgstr ""
+msgstr "Állapot"
 
 #: js/settings/ui/AccountGridColumnModel.js:52
 msgid "Sort by: Status"
-msgstr ""
+msgstr "Rendezés: Állapot szerint"
 
 #: js/settings/ui/AccountGridColumnModel.js:54
 msgid "Name"
-msgstr ""
+msgstr "Név"
 
 #: js/settings/ui/AccountGridColumnModel.js:58
 msgid "Sort by: Name"
-msgstr ""
+msgstr "Rendezés: Név"
 
 #: js/settings/ui/AccountGridColumnModel.js:60
 msgid "Backend"
-msgstr ""
+msgstr "Típus"
 
 #: js/settings/ui/AccountGridColumnModel.js:65
 msgid "Sort by: Backend"
-msgstr ""
+msgstr "Rendezés: Típus"
 
 #: js/settings/ui/AccountGridColumnModel.js:68
 msgid "Features"
-msgstr ""
+msgstr "Képességek"
 
 #: js/settings/ui/AccountGridColumnModel.js:72
 msgid "Shows all available features of the backend."
-msgstr ""
+msgstr "Az összes képesség mutatása a kiválasztott típusban."
 
 #: js/settings/ui/AccountGridColumnModel.js:76
 msgid "Show quota information"
-msgstr ""
+msgstr "Kvóta információk megjelenítése"
 
 #: js/settings/ui/AccountGridColumnModel.js:81
 msgid "Show version information"
-msgstr ""
+msgstr "Verzió információk megjelenítése"
 
 #: js/settings/ui/AccountGridColumnModel.js:86 js/ui/FilesListToolbar.js:91
 #: js/ui/FilesListToolbar.js:94
 msgid "Share files"
-msgstr ""
+msgstr "Fájlok megosztása"
 
 #: js/settings/ui/AccountGridColumnModel.js:90
 msgid "Fast Down/Upload"
-msgstr ""
+msgstr "Gyors le- és feltöltés"
 
 #: js/settings/ui/AccountGrid.js:43
 msgid "Add Account"
-msgstr ""
+msgstr "Fiók hozzáadása"
 
 #: js/settings/ui/AccountGrid.js:48
 msgid "Remove Account"
-msgstr ""
+msgstr "Fiók eltávolítása"
 
 #: js/settings/ui/AccountGrid.js:66 js/ui/FilesRecordAccountView.js:30
 msgid "Loading accounts"
-msgstr ""
+msgstr "Fiókok betöltése"
 
 #: js/settings/ui/AccountGrid.js:91
 msgid "No account created!"
-msgstr ""
+msgstr "Nincs fiók létrehozva!"
 
 #: js/settings/ui/AccountGrid.js:173
 msgid "Do you really want to delete the account \"{0}\"?"
-msgstr ""
+msgstr "Mindenképpen törölni kívánja a fiókot ({0})?"
 
 #: js/settings/ui/FeatureQuotaInfoContentPanel.js:26
 msgid "Quota Information"
-msgstr ""
+msgstr "Kvóta információ"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:58
 msgid "Reload"
-msgstr ""
+msgstr "Frissítés"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:63
 #: js/settings/ui/FeatureVersionInfoPanel.js:36
 msgid "Close"
-msgstr ""
+msgstr "Bezárás"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:148
 msgid "Your current storage usage"
-msgstr ""
+msgstr "Felhasznált tárterület"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:152
 msgid "Used storage"
-msgstr ""
+msgstr "Használt tárterület"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:153
 #: js/settings/ui/FeatureQuotaInfoPanel.js:158
@@ -347,403 +366,403 @@ msgstr ""
 #: js/settings/ui/FeatureVersionInfoPanel.js:101
 #: js/settings/ui/FeatureVersionInfoPanel.js:106
 msgid "Loading"
-msgstr ""
+msgstr "Betöltés"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:157
 msgid "Free storage"
-msgstr ""
+msgstr "Szabad tárterület"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:162
 msgid "Total storage size"
-msgstr ""
+msgstr "Teljes tárterület mérete"
 
 #: js/settings/ui/FeatureVersionInfoContentPanel.js:26
 msgid "Version Information"
-msgstr ""
+msgstr "Verzió információ"
 
 #: js/settings/ui/FeatureVersionInfoPanel.js:96
 msgid "This account uses the following Backend:"
-msgstr ""
+msgstr "Ez a fiók az alábbi típusú backendet használja:"
 
 #: js/settings/ui/FeatureVersionInfoPanel.js:100
 msgid "Backend version"
-msgstr ""
+msgstr "Backend verzió"
 
 #: js/settings/ui/FeatureVersionInfoPanel.js:105
 msgid "Storage server version"
-msgstr ""
+msgstr "Tároló szerver verzió"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:77
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:79
 msgid "Add attachment"
-msgstr ""
+msgstr "Melléklet hozzáadása"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:80
 msgid "Add selected attachment from files to email attachment."
-msgstr ""
+msgstr "A kijelölt elem hozzáadása email csatolmányként."
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:117
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:126
 msgid "The file {0} is too large!"
-msgstr ""
+msgstr "A fájl ({0}) túl nagy!"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:117
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:126
 msgid "max"
-msgstr ""
+msgstr "max"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:140
 msgid "You have to choose at least one file!"
-msgstr ""
+msgstr "Válasszon ki egy fájlt!"
 
 #: js/ui/dialogs/FilesRecordContentPanel.js:24
 #: js/ui/FilesRecordDetailsPanel.js:68
 msgid "File information"
-msgstr ""
+msgstr "Fájl információ"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:61
 msgid "Select a file"
-msgstr ""
+msgstr "Fájl kiálasztása"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:61
 msgid "Maximum upload size"
-msgstr ""
+msgstr "Maximális feltöltési méret"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:66
 msgid "Browse"
-msgstr ""
+msgstr "Tallózás"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:89
 msgid "Select upload folder"
-msgstr ""
+msgstr "Válassza ki a feltöltési mappát"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:39
 msgid "Upload"
-msgstr ""
+msgstr "Feltöltés"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:140
 msgid "Store selected file"
-msgstr ""
+msgstr "Kiválasztott fájl mentése"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:141
 msgid "Upload file to the selected folder"
-msgstr ""
+msgstr "Fájl feltöltése a kiválasztott mappába"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:152
 msgid "Close this window"
-msgstr ""
+msgstr "Ablak bezárása"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:202
 msgid "File \"{0}\" is too large! Maximum allowed filesize: {1}."
-msgstr ""
+msgstr "A fájl \"{0}\" túl nagy! A maximálisan megengedett fájlméret: {1}."
 
 #: js/ui/dialogs/SaveToFilesContentPanel.js:21
 msgid "Add item to Files"
-msgstr ""
+msgstr "Új elem hozzáadása a Fájlokhoz"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:171
 #: js/ui/dialogs/SaveToFilesTreePanel.js:173
 msgid "New folder"
-msgstr ""
+msgstr "Új mappa"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:54
 msgid "Create a new folder"
-msgstr ""
+msgstr "Új mappa"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:183
 msgid "Store attachment"
-msgstr ""
+msgstr "Melléklet mentése"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:184
 msgid "Store attachment to the selected Files folder."
-msgstr ""
+msgstr "Melléklet mentése a kiválasztott Fájlok mappába."
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:200
 #: js/ui/dialogs/SaveToFilesTreePanel.js:235
 msgid "You have to choose a folder!"
-msgstr ""
+msgstr "Válasszon ki egy mappát!"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:237
 msgid "Folder Name"
-msgstr ""
+msgstr "Mappa név"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:344
 msgid "Uploaded"
-msgstr ""
+msgstr "Feltöltve"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:344
 msgid "Attachment successfully stored in Files"
-msgstr ""
+msgstr "Melléklet sikeresen mentve a Fájlokba"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:346
 msgid "Upload Failed"
-msgstr ""
+msgstr "Feltöltés sikertelen"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:346
 msgid "Attachment could not be stored in Files! Error: "
-msgstr ""
+msgstr "A melléklet nem menthető a Fájlokba! Hiba: "
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:384
 msgid "Created"
-msgstr ""
+msgstr "Létrehozva"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:384
 msgid "Directory created!"
-msgstr ""
+msgstr "Mappa létrehozva!"
 
 #: js/ui/dialogs/ShareContentPanel.js:25
 msgid "Share Files"
-msgstr ""
+msgstr "Fájlok megosztása"
 
 #: js/ui/dialogs/UploadStatusContentPanel.js:30
 msgid "Uploading files to "
-msgstr ""
+msgstr "Fájlok feltöltése ide: "
 
 #: js/ui/dialogs/UploadStatusPanel.js:125
 msgid "Starting upload"
-msgstr ""
+msgstr "Feltöltés megkezdése"
 
 #: js/ui/dialogs/UploadStatusPanel.js:136
 #: js/ui/dialogs/UploadStatusPanel.js:138
 msgid "Cancel upload"
-msgstr ""
+msgstr "Feltöltés megszakítása"
 
 #: js/ui/dialogs/UploadStatusPanel.js:169
 #: js/ui/dialogs/UploadStatusPanel.js:277
 msgid "- seconds left"
-msgstr ""
+msgstr "- másodperc van hátra"
 
 #: js/ui/dialogs/UploadStatusPanel.js:251
 msgid " seconds left"
-msgstr ""
+msgstr " másodperc van hátra"
 
 #: js/ui/dialogs/UploadStatusPanel.js:255
 msgid " minutes left"
-msgstr ""
+msgstr " perc van hátra"
 
 #: js/ui/dialogs/UploadStatusPanel.js:298
 msgid "Uploading: "
-msgstr ""
+msgstr "Feltöltés: "
 
 #: js/ui/dialogs/UploadStatusPanel.js:301
 msgid "Upload status unavailable... please wait."
-msgstr ""
+msgstr "A feltöltés állapota nem elérhető... kérem várjon."
 
 #: js/ui/dialogs/UploadStatusPanel.js:314
 msgid "Upload finished!"
-msgstr ""
+msgstr "Feltöltés befejeződött!"
 
 #: js/ui/dialogs/UploadStatusPanel.js:334
 msgid "Upload aborted!"
-msgstr ""
+msgstr "A feltöltés megszakadt!"
 
 #: js/ui/dialogs/UploadStatusPanel.js:353
 msgid "Upload failed!"
-msgstr ""
+msgstr "A feltöltés nem sikerült!"
 
 #: js/ui/FilesListToolbar.js:44
 msgid "Upload files"
-msgstr ""
+msgstr "Fájlok feltöltése"
 
 #: js/ui/FilesListToolbar.js:51 js/ui/FilesListToolbar.js:53
 #: js/ui/FilesTreeContextMenu.js:60
 msgid "Create folder"
-msgstr ""
+msgstr "Mappa létrehozása"
 
 #: js/ui/FilesListToolbar.js:56
 msgid "Create new folder"
-msgstr ""
+msgstr "Új mappa"
 
 #: js/ui/FilesListToolbar.js:63 js/ui/FilesMainContextMenu.js:34
 msgid "Download"
-msgstr ""
+msgstr "Letöltés"
 
 #: js/ui/FilesListToolbar.js:68 js/ui/FilesListToolbar.js:71
 msgid "Download files"
-msgstr ""
+msgstr "Fájlok letöltése"
 
 #: js/ui/FilesListToolbar.js:69
 msgid "Download the selected files"
-msgstr ""
+msgstr "Kijelölt fájlok letöltése"
 
 #: js/ui/FilesListToolbar.js:78 js/ui/FilesMainContextMenu.js:45
 msgid "Share"
-msgstr ""
+msgstr "Megosztás"
 
 #: js/ui/FilesListToolbar.js:92
 msgid "Share the selected files"
-msgstr ""
+msgstr "Kijelölt fájlok megosztása"
 
 #: js/ui/FilesListToolbar.js:101 js/ui/FilesListToolbar.js:106
 #: js/ui/FilesListToolbar.js:109 js/ui/FilesMainContextMenu.js:68
 msgid "Attach to mail"
-msgstr ""
+msgstr "Emailhez csatolás"
 
 #: js/ui/FilesListToolbar.js:107
 msgid "Attach the selected files to mail"
-msgstr ""
+msgstr "Kijelölt fájlok emailhez csatolása"
 
 #: js/ui/FilesListToolbar.js:128 js/ui/FilesListToolbar.js:129
 #: js/ui/FilesMainContextMenu.js:111 js/ui/FilesTreeContextMenu.js:49
 msgid "Delete"
-msgstr ""
+msgstr "Törlés"
 
 #: js/ui/FilesListToolbar.js:212 js/ui/FilesMainContextMenu.js:173
 msgid "Attaching"
-msgstr ""
+msgstr "Csatolás"
 
 #: js/ui/FilesListToolbar.js:212 js/ui/FilesMainContextMenu.js:173
 msgid "Creating email... Please wait!"
-msgstr ""
+msgstr "Email létrehozása... Kérem várjon!"
 
 #: js/ui/FilesMainContextMenu.js:62
 msgid "Edit share"
-msgstr ""
+msgstr "Megosztás szerkesztése"
 
 #: js/ui/FilesMainContextMenu.js:120
 msgid "Info"
-msgstr ""
+msgstr "Infó"
 
 #: js/ui/FilesRecordAccountView.js:33
 msgid "There are no accounts added. Go to settings and add an account!"
-msgstr ""
+msgstr "Nincsen fiókok hozzáadva. A beállítások menüben adhat hozzá fiókokat!"
 
 #: js/ui/FilesRecordAccountView.js:129
 msgid "To delete an account you have to go to settings."
-msgstr ""
+msgstr "Fiókot a beállítások menüben távolíthat el."
 
 #: js/ui/FilesRecordDetailsPanel.js:76 js/ui/FilesRecordGridColumnModel.js:55
 #: js/ui/FilesRecordGridColumnModel.js:102
 msgid "Filename"
-msgstr ""
+msgstr "Fájlnév"
 
 #: js/ui/FilesRecordDetailsPanel.js:83
 msgid "Filesize"
-msgstr ""
+msgstr "Fájl méret"
 
 #: js/ui/FilesRecordDetailsPanel.js:90 js/ui/FilesRecordGridColumnModel.js:61
 #: js/ui/FilesRecordGridColumnModel.js:108
 msgid "Last modified"
-msgstr ""
+msgstr "Utolsó módosítás"
 
 #: js/ui/FilesRecordDetailsPanel.js:97
 msgid "Type"
-msgstr ""
+msgstr "Típus"
 
 #: js/ui/FilesRecordDetailsPanel.js:104
 msgid "Is shared"
-msgstr ""
+msgstr "Megosztva"
 
 #: js/ui/FilesRecordDetailsPanel.js:131
 msgid "File preview"
-msgstr ""
+msgstr "Előnézet"
 
 #: js/ui/FilesRecordDetailsPanel.js:238
 msgid "Your browser does not support previewing of audio files!"
-msgstr ""
+msgstr "A böngészője nem támogatja az audio fájlok előnézetét!"
 
 #: js/ui/FilesRecordDetailsPanel.js:264
 msgid "Your browser does not support previewing of video files!"
-msgstr ""
+msgstr "A böngészője nem támogatja a video fájlok előnézetét!"
 
 #: js/ui/FilesRecordDetailsPanel.js:298
 msgid "d.m.Y G:i"
-msgstr ""
+msgstr "Y.m.d. G:i"
 
 #: js/ui/FilesRecordDetailsPanel.js:299
 msgid "File ({0})"
-msgstr ""
+msgstr "Fájl ({0})"
 
 #: js/ui/FilesRecordDetailsPanel.js:299
 msgid "Folder"
-msgstr ""
+msgstr "Mappa"
 
 #: js/ui/FilesRecordDetailsPanel.js:303
 msgid "Yes"
-msgstr ""
+msgstr "Igen"
 
 #: js/ui/FilesRecordDetailsPanel.js:303
 msgid "No"
-msgstr ""
+msgstr "Nem"
 
 #: js/ui/FilesRecordGridColumnModel.js:38
 #: js/ui/FilesRecordGridColumnModel.js:99
 msgid "Sort by: Type"
-msgstr ""
+msgstr "Rendezés: Típus"
 
 #: js/ui/FilesRecordGridColumnModel.js:52
 msgid "Sort by: Path"
-msgstr ""
+msgstr "Rendezés: Útvonal"
 
 #: js/ui/FilesRecordGridColumnModel.js:58
 #: js/ui/FilesRecordGridColumnModel.js:105
 msgid "Sort by: Filename"
-msgstr ""
+msgstr "Rendezés: Név"
 
 #: js/ui/FilesRecordGridColumnModel.js:65
 #: js/ui/FilesRecordGridColumnModel.js:112
 msgid "Sort by: Last modified"
-msgstr ""
+msgstr "Rendezés: Utolsó módosítás"
 
 #: js/ui/FilesRecordGridColumnModel.js:68
 #: js/ui/FilesRecordGridColumnModel.js:115
 msgid "Size"
-msgstr ""
+msgstr "Méret"
 
 #: js/ui/FilesRecordGridColumnModel.js:73
 #: js/ui/FilesRecordGridColumnModel.js:121
 msgid "Sort by: Size"
-msgstr ""
+msgstr "Rendezés: Méret"
 
 #: js/ui/FilesRecordGridColumnModel.js:85
 #: js/ui/FilesRecordGridColumnModel.js:133
 msgid "Sort by: Shared"
-msgstr ""
+msgstr "Rendezés: Megosztva"
 
 #: js/ui/FilesRecordGridView.js:64 js/ui/FilesRecordIconView.js:32
 msgid "Loading files"
-msgstr ""
+msgstr "Fájlok betöltése"
 
 #: js/ui/FilesRecordIconView.js:35
 msgid "There are no items to show in this view"
-msgstr ""
+msgstr "Nincsenek megjeleníthető elemek ebben a nézetben"
 
 #: js/ui/MultipleFileUploadField.js:47
 msgid "files selected"
-msgstr ""
+msgstr "fájlok kiválasztva"
 
 #: js/ui/snippets/FilesQuotaBar.js:20
 msgid "{0} of {1} in use"
-msgstr ""
+msgstr "{1}-ból {0} használatban"
 
 #: php/class.filesaccountmodule.php:330 php/class.filesaccountmodule.php:379
 #: php/class.filesaccountmodule.php:428
 msgid "Unknown account ID"
-msgstr ""
+msgstr "Ismeretlen fiók ID"
 
 #: php/class.filesaccountmodule.php:338
 msgid "Feature \"Quota Information\" is not supported by this backend!"
-msgstr ""
+msgstr "Ez a backend nem támogatja a kvóta információkat!"
 
 #: php/class.filesaccountmodule.php:351
 msgid "Used"
-msgstr ""
+msgstr "Használatban"
 
 #: php/class.filesaccountmodule.php:352
 msgid "Free"
-msgstr ""
+msgstr "Szabad"
 
 #: php/class.filesaccountmodule.php:387
 msgid "Feature \"Version Information\" is not supported by this backend!"
-msgstr ""
+msgstr "Ez a backend nem támogatja a verzió információkat!"
 
 #: php/class.filesaccountmodule.php:436
 msgid "Feature \"OAUTH\" is not supported by this backend!"
-msgstr ""
+msgstr "Ez a backend nem támogatja az \"OAUTH\" hitelesítést!"
 
 #: php/class.filesbrowsermodule.php:1068 php/class.filesbrowsermodule.php:1069
 msgid "Unknown type - cannot save this file to the Files backend!"
-msgstr ""
+msgstr "Ismeretlen típus - nem lehet menteni a fájl a Fájlokba!"
 
 #: php/class.filesbrowsermodule.php:1322 php/class.filesbrowsermodule.php:1323
 #: php/class.filesbrowsermodule.php:1387 php/class.filesbrowsermodule.php:1388
@@ -754,161 +773,168 @@ msgstr ""
 
 #: php/class.filesbrowsermodule.php:1349
 msgid "Fetching sharing information failed"
-msgstr ""
+msgstr "Megosztási információk betöltése sikertelen"
 
 #: php/class.filesbrowsermodule.php:1415
 msgid "Sharing failed"
-msgstr ""
+msgstr "Megosztás sikeretlen"
 
 #: php/class.filesbrowsermodule.php:1480
 msgid "Updating share failed"
-msgstr ""
+msgstr "Megosztás frissítése sikertelen"
 
 #: php/class.filesbrowsermodule.php:1533
 msgid "Deleting share failed"
-msgstr ""
+msgstr "Megosztás eltávolítása sikertelen"
 
 #: php/Files/Backend/FTP/class.backend.php:115
 msgid "With this backend, you can connect to any ftp server."
-msgstr ""
+msgstr "Ezzel a backenddel FTP szerverekhez csatlakozhat."
 
 #: php/Files/Backend/FTP/class.backend.php:192
 #: php/Files/Backend/Webdav/class.backend.php:133
 msgid "Server address"
-msgstr ""
+msgstr "Szerver címe"
 
 #: php/Files/Backend/FTP/class.backend.php:199
 #: php/Files/Backend/Webdav/class.backend.php:140
 msgid "Server port"
-msgstr ""
+msgstr "Szerver port"
 
 #: php/Files/Backend/FTP/class.backend.php:206
 msgid "FTP user"
-msgstr ""
+msgstr "FTP felhasználó"
 
 #: php/Files/Backend/FTP/class.backend.php:213
 msgid "FTP password"
-msgstr ""
+msgstr "FTP jelszó"
 
 #: php/Files/Backend/FTP/class.backend.php:221
 msgid "Base path"
-msgstr ""
+msgstr "Alap elérési útvonal"
 
 #: php/Files/Backend/FTP/class.backend.php:228
 #: php/Files/Backend/Webdav/class.backend.php:148
 msgid "Use SSL"
-msgstr ""
+msgstr "SSL használata"
 
 #: php/Files/Backend/FTP/class.backend.php:235
 msgid "Use passive mode"
-msgstr ""
+msgstr "Passzív mód használata"
 
 #: php/Files/Backend/FTP/class.backend.php:242
 #: php/Files/Backend/Webdav/class.backend.php:179
 msgid "Use Kopano credentials"
-msgstr ""
+msgstr "Kopano hitelesítési adatainak használata"
 
 #: php/Files/Backend/FTP/class.backend.php:433
 msgid "Unparsable server response."
-msgstr ""
+msgstr "Hoppá! Érthetetlen szerver válasz."
 
 #: php/Files/Backend/FTP/class.backend.php:872
 #: php/Files/Backend/Webdav/class.backend.php:899
 msgid "Unknown error"
-msgstr ""
+msgstr "Ismeretlen hiba"
 
 #: php/Files/Backend/FTP/class.backend.php:876
 #: php/Files/Backend/Webdav/class.backend.php:904
 msgid "Unauthorized. Wrong username or password."
-msgstr ""
+msgstr "Hibás felhasználónév vagy jelszó."
 
 #: php/Files/Backend/FTP/class.backend.php:879
 #: php/Files/Backend/Webdav/class.backend.php:911
 msgid "File-server is not reachable. Wrong IP entered?"
-msgstr ""
+msgstr "A fájl szerver nem elérhető. Biztosan jó IP címet adott meg?"
 
 #: php/Files/Backend/FTP/class.backend.php:882
 #: php/Files/Backend/Webdav/class.backend.php:914
 msgid "You don't have enough permissions for this operation."
-msgstr ""
+msgstr "Nincsen jogosultsága ehhez a művelethez."
 
 #: php/Files/Backend/FTP/class.backend.php:885
 #: php/Files/Backend/Webdav/class.backend.php:917
 msgid "File is not available any more."
-msgstr ""
+msgstr "A fájl többé már nem elérhető."
 
 #: php/Files/Backend/FTP/class.backend.php:888
 #: php/Files/Backend/Webdav/class.backend.php:920
 msgid "Connection to server timed out. Retry later."
-msgstr ""
+msgstr "A szerverrel a kapcsolat időtúllépés miatt megszakadt. Próbálja később."
 
 #: php/Files/Backend/FTP/class.backend.php:891
 #: php/Files/Backend/Webdav/class.backend.php:923
 msgid "This file is locked by another user."
-msgstr ""
+msgstr "Ez a fájl egy másik felhasználó által zárolva van."
 
 #: php/Files/Backend/FTP/class.backend.php:894
 #: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
-msgstr ""
+msgstr "A kérés meghiúsult egy előző kérés hibája miatt."
 
 #: php/Files/Backend/FTP/class.backend.php:897
 #: php/Files/Backend/Webdav/class.backend.php:929
 msgid "File-server encountered a problem. Wrong IP entered?"
 msgstr ""
+"A fájlszerveren ismeretlen hiba történt. Biztosan jó IP címet adott meg?"
 
 #: php/Files/Backend/FTP/class.backend.php:900
 #: php/Files/Backend/Webdav/class.backend.php:932
 msgid ""
 "Could not write to temporary directory. Contact the server administrator."
 msgstr ""
+"Nem sikerült írni az átmeneti könyvtárat. Vegye fel a kapcsolatot a szerver "
+"rendszergazdájával."
 
 #: php/Files/Backend/FTP/class.backend.php:903
 #: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
 "Could not retrieve list of server features. Contact the server administrator."
 msgstr ""
+"Nem sikerült betölteni a szerver képességeit. Vegye fel a kapcsolatot a "
+"szerver rendszergazdájával."
 
 #: php/Files/Backend/FTP/class.backend.php:906
 msgid "Function is not implemented in this backend."
-msgstr ""
+msgstr "Ez a funkció nincs implementálva ezzel a backenddel."
 
 #: php/Files/Backend/Webdav/class.backend.php:106
 msgid ""
 "With this backend, you can connect to any webdav server (e.g. Owncloud)."
-msgstr ""
+msgstr "Ezzel a backenddel tud csatlakozni WebDAV szerverhez (pl. Owncloud)."
 
 #: php/Files/Backend/Webdav/class.backend.php:158
 msgid "Webdav base path"
-msgstr ""
+msgstr "Webdav alap elérési út"
 
 #: php/Files/Backend/Webdav/class.backend.php:164
 msgid "Username"
-msgstr ""
+msgstr "Felhasználónév"
 
 #: php/Files/Backend/Webdav/class.backend.php:171
 msgid "Password"
-msgstr ""
+msgstr "Jelszó"
 
 #: php/Files/Backend/Webdav/class.backend.php:938
 msgid "PHP-Curl is not available. Contact your system administrator."
 msgstr ""
+"A PHP-Curl nem elérhető. Vegye fel a kapcsolatot a szerver "
+"rendszergazdájával."
 
 #: php/Files/Core/class.accountstore.php:195
 msgid "Account is ready to use."
-msgstr ""
+msgstr "A fiók már használatban van."
 
 #: php/Files/Core/class.downloadhandler.php:82
 #: php/Files/Core/class.downloadhandler.php:85
 msgid "File backend not responding. Please try again later."
-msgstr ""
+msgstr "A backend nem válaszol. Próbálja meg később."
 
 #: php/Files/Core/class.downloadhandler.php:98
 #: php/Files/Core/class.downloadhandler.php:115
 msgid "Zip file generation failed. Please inform the administrator."
-msgstr ""
+msgstr "A zip fájl készítése sikertelen. Kérjük értesítse a rendszergazdát."
 
 #: php/Files/Core/class.downloadhandler.php:212
 #: php/Files/Core/class.downloadhandler.php:215
 msgid "This file is no longer available. Please reload the folder."
-msgstr ""
+msgstr "Ez a fájl már nem elérhető. Frissítse a mappát."

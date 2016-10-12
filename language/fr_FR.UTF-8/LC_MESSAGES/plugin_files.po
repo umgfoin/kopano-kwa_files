@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Files Plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-09 14:39+0200\n"
-"PO-Revision-Date: 2016-05-03 07:00+0100\n"
-"Last-Translator: Björn Neumann <b.neumann@kopano.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: fr\n"
+"PO-Revision-Date: 2016-08-03 19:56+0000\n"
+"Last-Translator: Raphaël <info@mathelpc.ch>\n"
+"Language-Team: French <http://translate.kopano.io/projects/kopano/files/fr/>"
+"\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.4\n"
 "X-Poedit-KeywordsList: dgettext:1c,2\n"
 "X-Poedit-Basepath: ..\\..\\..\\js\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -103,7 +105,6 @@ msgstr "Transfert des fichiers"
 #: js/data/NavigatorTreeLoader.js:108 js/data/ResponseHandler.js:128
 #: js/data/ResponseHandler.js:135 js/ui/dialogs/FilesUploadContentPanel.js:201
 #: js/ui/FilesRecordAccountView.js:128
-#, fuzzy
 msgid "Error"
 msgstr "Erreur"
 
@@ -120,9 +121,8 @@ msgstr ""
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:125
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:160
-#, fuzzy
 msgid "Warning"
-msgstr "Attention"
+msgstr "Avertissement"
 
 #: js/data/NavigatorTreeLoader.js:127
 #, fuzzy
@@ -130,9 +130,8 @@ msgid "Loading failed"
 msgstr "Chargement en erreur"
 
 #: js/data/Utils.js:232
-#, fuzzy
 msgid "l d/m/Y G:i"
-msgstr "jour de la semaine jour/mois/année heure:minute"
+msgstr "l d/m/Y G\\Hi"
 
 #: js/data/Utils.js:232
 #, fuzzy
@@ -161,31 +160,28 @@ msgid "Create a new email message with some files attached."
 msgstr "Créer un message électronique avec des fichiers joints"
 
 #: js/FilesContext.js:328 js/FilesContext.js:330
-#, fuzzy
 msgid "No preview"
-msgstr "Pas de prévisualisation"
+msgstr "Aucune prévisualisation"
 
 #: js/FilesContext.js:336 js/FilesContext.js:338
-#, fuzzy
 msgid "Right preview"
-msgstr "Prévisualisation droite"
+msgstr "Prévisualisation à droite"
 
 #: js/FilesContext.js:344 js/FilesContext.js:346
-#, fuzzy
 msgid "Bottom preview"
 msgstr "Prévisualisation en bas"
 
 #: js/FilesContext.js:367
 msgid "Switch view"
-msgstr ""
+msgstr "Changer de vue"
 
 #: js/FilesContext.js:379 js/FilesContext.js:380 js/FilesContext.js:381
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: js/FilesContext.js:387 js/FilesContext.js:388 js/FilesContext.js:389
 msgid "Icons"
-msgstr ""
+msgstr "Icônes"
 
 #: js/FilesContext.js:490 js/FilesContextModel.js:111
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
@@ -208,7 +204,7 @@ msgstr "Ajouter une pièce jointe depuis {0}"
 
 #: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1282
 msgid "Untitled"
-msgstr ""
+msgstr "Sans nom"
 
 #: js/FilesPlugin.js:298
 #, fuzzy
@@ -238,23 +234,22 @@ msgstr ""
 msgid ""
 "WebApp will automatically restart in order for these changes to take effect"
 msgstr ""
+"WebApp redémarrera automatiquement pour que ces modifications prennent effet"
 
 #: js/settings/SettingsResetWidget.js:63
 msgid "Reset"
-msgstr ""
+msgstr "Réinitialiser"
 
 #: js/settings/SettingsResetWidget.js:66 js/settings/ui/AccountEditPanel.js:42
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
 #: js/ui/dialogs/UploadStatusPanel.js:135
-#, fuzzy
 msgid "Cancel"
 msgstr "Annuler"
 
 #: js/settings/SettingsResetWidget.js:87
-#, fuzzy
 msgid "Webapp is reloading, Please wait."
-msgstr "Création du message électronique ... Veuillez attendre!"
+msgstr "WebApp recharge, veuillez patienter."
 
 #: js/settings/ui/AccountEditContentPanel.js:26
 msgid "Edit Account"
@@ -303,21 +298,19 @@ msgstr "Trier par: ID"
 
 #: js/settings/ui/AccountGridColumnModel.js:47
 msgid "Status"
-msgstr ""
+msgstr "État"
 
 #: js/settings/ui/AccountGridColumnModel.js:52
-#, fuzzy
 msgid "Sort by: Status"
-msgstr "Trier par: Chemin"
+msgstr "Trier par : Statut"
 
 #: js/settings/ui/AccountGridColumnModel.js:54
 msgid "Name"
-msgstr ""
+msgstr "Prénom"
 
 #: js/settings/ui/AccountGridColumnModel.js:58
-#, fuzzy
 msgid "Sort by: Name"
-msgstr "Trier par: Nom de fichier"
+msgstr "Trier par: Prénom"
 
 #: js/settings/ui/AccountGridColumnModel.js:60
 msgid "Backend"
@@ -384,14 +377,13 @@ msgid "Quota Information"
 msgstr "Détail du fichier"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:58
-#, fuzzy
 msgid "Reload"
-msgstr "Transfert"
+msgstr "Recharger"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:63
 #: js/settings/ui/FeatureVersionInfoPanel.js:36
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:148
 msgid "Your current storage usage"
@@ -406,9 +398,8 @@ msgstr ""
 #: js/settings/ui/FeatureQuotaInfoPanel.js:163
 #: js/settings/ui/FeatureVersionInfoPanel.js:101
 #: js/settings/ui/FeatureVersionInfoPanel.js:106
-#, fuzzy
 msgid "Loading"
-msgstr "Téléchargement de fichiers"
+msgstr "Chargement"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:157
 msgid "Free storage"
@@ -489,9 +480,8 @@ msgid "Select upload folder"
 msgstr "Sélectionner un dossier de déversement"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:39
-#, fuzzy
 msgid "Upload"
-msgstr "Transfert"
+msgstr "Charger"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:140
 #, fuzzy
@@ -518,7 +508,6 @@ msgstr ""
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:171
 #: js/ui/dialogs/SaveToFilesTreePanel.js:173
-#, fuzzy
 msgid "New folder"
 msgstr "Nouveau dossier"
 
@@ -544,9 +533,8 @@ msgid "You have to choose a folder!"
 msgstr "Veuillez choisir un dossier!"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:237
-#, fuzzy
 msgid "Folder Name"
-msgstr "Nom de dossier"
+msgstr "Nom du dossier"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:344
 #, fuzzy
@@ -569,7 +557,6 @@ msgid "Attachment could not be stored in Files! Error: "
 msgstr "Pièce jointe impossible a stocker dans {0}! Erreur:"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:384
-#, fuzzy
 msgid "Created"
 msgstr "Créé"
 
@@ -653,7 +640,7 @@ msgstr "Créer un nouveau dossier dans"
 
 #: js/ui/FilesListToolbar.js:63 js/ui/FilesMainContextMenu.js:34
 msgid "Download"
-msgstr ""
+msgstr "Téléchargement"
 
 #: js/ui/FilesListToolbar.js:68 js/ui/FilesListToolbar.js:71
 #, fuzzy
@@ -706,9 +693,8 @@ msgid "Edit share"
 msgstr ""
 
 #: js/ui/FilesMainContextMenu.js:120
-#, fuzzy
 msgid "Info"
-msgstr "Information"
+msgstr "Info"
 
 #: js/ui/FilesRecordAccountView.js:33
 msgid "There are no accounts added. Go to settings and add an account!"
@@ -736,7 +722,6 @@ msgid "Last modified"
 msgstr "Dernière modification"
 
 #: js/ui/FilesRecordDetailsPanel.js:97
-#, fuzzy
 msgid "Type"
 msgstr "Type"
 
@@ -774,11 +759,11 @@ msgstr "Dossier"
 
 #: js/ui/FilesRecordDetailsPanel.js:303
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
 #: js/ui/FilesRecordDetailsPanel.js:303
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: js/ui/FilesRecordGridColumnModel.js:38
 #: js/ui/FilesRecordGridColumnModel.js:99
@@ -811,7 +796,6 @@ msgstr "Taille"
 
 #: js/ui/FilesRecordGridColumnModel.js:73
 #: js/ui/FilesRecordGridColumnModel.js:121
-#, fuzzy
 msgid "Sort by: Size"
 msgstr "Trier par: Taille"
 
@@ -828,7 +812,7 @@ msgstr "Téléchargement de fichiers"
 
 #: js/ui/FilesRecordIconView.js:35
 msgid "There are no items to show in this view"
-msgstr ""
+msgstr "Il n'y a aucun élément à afficher dans cette fenêtre"
 
 #: js/ui/MultipleFileUploadField.js:47
 #, fuzzy
@@ -854,7 +838,7 @@ msgstr ""
 
 #: php/class.filesaccountmodule.php:352
 msgid "Free"
-msgstr ""
+msgstr "Libre"
 
 #: php/class.filesaccountmodule.php:387
 msgid "Feature \"Version Information\" is not supported by this backend!"
@@ -1013,7 +997,6 @@ msgid "Webdav base path"
 msgstr ""
 
 #: php/Files/Backend/Webdav/class.backend.php:164
-#, fuzzy
 msgid "Username"
 msgstr "Nom d'utilisateur"
 

@@ -3,99 +3,88 @@ msgstr ""
 "Project-Id-Version: Files Plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-09 14:39+0200\n"
-"PO-Revision-Date: 2016-05-03 07:00+0100\n"
-"Last-Translator: Björn Neumann <b.neumann@kopano.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: nl\n"
+"PO-Revision-Date: 2016-09-06 15:01+0000\n"
+"Last-Translator: martijn <m.alberts@zarafa.com>\n"
+"Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
 "X-Poedit-KeywordsList: dgettext:1c,2\n"
 "X-Poedit-Basepath: ..\\..\\..\\js\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: js/data/Actions.js:84
-#, fuzzy
 msgid "Add attachment from {0}"
 msgstr "Voeg bijlage toe van {0}"
 
 #: js/data/Actions.js:190 js/settings/ui/AccountGrid.js:172
-#, fuzzy
 msgid "Confirm deletion"
 msgstr "Bevestig verwijderen"
 
 #: js/data/Actions.js:190
-#, fuzzy
 msgid "Are you sure?"
-msgstr "Weet je het zeker?"
+msgstr "Weet u het zeker?"
 
 #: js/data/Actions.js:308 js/ui/dialogs/SaveToFilesTreePanel.js:285
 msgid "Folder already exists"
-msgstr ""
+msgstr "Map bestaat al"
 
 #: js/data/Actions.js:310 js/ui/dialogs/SaveToFilesTreePanel.js:252
-#, fuzzy
 msgid "Incorrect foldername"
 msgstr "Onjuiste mapnaam"
 
 #: js/data/Actions.js:317
 msgid "This name already exists"
-msgstr ""
+msgstr "Deze naam bestaat reeds"
 
 #: js/data/Actions.js:319
-#, fuzzy
 msgid "Incorrect name"
-msgstr "Onjuiste bestandsnaam"
+msgstr "Onjuiste naam"
 
 #: js/data/Actions.js:328 js/data/Actions.js:936
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
-#, fuzzy
 msgid "Confirm overwrite"
-msgstr "Bevestig verwijderen"
+msgstr "Bevestig overschrijven"
 
 #: js/data/Actions.js:329 js/data/Actions.js:937
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "Bestand bestaat reeds. Wil je het overschrijven?"
 
 #: js/data/Actions.js:353
-#, fuzzy
 msgid "Folder name"
 msgstr "Mapnaam"
 
 #: js/data/Actions.js:353 js/ui/dialogs/SaveToFilesTreePanel.js:237
-#, fuzzy
 msgid "Please enter a foldername"
-msgstr "Geef a.u.b. een mapnaam op"
+msgstr "Geef een mapnaam op"
 
 #: js/data/Actions.js:429
-#, fuzzy
 msgid "Folder could not be created!"
-msgstr "Map niet aangemaakt!"
+msgstr "Map kon niet worden gemaakt!"
 
 #: js/data/Actions.js:600 js/ui/FilesListToolbar.js:117
 #: js/ui/FilesListToolbar.js:118 js/ui/FilesMainContextMenu.js:102
 #: js/ui/FilesTreeContextMenu.js:38
-#, fuzzy
 msgid "Rename"
 msgstr "Hernoemen"
 
 #: js/data/Actions.js:601
-#, fuzzy
 msgid "Please enter a new name"
-msgstr "Geef a.u.b. een nieuwe naam op"
+msgstr "Geef een nieuwe naam op"
 
 #: js/data/Actions.js:745
 msgid "Downloading"
-msgstr ""
+msgstr "Downloaden"
 
 #: js/data/Actions.js:745
 msgid "Download started... please wait!"
-msgstr ""
+msgstr "Download gestart... moment geduld!"
 
 #: js/data/Actions.js:813
-#, fuzzy
 msgid "Uploading files"
 msgstr "Bestanden uploaden"
 
@@ -103,943 +92,850 @@ msgstr "Bestanden uploaden"
 #: js/data/NavigatorTreeLoader.js:108 js/data/ResponseHandler.js:128
 #: js/data/ResponseHandler.js:135 js/ui/dialogs/FilesUploadContentPanel.js:201
 #: js/ui/FilesRecordAccountView.js:128
-#, fuzzy
 msgid "Error"
 msgstr "Fout"
 
 #: js/data/Actions.js:821
-#, fuzzy
 msgid "Uploading files failed!"
-msgstr "Bestanden uploaden"
+msgstr "Uploaden bestanden mislukt!"
 
 #: js/data/Actions.js:867
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
-msgstr ""
+msgstr "Ten minste één bestand is te groot! Maximum bestandsgrootte: {0}."
 
 #: js/data/Actions.js:986 js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:125
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:160
-#, fuzzy
 msgid "Warning"
 msgstr "Waarschuwing"
 
 #: js/data/NavigatorTreeLoader.js:127
-#, fuzzy
 msgid "Loading failed"
 msgstr "Laden mislukt"
 
 #: js/data/Utils.js:232
-#, fuzzy
 msgid "l d/m/Y G:i"
 msgstr "l d/m/Y G:i"
 
 #: js/data/Utils.js:232
-#, fuzzy
 msgid "Never"
 msgstr "Nooit"
 
 #: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
 #: js/ui/FilesListToolbar.js:41
-#, fuzzy
 msgid "Upload file"
 msgstr "Bestand uploaden"
 
 #: js/FilesContext.js:224 js/ui/FilesListToolbar.js:42
-#, fuzzy
 msgid "Upload one or more files"
 msgstr "Bestanden uploaden"
 
 #: js/FilesContext.js:244 js/FilesContext.js:277 js/FilesContext.js:279
-#, fuzzy
 msgid "Send file"
 msgstr "Bestand versturen"
 
 #: js/FilesContext.js:280
-#, fuzzy
 msgid "Create a new email message with some files attached."
-msgstr "Maak nieuw bericht aan met enkele bijlagen"
+msgstr "Maak nieuw bericht met bijlagen aan."
 
 #: js/FilesContext.js:328 js/FilesContext.js:330
-#, fuzzy
 msgid "No preview"
 msgstr "Geen voorbeeld"
 
 #: js/FilesContext.js:336 js/FilesContext.js:338
-#, fuzzy
 msgid "Right preview"
 msgstr "Voorbeeld rechts"
 
 #: js/FilesContext.js:344 js/FilesContext.js:346
-#, fuzzy
 msgid "Bottom preview"
-msgstr "Voorbeeld Onder"
+msgstr "Voorbeeld onder"
 
 #: js/FilesContext.js:367
 msgid "Switch view"
-msgstr ""
+msgstr "Weergave wijzigen"
 
 #: js/FilesContext.js:379 js/FilesContext.js:380 js/FilesContext.js:381
 msgid "List"
-msgstr ""
+msgstr "Lijst"
 
 #: js/FilesContext.js:387 js/FilesContext.js:388 js/FilesContext.js:389
 msgid "Icons"
-msgstr ""
+msgstr "Iconen"
 
 #: js/FilesContext.js:490 js/FilesContextModel.js:111
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
-#, fuzzy
 msgid "Files"
 msgstr "Bestanden"
 
 #: js/FilesPlugin.js:78
 msgid "Add from Files"
-msgstr ""
+msgstr "Toevoegen uit Files"
 
 #: js/FilesPlugin.js:106 js/FilesPlugin.js:124
 msgid "Add to Files"
-msgstr ""
+msgstr "Toevoegen aan Files"
 
 #: js/FilesPlugin.js:138 js/ui/dialogs/AttachFromFilesContentPanel.js:25
-#, fuzzy
 msgid "Add attachment from Files"
-msgstr "Voeg bijlage toe van {0}"
+msgstr "Voeg bijlage toe uit Files"
 
 #: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1282
 msgid "Untitled"
-msgstr ""
+msgstr "Geen naam"
 
 #: js/FilesPlugin.js:298
-#, fuzzy
 msgid "Files Plugin"
-msgstr "Plugin"
+msgstr "Files Plugin"
 
 #: js/settings/SettingsAccountWidget.js:21
 msgid "Manage Accounts"
-msgstr ""
+msgstr "Accounts beheren"
 
 #: js/settings/SettingsResetWidget.js:27 js/settings/SettingsResetWidget.js:35
 #: js/settings/SettingsResetWidget.js:58
 msgid "Reset Files settings"
-msgstr ""
+msgstr "Files instellingen herstellen"
 
 #: js/settings/SettingsResetWidget.js:32
 msgid "Resets Files settings to their original defaults"
-msgstr ""
+msgstr "Originele Files instellingen herstellen"
 
 #: js/settings/SettingsResetWidget.js:52
 msgid ""
 "Your Files's settings will be restored to their default condition. Are you "
 "sure you want to reset all Files settings?"
 msgstr ""
+"De instellingen voor Files zullen naar hun standaardwaarden worden hersteld. "
+"Weet je zeker dat je alle Files instellingen wilt herstellen?"
 
 #: js/settings/SettingsResetWidget.js:54
 msgid ""
 "WebApp will automatically restart in order for these changes to take effect"
-msgstr ""
+msgstr "WebApp zal automatisch herstarten om deze wijzigingen door te voeren"
 
 #: js/settings/SettingsResetWidget.js:63
 msgid "Reset"
-msgstr ""
+msgstr "Herstellen"
 
 #: js/settings/SettingsResetWidget.js:66 js/settings/ui/AccountEditPanel.js:42
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
 #: js/ui/dialogs/UploadStatusPanel.js:135
-#, fuzzy
 msgid "Cancel"
 msgstr "Annuleren"
 
 #: js/settings/SettingsResetWidget.js:87
-#, fuzzy
 msgid "Webapp is reloading, Please wait."
-msgstr "Mail aan het aanmaken... wacht even!"
+msgstr "WebApp herlaadt, moment geduld."
 
 #: js/settings/ui/AccountEditContentPanel.js:26
 msgid "Edit Account"
-msgstr ""
+msgstr "Account wijzigen"
 
 #: js/settings/ui/AccountEditPanel.js:36
 #: js/ui/dialogs/SaveToFilesTreePanel.js:181
-#, fuzzy
 msgid "Save"
 msgstr "Opslaan"
 
 #: js/settings/ui/AccountEditPanel.js:137
-#, fuzzy
 msgid "Account Information"
-msgstr "Versie informatie"
+msgstr "Account informatie"
 
 #: js/settings/ui/AccountEditPanel.js:148
 msgid "Account name"
-msgstr ""
+msgstr "Account naam"
 
 #: js/settings/ui/AccountEditPanel.js:156
 msgid "Account type"
-msgstr ""
+msgstr "Account type"
 
 #: js/settings/ui/AccountEditPanel.js:168
 msgid "Select backend..."
-msgstr ""
+msgstr "Backend selecteren..."
 
 #: js/settings/ui/AccountEditPanel.js:182
 msgid "Account Configuration"
-msgstr ""
+msgstr "Account configuratie"
 
 #: js/settings/ui/AccountEditPanel.js:239
 msgid "Update"
-msgstr ""
+msgstr "Bijwerken"
 
 #: js/settings/ui/AccountGridColumnModel.js:41
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: js/settings/ui/AccountGridColumnModel.js:45
 #: js/ui/FilesRecordGridColumnModel.js:45
-#, fuzzy
 msgid "Sort by: ID"
 msgstr "Sorteer op: ID"
 
 #: js/settings/ui/AccountGridColumnModel.js:47
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: js/settings/ui/AccountGridColumnModel.js:52
-#, fuzzy
 msgid "Sort by: Status"
-msgstr "Sorteer op: Pad"
+msgstr "Sorteer op: Status"
 
 #: js/settings/ui/AccountGridColumnModel.js:54
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #: js/settings/ui/AccountGridColumnModel.js:58
-#, fuzzy
 msgid "Sort by: Name"
-msgstr "Sorteer op: Bestandsnaam"
+msgstr "Sorteer op: Naam"
 
 #: js/settings/ui/AccountGridColumnModel.js:60
 msgid "Backend"
-msgstr ""
+msgstr "Backend"
 
 #: js/settings/ui/AccountGridColumnModel.js:65
-#, fuzzy
 msgid "Sort by: Backend"
-msgstr "Sorteer op: Type"
+msgstr "Sorteer op: Backend"
 
 #: js/settings/ui/AccountGridColumnModel.js:68
 msgid "Features"
-msgstr ""
+msgstr "Functies"
 
 #: js/settings/ui/AccountGridColumnModel.js:72
 msgid "Shows all available features of the backend."
-msgstr ""
+msgstr "Toont alle beschikbare functies van de backend."
 
 #: js/settings/ui/AccountGridColumnModel.js:76
-#, fuzzy
 msgid "Show quota information"
-msgstr "Versie informatie"
+msgstr "Toon quotum informatie"
 
 #: js/settings/ui/AccountGridColumnModel.js:81
-#, fuzzy
 msgid "Show version information"
-msgstr "Versie informatie"
+msgstr "Toon versie informatie"
 
 #: js/settings/ui/AccountGridColumnModel.js:86 js/ui/FilesListToolbar.js:91
 #: js/ui/FilesListToolbar.js:94
-#, fuzzy
 msgid "Share files"
-msgstr "Die Datei"
+msgstr "Bestanden delen"
 
 #: js/settings/ui/AccountGridColumnModel.js:90
 msgid "Fast Down/Upload"
-msgstr ""
+msgstr "Snelle down/upload"
 
 #: js/settings/ui/AccountGrid.js:43
 msgid "Add Account"
-msgstr ""
+msgstr "Account toevoegen"
 
 #: js/settings/ui/AccountGrid.js:48
 msgid "Remove Account"
-msgstr ""
+msgstr "Account verwijderen"
 
 #: js/settings/ui/AccountGrid.js:66 js/ui/FilesRecordAccountView.js:30
-#, fuzzy
 msgid "Loading accounts"
-msgstr "Bijlage laden"
+msgstr "Accounts laden"
 
 #: js/settings/ui/AccountGrid.js:91
-#, fuzzy
 msgid "No account created!"
-msgstr "Map niet aangemaakt!"
+msgstr "Geen account aangemaakt!"
 
 #: js/settings/ui/AccountGrid.js:173
 msgid "Do you really want to delete the account \"{0}\"?"
-msgstr ""
+msgstr "Weet je zeker dat je account \"{0}\" wilt verwijderen?"
 
 #: js/settings/ui/FeatureQuotaInfoContentPanel.js:26
-#, fuzzy
 msgid "Quota Information"
-msgstr "Bestandsinformatie"
+msgstr "Quotum informatie"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:58
-#, fuzzy
 msgid "Reload"
-msgstr "Upload"
+msgstr "Herladen"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:63
 #: js/settings/ui/FeatureVersionInfoPanel.js:36
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:148
 msgid "Your current storage usage"
-msgstr ""
+msgstr "Je huidige opslaggebruik"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:152
 msgid "Used storage"
-msgstr ""
+msgstr "Gebruikte opslag"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:153
 #: js/settings/ui/FeatureQuotaInfoPanel.js:158
 #: js/settings/ui/FeatureQuotaInfoPanel.js:163
 #: js/settings/ui/FeatureVersionInfoPanel.js:101
 #: js/settings/ui/FeatureVersionInfoPanel.js:106
-#, fuzzy
 msgid "Loading"
-msgstr "Bestanden laden"
+msgstr "Laden"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:157
 msgid "Free storage"
-msgstr ""
+msgstr "Beschikbare opslag"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:162
 msgid "Total storage size"
-msgstr ""
+msgstr "Totale opslag grootte"
 
 #: js/settings/ui/FeatureVersionInfoContentPanel.js:26
-#, fuzzy
 msgid "Version Information"
 msgstr "Versie informatie"
 
 #: js/settings/ui/FeatureVersionInfoPanel.js:96
 msgid "This account uses the following Backend:"
-msgstr ""
+msgstr "Dit account gebruikt de volgende backend:"
 
 #: js/settings/ui/FeatureVersionInfoPanel.js:100
 msgid "Backend version"
-msgstr ""
+msgstr "Backend versie"
 
 #: js/settings/ui/FeatureVersionInfoPanel.js:105
 msgid "Storage server version"
-msgstr ""
+msgstr "Storage server versie"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:77
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:79
-#, fuzzy
 msgid "Add attachment"
-msgstr "Voeg bijlage toe"
+msgstr "Bijlage toevoegen"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:80
-#, fuzzy
 msgid "Add selected attachment from files to email attachment."
-msgstr "Voeg van {0} geselecteerde bestand toe als bijlage"
+msgstr "Voeg geselecteerd bestand uit Files toe als email bijlage."
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:117
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:126
-#, fuzzy
 msgid "The file {0} is too large!"
 msgstr "Het bestand {0} is te groot!"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:117
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:126
-#, fuzzy
 msgid "max"
 msgstr "max"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:140
-#, fuzzy
 msgid "You have to choose at least one file!"
-msgstr "Selecteer in ieder geval één bestand!"
+msgstr "Kies in ieder geval één bestand!"
 
 #: js/ui/dialogs/FilesRecordContentPanel.js:24
 #: js/ui/FilesRecordDetailsPanel.js:68
-#, fuzzy
 msgid "File information"
 msgstr "Bestandsinformatie"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:61
-#, fuzzy
 msgid "Select a file"
 msgstr "Selecteer een bestand"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:61
 msgid "Maximum upload size"
-msgstr ""
+msgstr "Maximale upload grootte"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:66
 msgid "Browse"
 msgstr "Bladeren"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:89
-#, fuzzy
 msgid "Select upload folder"
 msgstr "Selecteer uploadmap"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:39
-#, fuzzy
 msgid "Upload"
 msgstr "Upload"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:140
-#, fuzzy
 msgid "Store selected file"
 msgstr "Sla geselecteerd bestand op"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:141
-#, fuzzy
 msgid "Upload file to the selected folder"
-msgstr "Upload bestand naar de geselecteerde {0} map"
+msgstr "Upload bestand naar de geselecteerde map"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:152
-#, fuzzy
 msgid "Close this window"
 msgstr "Sluit dit venster"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:202
 msgid "File \"{0}\" is too large! Maximum allowed filesize: {1}."
-msgstr ""
+msgstr "Bestand \"{0}\" is te groot! Maximale bestandsgrootte: {1}."
 
 #: js/ui/dialogs/SaveToFilesContentPanel.js:21
 msgid "Add item to Files"
-msgstr ""
+msgstr "Voeg item toe aan Files"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:171
 #: js/ui/dialogs/SaveToFilesTreePanel.js:173
-#, fuzzy
 msgid "New folder"
 msgstr "Nieuwe map"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:54
-#, fuzzy
 msgid "Create a new folder"
-msgstr "Maak een nieuwe map aan in"
+msgstr "Maak een nieuwe map aan"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:183
-#, fuzzy
 msgid "Store attachment"
 msgstr "Sla bijlage op"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:184
-#, fuzzy
 msgid "Store attachment to the selected Files folder."
-msgstr "Sla bijlage op in de {0} map."
+msgstr "Sla bijlage op in de geselecteerde Files map."
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:200
 #: js/ui/dialogs/SaveToFilesTreePanel.js:235
-#, fuzzy
 msgid "You have to choose a folder!"
-msgstr "Kies een map!"
+msgstr "Je moet een map kiezen!"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:237
-#, fuzzy
 msgid "Folder Name"
 msgstr "Mapnaam"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:344
-#, fuzzy
 msgid "Uploaded"
 msgstr "Geüploaded"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:344
-#, fuzzy
 msgid "Attachment successfully stored in Files"
-msgstr "Bijlage succesvol opgeslagen in {0}"
+msgstr "Bijlage succesvol opgeslagen in Files"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:346
-#, fuzzy
 msgid "Upload Failed"
 msgstr "Uploaden mislukt"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:346
-#, fuzzy
 msgid "Attachment could not be stored in Files! Error: "
-msgstr "Bijlage kon niet worden opgeslagen in {0}! Fout:"
+msgstr "Bijlage kon niet worden opgeslagen in Files! Fout: "
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:384
-#, fuzzy
 msgid "Created"
 msgstr "Gemaakt"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:384
-#, fuzzy
 msgid "Directory created!"
 msgstr "Map aangemaakt!"
 
 #: js/ui/dialogs/ShareContentPanel.js:25
-#, fuzzy
 msgid "Share Files"
-msgstr "Bestanden"
+msgstr "Bestanden delen"
 
 #: js/ui/dialogs/UploadStatusContentPanel.js:30
-#, fuzzy
 msgid "Uploading files to "
-msgstr "Bestanden uploaden"
+msgstr "Bestanden uploaden naar "
 
 #: js/ui/dialogs/UploadStatusPanel.js:125
 msgid "Starting upload"
-msgstr ""
+msgstr "Uploaden starten"
 
 #: js/ui/dialogs/UploadStatusPanel.js:136
 #: js/ui/dialogs/UploadStatusPanel.js:138
-#, fuzzy
 msgid "Cancel upload"
-msgstr "Annuleren"
+msgstr "Uploaden annuleren"
 
 #: js/ui/dialogs/UploadStatusPanel.js:169
 #: js/ui/dialogs/UploadStatusPanel.js:277
 msgid "- seconds left"
-msgstr ""
+msgstr "- seconden over"
 
 #: js/ui/dialogs/UploadStatusPanel.js:251
 msgid " seconds left"
-msgstr ""
+msgstr " seconden over"
 
 #: js/ui/dialogs/UploadStatusPanel.js:255
 msgid " minutes left"
-msgstr ""
+msgstr " minuten over"
 
 #: js/ui/dialogs/UploadStatusPanel.js:298
-#, fuzzy
 msgid "Uploading: "
-msgstr "Bestanden uploaden"
+msgstr "Uploaden: "
 
 #: js/ui/dialogs/UploadStatusPanel.js:301
 msgid "Upload status unavailable... please wait."
-msgstr ""
+msgstr "Upload status niet beschikbaar... moment geduld."
 
 #: js/ui/dialogs/UploadStatusPanel.js:314
-#, fuzzy
 msgid "Upload finished!"
-msgstr "Bestand uploaden"
+msgstr "Upload voltooid!"
 
 #: js/ui/dialogs/UploadStatusPanel.js:334
-#, fuzzy
 msgid "Upload aborted!"
-msgstr "Uploaden mislukt"
+msgstr "Upload geannuleerd!"
 
 #: js/ui/dialogs/UploadStatusPanel.js:353
-#, fuzzy
 msgid "Upload failed!"
-msgstr "Uploaden mislukt"
+msgstr "Uploaden mislukt!"
 
 #: js/ui/FilesListToolbar.js:44
-#, fuzzy
 msgid "Upload files"
-msgstr "Bestand uploaden"
+msgstr "Bestanden uploaden"
 
 #: js/ui/FilesListToolbar.js:51 js/ui/FilesListToolbar.js:53
 #: js/ui/FilesTreeContextMenu.js:60
-#, fuzzy
 msgid "Create folder"
-msgstr "Maak map aan"
+msgstr "Map aanmaken"
 
 #: js/ui/FilesListToolbar.js:56
-#, fuzzy
 msgid "Create new folder"
-msgstr "Maak een nieuwe map aan in"
+msgstr "Nieuwe map aanmaken"
 
 #: js/ui/FilesListToolbar.js:63 js/ui/FilesMainContextMenu.js:34
 msgid "Download"
-msgstr ""
+msgstr "Downloaden"
 
 #: js/ui/FilesListToolbar.js:68 js/ui/FilesListToolbar.js:71
-#, fuzzy
 msgid "Download files"
-msgstr "Bestand uploaden"
+msgstr "Bestanden downloaden"
 
 #: js/ui/FilesListToolbar.js:69
-#, fuzzy
 msgid "Download the selected files"
-msgstr "Sla geselecteerd bestand op"
+msgstr "Geselecteerd bestanden downloaden"
 
 #: js/ui/FilesListToolbar.js:78 js/ui/FilesMainContextMenu.js:45
 msgid "Share"
-msgstr ""
+msgstr "Delen"
 
 #: js/ui/FilesListToolbar.js:92
-#, fuzzy
 msgid "Share the selected files"
-msgstr "Sla geselecteerd bestand op"
+msgstr "Geselecteerde bestanden delen"
 
 #: js/ui/FilesListToolbar.js:101 js/ui/FilesListToolbar.js:106
 #: js/ui/FilesListToolbar.js:109 js/ui/FilesMainContextMenu.js:68
-#, fuzzy
 msgid "Attach to mail"
-msgstr "Voeg toe aan mail"
+msgstr "Toevoegen aan mail"
 
 #: js/ui/FilesListToolbar.js:107
-#, fuzzy
 msgid "Attach the selected files to mail"
-msgstr "Sla geselecteerd bestand op"
+msgstr "Geselecteerde bestanden aan mail toevoegen"
 
 #: js/ui/FilesListToolbar.js:128 js/ui/FilesListToolbar.js:129
 #: js/ui/FilesMainContextMenu.js:111 js/ui/FilesTreeContextMenu.js:49
-#, fuzzy
 msgid "Delete"
 msgstr "Verwijderen"
 
 #: js/ui/FilesListToolbar.js:212 js/ui/FilesMainContextMenu.js:173
-#, fuzzy
 msgid "Attaching"
 msgstr "Toevoegen"
 
 #: js/ui/FilesListToolbar.js:212 js/ui/FilesMainContextMenu.js:173
-#, fuzzy
 msgid "Creating email... Please wait!"
-msgstr "Mail aan het aanmaken... wacht even!"
+msgstr "Mail aan het aanmaken... moment geduld!"
 
 #: js/ui/FilesMainContextMenu.js:62
 msgid "Edit share"
-msgstr ""
+msgstr "Delen aanpassen"
 
 #: js/ui/FilesMainContextMenu.js:120
-#, fuzzy
 msgid "Info"
 msgstr "Info"
 
 #: js/ui/FilesRecordAccountView.js:33
 msgid "There are no accounts added. Go to settings and add an account!"
 msgstr ""
+"Er zijn geen accounts toegevoegd. Ga naar settings en voeg een account toe!"
 
 #: js/ui/FilesRecordAccountView.js:129
 msgid "To delete an account you have to go to settings."
-msgstr ""
+msgstr "Ga naar instellingen om een account te verwijderen."
 
 #: js/ui/FilesRecordDetailsPanel.js:76 js/ui/FilesRecordGridColumnModel.js:55
 #: js/ui/FilesRecordGridColumnModel.js:102
-#, fuzzy
 msgid "Filename"
 msgstr "Bestandsnaam"
 
 #: js/ui/FilesRecordDetailsPanel.js:83
-#, fuzzy
 msgid "Filesize"
 msgstr "Bestandsgrootte"
 
 #: js/ui/FilesRecordDetailsPanel.js:90 js/ui/FilesRecordGridColumnModel.js:61
 #: js/ui/FilesRecordGridColumnModel.js:108
-#, fuzzy
 msgid "Last modified"
 msgstr "Laatste wijziging"
 
 #: js/ui/FilesRecordDetailsPanel.js:97
-#, fuzzy
 msgid "Type"
 msgstr "Type"
 
 #: js/ui/FilesRecordDetailsPanel.js:104
 msgid "Is shared"
-msgstr ""
+msgstr "Is gedeeld"
 
 #: js/ui/FilesRecordDetailsPanel.js:131
-#, fuzzy
 msgid "File preview"
 msgstr "Bestandsvoorbeeld"
 
 #: js/ui/FilesRecordDetailsPanel.js:238
 msgid "Your browser does not support previewing of audio files!"
-msgstr ""
+msgstr "Je browser ondersteunt het weergeven van audiobestanden niet!"
 
 #: js/ui/FilesRecordDetailsPanel.js:264
 msgid "Your browser does not support previewing of video files!"
-msgstr ""
+msgstr "Je browser ondersteunt het weergeven van videobestanden niet!"
 
 #: js/ui/FilesRecordDetailsPanel.js:298
-#, fuzzy
 msgid "d.m.Y G:i"
 msgstr "l d/m/Y G:i"
 
 #: js/ui/FilesRecordDetailsPanel.js:299
-#, fuzzy
 msgid "File ({0})"
 msgstr "Bestand ({0})"
 
 #: js/ui/FilesRecordDetailsPanel.js:299
-#, fuzzy
 msgid "Folder"
 msgstr "Map"
 
 #: js/ui/FilesRecordDetailsPanel.js:303
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: js/ui/FilesRecordDetailsPanel.js:303
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #: js/ui/FilesRecordGridColumnModel.js:38
 #: js/ui/FilesRecordGridColumnModel.js:99
-#, fuzzy
 msgid "Sort by: Type"
 msgstr "Sorteer op: Type"
 
 #: js/ui/FilesRecordGridColumnModel.js:52
-#, fuzzy
 msgid "Sort by: Path"
 msgstr "Sorteer op: Pad"
 
 #: js/ui/FilesRecordGridColumnModel.js:58
 #: js/ui/FilesRecordGridColumnModel.js:105
-#, fuzzy
 msgid "Sort by: Filename"
 msgstr "Sorteer op: Bestandsnaam"
 
 #: js/ui/FilesRecordGridColumnModel.js:65
 #: js/ui/FilesRecordGridColumnModel.js:112
-#, fuzzy
 msgid "Sort by: Last modified"
 msgstr "Sorteer op: Laatste wijziging"
 
 #: js/ui/FilesRecordGridColumnModel.js:68
 #: js/ui/FilesRecordGridColumnModel.js:115
-#, fuzzy
 msgid "Size"
 msgstr "Grootte"
 
 #: js/ui/FilesRecordGridColumnModel.js:73
 #: js/ui/FilesRecordGridColumnModel.js:121
-#, fuzzy
 msgid "Sort by: Size"
 msgstr "Sorteer op: Grootte"
 
 #: js/ui/FilesRecordGridColumnModel.js:85
 #: js/ui/FilesRecordGridColumnModel.js:133
-#, fuzzy
 msgid "Sort by: Shared"
 msgstr "Sorteer op: Grootte"
 
 #: js/ui/FilesRecordGridView.js:64 js/ui/FilesRecordIconView.js:32
-#, fuzzy
 msgid "Loading files"
 msgstr "Bestanden laden"
 
 #: js/ui/FilesRecordIconView.js:35
 msgid "There are no items to show in this view"
-msgstr ""
+msgstr "Er zijn geen items te tonen in deze weergave"
 
 #: js/ui/MultipleFileUploadField.js:47
-#, fuzzy
 msgid "files selected"
-msgstr "Sla geselecteerd bestand op"
+msgstr "bestanden geselecteerd"
 
 #: js/ui/snippets/FilesQuotaBar.js:20
 msgid "{0} of {1} in use"
-msgstr ""
+msgstr "{0} van {1} in gebruik"
 
 #: php/class.filesaccountmodule.php:330 php/class.filesaccountmodule.php:379
 #: php/class.filesaccountmodule.php:428
 msgid "Unknown account ID"
-msgstr ""
+msgstr "Onbekend account ID"
 
 #: php/class.filesaccountmodule.php:338
 msgid "Feature \"Quota Information\" is not supported by this backend!"
-msgstr ""
+msgstr "Functie \"Quota Informatie\" niet ondersteund door deze backend!"
 
 #: php/class.filesaccountmodule.php:351
 msgid "Used"
-msgstr ""
+msgstr "Gebruikt"
 
 #: php/class.filesaccountmodule.php:352
 msgid "Free"
-msgstr ""
+msgstr "Beschikbaar"
 
 #: php/class.filesaccountmodule.php:387
 msgid "Feature \"Version Information\" is not supported by this backend!"
-msgstr ""
+msgstr "Functie \"Versie Informatie\" niet ondersteund door deze backend!"
 
 #: php/class.filesaccountmodule.php:436
 msgid "Feature \"OAUTH\" is not supported by this backend!"
-msgstr ""
+msgstr "Functie \"OAUTH\" niet ondersteund door deze backend!"
 
 #: php/class.filesbrowsermodule.php:1068 php/class.filesbrowsermodule.php:1069
 msgid "Unknown type - cannot save this file to the Files backend!"
-msgstr ""
+msgstr "Onbekend type - kan niet worden opgeslagen op het Files backend!"
 
 #: php/class.filesbrowsermodule.php:1322 php/class.filesbrowsermodule.php:1323
 #: php/class.filesbrowsermodule.php:1387 php/class.filesbrowsermodule.php:1388
 #: php/class.filesbrowsermodule.php:1454 php/class.filesbrowsermodule.php:1455
 #: php/class.filesbrowsermodule.php:1512 php/class.filesbrowsermodule.php:1513
 msgid "No record given!"
-msgstr ""
+msgstr "Geen item gegeven!"
 
 #: php/class.filesbrowsermodule.php:1349
 msgid "Fetching sharing information failed"
-msgstr ""
+msgstr "Ophalen informatie delen mislukt"
 
 #: php/class.filesbrowsermodule.php:1415
-#, fuzzy
 msgid "Sharing failed"
-msgstr "Laden mislukt"
+msgstr "Delen mislukt"
 
 #: php/class.filesbrowsermodule.php:1480
-#, fuzzy
 msgid "Updating share failed"
-msgstr "Laden mislukt"
+msgstr "Bijwerken delen mislukt"
 
 #: php/class.filesbrowsermodule.php:1533
-#, fuzzy
 msgid "Deleting share failed"
-msgstr "Aanmaken mislukt"
+msgstr "Verwijderen delen mislukt"
 
 #: php/Files/Backend/FTP/class.backend.php:115
 msgid "With this backend, you can connect to any ftp server."
-msgstr ""
+msgstr "Met deze backend kun je verbinden met iedere ftp server."
 
 #: php/Files/Backend/FTP/class.backend.php:192
 #: php/Files/Backend/Webdav/class.backend.php:133
-#, fuzzy
 msgid "Server address"
 msgstr "Serveradres"
 
 #: php/Files/Backend/FTP/class.backend.php:199
 #: php/Files/Backend/Webdav/class.backend.php:140
-#, fuzzy
 msgid "Server port"
 msgstr "Serverpoort"
 
 #: php/Files/Backend/FTP/class.backend.php:206
 msgid "FTP user"
-msgstr ""
+msgstr "FTP gebruikersnaam"
 
 #: php/Files/Backend/FTP/class.backend.php:213
-#, fuzzy
 msgid "FTP password"
-msgstr "Wachtwoord"
+msgstr "FTP Wachtwoord"
 
 #: php/Files/Backend/FTP/class.backend.php:221
 msgid "Base path"
-msgstr ""
+msgstr "Basispad"
 
 #: php/Files/Backend/FTP/class.backend.php:228
 #: php/Files/Backend/Webdav/class.backend.php:148
 msgid "Use SSL"
-msgstr ""
+msgstr "Gebruik SSL"
 
 #: php/Files/Backend/FTP/class.backend.php:235
 msgid "Use passive mode"
-msgstr ""
+msgstr "Gebruik 'passive mode'"
 
 #: php/Files/Backend/FTP/class.backend.php:242
 #: php/Files/Backend/Webdav/class.backend.php:179
 msgid "Use Kopano credentials"
-msgstr ""
+msgstr "Gebruik Kopano logingegevens"
 
 #: php/Files/Backend/FTP/class.backend.php:433
 msgid "Unparsable server response."
-msgstr ""
+msgstr "Server reactie onleesbaar."
 
 #: php/Files/Backend/FTP/class.backend.php:872
 #: php/Files/Backend/Webdav/class.backend.php:899
-#, fuzzy
 msgid "Unknown error"
-msgstr "Onbekend"
+msgstr "Onbekende fout"
 
 #: php/Files/Backend/FTP/class.backend.php:876
 #: php/Files/Backend/Webdav/class.backend.php:904
 msgid "Unauthorized. Wrong username or password."
-msgstr ""
+msgstr "Niet geauthoriseerd. Onjuiste gebruikersnaam of wachtwoord."
 
 #: php/Files/Backend/FTP/class.backend.php:879
 #: php/Files/Backend/Webdav/class.backend.php:911
 msgid "File-server is not reachable. Wrong IP entered?"
-msgstr ""
+msgstr "File-server niet bereikbaar. Onjuist IP ingevoerd?"
 
 #: php/Files/Backend/FTP/class.backend.php:882
 #: php/Files/Backend/Webdav/class.backend.php:914
 msgid "You don't have enough permissions for this operation."
-msgstr ""
+msgstr "Je hebt niet voldoende toegangsrechten voor deze operatie."
 
 #: php/Files/Backend/FTP/class.backend.php:885
 #: php/Files/Backend/Webdav/class.backend.php:917
 msgid "File is not available any more."
-msgstr ""
+msgstr "Bestand is niet meer beschikbaar."
 
 #: php/Files/Backend/FTP/class.backend.php:888
 #: php/Files/Backend/Webdav/class.backend.php:920
 msgid "Connection to server timed out. Retry later."
-msgstr ""
+msgstr "Time-out in connectie naar server. Probeer later opnieuw."
 
 #: php/Files/Backend/FTP/class.backend.php:891
 #: php/Files/Backend/Webdav/class.backend.php:923
 msgid "This file is locked by another user."
-msgstr ""
+msgstr "Dit bestand is in gebruik door een andere gebruiker."
 
 #: php/Files/Backend/FTP/class.backend.php:894
 #: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
-msgstr ""
+msgstr "Het verzoek is mislukt doordat een eerder verzoek is mislukt."
 
 #: php/Files/Backend/FTP/class.backend.php:897
 #: php/Files/Backend/Webdav/class.backend.php:929
 msgid "File-server encountered a problem. Wrong IP entered?"
-msgstr ""
+msgstr "Probleem opgetreden in de file-server. Verkeerde IP adres ingevoerd?"
 
 #: php/Files/Backend/FTP/class.backend.php:900
 #: php/Files/Backend/Webdav/class.backend.php:932
 msgid ""
 "Could not write to temporary directory. Contact the server administrator."
 msgstr ""
+"Kon niet naar tijdelijke directory schrijven. Neem contact op met uw "
+"systeembeheerder."
 
 #: php/Files/Backend/FTP/class.backend.php:903
 #: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
 "Could not retrieve list of server features. Contact the server administrator."
 msgstr ""
+"Kon lijst met beschikbare functies niet ophalen. Neem contact op met uw "
+"systeembeheerder."
 
 #: php/Files/Backend/FTP/class.backend.php:906
 msgid "Function is not implemented in this backend."
-msgstr ""
+msgstr "Functie niet beschikbaar in deze backend."
 
 #: php/Files/Backend/Webdav/class.backend.php:106
 msgid ""
 "With this backend, you can connect to any webdav server (e.g. Owncloud)."
 msgstr ""
+"Met deze backend, kun je verbinden met iedere WebDAV server (bijv. ownCloud)."
 
 #: php/Files/Backend/Webdav/class.backend.php:158
 msgid "Webdav base path"
-msgstr ""
+msgstr "WebDAV basispad"
 
 #: php/Files/Backend/Webdav/class.backend.php:164
-#, fuzzy
 msgid "Username"
 msgstr "Gebruikersnaam"
 
 #: php/Files/Backend/Webdav/class.backend.php:171
-#, fuzzy
 msgid "Password"
 msgstr "Wachtwoord"
 
 #: php/Files/Backend/Webdav/class.backend.php:938
 msgid "PHP-Curl is not available. Contact your system administrator."
-msgstr ""
+msgstr "PHP-Curl niet beschikbaar. Neem contact op met uw systeembeheerder."
 
 #: php/Files/Core/class.accountstore.php:195
 msgid "Account is ready to use."
-msgstr ""
+msgstr "Account klaar voor gebruik."
 
 #: php/Files/Core/class.downloadhandler.php:82
 #: php/Files/Core/class.downloadhandler.php:85
 msgid "File backend not responding. Please try again later."
-msgstr ""
+msgstr "File backend reageert niet. Probeer het later nogmaals."
 
 #: php/Files/Core/class.downloadhandler.php:98
 #: php/Files/Core/class.downloadhandler.php:115
 msgid "Zip file generation failed. Please inform the administrator."
 msgstr ""
+"Genereren van Zip bestand mislukt. Neem contact op met uw systeembeheerder."
 
 #: php/Files/Core/class.downloadhandler.php:212
 #: php/Files/Core/class.downloadhandler.php:215
 msgid "This file is no longer available. Please reload the folder."
-msgstr ""
+msgstr "Dit bestand is niet langer beschikbaar. Herlaad de map."
