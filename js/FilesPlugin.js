@@ -198,7 +198,7 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 			jsonRecords[i] = {
 				store   : records[i].get('store_entryid'),
 				entryid : records[i].get('entryid'),
-				filename: (Ext.isEmpty(records[i].get('subject')) ? _('Untitled') : records[i].get('subject')) + ".eml"
+				filename: (Ext.isEmpty(records[i].get('subject')) ? dgettext('plugin_files', 'Untitled') : records[i].get('subject')) + ".eml"
 			};
 		}
 

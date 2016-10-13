@@ -24,7 +24,7 @@ Zarafa.plugins.files.settings.SettingsResetWidget = Ext.extend(Zarafa.settings.u
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('Reset Files settings'),
+			title : dgettext('plugin_files', 'Reset Files settings'),
 			layout: 'form',
 			items : [{
 				xtype    : 'displayfield',
@@ -32,7 +32,7 @@ Zarafa.plugins.files.settings.SettingsResetWidget = Ext.extend(Zarafa.settings.u
 				value    : dgettext('plugin_files', 'Resets Files settings to their original defaults')
 			}, {
 				xtype  : 'button',
-				text   : _('Reset Files settings'),
+				text   : dgettext('plugin_files', 'Reset Files settings'),
 				width  : 150,
 				handler: this.onResetSettings,
 				scope  : this
@@ -52,19 +52,19 @@ Zarafa.plugins.files.settings.SettingsResetWidget = Ext.extend(Zarafa.settings.u
 		var message = dgettext('plugin_files', 'Your Files\'s settings will be restored to their default condition.')
 			+ ' ' + dgettext('plugin_files', 'Are you sure you want to reset all Files settings and remove all accounts?');
 		message += '<br/><br/>';
-		message += _('WebApp will automatically restart in order for these changes to take effect');
+		message += dgettext('plugin_files', 'WebApp will automatically restart in order for these changes to take effect');
 		message += '<br/>';
 
 		Zarafa.common.dialogs.MessageBox.addCustomButtons({
-			title       : _('Reset Files settings'),
+			title       : dgettext('plugin_files', 'Reset Files settings'),
 			msg         : message,
 			icon        : Ext.MessageBox.QUESTION,
 			fn          : this.resetDefaultSettings,
 			customButton: [{
-				text: _('Reset'),
+				text: dgettext('plugin_files', 'Reset'),
 				name: 'reset'
 			}, {
-				text: _('Cancel'),
+				text: dgettext('plugin_files', 'Cancel'),
 				name: 'cancel'
 			}],
 			scope       : this
@@ -86,7 +86,7 @@ Zarafa.plugins.files.settings.SettingsResetWidget = Ext.extend(Zarafa.settings.u
 			settingsModel.save();
 
 			this.loadMask = new Zarafa.common.ui.LoadMask(Ext.getBody(), {
-				msg: '<b>' + _('Webapp is reloading, Please wait.') + '</b>'
+				msg: '<b>' + dgettext('plugin_files', 'Webapp is reloading, Please wait.') + '</b>'
 			});
 
 			this.loadMask.show();
