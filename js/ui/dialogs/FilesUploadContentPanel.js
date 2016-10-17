@@ -63,7 +63,7 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 			padding: 10,
 			items : [{
 				xtype     : 'filesplugin.multiplefileuploadfield',
-				buttonText: _('Browse') + '...',
+				buttonText: dgettext('plugin_files', 'Browse') + '...',
 				name      : 'attachments[]',
 				disabled  : true,
 				listeners : {

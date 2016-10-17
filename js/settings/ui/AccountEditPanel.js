@@ -33,13 +33,13 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 			defaultType: 'textfield',
 			items      : this.createPanelItems(config),
 			buttons    : [{
-				text    : _('Save'),
+				text    : dgettext('plugin_files', 'Save'),
 				ref     : "../saveBtn",
 				disabled: true,
 				handler : this.doSave,
 				scope   : this
 			}, {
-				text   : _('Cancel'),
+				text   : dgettext('plugin_files', 'Cancel'),
 				handler: this.doClose,
 				scope  : this
 			}]
