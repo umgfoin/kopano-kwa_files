@@ -1,92 +1,112 @@
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-14 07:32+0000\n"
+"PO-Revision-Date: 2016-11-10 14:24+0000\n"
+"Last-Translator: Michele <m.brodoloni@casalicomputers.com>\n"
+"Language-Team: Italian <http://translate.kopano.io/projects/kopano/files/it/>"
+"\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
+
 #: js/data/Actions.js:84
 msgid "Add attachment from {0}"
-msgstr ""
+msgstr "Aggiungi allegato da {0}"
 
 #: js/data/Actions.js:190 js/settings/ui/AccountGrid.js:196
 msgid "Confirm deletion"
-msgstr ""
+msgstr "Conferma eliminazione"
 
 #: js/data/Actions.js:190
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sei sicuro?"
 
 #: js/data/Actions.js:308 js/ui/dialogs/SaveToFilesTreePanel.js:285
 msgid "Folder already exists"
-msgstr ""
+msgstr "La cartella esiste già"
 
 #: js/data/Actions.js:310 js/ui/dialogs/SaveToFilesTreePanel.js:252
 msgid "Incorrect foldername"
-msgstr ""
+msgstr "Nome cartella non valido"
 
 #: js/data/Actions.js:317
 msgid "This name already exists"
-msgstr ""
+msgstr "Questo nome esiste già"
 
 #: js/data/Actions.js:319
 msgid "Incorrect name"
-msgstr ""
+msgstr "Nome non valido"
 
 #: js/data/Actions.js:328 js/data/Actions.js:862
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 msgid "Confirm overwrite"
-msgstr ""
+msgstr "Conferma sovrascrittura"
 
 #: js/data/Actions.js:329 js/data/Actions.js:863
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "Il file esiste già. Vuoi sovrascriverlo?"
 
 #: js/data/Actions.js:353
 msgid "Folder name"
-msgstr ""
+msgstr "Nome cartella"
 
 #: js/data/Actions.js:353 js/ui/dialogs/SaveToFilesTreePanel.js:237
 msgid "Please enter a foldername"
-msgstr ""
+msgstr "Inserisci il nome della cartella"
 
 #: js/data/Actions.js:429
 msgid "Folder could not be created!"
-msgstr ""
+msgstr "La cartella non può essere creata!"
 
 #: js/data/Actions.js:600 js/ui/FilesListToolbar.js:117
 #: js/ui/FilesListToolbar.js:118 js/ui/FilesMainContextMenu.js:102
 #: js/ui/FilesTreeContextMenu.js:38
 msgid "Rename"
-msgstr ""
+msgstr "Rinomina"
 
 #: js/data/Actions.js:601
 msgid "Please enter a new name"
-msgstr ""
+msgstr "Inserisci il nuovo nome"
 
 #: js/data/Actions.js:745
 msgid "Downloading"
-msgstr ""
+msgstr "Download in corso"
 
 #: js/data/Actions.js:745
 msgid "Download started... please wait!"
-msgstr ""
+msgstr "Download avviato... attendere prego!"
 
-#: js/data/Actions.js:792 js/data/NavigatorTreeLoader.js:108
-#: js/data/ResponseHandler.js:128 js/data/ResponseHandler.js:135
-#: js/ui/dialogs/FilesUploadContentPanel.js:192
+#: js/data/Actions.js:813
+msgid "Uploading files"
+msgstr "Caricamento files"
+
 #: js/ui/FilesRecordAccountView.js:128
 msgid "Error"
-msgstr ""
+msgstr "Errore"
 
 #: js/data/Actions.js:793
+msgid "Uploading files failed!"
+msgstr "Caricamento dei files fallito!"
+
+#: js/data/Actions.js:867
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
+"Uno o più files sono troppo grandi! La dimensione massima permessa è: {0}."
 
 #: js/data/Actions.js:912 js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:125
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:160
 msgid "Warning"
-msgstr ""
+msgstr "Attenzione"
 
 #: js/data/NavigatorTreeLoader.js:127
 msgid "Loading failed"
-msgstr ""
+msgstr "Caricamento fallito"
 
 #: js/data/Utils.js:232
 msgid "l d/m/Y G:i"
@@ -94,69 +114,72 @@ msgstr ""
 
 #: js/data/Utils.js:232
 msgid "Never"
-msgstr ""
+msgstr "Mai"
 
 #: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
 #: js/ui/FilesListToolbar.js:41
 msgid "Upload file"
-msgstr ""
+msgstr "Carica file"
 
 #: js/FilesContext.js:224 js/ui/FilesListToolbar.js:42
 msgid "Upload one or more files"
-msgstr ""
+msgstr "Carica uno o più files"
 
 #: js/FilesContext.js:244 js/FilesContext.js:277 js/FilesContext.js:279
 msgid "Send file"
-msgstr ""
+msgstr "Invia file"
 
 #: js/FilesContext.js:280
 msgid "Create a new email message with some files attached."
-msgstr ""
+msgstr "Crea un nuovo messaggio email con alcuni files allegati."
 
 #: js/FilesContext.js:328 js/FilesContext.js:330
 msgid "No preview"
-msgstr ""
+msgstr "Nessuna anteprima"
 
 #: js/FilesContext.js:336 js/FilesContext.js:338
+#, fuzzy
 msgid "Right preview"
-msgstr ""
+msgstr "Anteprima a destra"
 
 #: js/FilesContext.js:344 js/FilesContext.js:346
+#, fuzzy
 msgid "Bottom preview"
-msgstr ""
+msgstr "Anteprima in basso"
 
 #: js/FilesContext.js:367
+#, fuzzy
 msgid "Switch view"
-msgstr ""
+msgstr "Scambia viste"
 
 #: js/FilesContext.js:379 js/FilesContext.js:380 js/FilesContext.js:381
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: js/FilesContext.js:387 js/FilesContext.js:388 js/FilesContext.js:389
 msgid "Icons"
-msgstr ""
+msgstr "Icone"
 
 #: js/FilesContext.js:490 js/FilesContextModel.js:111
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
 msgid "Files"
-msgstr ""
+msgstr "Files"
 
 #: js/FilesPlugin.js:78
 msgid "Add from Files"
-msgstr ""
+msgstr "Aggiungi da Files"
 
 #: js/FilesPlugin.js:106 js/FilesPlugin.js:124
 msgid "Add to Files"
-msgstr ""
+msgstr "Aggiungi a Files"
 
 #: js/FilesPlugin.js:138 js/ui/dialogs/AttachFromFilesContentPanel.js:25
 msgid "Add attachment from Files"
-msgstr ""
+msgstr "Aggiungi allegato da Files"
 
 #: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1294
 msgid "Untitled"
-msgstr ""
+msgstr "Senza titolo"
 
 #: js/FilesPlugin.js:298
 msgid "Files Plugin"
@@ -164,16 +187,16 @@ msgstr ""
 
 #: js/settings/SettingsAccountWidget.js:21
 msgid "Manage Accounts"
-msgstr ""
+msgstr "Gestisci account"
 
 #: js/settings/SettingsResetWidget.js:27 js/settings/SettingsResetWidget.js:35
 #: js/settings/SettingsResetWidget.js:59
 msgid "Reset Files settings"
-msgstr ""
+msgstr "Reinizializza impostazioni Files"
 
 #: js/settings/SettingsResetWidget.js:32
 msgid "Resets Files settings to their original defaults"
-msgstr ""
+msgstr "Reinizializza le impostazioni di Files ai valori di default"
 
 #: js/settings/SettingsResetWidget.js:52
 msgid "Your Files's settings will be restored to their default condition."
@@ -183,15 +206,17 @@ msgstr ""
 msgid ""
 "Are you sure you want to reset all Files settings and remove all accounts?"
 msgstr ""
+"Le impostazioni di Files verranno reinizializzate ai loro valori di default. "
+"Continuare?"
 
 #: js/settings/SettingsResetWidget.js:55
 msgid ""
 "WebApp will automatically restart in order for these changes to take effect"
-msgstr ""
+msgstr "La WebApp verrà riavviata per applicare le modifiche,"
 
 #: js/settings/SettingsResetWidget.js:64
 msgid "Reset"
-msgstr ""
+msgstr "Reinizializza"
 
 #: js/settings/SettingsResetWidget.js:67 js/settings/ui/AccountEditPanel.js:42
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
