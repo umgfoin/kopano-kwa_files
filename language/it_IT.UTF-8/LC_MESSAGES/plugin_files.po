@@ -1,8 +1,8 @@
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-14 07:32+0000\n"
-"PO-Revision-Date: 2016-11-10 14:24+0000\n"
-"Last-Translator: Michele <m.brodoloni@casalicomputers.com>\n"
+"PO-Revision-Date: 2016-11-15 15:45+0000\n"
+"Last-Translator: Roberto <r.waha@mastsolutions.it>\n"
 "Language-Team: Italian <http://translate.kopano.io/projects/kopano/files/it/>"
 "\n"
 "Language: it_IT\n"
@@ -904,7 +904,7 @@ msgstr ""
 
 #: php/Files/Backend/Webdav/class.backend.php:164
 msgid "Username"
-msgstr ""
+msgstr "Nome utente"
 
 #: php/Files/Backend/Webdav/class.backend.php:171
 msgid "Password"
