@@ -1,7 +1,7 @@
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-14 07:32+0000\n"
-"PO-Revision-Date: 2016-11-16 22:35+0000\n"
+"PO-Revision-Date: 2016-11-17 21:12+0000\n"
 "Last-Translator: Michele Brodoloni <m.brodoloni@casalicomputers.com>\n"
 "Language-Team: Italian <http://translate.kopano.io/projects/kopano/files/it/>"
 "\n"
@@ -138,12 +138,10 @@ msgid "No preview"
 msgstr "Nessuna anteprima"
 
 #: js/FilesContext.js:336 js/FilesContext.js:338
-#, fuzzy
 msgid "Right preview"
 msgstr "Anteprima a destra"
 
 #: js/FilesContext.js:344 js/FilesContext.js:346
-#, fuzzy
 msgid "Bottom preview"
 msgstr "Anteprima in basso"
 
