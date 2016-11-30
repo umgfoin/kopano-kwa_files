@@ -65,7 +65,8 @@ span.error_files {
     margin-top: 3px;
 }
 .files_quota_bar {
-    border: 1px solid #505050;
+    border: 1px solid #e6e6e6;
+    height: 18px !important;
 }
 .files_quota_bar .x-progress-inner{
     background-image: none;
@@ -73,9 +74,9 @@ span.error_files {
 }
 .files_quota_bar .x-progress-bar{
     background-image: none;
-    background: #505050;
-    border-color: #505050;
-	height: 8px !important;
+    background: #d5e9f9;
+    border-color: #e6e6e6;
+    height: 18px !important;
 }
 
 /** Upload panel */
