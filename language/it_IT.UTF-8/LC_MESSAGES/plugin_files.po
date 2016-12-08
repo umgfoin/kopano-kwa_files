@@ -1,8 +1,8 @@
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-14 07:32+0000\n"
-"PO-Revision-Date: 2016-11-17 21:12+0000\n"
-"Last-Translator: Michele Brodoloni <m.brodoloni@casalicomputers.com>\n"
+"PO-Revision-Date: 2016-12-08 10:04+0000\n"
+"Last-Translator: Roberto <r.waha@mastsolutions.it>\n"
 "Language-Team: Italian <http://translate.kopano.io/projects/kopano/files/it/>"
 "\n"
 "Language: it_IT\n"
@@ -146,7 +146,6 @@ msgid "Bottom preview"
 msgstr "Anteprima in basso"
 
 #: js/FilesContext.js:367
-#, fuzzy
 msgid "Switch view"
 msgstr "Scambia viste"
 
@@ -180,7 +179,6 @@ msgid "Untitled"
 msgstr "Senza titolo"
 
 #: js/FilesPlugin.js:298
-#, fuzzy
 msgid "Files Plugin"
 msgstr "Files Plugin"
 
@@ -315,8 +313,7 @@ msgstr "Mostra informazioni sulla versione"
 msgid "Share files"
 msgstr "Condividi files"
 
-#: js/settings/ui/AccountGridColumnModel.js:91
-#, fuzzy
+#: js/settings/ui/AccountGridColumnModel.js:90
 msgid "Fast Down/Upload"
 msgstr "Download/Upload veloci"
 
@@ -409,7 +406,6 @@ msgstr "Il file {0} è troppo grande!"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:117
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:126
-#, fuzzy
 msgid "max"
 msgstr "max"
 
@@ -668,7 +664,6 @@ msgid "Your browser does not support previewing of video files!"
 msgstr "Il tuo browser non supporta l'anteprima dei file video!"
 
 #: js/ui/FilesRecordDetailsPanel.js:298
-#, fuzzy
 msgid "d.m.Y G:i"
 msgstr "d.m.Y G:i"
 
@@ -768,11 +763,10 @@ msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr ""
 "Tipo sconosciuto - impossibile salvare questo oggetto sul backend di Files!"
 
-#: php/class.filesbrowsermodule.php:1334 php/class.filesbrowsermodule.php:1335
-#: php/class.filesbrowsermodule.php:1399 php/class.filesbrowsermodule.php:1400
-#: php/class.filesbrowsermodule.php:1466 php/class.filesbrowsermodule.php:1467
-#: php/class.filesbrowsermodule.php:1524 php/class.filesbrowsermodule.php:1525
-#, fuzzy
+#: php/class.filesbrowsermodule.php:1322 php/class.filesbrowsermodule.php:1323
+#: php/class.filesbrowsermodule.php:1387 php/class.filesbrowsermodule.php:1388
+#: php/class.filesbrowsermodule.php:1454 php/class.filesbrowsermodule.php:1455
+#: php/class.filesbrowsermodule.php:1512 php/class.filesbrowsermodule.php:1513
 msgid "No record given!"
 msgstr "Nessun record fornito!"
 
@@ -872,9 +866,8 @@ msgstr "Timeout durante la connessione al server. Riprova più tardi."
 msgid "This file is locked by another user."
 msgstr "Il file è bloccato da un altro utente."
 
-#: php/Files/Backend/FTP/class.backend.php:893
-#: php/Files/Backend/Webdav/class.backend.php:925
-#, fuzzy
+#: php/Files/Backend/FTP/class.backend.php:894
+#: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
 msgstr ""
 "La richiesta è fallita a causa del fallimento di una richiesta precedente."
