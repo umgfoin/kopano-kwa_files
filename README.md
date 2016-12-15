@@ -50,9 +50,6 @@ If this flag is true, a confirmation dialog will be shown before a file gets del
 
 If you experience any problems with the plugin, set this flag to **'DEBUG'** and send your apache/php error log to the Kopano developers.
 
-### License
-
-AGPL
 
 
 [CURL]:http://php.net/manual/de/book.curl.php
