@@ -1,9 +1,6 @@
 <?php
 /**
  * This file handles the delivery of javascript files.
- *
- * If the config value PLUGIN_FILESBROWSER_ENABLE_UXMEDIA is set to true, the uxmediapack will also be delivered.
- * @see PLUGIN_FILESBROWSER_ENABLE_UXMEDIA
  */
 
 header('Content-type: application/x-javascript');
