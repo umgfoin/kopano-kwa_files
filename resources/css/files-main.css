@@ -320,6 +320,8 @@ span.error_files {
 /* file type icons 48px */
 .files48icon_folder {
 	background-image: url(../resources/icons/iconview/48px/folder.png);
+	height: 56px; 
+	margin-top: 6px;
 }
 
 .files48icon_blank {
