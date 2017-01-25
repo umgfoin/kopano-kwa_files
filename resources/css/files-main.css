@@ -4,10 +4,11 @@
 	background-position: left 9px !important;
 }
 .icon_files_category {
-	background-image:url(../resources/icons/files_icon_category.png)
+	background-image:url(../resources/icons/files_icon_category.png);
+        background-position: 4px center;
 }
 .x-btn .x-btn-large .icon_files_category{
-	background-image:url(../resources/icons/files_icon_category_large.png)
+	background-image:url(../resources/icons/files_icon_category_large.png);
 }
 
 .icon_files_category_white {
@@ -105,14 +106,13 @@ span.error_files {
 .filesplugin_icon_delete {
 	background: url(../resources/icons/delete_icon.png) no-repeat !important;
 	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 16px!important;
+	background-position: 3px center !important;
+	background-size: 17px!important;
 }
 .filesplugin_icon_add {
 	background: url(../resources/icons/add_icon.png) no-repeat !important;
 	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 16px!important;
+	background-position: 4px center !important;
 }
 
 .files_backend_selector {
