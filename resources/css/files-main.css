@@ -5,10 +5,14 @@
 }
 .icon_files_category {
 	background-image:url(../resources/icons/files_icon_category.png);
-        background-position: 4px center;
+	background-position: 4px center;
 }
 .x-btn .x-btn-large .icon_files_category{
 	background-image:url(../resources/icons/files_icon_category_large.png);
+}
+
+.x-menu-item-icon.icon_files_category {
+	background-position: -1px center;
 }
 
 .icon_files_category_white {
