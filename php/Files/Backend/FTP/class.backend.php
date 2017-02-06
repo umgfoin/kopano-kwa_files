@@ -298,7 +298,6 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	public function set_ssl($ssl)
 	{
 		$this->ssl = $ssl ? true : false;
-		$this->port = $ssl ? 443 : $this->port;
 		$this->log('SSL extention was set to ' . $this->ssl);
 	}
 
