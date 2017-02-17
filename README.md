@@ -1,3 +1,5 @@
+[![build status](https://scan.coverity.com/projects/11714/badge.svg)](https://scan.coverity.com/projects/kopano-files)
+
 # Kopano Files Plugin
 
 This plugin will integrate external storage providers in Kopano Webapp.
