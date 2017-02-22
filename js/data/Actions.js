@@ -176,10 +176,24 @@ Zarafa.plugins.files.data.Actions = {
 	 */
 	deleteRecords: function (records) {
 		var allowDelete = true;
+		var folderCount = 0;
+		var fileCount = 0;
+		var firstFileName, firstFolderName;
 
 		Ext.each(records, function (record) {
 			if (record.get('id') === (container.getSettingsModel().get('zarafa/v1/contexts/files/files_path') + "/") || record.get('filename') === "..") {
 				allowDelete = false;
+			}
+			if (record.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER) {
+				folderCount += 1;
+				if (!firstFolderName) {
+					firstFolderName = record.get('filename');
+				}
+			} else if (record.get('type') === Zarafa.plugins.files.data.FileTypes.FILE) {
+				fileCount += 1;
+				if (!firstFileName) {
+					firstFileName = record.get('filename');
+				}
 			}
 		}, this);
 
@@ -187,10 +201,43 @@ Zarafa.plugins.files.data.Actions = {
 
 		if (allowDelete) {
 			if (askOnDelete) {
-				Ext.MessageBox.confirm(dgettext('plugin_files', 'Confirm deletion'), dgettext('plugin_files', 'Are you sure?'), this.doDelete.createDelegate(this, [records], true), this);
+				Ext.MessageBox.confirm(dgettext('plugin_files', 'Confirm deletion'),
+					this.createDeletionMessage(fileCount, firstFileName, folderCount, firstFolderName),
+					this.doDelete.createDelegate(this, [records], true), this);
 			} else {
 				this.doDelete();
 			}
+		}
+	},
+
+	/**
+	 * Create a proper message for the confirm deletion message box
+	 * @param {Integer} fileCount number of files to delete
+	 * @param {String} fileName name of the file to be deleted
+	 * @param {Integer} folderCount number of folders to delete
+	 * @param {String} folderName name of the folder to be deleted
+	 * @return {String} the string to be shown in the delete confirmation dialog
+	 */
+	createDeletionMessage(fileCount, fileName, folderCount, folderName) {
+		//single file
+		if (fileCount === 1 && folderCount === 0) {
+			return String.format(dgettext('plugin_files', 'Are you sure you want to delete {0}?'), fileName);
+		}
+		//single folder
+		if (fileCount === 0 && folderCount === 1) {
+			 return String.format(dgettext('plugin_files', 'Are you sure you want to delete {0} and all of its contents?'), folderName);
+		}
+		//multiple files
+		if (fileCount >= 1 && folderCount === 0) {
+			 return String.format(dgettext('plugin_files', 'Are you sure you want to delete {0} files?'), fileCount);
+		}
+		//multiple folders
+		if (fileCount === 0 && folderCount >= 1) {
+			return String.format(dgettext('plugin_files', 'Are you sure want to delete {0} folders and all of their contents?'), folderCount);
+		}
+		//multiple files and folders
+		if (fileCount !== 0 && folderCount !== 0) {
+			return dgettext('plugin_files', 'Are you sure want to delete the selected items and all of their contents?');
 		}
 	},
 
