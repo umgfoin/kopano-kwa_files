@@ -1,8 +1,8 @@
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-14 07:32+0000\n"
-"PO-Revision-Date: 2016-12-08 10:04+0000\n"
-"Last-Translator: Roberto <r.waha@mastsolutions.it>\n"
+"PO-Revision-Date: 2017-03-01 17:20+0000\n"
+"Last-Translator: Marco <MARCO@COSTANTINO.CO.UK>\n"
 "Language-Team: Italian <http://translate.kopano.io/projects/kopano/files/it/>"
 "\n"
 "Language: it_IT\n"
@@ -436,7 +436,7 @@ msgstr "Seleziona cartella di caricamento"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:39
 msgid "Upload"
-msgstr "Upload"
+msgstr "Carica"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:140
 msgid "Store selected file"
