@@ -394,7 +394,7 @@ class FilesBrowserModule extends ListModule
 		if ($cachePath === "") {
 			$cachePath = "/";
 		}
-		$dir = $this->cache->get(md5($this->uid . $backendInstance->getAccountID() . $cachePath));
+		$dir = $this->cache->get($this->uid . md5($backendInstance->getAccountID() . $cachePath));
 
 		if ($dir === null || $reload) {
 			Logger::debug(self::LOG_CONTEXT, "Uncached query! Loading: " . $backendInstance->getAccountID() . "$relNodeId" . " -- " . ($reload ? "y": "n"));
