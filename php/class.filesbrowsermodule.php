@@ -43,6 +43,16 @@ class FilesBrowserModule extends ListModule
 	private $uid;
 
 	/**
+	 * @var {Object} The account store holding all available accounts
+	 */
+	private $accountStore;
+
+	/**
+	 * @var {Object} The backend store holding all available backends
+	 */
+	private $backendStore;
+
+	/**
 	 * @constructor
 	 *
 	 * @param $id
@@ -51,6 +61,10 @@ class FilesBrowserModule extends ListModule
 	public function __construct($id, $data)
 	{
 		parent::__construct($id, $data);
+
+		// Initialize the account and backendstore
+		$this->accountStore = new \Files\Core\AccountStore();
+		$this->backendStore = \Files\Backend\BackendStore::getInstance();
 
 		// Setup the cache
 		$cacheSysPath = ( defined(PLUGIN_FILES_CACHE_DIR) ? PLUGIN_FILES_CACHE_DIR : '/var/lib/kopano-webapp/plugin_files' );
@@ -174,6 +188,9 @@ class FilesBrowserModule extends ListModule
 						case "loadsharingdetails":
 							$result = $this->getSharingInformation($actionType, $actionData);
 							break;
+						case "loadsharees":
+							$result = $this->getShareeInformation($actionType, $actionData);
+							break;
 						case "createnewshare":
 							$result = $this->createNewShare($actionType, $actionData);
 							break;
@@ -229,15 +246,11 @@ class FilesBrowserModule extends ListModule
 		$response = array();
 		$nodes = array();
 
-		$accountID = substr($nodeId, 3, (strpos($nodeId, '/') - 3)); // parse account id from node id
-
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
+		$accountID = $this->accountIDFromNode($nodeId);
 
 		// check if we are in the ROOT (#R#). If so, display some kind of device/account view.
-		if (empty($accountID) || !$accountStore->getAccount($accountID)) {
-			$accounts = $accountStore->getAllAccounts();
+		if (empty($accountID) || !$this->accountStore->getAccount($accountID)) {
+			$accounts = $this->accountStore->getAllAccounts();
 			foreach ($accounts as $account) { // we have to load all accounts and their folders
 				// skip accounts that are not valid
 				if ($account->getStatus() != \Files\Core\Account::STATUS_OK) {
@@ -262,12 +275,10 @@ class FilesBrowserModule extends ListModule
 				);
 			}
 		} else {
-			$account = $accountStore->getAccount($accountID);
+			$account = $this->accountStore->getAccount($accountID);
 
 			// initialize the backend
-			$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-			$initializedBackend->init_backend($account->getBackendConfig());
-			$initializedBackend->setAccountID($account->getId());
+			$initializedBackend = $this->initializeBackend($account, true);
 
 			$starttime = microtime(true);
 			$nodes = $this->getFolderContent($nodeId, $initializedBackend, true, false, $reload);
@@ -277,7 +288,6 @@ class FilesBrowserModule extends ListModule
 		}
 
 		$response["item"] = array_values($nodes);
-
 
 		$response['page'] = array("start" => 0, "rowcount" => 50, "totalrowcount" => count($response["item"]));
 		$response['folder'] = array("content_count" => count($response["item"]), "content_unread" => 0);
@@ -312,13 +322,9 @@ class FilesBrowserModule extends ListModule
 		$loadFiles = isset($actionData['loadfiles']) ? $actionData['loadfiles'] : false;
 		$accountFilter = $actionData['accountFilter'];
 
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
-
 		$nodes = array();
 		if (!isset($nodeId) || $nodeId === "#R#") { // we have to load the root node
-			$accounts = $accountStore->getAllAccounts();
+			$accounts = $this->accountStore->getAllAccounts();
 
 			foreach ($accounts as $account) { // we have to load all accounts and their folders
 				// skip accounts that are not valid
@@ -364,13 +370,10 @@ class FilesBrowserModule extends ListModule
 				$nodes = $this->sortFolderContent($nodes, $filter, true);
 			}
 		} else { // load subfolder of store
-			$accountID = substr($nodeId, 3, (strpos($nodeId, '/') - 3)); // parse account id from node id
-			$account = $accountStore->getAccount($accountID);
+			$account = $this->accountFromNode($nodeId);
 
 			// initialize the backend
-			$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-			$initializedBackend->init_backend($account->getBackendConfig());
-			$initializedBackend->setAccountID($account->getId());
+			$initializedBackend = $this->initializeBackend($account, true);
 
 			Logger::debug(self::LOG_CONTEXT, "Loading nodes for acc: " . $account->getId() . " (" . $account->getName() . ")");
 
@@ -409,7 +412,6 @@ class FilesBrowserModule extends ListModule
 		$relNodeId = substr($nodeId, strpos($nodeId, '/'));
 		$nodeIdPrefix = substr($nodeId, 0, strpos($nodeId, '/'));
 
-		$backendInstance->open();
 		$accountID = $backendInstance->getAccountID();
 
 		// remove the trailing slash for the cache key
@@ -418,15 +420,12 @@ class FilesBrowserModule extends ListModule
 			$cachePath = "/";
 		}
 
-		$key = $this->uid . md5($accountID . $cachePath);
-		$dir = $this->cache->get($key);
+		$dir = $this->getCache($accountID, $cachePath);
 
 		if (is_null($dir) || $reload) {
 			Logger::debug(self::LOG_CONTEXT, "Uncached query! Loading: " . $accountID . $cachePath . " -- " . ($reload ? "y": "n"));
 			$dir = $backendInstance->ls($relNodeId);
-			$this->cache->set($key, $dir);
-		} else {
-			Logger::debug(self::LOG_CONTEXT, "Cached query! Loading: " . $accountID . $cachePath . " ## " . $key );
+			$this->setCache($accountID, $cachePath, $dir);
 		}
 
 		// check if backend supports sharing and load the information
@@ -573,29 +572,21 @@ class FilesBrowserModule extends ListModule
 	 */
 	private function delete($actionType, $actionData)
 	{
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
-
 		if (isset($actionData['records']) && is_array($actionData['records'])) {
 			foreach ($actionData['records'] as $record) {
 				$nodeId = $record['id'];
 				$relNodeId = substr($nodeId, strpos($nodeId, '/'));
 
-				$accountID = substr($nodeId, 3, (strpos($nodeId, '/') - 3)); // parse account id from node id
-				$account = $accountStore->getAccount($accountID);
+				$account = $this->accountFromNode($nodeId);
 
 				// initialize the backend
-				$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-				$initializedBackend->init_backend($account->getBackendConfig());
+				$initializedBackend = $this->initializeBackend($account);
 
-				$initializedBackend->open();
 				$result = $initializedBackend->delete($relNodeId);
 				Logger::debug(self::LOG_CONTEXT, "deleted: " . $nodeId . ", worked: " . $result);
 
 				// clear the cache
-				$this->cache->delete(md5($this->uid . $accountID . dirname($relNodeId)));
-				Logger::debug(self::LOG_CONTEXT, "cache cleared for : " . $accountID . dirname($relNodeId) . " ## " . md5($accountID . dirname($relNodeId)));
+				$this->deleteCache($account->getId(), dirname($relNodeId));
 			}
 
 			$response['status'] = true;
@@ -607,14 +598,11 @@ class FilesBrowserModule extends ListModule
 			$relNodeId = substr($nodeId, strpos($nodeId, '/'));
 			$response = array();
 
-			$accountID = substr($nodeId, 3, (strpos($nodeId, '/') - 3)); // parse account id from node id
-			$account = $accountStore->getAccount($accountID);
+			$account = $this->accountFromNode($nodeId);
 
 			// initialize the backend
-			$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-			$initializedBackend->init_backend($account->getBackendConfig());
+			$initializedBackend = $this->initializeBackend($account);
 
-			$initializedBackend->open();
 			try {
 				$result = $initializedBackend->delete($relNodeId);
 			} catch (\Files\Backend\Exception $e) {
@@ -625,9 +613,7 @@ class FilesBrowserModule extends ListModule
 			Logger::debug(self::LOG_CONTEXT, "deleted: " . $nodeId . ", worked: " . $result);
 
 			// clear the cache
-			$this->cache->delete(md5($this->uid . $accountID . dirname($relNodeId)));
-			Logger::debug(self::LOG_CONTEXT, "cache cleared for : " . $accountID . dirname($relNodeId) . " ## " . md5($accountID . dirname($relNodeId)));
-
+			$this->deleteCache($account->getId(), dirname($relNodeId));
 
 			$response['status'] = $result ? true : false;
 			$this->addActionData($actionType, $response);
@@ -682,25 +668,16 @@ class FilesBrowserModule extends ListModule
 			$relDst = substr($destination, strpos($destination, '/'));
 			$relSrc = substr($source, strpos($source, '/'));
 
-			// Initialize the account and backendstore
-			$accountStore = new \Files\Core\AccountStore();
-			$backendStore = \Files\Backend\BackendStore::getInstance();
-
-			$accountID = substr($source, 3, (strpos($source, '/') - 3)); // parse account id from node id
-			$account = $accountStore->getAccount($accountID);
+			$account = $this->accountFromNode($source);
 
 			// initialize the backend
-			$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-			$initializedBackend->init_backend($account->getBackendConfig());
+			$initializedBackend = $this->initializeBackend($account);
 
-			$initializedBackend->open();
 			$result = $initializedBackend->move($relSrc, $relDst, $overwrite);
 
 			// clear the cache
-			$this->cache->delete(md5($this->uid . $accountID . dirname($relDst)));
-			Logger::debug(self::LOG_CONTEXT, "cache cleared for : " . $accountID . dirname($relDst) . " ## " . md5($accountID . dirname($relDst)));
-			$this->cache->delete(md5($this->uid . $accountID . dirname($relSrc)));
-			Logger::debug(self::LOG_CONTEXT, "cache cleared for : " . $accountID . dirname($relSrc) . " ## " . md5($accountID . dirname($relSrc)));
+			$this->deleteCache($account->getId(), dirname($relDest));
+			$this->deleteCache($account->getId(), dirname($relSrc));
 
 			if (!$result) {
 				$message = "Moving item " . $actionData['entryid'] . " to " . $destination . " failed! (" . $result . ")";
@@ -757,23 +734,15 @@ class FilesBrowserModule extends ListModule
 
 		// only add the folder if the virtualRecord flag is false!
 		if (!$virtualRecord) {
-			// Initialize the account and backendstore
-			$accountStore = new \Files\Core\AccountStore();
-			$backendStore = \Files\Backend\BackendStore::getInstance();
-
-			$accountID = substr($src, 3, (strpos($src, '/') - 3)); // parse account id from node id
-			$account = $accountStore->getAccount($accountID);
+			$account = $this->accountFromNode($src);
 
 			// initialize the backend
-			$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-			$initializedBackend->init_backend($account->getBackendConfig());
+			$initializedBackend = $this->initializeBackend($account);
 
-			$initializedBackend->open();
 			$result = $initializedBackend->move($relSrc, $relDst, false);
 
 			// clear the cache
-			$this->cache->delete(md5($this->uid . $accountID . dirname($relSrc)));
-			Logger::debug(self::LOG_CONTEXT, "cache cleared for : " . $accountID . dirname($relSrc) . " ## " . md5($accountID . dirname($relSrc)));
+			$this->deleteCache($account->getId(), dirname($relSrc));
 		} else {
 			$result = true;
 		}
@@ -826,19 +795,10 @@ class FilesBrowserModule extends ListModule
 		// only add the folder if the virtualRecord flag is false!
 		$relDirname = substr($dirname, strpos($dirname, '/'));
 		if (!$virtualRecord) {
-			// Initialize the account and backendstore
-			$accountStore = new \Files\Core\AccountStore();
-			$backendStore = \Files\Backend\BackendStore::getInstance();
-
-			$accountID = substr($dirname, 3, (strpos($dirname, '/') - 3)); // parse account id from node id
-			$account = $accountStore->getAccount($accountID);
+			$account = $this->accountFromNode($dirname);
 
 			// initialize the backend
-			$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-			$initializedBackend->init_backend($account->getBackendConfig());
-			$initializedBackend->setAccountID($account->getId());
-
-			$initializedBackend->open();
+			$initializedBackend = $this->initializeBackend($account, true);
 
 			$relDirname = stringToUTF8Encode($relDirname);
 			$result = $initializedBackend->mkcol($relDirname); // create it !
@@ -849,11 +809,10 @@ class FilesBrowserModule extends ListModule
 			}
 
 			$dir = $initializedBackend->ls($filesPath);
-			$this->cache->set($this->uid . md5($initializedBackend->getAccountID() . $path), $dir);
 
 			// clear the cache
-			$this->cache->delete(md5($this->uid . $accountID . dirname($relDirname)));
-			Logger::debug(self::LOG_CONTEXT, "cache cleared for : " . $accountID . dirname($relDirname) . " ## " . md5($accountID . dirname($relDirname)));
+			$this->deleteCache($account->getId(), dirname($relDirname));
+			$this->setCache($account->getId(), $path, $dir);
 		} else {
 			$result = true;
 		}
@@ -918,19 +877,10 @@ class FilesBrowserModule extends ListModule
 				Logger::debug(self::LOG_CONTEXT, "Resetting destination to check.");
 			}
 			Logger::debug(self::LOG_CONTEXT, "Checking: " . $destination);
-
-			// Initialize the account and backendstore
-			$accountStore = new \Files\Core\AccountStore();
-			$backendStore = \Files\Backend\BackendStore::getInstance();
-
-			$accountID = substr($destination, 3, (strpos($destination, '/') - 3)); // parse account id from node id
-			$account = $accountStore->getAccount($accountID);
+			$account = $this->accountFromNode($destination);
 
 			// initialize the backend
-			$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-			$initializedBackend->init_backend($account->getBackendConfig());
-
-			$initializedBackend->open();
+			$initializedBackend = $this->initializeBackend($account);
 
 			$relDirname = substr($destination, strpos($destination, '/'));
 			Logger::debug(self::LOG_CONTEXT, "Getting content for: " . $relDirname);
@@ -993,18 +943,10 @@ class FilesBrowserModule extends ListModule
 		$attachment_state = new AttachmentState();
 		$attachment_state->open();
 
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
-
-		$accountID = substr($ids[0], 3, (strpos($ids[0], '/') - 3)); // parse account id from node id, one is enough
-		$account = $accountStore->getAccount($accountID);
+		$account = $this->accountFromNode($ids[0]);
 
 		// initialize the backend
-		$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-		$initializedBackend->init_backend($account->getBackendConfig());
-
-		$initializedBackend->open();
+		$initializedBackend = $this->initializeBackend($account);
 
 		foreach ($ids as $file) {
 			$filename = basename($file);
@@ -1074,17 +1016,10 @@ class FilesBrowserModule extends ListModule
 	{
 		Logger::debug(self::LOG_CONTEXT, "preparing attachment");
 
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
-
-		$accountID = substr($actionData["destdir"], 3, (strpos($actionData["destdir"], '/') - 3)); // parse account id from node id, one is enough
-		$account = $accountStore->getAccount($accountID);
+		$account = $this->accountFromNode($actionData["destdir"]);
 
 		// initialize the backend
-		$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-		$initializedBackend->init_backend($account->getBackendConfig());
-		$initializedBackend->open();
+		$initializedBackend = $this->initializeBackend($account);
 
 		$result = true;
 
@@ -1374,17 +1309,10 @@ class FilesBrowserModule extends ListModule
 			));
 		}
 
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
-
-		$accountID = substr($records[0], 3, (strpos($records[0], '/') - 3)); // parse account id from node id, one is enough
-		$account = $accountStore->getAccount($accountID);
+		$account = $this->accountFromNode($records[0]);
 
 		// initialize the backend
-		$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-		$initializedBackend->init_backend($account->getBackendConfig());
-		$initializedBackend->open();
+		$initializedBackend = $this->initializeBackend($account);
 
 		$relRecords = array();
 		foreach ($records as $record) {
@@ -1405,12 +1333,49 @@ class FilesBrowserModule extends ListModule
 
 		$sharingInfo = array();
 		foreach ($sInfo as $path => $details) {
-			$realPath = "#R#" . $accountID . $path;
+			$realPath = "#R#" . $account->getId() . $path;
 			$sharingInfo[$realPath] = $details; // add account id again
 		}
 
 		$response['status'] = true;
 		$response['shares'] = $sharingInfo;
+		$this->addActionData($actionType, $response);
+		$GLOBALS["bus"]->addData($this->getResponseData());
+
+		return true;
+	}
+
+	/**
+	 * Get sharee information from the backend.
+	 *
+	 * @param string $actionType type of the action
+	 * @param array $actionData containing the needed information to handle this action
+	 * @return bool
+	 */
+	private function getShareeInformation($actionType, $actionData)
+	{
+		$response = array();
+		$recordId = $actionData["recordId"];
+
+		$account = $this->accountFromNode($recordId);
+
+		// initialize the backend
+		$initializedBackend = $this->initializeBackend($account);
+
+		try {
+			$sInfo = $initializedBackend->shareeDetails();
+		} catch (Exception $e) {
+			$response['status'] = false;
+			$response['header'] = dgettext('plugin_files', 'Fetching sharing information failed');
+			$response['message'] = $e->getMessage();
+			$this->addActionData("error", $response);
+			$GLOBALS["bus"]->addData($this->getResponseData());
+
+			return false;
+		}
+		
+		$response['status'] = true;
+		$response['sharees'] = $sInfo;
 		$this->addActionData($actionType, $response);
 		$GLOBALS["bus"]->addData($this->getResponseData());
 
@@ -1439,17 +1404,10 @@ class FilesBrowserModule extends ListModule
 			));
 		}
 
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
-
-		$accountID = substr($records[0], 3, (strpos($records[0], '/') - 3)); // parse account id from node id, one is enough
-		$account = $accountStore->getAccount($accountID);
+		$account = $this->accountFromNode($records[0]);
 
 		// initialize the backend
-		$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-		$initializedBackend->init_backend($account->getBackendConfig());
-		$initializedBackend->open();
+		$initializedBackend = $this->initializeBackend($account);
 
 		$sharingRecords = array();
 		foreach ($records as $record) {
@@ -1471,7 +1429,7 @@ class FilesBrowserModule extends ListModule
 
 		$sharingInfo = array();
 		foreach ($sInfo as $path => $details) {
-			$realPath = "#R#" . $accountID . $path;
+			$realPath = "#R#" . $account->getId() . $path;
 			$sharingInfo[$realPath] = $details; // add account id again
 		}
 
@@ -1506,16 +1464,10 @@ class FilesBrowserModule extends ListModule
 			));
 		}
 
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
-
-		$account = $accountStore->getAccount($accountID);
+		$account = $this->accountStore->getAccount($accountID);
 
 		// initialize the backend
-		$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-		$initializedBackend->init_backend($account->getBackendConfig());
-		$initializedBackend->open();
+		$initializedBackend = $this->initializeBackend($account);
 
 		$sharingRecords = array();
 		foreach ($records as $record) {
@@ -1564,16 +1516,10 @@ class FilesBrowserModule extends ListModule
 			));
 		}
 
-		// Initialize the account and backendstore
-		$accountStore = new \Files\Core\AccountStore();
-		$backendStore = \Files\Backend\BackendStore::getInstance();
-
-		$account = $accountStore->getAccount($accountID);
+		$account = $this->accountStore->getAccount($accountID);
 
 		// initialize the backend
-		$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
-		$initializedBackend->init_backend($account->getBackendConfig());
-		$initializedBackend->open();
+		$initializedBackend = $this->initializeBackend($account);
 
 		try {
 			$sInfo = $initializedBackend->unshare($records);
@@ -1593,5 +1539,91 @@ class FilesBrowserModule extends ListModule
 		$GLOBALS["bus"]->addData($this->getResponseData());
 
 		return true;
+	}
+
+	/**
+	 * Get the account id from a node id.
+	 * @param {String} $nodeID Id of the file or folder to operate on
+	 * @return {String} The account id extracted from $nodeId
+	 */
+        private function accountIDFromNode($nodeID)
+        {
+		return substr($nodeID, 3, (strpos($nodeID, '/') - 3)); // parse account id from node id
+	}
+
+	/**
+	 * Get the account from a node id.
+	 * @param {String} $nodeId ID of the file or folder to operate on
+	 * @return {String} The account for $nodeId
+	 */
+        private function accountFromNode($nodeID)
+        {
+		return $this->accountStore->getAccount($this->accountIDFromNode($nodeID));
+	}
+
+	/**
+	 * Create a key used to store data in the cache.
+	 * @param {String} $accountID Id of the account of the data to cache
+	 * @param {String} $path Path of the file or folder to create the cache element for
+	 * @return {String} The created key
+	 */
+        private function makeCacheKey($accountID, $path)
+        {
+		return $this->uid . md5($accountID . $path);
+	}
+
+	/**
+	 * Initialize the backend for the given account.
+	 * @param {Object} $account The account object the backend should be initilized for
+	 * @param {Bool} $setID Should the accountID be set in the backend object, or not. Defaults to false.
+	 * @return {Object} The initialized backend
+	 */
+        private function initializeBackend($account, $setID = false)
+        {
+		$backend = $this->backendStore->getInstanceOfBackend($account->getBackend());
+		$backend->init_backend($account->getBackendConfig());
+		if($setID) {
+			$backend->setAccountID($account->getId());
+		}
+		$backend->open();
+		return $backend;
+	}
+
+	/**
+	 * Save directory data in the cache.
+	 * @param {String} $accountID Id of the account of the data to cache
+	 * @param {String} $path Path of the file or folder to create the cache element for
+	 * @param {String} $data Data to be cached
+	 */
+        private function setCache($accountID, $path, $data)
+        {
+		$key = $this->makeCacheKey($accountID, $path);
+		Logger::debug(self::LOG_CONTEXT, "Setting cache for node: " . $accountID . $path . " ## " . $key);
+                $this->cache->set($key, $data);
+	}
+
+	/**
+	 * Get directotry data form the cache.
+	 * @param {String} $accountID Id of the account of the data to get
+	 * @param {String} $path Path of the file or folder to retrieve the cache element for
+	 * @return {String} The diretory data or null if nothing was found
+	 */
+        private function getCache($accountID, $path)
+        {
+		$key = $this->makeCacheKey($accountID, $path);
+		Logger::debug(self::LOG_CONTEXT, "Getting cache for node: " . $accountID . $path . " ## " . $key);
+                return $this->cache->get($key);
+	}
+
+	/**
+	 * Remove data from the cache.
+	 * @param {String} $accountID Id of the account to delete the cache for
+	 * @param {String} $path Path of the file or folder to delete the cache element
+	 */
+        private function deleteCache($accountID, $path)
+        {
+		$key = $this->makeCacheKey($accountID, $path);
+		Logger::debug(self::LOG_CONTEXT, "Removing cache for node: " . $accountID .  $path . " ## " . $key);
+                $this->cache->delete($key);
 	}
 }
