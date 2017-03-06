@@ -192,7 +192,8 @@ class FilesAccountModule extends ListModule
 						"backend" => $account->getBackend(),
 						"backend_config" => $account->getBackendConfig(),
 						'backend_features' => $account->getFeatures(),
-						'account_sequence' => $account->getSequence()
+						'account_sequence' => $account->getSequence(),
+						'cannot_change' => $account->getCannotChangeFlag()
 					),
 					'entryid' => $account->getId(),
 					'store_entryid' => 'filesaccount',

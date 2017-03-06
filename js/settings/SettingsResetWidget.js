@@ -81,8 +81,13 @@ Zarafa.plugins.files.settings.SettingsResetWidget = Ext.extend(Zarafa.settings.u
 	resetDefaultSettings: function (button) {
 		if (button === 'reset') {
 			var settingsModel = container.getSettingsModel();
+			var accounts = settingsModel.getSettingsObject('zarafa/v1/plugins/files/accounts');
+			for (var account in accounts) {
+				if (accounts[account].cannot_change !== true) {
+					settingsModel.reset('zarafa/v1/plugins/files/accounts/' + account);
+				}
+			}
 			settingsModel.reset('zarafa/v1/contexts/files');
-			settingsModel.reset('zarafa/v1/plugins/files');
 			settingsModel.save();
 
 			this.loadMask = new Zarafa.common.ui.LoadMask(Ext.getBody(), {
