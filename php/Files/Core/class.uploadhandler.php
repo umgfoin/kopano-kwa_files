@@ -68,6 +68,7 @@ class UploadHandler
 			// check if backend supports streaming - this is the preferred way to upload files!
 			if ($initializedBackend->supports(\Files\Backend\BackendStore::FEATURE_STREAMING)) {
 				$fileReader = fopen('php://input', "r");
+				$targetPath = UploadHandler::checkFilesNameConflict($targetPath, $initializedBackend, $relNodeId);
 				$fileWriter = $initializedBackend->getStreamwriter($targetPath);
 
 				while (true) {
@@ -99,6 +100,7 @@ class UploadHandler
 					fwrite($fileWriter, $buffer);
 				}
 
+				$targetPath = UploadHandler::checkFilesNameConflict($targetPath, $initializedBackend, $relNodeId);
 				// upload tmp file to backend
 				$initializedBackend->put_file($targetPath, $temp_file);
 				// clean up tmp file
@@ -143,5 +145,36 @@ class UploadHandler
 				die();
 			}
 		}
+	}
+
+	/**
+	 * Create a unique file name if file is already exist in backend and user
+	 * wants to keep both on server.
+	 *
+	 * @param string $targetPath targeted files path
+	 * @param Object $initializedBackend Supported abstract backend object (i.e fpt,smb,owncloud etc.. )
+	 * @param string $relNodeId relay node id
+	 * @return string target file path
+	 */
+	public static function checkFilesNameConflict($targetPath, $initializedBackend, $relNodeId)
+	{
+		$keepBoth = isset($_REQUEST["keep_both"])? $_REQUEST["keep_both"] : false;
+		// Check if file was already exist in directory and $keepBoth is true
+		// then append the counter in files name.
+		if (strtolower($keepBoth) === 'true') {
+			$lsNodes = $initializedBackend->ls($relNodeId);
+			$nodeExist = array_key_exists($targetPath, $lsNodes);
+			if($nodeExist) {
+				$i = 1;
+				$targetPathInfo = pathinfo($targetPath);
+				do {
+					$targetPath = $targetPathInfo["dirname"] . "/" . $targetPathInfo["filename"] . " (" . $i . ")." . $targetPathInfo["extension"];
+					$targetPath = str_replace('//', '/', $targetPath);
+					$i++;
+				} while (array_key_exists($targetPath, $lsNodes));
+			}
+		}
+
+		return $targetPath;
 	}
 }

@@ -66,7 +66,8 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 			},
 			items    : this.initUploadUI(config),
 			listeners: {
-				afterrender: this.startUpload.createDelegate(this)
+				afterrender: this.startUpload,
+				scope : this
 			}
 		});
 
@@ -196,10 +197,11 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 	 * This function generates the XMLHttpRequest's and starts the upload.
 	 * The upload timer gets also started in this function.
 	 */
-	startUpload: function () {
+	startUpload: function ()
+	{
 		Ext.each(this.files, function (file, index) {
 			this.xhr[index] = new XMLHttpRequest();
-			this.xhr[index].open("post", "index.php?sessionid=" + container.getUser().getSessionId() + "&load=custom&name=upload_file", true);
+			this.xhr[index].open("post", "index.php?load=custom&name=upload_file&keep_both="+this.keepBoth, true);
 
 			// progress listener
 			this.xhr[index].upload.addEventListener("progress", this.onUpdateProgress.createDelegate(this, [index], true), false);

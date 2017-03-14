@@ -510,10 +510,10 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 
 		if ($this->is_file($path)) {
 			$this->log("deleting file: ");
-			$result = @ftp_delete($this->ftp_client, $dir);
+			$result = @ftp_delete($this->ftp_client, rawurldecode($dir));
 		} else {
 			$this->log("deleting dir");
-			$result = $this->ftp_rmdirr($dir);
+			$result = $this->ftp_rmdirr(rawurldecode($dir));
 		}
 
 		$time_end = microtime(true);
@@ -581,7 +581,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			}
 		}
 
-		$result = @ftp_rename($this->ftp_client, $src_dir, $dst_dir);
+		$result = @ftp_rename($this->ftp_client, rawurldecode($src_dir), rawurldecode($dst_dir));
 
 		$time_end = microtime(true);
 		$time = $time_end - $time_start;
@@ -636,7 +636,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 		$this->log("[PUTFILE] start for dir: $dir");
 
 		if (@ftp_chdir($this->ftp_client, dirname($dir) . "/")) {
-			$result = @ftp_put($this->ftp_client, basename($dir), $filename, FTP_BINARY);
+			$result = @ftp_put($this->ftp_client, rawurldecode(basename($dir)), $filename, FTP_BINARY);
 		} else {
 			$result = false;
 		}
@@ -796,7 +796,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	public function is_file($path)
 	{
 		$path = $this->appendBasePath($path);
-		if (@ftp_size($this->ftp_client, $path) == '-1') {
+		if (@ftp_size($this->ftp_client, rawurldecode($path)) == '-1') {
 			return false; // Is directory
 		} else {
 			return true; // Is file
@@ -1051,7 +1051,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 		$ftpurl .= $this->appendBasePath($path);
 
 		try {
-			return fopen($ftpurl , 'w');
+			return fopen(rawurldecode($ftpurl) , 'w');
 		} catch (\Exception $e) {
 			$this->log("STREAMWRITER failed: " . print_r($e, true));
 			return false;
