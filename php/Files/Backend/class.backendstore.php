@@ -1,6 +1,12 @@
 <?php
 namespace Files\Backend;
 
+// NOTE: This will only work if the plugins are located in the default location!
+// We are unable to use the plugin's config.php for this, because it should be a symlink to
+// a config file in /etc/kopano (so __DIR__ will give the location of the plugin)
+// The only fix would be that the plugins folder should not be configurable
+define ('PLUGIN_FILES_WEBAPP_BASE_PATH', realpath(__DIR__ . '/../../../../..'));
+require_once(PLUGIN_FILES_WEBAPP_BASE_PATH . '/init.php');
 require_once __DIR__ . "/../Core/Util/class.logger.php";
 require_once __DIR__ . "/../Core/Util/class.stringutil.php";
 
