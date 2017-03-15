@@ -1203,7 +1203,7 @@ class FilesBrowserModule extends ListModule
 						$tmpname = tempnam(TMP_PATH, stripslashes($filename));
 
 						// Open a stream to get the attachment data
-						$stream = mapi_openpropertytostream($attachment, PR_ATTACH_DATA_BIN);
+						$stream = mapi_openproperty($attachment, PR_ATTACH_DATA_BIN, IID_IStream, 0, 0);
 						$stat = mapi_stream_stat($stream);
 						// File length =  $stat["cb"]
 
