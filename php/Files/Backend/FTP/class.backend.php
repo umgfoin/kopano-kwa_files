@@ -479,7 +479,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 		$dir = $this->appendBasePath($dir);
 		$this->log("[MKCOL] start for dir: $dir");
 
-		$result = @ftp_mkdir($this->ftp_client, $dir);
+		$result = @ftp_mkdir($this->ftp_client, rawurldecode($dir));
 		$time_end = microtime(true);
 		$time = $time_end - $time_start;
 
@@ -1025,7 +1025,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 		$ftpurl .= $this->appendBasePath($path);
 
 		try {
-			return fopen($ftpurl , 'r');
+			return fopen(rawurldecode($ftpurl) , 'r');
 		} catch (\Exception $e) {
 			$this->log("STREAMREADER failed: " . print_r($e, true));
 			return false;
