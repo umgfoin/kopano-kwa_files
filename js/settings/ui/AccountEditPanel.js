@@ -35,6 +35,7 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 			buttons    : [{
 				text    : dgettext('plugin_files', 'Save'),
 				ref     : "../saveBtn",
+				cls     : "zarafa-action",
 				disabled: true,
 				handler : this.doSave,
 				scope   : this
