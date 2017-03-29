@@ -19,6 +19,7 @@ class Account
 	private $backendConfig; // This array will hold the backend configuration variables
 	private $features;
 	private $sequence; // for ordering
+	private $cannot_change; // for locking accounts
 
 	/**
 	 * Status variables
@@ -37,7 +38,7 @@ class Account
 	 * @param       $backendConfig
 	 * @param array $features
 	 */
-	function __construct($id, $name, $status, $statusDescription, $backend, $backendConfig, $features = array(), $sequence)
+	function __construct($id, $name, $status, $statusDescription, $backend, $backendConfig, $features = array(), $sequence, $cannot_change)
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -47,6 +48,7 @@ class Account
 		$this->backendConfig = $backendConfig;
 		$this->features = $features;
 		$this->sequence = $sequence;
+		$this->cannot_change = $cannot_change;
 	}
 
 	/**
@@ -219,5 +221,13 @@ class Account
 	public function setSequence($sequence)
 	{
 		$this->sequence = $sequence;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getCannotChangeFlag()
+	{
+		return isset($this->cannot_change) ? $this->cannot_change : false;
 	}
 }

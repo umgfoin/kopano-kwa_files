@@ -57,7 +57,7 @@ class AccountStore
 		// get sequence number
 		$sequence = $this->getNewSequenceNumber();
 
-		$newAccount = new Account($newID, strip_tags($name), $status[0], $status[1], strip_tags($backend), $backendConfig, $features, $sequence);
+		$newAccount = new Account($newID, strip_tags($name), $status[0], $status[1], strip_tags($backend), $backendConfig, $features, $sequence, false);
 
 		// now store all the values to the user settings
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/id", $newAccount->getId());
@@ -66,6 +66,8 @@ class AccountStore
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/status_description", $newAccount->getStatusDescription());
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/backend", $newAccount->getBackend());
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/account_sequence", $newAccount->getSequence());
+		// User defined accounts are never administrative. So set cannot_change to false.
+		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $newID . "/cannot_change", false);
 
 		// store all backend configurations
 		foreach ($newAccount->getBackendConfig() as $key => $value) {
@@ -92,7 +94,9 @@ class AccountStore
 	 */
 	public function updateAccount($account)
 	{
+
 		$accId = $account->getId();
+		$isAdministrativeAccount = $account->getCannotChangeFlag();
 
 		// create instance of backend to get features
 		$backendStore = BackendStore::getInstance();
@@ -110,23 +114,26 @@ class AccountStore
 
 		// save values to MAPI settings
 		// now store all the values to the user settings
-		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/name", $account->getName());
-		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/status", $account->getStatus());
-		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/status_description", $account->getStatusDescription());
-		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/backend", $account->getBackend());
+		// but if we have an administrative account only save the account sequence
+		if (!isAdministrativeAccount) {
+			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/name", $account->getName());
+			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/status", $account->getStatus());
+			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/status_description", $account->getStatusDescription());
+			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/backend", $account->getBackend());
+
+			// store all backend configurations
+			foreach ($account->getBackendConfig() as $key => $value) {
+				$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/backend_config/" . $key, $this->encryptBackendConfigProperty($value));
+			}
+
+			// store all features
+			foreach ($account->getFeatures() as $feature) {
+				$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/backend_features/" . $feature, true);
+			}
+		}
 		// when getSequence returns 0, there is no account_sequence setting yet. So create one.
 		$account_sequence = ($account->getSequence() === 0 ? $this->getNewSequenceNumber() : $account->getSequence());
 		$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/account_sequence", $account_sequence);
-
-		// store all backend configurations
-		foreach ($account->getBackendConfig() as $key => $value) {
-			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/backend_config/" . $key, $this->encryptBackendConfigProperty($value));
-		}
-
-		// store all features
-		foreach ($account->getFeatures() as $feature) {
-			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/backend_features/" . $feature, true);
-		}
 
 		$GLOBALS["settings"]->saveSettings(); // save to MAPI storage
 
@@ -142,8 +149,12 @@ class AccountStore
 	 */
 	public function deleteAccount($accountId)
 	{
-		$GLOBALS["settings"]->delete(self::ACCOUNT_STORAGE_PATH . "/" . $accountId);
-		$GLOBALS["settings"]->saveSettings(); // save to MAPI storage
+		$account = $this->getAccount($accountId);
+		// Do not allow deleting administrative accounts, but fail silently.
+		if (!$account->getCannotChangeFlag()) {
+			$GLOBALS["settings"]->delete(self::ACCOUNT_STORAGE_PATH . "/" . $accountId);
+			$GLOBALS["settings"]->saveSettings(); // save to MAPI storage
+		}
 
 		return true;
 	}
@@ -191,6 +202,13 @@ class AccountStore
 					$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $acc["id"] . "/account_sequence", $acc["account_sequence"]);
 					$GLOBALS["settings"]->saveSettings();
 				}
+				// cannot_change flag was introduced later. So set it to false and save it if missing.
+				if (!isset($acc["cannot_change"])) {
+					$acc["cannot_change"] = false;
+					Logger::debug(self::LOG_CONTEXT, "Cannot change flag missing. Setting to false.");
+					$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $acc["id"] . "/cannot_change", false);
+					$GLOBALS["settings"]->saveSettings();
+				}
 				$this->accounts[$acc["id"]] = new Account($acc["id"],
 					$acc["name"],
 					$acc["status"],
@@ -198,7 +216,8 @@ class AccountStore
 					$acc["backend"],
 					$this->decryptBackendConfig($acc["backend_config"]),
 					array_keys($acc["backend_features"]),
-					$acc["account_sequence"]
+					$acc["account_sequence"],
+					$acc["cannot_change"]
 				);
 			}
 		}

@@ -148,8 +148,12 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	 * @param selectionModel
 	 */
 	onRowSelected: function (selectionModel) {
+		if (selectionModel.getCount() < 1) {
+			return;
+		}
 		var remButton = this.grid.removeAccountBtn;
-		remButton.setDisabled(selectionModel.getCount() < 1);
+		var isAdministrativeAccount = selectionModel.getSelections()[0].get("cannot_change");
+		remButton.setDisabled(isAdministrativeAccount);
 
 		this.grid.upButton.setDisabled(!selectionModel.hasPrevious());
 		this.grid.downButton.setDisabled(!selectionModel.hasNext());
@@ -162,6 +166,9 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	 * @param rowIndex
 	 */
 	onRowDblClick: function (grid, rowIndex) {
+		if (this.getSelectionModel().getSelections()[0].get("cannot_change")) {
+			return;
+		}
 		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['filesplugin.accountedit'], undefined, {
 			store  : grid.getStore(),
 			item   : grid.getStore().getAt(rowIndex),

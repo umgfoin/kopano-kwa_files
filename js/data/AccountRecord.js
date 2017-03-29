@@ -13,7 +13,8 @@ Zarafa.plugins.files.data.AccountRecordFields = [
 	{name: 'backend'},
 	{name: 'backend_config'},
 	{name: 'backend_features'},
-	{name: 'account_sequence', type: 'number'}
+	{name: 'account_sequence', type: 'number'},
+	{name: 'cannot_change', type: 'boolean', defaultValue: false}
 ];
 
 /**
