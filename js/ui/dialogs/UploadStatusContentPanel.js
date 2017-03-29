@@ -10,35 +10,25 @@ Ext.namespace('Zarafa.plugins.files.ui.dialogs');
 Zarafa.plugins.files.ui.dialogs.UploadStatusContentPanel = Ext.extend(Zarafa.core.ui.ContentPanel, {
 
 	/**
-	 * @var [] array of files or filenames
-	 */
-	files: null,
-
-	/**
-	 * @var string destination path
-	 */
-	destination: null,
-
-	/**
 	 * @constructor
 	 * @param config
 	 */
 	constructor: function (config) {
 		config = config || {};
 		Ext.applyIf(config, {
-			layout     : 'fit',
-			title      : dgettext('plugin_files', 'Uploading files to ') + Zarafa.plugins.files.data.Utils.File.stripAccountId(config.destination) + ' &hellip;',
-			closeOnSave: true,
-			width      : 480,
-			height     : 445,
-
+			layout : 'fit',
+			title : dgettext('plugin_files', 'Uploading files to ') + Zarafa.plugins.files.data.Utils.File.stripAccountId(config.destination) + ' &hellip;',
+			closeOnSave : true,
+			width : 480,
+			height : 445,
 			items: [{
-				xtype                : 'filesplugin.uploadstatuspanel',
-				files                : config.files,
-				destination          : config.destination,
-				callbackAllDone      : config.callbackAllDone || Ext.emptyFn,
+				xtype : 'filesplugin.uploadstatuspanel',
+				files : config.files,
+				destination : config.destination,
+				keepBoth : config.keepBoth,
+				callbackAllDone : config.callbackAllDone || Ext.emptyFn,
 				callbackUploadFailed : config.callbackUploadFailed || Ext.emptyFn,
-				callbackUploadAborted: config.callbackUploadAborted || Ext.emptyFn
+				callbackUploadAborted : config.callbackUploadAborted || Ext.emptyFn
 			}]
 		});
 

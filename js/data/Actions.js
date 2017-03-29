@@ -804,7 +804,7 @@ Zarafa.plugins.files.data.Actions = {
 					destination: destination
 				},
 				new Zarafa.plugins.files.data.ResponseHandler({
-					successCallback: this.checkForExistingFilesDone.createDelegate(this, [files, null, destination, this.doAsyncUpload], true)
+					successCallback: this.checkForExistingFilesDone.createDelegate(this, [files, destination, this.doAsyncUpload], true)
 				})
 			);
 		}
@@ -813,21 +813,19 @@ Zarafa.plugins.files.data.Actions = {
 	/**
 	 * Actually uploads all the files to the server.
 	 *
-	 * @param button
-	 * @param value
-	 * @param options
-	 * @param files
-	 * @param form Unused
-	 * @param destination
+	 * @param {Zarafa.common.dialogs.MessageBox.addCustomButtons} button
+	 * @param {Array} files An array of files
+	 * @param destination record id.
 	 */
-	doAsyncUpload: function (button, value, options, files, form, destination) {
-		if (!Ext.isDefined(button) || button === "yes") {
+	doAsyncUpload: function (button, files, destination) {
+		if (button === "overwrite" || button === "keepboth") {
 			var componentType = Zarafa.core.data.SharedComponentType['zarafa.plugins.files.uploadstatusdialog'];
 			Zarafa.core.data.UIFactory.openLayerComponent(componentType, undefined, {
-				files          : files,
-				destination    : destination,
-				manager        : Ext.WindowMgr,
-				callbackAllDone: this.uploadDone
+				files : files,
+				destination : destination,
+				keepBoth : button === "keepboth",
+				manager : Ext.WindowMgr,
+				callbackAllDone : this.uploadDone
 			});
 		}
 	},
@@ -853,19 +851,31 @@ Zarafa.plugins.files.data.Actions = {
 	 *
 	 * @param {Object} response
 	 * @param {File[]} files The files that should be uploaded
-	 * @param {string} destination record
+	 * @param {string} destination record id
+	 * @param {Function} callback function which triggers {@link #doAsyncUpload} function.
 	 * @private
 	 */
-	checkForExistingFilesDone: function (response, files, form, destination, callback) {
+	checkForExistingFilesDone: function (response, files, destination, callback) {
 		if (response.duplicate === true) {
-			Ext.MessageBox.confirm(
-				dgettext('plugin_files', 'Confirm overwrite'),
-				dgettext('plugin_files', 'File already exists. Do you want to overwrite it?'),
-				callback.createDelegate(this, [files, form, destination], true),
-				this
-			);
+			Zarafa.common.dialogs.MessageBox.addCustomButtons({
+				title : dgettext('plugin_files', 'Confirm overwrite'),
+				icon: Ext.MessageBox.QUESTION,
+				msg : dgettext('plugin_files', 'File already exists. Do you want to overwrite it?'),
+				fn : callback.createDelegate(this, [files, destination], true),
+				customButton : [{
+					text :  dgettext('plugin_files', 'Keep both'),
+					name : 'keepboth'
+				}, {
+					text :  dgettext('plugin_files', 'Overwrite'),
+					name : 'overwrite'
+				}, {
+					text :  dgettext('plugin_files', 'Cancel'),
+					name : 'cancel'
+				}],
+				scope : this
+			});
 		} else {
-			callback.createDelegate(this, ["yes", null, null, files, form, destination])();
+			callback.createDelegate(this, ["overwrite", files, destination])();
 		}
 	},
 
