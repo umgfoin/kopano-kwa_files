@@ -11,6 +11,7 @@ namespace Files\Core;
 require_once __DIR__ . "/class.accountstore.php";
 
 require_once __DIR__ . "/Util/class.pathutil.php";
+require_once __DIR__ . "/Util/util.php";
 require_once __DIR__ . "/Util/class.logger.php";
 
 use \Files\Core\AccountStore;
@@ -63,8 +64,7 @@ class UploadHandler
 		// check if we are getting the file via the "new" method (ajax - XMLHttpRequest) or the standard way
 		if (isset($_SERVER['HTTP_X_FILE_NAME']) && isset($_SERVER['HTTP_X_FILE_SIZE'])) { // use the ajax method
 
-			$targetPath = $relNodeId . $_SERVER['HTTP_X_FILE_NAME'];
-
+			$targetPath = stringToUTF8Encode($relNodeId . $_SERVER['HTTP_X_FILE_NAME']);
 			// check if backend supports streaming - this is the preferred way to upload files!
 			if ($initializedBackend->supports(\Files\Backend\BackendStore::FEATURE_STREAMING)) {
 				$fileReader = fopen('php://input', "r");
@@ -112,7 +112,7 @@ class UploadHandler
 			$items = array();
 			try {
 				for ($i = 0; $i < count($_FILES['attachments']['name']); $i++) {
-					$targetPath = $relNodeId . $_FILES['attachments']['name'][$i];
+					$targetPath = stringToUTF8Encode($relNodeId . $_FILES['attachments']['name'][$i]);
 
 					// upload the file
 					// check if backend supports streaming - this is the preferred way to upload files!

@@ -434,13 +434,12 @@ class FilesBrowserModule extends ListModule
 
 				Logger::debug(self::LOG_CONTEXT, "parsing: " . $id . " in base: " . $nodeId);
 
-				$filename = basename($id);
-
+				$filename = stringToUTF8Encode(basename($id));
 				if ($navtree) {
 					if ($type == 0) { // we have a folder
 						$nodes[$realID] = array(
 							'id' => $realID,
-							'path' => dirname($id),
+							'path' => stringToUTF8Encode(dirname($id)),
 							'text' => $filename,
 							'expanded' => false,
 							'isFolder' => true, // needed to set class correctly
@@ -453,7 +452,7 @@ class FilesBrowserModule extends ListModule
 						if ($loadFiles) { // skip files if $loadFiles == false
 							$nodes[$realID] = array(
 								'id' => $realID,
-								'path' => dirname($id),
+								'path' => stringToUTF8Encode(dirname($id)),
 								'text' => $filename . '(' . StringUtil::human_filesize(intval($node['getcontentlength'])) . ')',
 								'filesize' => intval($node['getcontentlength']),
 								'isFolder' => false,
@@ -479,10 +478,12 @@ class FilesBrowserModule extends ListModule
 							}
 						}
 					}
-					$nodes[$id] = array('props' =>
+					$nodeId = stringToUTF8Encode($id);
+
+					$nodes[$nodeId] = array('props' =>
 						array(
-							'id' => rawurldecode($realID),
-							'path' => dirname(rawurldecode($id)),
+							'id' => stringToUTF8Encode($realID),
+							'path' => dirname(stringToUTF8Encode($id)),
 							'filename' => $filename,
 							'message_size' => $size,
 							'lastmodified' => strtotime($node['getlastmodified']) * 1000,
@@ -491,9 +492,9 @@ class FilesBrowserModule extends ListModule
 							'sharedid' => $sharedid,
 							'type' => $type
 						),
-						'entryid' => rawurldecode($realID),
+						'entryid' => stringToUTF8Encode($realID),
 						'store_entryid' => 'files',
-						'parent_entryid' => dirname($realID) . "/"
+						'parent_entryid' => dirname(stringToUTF8Encode($realID)) . "/"
 					);
 				}
 			}
@@ -811,6 +812,7 @@ class FilesBrowserModule extends ListModule
 			$initializedBackend->init_backend($account->getBackendConfig());
 
 			$initializedBackend->open();
+			$relDirname = stringToUTF8Encode($relDirname);
 			$result = $initializedBackend->mkcol($relDirname); // create it !
 
 			// clear the cache
