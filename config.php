@@ -15,6 +15,11 @@ define('PLUGIN_FILES_ASK_BEFORE_DELETE', true);
 define('PLUGIN_FILES_PRELOAD_FOLDER', false);
 
 /**
+ * The directory where to save cache files for phpfastcache, if memcached is not installed  
+ */
+define('PLUGIN_FILES_CACHE_DIR', "/var/lib/kopano-webapp/plugin_files");
+
+/**
  * Set the verbosity of the plugin.
  *
  * Possible values: DEBUG, NORMAL, ERROR, NONE

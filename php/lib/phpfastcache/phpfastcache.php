@@ -2,6 +2,12 @@
 // phpFastCache Library
 require_once(dirname(__FILE__) . "/phpfastcache/3.0.0/phpfastcache.php");
 
+// Path for cache files if memcached is not used
+// Set to /var/lib/kopano-webapp/plugin_files if PLUGIN_FILES_CACHE_DIR.
+// This can happen if the config file is not updated when updating the plugin.
+
+$cachepath = ( defined(PLUGIN_FILES_CACHE_DIR) ? PLUGIN_FILES_CACHE_DIR : '/var/lib/kopano-webapp/plugin_files' );
+
 // OK, setup your cache
 phpFastCache::$config = array(
 	"storage" => "memcached", // auto, files, sqlite, apc, cookie, memcache, memcached, predis, redis, wincache, xcache
@@ -18,7 +24,7 @@ phpFastCache::$config = array(
 	"htaccess" => true,
 
 	// path to cache folder, leave it blank for auto detect
-	"path" => "",
+	"path" => $cachepath,
 	"securityKey" => "auto", // auto will use domain name, set it to 1 string if you use alias domain name
 
 	// MEMCACHE
