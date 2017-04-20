@@ -61,6 +61,7 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 	constructor: function (config) {
 		config = config || {};
 		Ext.applyIf(config, {
+			autoScroll : true,
 			defaults : {
 				anchor: '100%'
 			},
