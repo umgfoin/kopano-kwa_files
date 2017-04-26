@@ -54,6 +54,7 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 		Zarafa.plugins.files.FilesContext.superclass.constructor.call(this, config);
 
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.attachdialog');
+		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.createfolderdialog');
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.fileinfopanel');
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.sharedialog');
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.uploadstatusdialog');
@@ -122,6 +123,7 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.sharedialog']:
 			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.uploadstatusdialog']:
 			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.treecontextmenu']:
+			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.createfolderdialog']:
 				bid = 1;
 				break;
 			case Zarafa.core.data.SharedComponentType['common.create']:
@@ -158,6 +160,9 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 				break;
 			case Zarafa.core.data.SharedComponentType['common.create']:
 				component = Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel;
+				break;
+			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.createfolderdialog']:
+				component = Zarafa.plugins.files.ui.dialogs.CreateFolderContentPanel;
 				break;
 			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.sharedialog']:
 				component = Zarafa.plugins.files.ui.dialogs.ShareContentPanel;

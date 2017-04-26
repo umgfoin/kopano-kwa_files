@@ -350,15 +350,6 @@ Zarafa.plugins.files.data.Actions = {
 	 */
 	checkForDuplicateDone: function (response, records, destination, mode) {
 		switch (mode) {
-			case 'newfolder':
-				if (response.duplicate === true) {
-					this.msgWarning(dgettext('plugin_files', 'Folder already exists'));
-				} else if (!Zarafa.plugins.files.data.Utils.File.isValidFilename(records)) {
-					this.msgWarning(dgettext('plugin_files', 'Incorrect foldername'));
-				} else {
-					this.doCreateFolder(records, destination);
-				}
-				break;
 			case 'rename':
 				if (response.duplicate === true) {
 					this.msgWarning(dgettext('plugin_files', 'This name already exists'));
@@ -397,128 +388,14 @@ Zarafa.plugins.files.data.Actions = {
 			path = model.getStore().getPath();
 		}
 
-		Ext.MessageBox.prompt(dgettext('plugin_files', 'Folder name'), dgettext('plugin_files', 'Please enter a foldername'), this.doCheckFolderDuplicate.createDelegate(this, [model, path], true), this);
-	},
+		config = Ext.applyIf(config || {}, {
+			modal  : true,
+			accountFilter : Zarafa.plugins.files.data.Utils.File.getAccountId(path),
+			selectedFolderId : path
+		});
 
-	/**
-	 * Check if the folder already exists.
-	 *
-	 * @param {String} button The value of the button
-	 * @param {String} text Inputfield value, the foldername
-	 * @param {Object} options Unused
-	 * @param {Zarafa.plugins.files.context.FilesContextModel} model Context Model.
-	 * @param {String} path The destination path in which the uploaded file will be stored.
-	 * @private
-	 */
-	doCheckFolderDuplicate: function (button, text, options, model, path) {
-		if (button === "ok") {
-			var ids = [{
-				id      : path + text + '/',
-				isFolder: true
-			}];
-
-			container.getRequest().singleRequest(
-				'filesbrowsermodule',
-				'checkifexists',
-				{
-					records    : ids,
-					destination: path
-				},
-				new Zarafa.plugins.files.data.ResponseHandler({
-					successCallback: this.checkForDuplicateDone.createDelegate(this, [text, path, 'newfolder'], true)
-				})
-			);
-		}
-	},
-
-	/**
-	 * Create a new Folder on the server.
-	 *
-	 * @param {String} text Inputfield value, the foldername
-	 * @param {String} path The destination path in which the uploaded file will be stored.
-	 * @private
-	 */
-	doCreateFolder: function (text, path) {
-		var d = new Date();
-		var nowUTC = d.getTime() + d.getTimezoneOffset() * 60 * 1000;
-		var data = {
-			"filename"    : text,
-			"path"        : Zarafa.plugins.files.data.Utils.File.stripAccountId(path).replace(/\/+$/, ''),
-			"id"          : path + text + "/",
-			"message_size": -1,
-			"lastmodified": nowUTC,
-			"type"        : Zarafa.plugins.files.data.FileTypes.FOLDER
-		};
-
-		container.getRequest().singleRequest(
-			'filesbrowsermodule',
-			'createdir',
-			{
-				props: data
-			},
-			new Zarafa.plugins.files.data.ResponseHandler({
-				successCallback: this.createFolderDone.createDelegate(this, [text, path], true)
-			})
-		);
-	},
-
-	/**
-	 * Function is called after successfull or unsuccessfull creation of a folder.
-	 *
-	 * @param {Object} response The response from the server
-	 * @param {String} text Inputfield value, the foldername
-	 * @param {String} path The destination path in which the uploaded file will be stored.
-	 * @private
-	 */
-	createFolderDone: function (response, text, path) {
-
-		if (!Ext.isDefined(response.item[0])) {
-			this.msgWarning(dgettext('plugin_files', 'Folder could not be created!'));
-			return false;
-		}
-
-		var props = response.item[0].props;
-
-		var newFolder = {
-			id          : props.id,
-			text        : props.filename,
-			has_children: false,
-			expanded    : true,
-			iconCls     : 'icon_folder_note',
-			loaded      : true,
-			isFolder    : true
-		};
-
-		var d = new Date();
-		var nowUTC = d.getTime() + d.getTimezoneOffset() * 60 * 1000;
-		var data = {
-			"filename"     : text,
-			"path"         : Zarafa.plugins.files.data.Utils.File.stripAccountId(path).replace(/\/+$/, ''),
-			"id"           : path + text + "/",
-			"virtualRecord": true, // this is important - otherwhise the backend will create another folder
-			"message_size" : -1,
-			"lastmodified" : nowUTC,
-			"type"         : Zarafa.plugins.files.data.FileTypes.FOLDER
-		};
-
-
-		var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(props.id);
-		var navpanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-		var currentNode = navpanel.getNodeById(path);
-
-		// create the folder in the navbar
-		if (Ext.isDefined(currentNode) && currentNode.rendered) {
-			currentNode.appendChild(newFolder);
-		}
-
-		// add the file to the grid
-		if (Zarafa.plugins.files.data.ComponentBox.getStore().getPath() === path) {
-			var rec = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_FILES, data);
-			var store = Zarafa.plugins.files.data.ComponentBox.getStore();
-			store.add(rec);
-			store.on("update", this.doRefreshIconView, this, {single: true});
-			store.commitChanges();
-		}
+		var componentType = Zarafa.core.data.SharedComponentType['zarafa.plugins.files.createfolderdialog'];
+		Zarafa.core.data.UIFactory.openLayerComponent(componentType, undefined, config);
 	},
 
 	/**
