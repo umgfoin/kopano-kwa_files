@@ -4,7 +4,6 @@
 .files_icon_actionbutton {
     /* revert x-btn-text-icon */
     border: none!important;
-    background:none!important;
     box-shadow:none!important;
 }
 .files_icon_action {
