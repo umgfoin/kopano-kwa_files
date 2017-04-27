@@ -51,11 +51,6 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 
 		this.registerInsertionPoint('navigation.center', this.createNavigatorTreePanel, this);
 
-		this.registerInsertionPoint('context.addressbook.contextmenu.actions', this.createSendEmailContextItem, this);
-		this.registerInsertionPoint('context.contact.contextmenu.actions', this.createSendEmailContextItem, this);
-		this.registerInsertionPoint('context.contact.contactcontentpanel.toolbar.actions', this.createSendEmailButton, this);
-		this.registerInsertionPoint('context.contact.distlistcontentpanel.toolbar.actions', this.createSendEmailButton, this);
-
 		Zarafa.plugins.files.FilesContext.superclass.constructor.call(this, config);
 
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.attachdialog');
@@ -231,88 +226,6 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			},
 			scope       : this
 		};
-	},
-
-	/**
-	 * Handler for the insertion points for extending the contacts and address book context menus
-	 * with buttons to send a mail to the given contact and address book.
-	 *
-	 * @return {Object}
-	 */
-	createSendEmailContextItem: function () {
-		return {
-			text      : dgettext('plugin_files', 'Send file'),
-			iconCls   : 'icon_attachment',
-			scope     : this,
-			handler   : function (item) {
-				Zarafa.plugins.files.data.Actions.openCreateMailContentForContacts(this.getModel(), item.parentMenu.records);
-			},
-			beforeShow: function (item, records) {
-				var visible = false;
-
-				for (var i = 0, len = records.length; i < len; i++) {
-					var record = records[i];
-					if (this.isSendEmailButtonVisible(record)) {
-						visible = true;
-						break;
-					}
-				}
-
-				item.setVisible(visible);
-			}
-		};
-	},
-
-	/**
-	 * Handler for the insertion points for extending the contacts and distribution dialogs
-	 * with buttons to send a mail to the given contact or distribution list.
-	 *
-	 * @return {Object}
-	 */
-	createSendEmailButton: function () {
-		return {
-			xtype       : 'button',
-			plugins     : ['zarafa.recordcomponentupdaterplugin'],
-			iconCls     : 'icon_attachment',
-			overflowText: dgettext('plugin_files', 'Send file'),
-			tooltip     : {
-				title: dgettext('plugin_files', 'Send file'),
-				text : dgettext('plugin_files', 'Create a new email message with some files attached.')
-			},
-			handler     : function (btn) {
-				Zarafa.plugins.files.data.Actions.openCreateMailContentForContacts(this.getModel(), btn.record);
-			},
-			scope       : this,
-			update      : function (record, resetContent) {
-				this.record = record;
-				if (resetContent) {
-
-					if (!this.scope.isSendEmailButtonVisible(record)) {
-						this.hide();
-					}
-				}
-			}
-		}
-	},
-
-	/**
-	 * Check if the given record (which represents a contact or distribution list)
-	 * can be mailed (this requires the record not to be a {@link Ext.data.Record#phantom}
-	 * and the contact should {@link Zarafa.contact.ContactRecord#hasEmailAddress have an email address}.
-	 *
-	 * @param record
-	 * @return {Boolean}
-	 */
-	isSendEmailButtonVisible: function (record) {
-		if (record.phantom) {
-			return false;
-		} else if (record.isMessageClass('IPM.Contact')) {
-			if (!record.hasEmailAddress()) {
-				return false;
-			}
-		}
-
-		return true;
 	},
 
 	/**
