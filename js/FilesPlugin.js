@@ -135,6 +135,7 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 	showFilesDownloadAttachmentDialog: function (btn) {
 		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['common.dialog.attachments.files'], btn.record, {
 			title  : dgettext('plugin_files', 'Add attachment from Files'),
+			modal  : true,
 			manager: Ext.WindowMgr
 		});
 	},
