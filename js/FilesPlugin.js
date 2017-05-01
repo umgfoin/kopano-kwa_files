@@ -36,8 +36,7 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 
 		this.registerInsertionPoint('context.mail.contextmenu.actions', this.createEmailUploadInsertionPoint, this);
 
-		var files_icon = Zarafa.core.mapi.IconIndex.addProperty("files");
-		container.getSettingsModel().set('zarafa/v1/contexts/files/iconid', files_icon);
+		Zarafa.core.mapi.IconIndex.addProperty("files");
 
 		Zarafa.core.data.SharedComponentType.addProperty('filesplugin.accountedit');
 		Zarafa.core.data.SharedComponentType.addProperty('filesplugin.featurequotainfo');

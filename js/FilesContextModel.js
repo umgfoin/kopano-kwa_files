@@ -92,7 +92,6 @@ Zarafa.plugins.files.FilesContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * {@link Zarafa.hierarchy.data.MAPIFolderRecord MAPIFolder} objects.
 	 */
 	getFolders: function () {
-		var icon_id = container.getSettingsModel().get('zarafa/v1/contexts/files/iconid');
 		Zarafa.plugins.files.data.FilesMAPIFolderRecord = Ext.extend(Zarafa.hierarchy.data.MAPIFolderRecord, {
 			getFullyQualifiedDisplayName: function () {
 				return this.getDisplayName();
@@ -107,7 +106,7 @@ Zarafa.plugins.files.FilesContextModel = Ext.extend(Zarafa.core.ContextModel, {
 			}
 		});
 		var pseudoFolder = new Zarafa.plugins.files.data.FilesMAPIFolderRecord({
-			icon_index     : icon_id,
+			icon_index     : Zarafa.core.mapi.IconIndex.getValue('files'),
 			display_name   : dgettext('plugin_files', 'Files'),
 			entryid        : this.store.getPath(),
 			parent_entryid : this.store.getPath(),
