@@ -37,6 +37,7 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 				xtype       : 'zarafa.toolbarbutton',
 				cls         : 'files_icon_actionbutton',
 				text        : dgettext('plugin_files', 'Upload'),
+				ref         : 'uploadButton',
 				tooltip     : {
 					title: dgettext('plugin_files', 'Upload file'),
 					text : dgettext('plugin_files', 'Upload one or more files')
@@ -49,6 +50,7 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 				xtype       : 'zarafa.toolbarbutton',
 				cls         : 'files_icon_actionbutton',
 				text        : dgettext('plugin_files', 'Create folder'),
+				ref         : 'createFolderButton',
 				tooltip     : {
 					title: dgettext('plugin_files', 'Create folder'),
 					text : dgettext('plugin_files', 'Create a new folder')
@@ -277,6 +279,16 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 		var records = this.model.getSelectedRecords();
 
 		Zarafa.plugins.files.data.Actions.deleteRecords(records);
+	},
+
+	/**
+	 * Function which is use to enable toolbar buttons
+	 * It will enable upload and create folder button.
+	 */
+	enableButtons : function ()
+	{
+		this.createFolderButton.setDisabled(false);
+		this.uploadButton.setDisabled(false);
 	}
 });
 

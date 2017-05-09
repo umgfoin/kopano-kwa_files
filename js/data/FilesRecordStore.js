@@ -185,13 +185,16 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 	 * @param {Zarafa.plugins.files.data.FilesRecord} records
 	 * @param {Object} options
 	 */
-	onLoad: function (store, records, options) {
+	onLoad: function (store, records, options)
+	{
 		var path = options.params.id;
 		var currViewPanel = Zarafa.plugins.files.data.ComponentBox.getItemsView();
 		var toolbar = Zarafa.plugins.files.data.ComponentBox.getViewPanelToolbar();
 		var previewPanel = Zarafa.plugins.files.data.ComponentBox.getPreviewPanel();
 		var mainPanel = container.getMainPanel();
 
+		//disable toolbar buttons
+		toolbar.disable();
 		if (!Ext.isDefined(path) || path === "#R#" || path === "") {
 			// switch to the account overview!
 			Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-accountview');
@@ -199,15 +202,13 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 			// remove all selections as we are in the root folder
 			Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.unselectAllNavPanels();
 
-			// disable toolbar buttons
-			toolbar.disable();
 			previewPanel.topToolbar.disable();
 			mainPanel.filesSwitchViewButton.disable();
 
 		} else if (currViewPanel instanceof Zarafa.plugins.files.ui.FilesRecordAccountView) {
 
 			// enable toolbar buttons
-			toolbar.enable();
+			toolbar.enableButtons();
 			mainPanel.filesSwitchViewButton.enable();
 
 			switch (Zarafa.plugins.files.data.ComponentBox.getContext().getCurrentView()) {
@@ -218,6 +219,10 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 					Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-iconview');
 					break;
 			}
+		} else if (currViewPanel instanceof Zarafa.plugins.files.ui.FilesRecordGridView){
+
+			// enable toolbar buttons
+			toolbar.enableButtons();
 		}
 	},
 
