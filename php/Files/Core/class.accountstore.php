@@ -115,7 +115,7 @@ class AccountStore
 		// save values to MAPI settings
 		// now store all the values to the user settings
 		// but if we have an administrative account only save the account sequence
-		if (!isAdministrativeAccount) {
+		if (!$isAdministrativeAccount) {
 			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/name", $account->getName());
 			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/status", $account->getStatus());
 			$GLOBALS["settings"]->set(self::ACCOUNT_STORAGE_PATH . "/" . $accId . "/status_description", $account->getStatusDescription());
