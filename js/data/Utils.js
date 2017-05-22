@@ -480,7 +480,7 @@ Zarafa.plugins.files.data.Utils = {
 		actionSelectionVisibilityFilter: function (records, singleSelectOnly, fileOnly, noRoot) {
 			var visible = true;
 
-			if(!Ext.isDefined(records)) {
+			if(!Ext.isDefined(records) || Ext.isEmpty(records)) {
 				return false;
 			}
 
