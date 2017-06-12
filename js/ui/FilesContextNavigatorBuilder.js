@@ -147,8 +147,10 @@ Zarafa.plugins.files.ui.FilesContextNavigatorBuilder =  {
 
 				// update account root node:
 				var accRoot = existingAccount.getRootNode().item(0);
-				accRoot.setText(record.get('name'));
-				accRoot.setIconCls("icon_16_" + record.get('backend'));
+				if(Ext.isDefined(accRoot)) {
+					accRoot.setText(record.get('name'));
+					accRoot.setIconCls("icon_16_" + record.get('backend'));
+				}
 				// update the surrounding container
 				existingAccount.ownerCt.setTitle(record.get('backend'));
 				existingAccount.ownerCt.setIconClass("icon_16_logo_" + record.get('backend'));
