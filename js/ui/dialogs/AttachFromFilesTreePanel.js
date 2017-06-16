@@ -135,7 +135,7 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 
 		if (!size_exceeded) {
 			if (idsList.length < 1) {
-				Zarafa.common.dialogs.MessageBox.show({
+				Ext.MessageBox.show({
 					title  : dgettext('plugin_files', 'Warning'),
 					msg    : dgettext('plugin_files', 'You have to choose at least one file!'),
 					icon   : Zarafa.common.dialogs.MessageBox.WARNING,
