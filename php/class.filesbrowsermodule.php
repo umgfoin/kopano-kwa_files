@@ -10,8 +10,7 @@ require_once __DIR__ . "/Files/Core/Util/class.logger.php";
 require_once __DIR__ . "/Files/Core/Util/class.stringutil.php";
 require_once __DIR__ . "/Files/Core/Util/class.pathutil.php";
 
-
-require_once __DIR__ . "/lib/phpfastcache/phpfastcache.php";
+require_once __DIR__ . "/lib/phpfastcache/src/autoload.php";
 
 use \Files\Core\Util\ArrayUtil;
 use \Files\Core\Util\Logger;
@@ -20,6 +19,8 @@ use \Files\Core\Util\PathUtil;
 
 use \Files\Core\Exception as AccountException;
 use \Files\Backend\Exception as BackendException;
+
+use phpFastCache\CacheManager;
 
 /**
  * This module handles all list and change requests for the files browser.
@@ -51,7 +52,28 @@ class FilesBrowserModule extends ListModule
 	{
 		parent::__construct($id, $data);
 
-		$this->cache = phpFastCache();
+		// Setup the cache
+		$cacheSysPath = ( defined(PLUGIN_FILES_CACHE_DIR) ? PLUGIN_FILES_CACHE_DIR : '/var/lib/kopano-webapp/plugin_files' );
+		if (!is_writable($cacheSysPath)) {
+			Logger::error(self::LOG_CONTEXT, "Cache files directory failing back to /tmp, because " . $cacheSysPath . " is not writeable by the php process. Please adjust permissions. See KFP-161." );
+			$cacheSysPath = sys_get_temp_dir();
+		}
+		$config = array(
+			"storage" => "memcached",
+			"memcache" => array(
+				array('127.0.0.1', 11211, 1),
+			),
+			"path" => $cacheSysPath,
+			"fallback" => "files", // fallback when memcached does not work
+		);
+		CacheManager::setup($config);
+		$this->cache = CacheManager::getInstance();
+		if ($this->cache->fallback) {
+			Logger::debug(self::LOG_CONTEXT, "[cache] memcached storage could not be loaded. Using files storage.");
+			CacheManager::setup("storage", "files");
+			$this->cache = CacheManager::getInstance();
+		}
+
 		// For backward compatibility we will check if the Encryption store exists. If not,
 		// we will fall back to the old way of retrieving the password from the session.
 		if ( class_exists('EncryptionStore') ) {
@@ -388,20 +410,23 @@ class FilesBrowserModule extends ListModule
 		$nodeIdPrefix = substr($nodeId, 0, strpos($nodeId, '/'));
 
 		$backendInstance->open();
+		$accountID = $backendInstance->getAccountID();
 
 		// remove the trailing slash for the cache key
 		$cachePath = rtrim($relNodeId, '/');
 		if ($cachePath === "") {
 			$cachePath = "/";
 		}
-		$dir = $this->cache->get($this->uid . md5($backendInstance->getAccountID() . $cachePath));
 
-		if ($dir === null || $reload) {
-			Logger::debug(self::LOG_CONTEXT, "Uncached query! Loading: " . $backendInstance->getAccountID() . "$relNodeId" . " -- " . ($reload ? "y": "n"));
+		$key = $this->uid . md5($accountID . $cachePath);
+		$dir = $this->cache->get($key);
+
+		if (is_null($dir) || $reload) {
+			Logger::debug(self::LOG_CONTEXT, "Uncached query! Loading: " . $accountID . $cachePath . " -- " . ($reload ? "y": "n"));
 			$dir = $backendInstance->ls($relNodeId);
-			$this->cache->set($this->uid . md5($backendInstance->getAccountID() . $cachePath), $dir);
+			$this->cache->set($key, $dir);
 		} else {
-			Logger::debug(self::LOG_CONTEXT, "Cached query! Loading: " . $backendInstance->getAccountID() . "$relNodeId" . " ## " . md5($backendInstance->getAccountID() . rtrim($relNodeId, '/')));
+			Logger::debug(self::LOG_CONTEXT, "Cached query! Loading: " . $accountID . $cachePath . " ## " . $key );
 		}
 
 		// check if backend supports sharing and load the information
