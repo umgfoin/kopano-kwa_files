@@ -651,8 +651,9 @@ Zarafa.plugins.files.data.Actions = {
 		var isFolder = /\/$/.test(recordID) ? "/" : "";
 
 		var new_id = path + text + isFolder;
-		var new_record_data = record.data;
-
+		record.data.virtualRecord = false;
+		var newRecord = record.copy();
+		var new_record_data = newRecord.data;
 		new_record_data.id = new_id; // dont use set - so the store will not be updated!
 		new_record_data.filename = text;
 
@@ -660,11 +661,11 @@ Zarafa.plugins.files.data.Actions = {
 			'filesbrowsermodule',
 			'rename',
 			{
-				entryid: record.id,
+				entryid: recordID,
 				props  : new_record_data
 			},
 			new Zarafa.plugins.files.data.ResponseHandler({
-				successCallback: this.renameDone.createDelegate(this, [text, recordID], true)
+				successCallback: this.renameDone.createDelegate(this, [text, record], true)
 			})
 		);
 	},
@@ -674,10 +675,12 @@ Zarafa.plugins.files.data.Actions = {
 	 *
 	 * @param {Object} response
 	 * @param {String} text Inputfield value, new name
-	 * @param {String} recordID
+	 * @param {Zarafa.plugins.files.data.FilesRecord} record file record
 	 * @private
 	 */
-	renameDone: function (response, text, recordID) {
+	renameDone: function (response, text, record)
+	{
+		var recordID = record.get('id');
 		var path = Zarafa.plugins.files.data.Utils.File.getDirName(recordID) + '/';
 		var isFolder = /\/$/.test(recordID) ? "/" : "";
 
@@ -694,17 +697,14 @@ Zarafa.plugins.files.data.Actions = {
 		}
 
 		// update store
-		if (Zarafa.plugins.files.data.ComponentBox.getStore().getPath() === path) {
-			var store = Zarafa.plugins.files.data.ComponentBox.getStore();
-			var rec = store.getById(old_id);
+		var store = record.getStore();
+		if (store.getPath() === path) {
 			store.on("update", this.doRefreshIconView, this, {single: true});
-
-			rec.beginEdit();
-			rec.set('id', new_id);
-			rec.set('filename', text);
-			rec.set('virtualRecord', true);
-			rec.endEdit();
-
+			record.beginEdit();
+			record.set('id', new_id);
+			record.set('filename', text);
+			record.set('virtualRecord', true);
+			record.endEdit();
 			store.commitChanges();
 		}
 	},
