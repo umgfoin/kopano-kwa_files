@@ -218,7 +218,7 @@ Zarafa.plugins.files.data.Actions = {
 	 * @param {String} folderName name of the folder to be deleted
 	 * @return {String} the string to be shown in the delete confirmation dialog
 	 */
-	createDeletionMessage(fileCount, fileName, folderCount, folderName) {
+	createDeletionMessage: function(fileCount, fileName, folderCount, folderName) {
 		//single file
 		if (fileCount === 1 && folderCount === 0) {
 			return String.format(dgettext('plugin_files', 'Are you sure you want to delete {0}?'), fileName);
