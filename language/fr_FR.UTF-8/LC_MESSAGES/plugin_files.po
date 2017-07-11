@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Files Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-06 13:33+0100\n"
+"POT-Creation-Date: 2017-07-11 16:07+0200\n"
 "PO-Revision-Date: 2017-03-13 13:14+0000\n"
 "Last-Translator: C <c.maltot@synairgis.com>\n"
-"Language-Team: French <http://translate.kopano.io/projects/kopano/files/fr/>"
-"\n"
+"Language-Team: French <http://translate.kopano.io/projects/kopano/files/fr/"
+">\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,92 +22,125 @@ msgstr ""
 msgid "Add attachment from {0}"
 msgstr "Ajouter une pièce jointe depuis {0}"
 
-#: js/data/Actions.js:190 js/settings/ui/AccountGrid.js:196
+#: js/data/Actions.js:204 js/settings/ui/AccountGrid.js:203
 #, fuzzy
 msgid "Confirm deletion"
 msgstr "Confirmer la suppression"
 
-#: js/data/Actions.js:190
-#, fuzzy
-msgid "Are you sure?"
-msgstr "Etes vous sur ?"
+#: js/data/Actions.js:224
+msgid "Are you sure you want to delete {0}?"
+msgstr ""
 
-#: js/data/Actions.js:308 js/ui/dialogs/SaveToFilesTreePanel.js:285
+#: js/data/Actions.js:228
+msgid "Are you sure you want to delete {0} and all of its contents?"
+msgstr ""
+
+#: js/data/Actions.js:232
+msgid "Are you sure you want to delete {0} files?"
+msgstr ""
+
+#: js/data/Actions.js:236
+msgid "Are you sure want to delete {0} folders and all of their contents?"
+msgstr ""
+
+#: js/data/Actions.js:240
+msgid ""
+"Are you sure want to delete the selected items and all of their contents?"
+msgstr ""
+
+#: js/data/Actions.js:355 js/ui/dialogs/SaveToFilesTreePanel.js:285
 msgid "Folder already exists"
 msgstr ""
 
-#: js/data/Actions.js:310 js/ui/dialogs/SaveToFilesTreePanel.js:252
+#: js/data/Actions.js:357 js/ui/dialogs/SaveToFilesTreePanel.js:252
 #, fuzzy
 msgid "Incorrect foldername"
 msgstr "Nom de dossier incorrect"
 
-#: js/data/Actions.js:317
+#: js/data/Actions.js:364
 msgid "This name already exists"
 msgstr ""
 
-#: js/data/Actions.js:319
+#: js/data/Actions.js:366
 #, fuzzy
 msgid "Incorrect name"
 msgstr "Nom de fichier incorrect"
 
-#: js/data/Actions.js:328 js/data/Actions.js:862
+#: js/data/Actions.js:375 js/data/Actions.js:908
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 #, fuzzy
 msgid "Confirm overwrite"
 msgstr "Confirmer la suppression"
 
-#: js/data/Actions.js:329 js/data/Actions.js:863
+#: js/data/Actions.js:376 js/data/Actions.js:910
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
 msgstr ""
 
-#: js/data/Actions.js:353
+#: js/data/Actions.js:400
 #, fuzzy
 msgid "Folder name"
 msgstr "Nom du Dossier"
 
-#: js/data/Actions.js:353 js/ui/dialogs/SaveToFilesTreePanel.js:237
+#: js/data/Actions.js:400 js/ui/dialogs/SaveToFilesTreePanel.js:237
 #, fuzzy
 msgid "Please enter a foldername"
 msgstr "Merci de renseigner un nom de dossier"
 
-#: js/data/Actions.js:429
+#: js/data/Actions.js:476
 #, fuzzy
 msgid "Folder could not be created!"
 msgstr "Dossier non créé"
 
-#: js/data/Actions.js:600 js/ui/FilesListToolbar.js:117
-#: js/ui/FilesListToolbar.js:118 js/ui/FilesMainContextMenu.js:102
+#: js/data/Actions.js:647 js/ui/FilesListToolbar.js:119
+#: js/ui/FilesListToolbar.js:120 js/ui/FilesMainContextMenu.js:102
 #: js/ui/FilesTreeContextMenu.js:38
 #, fuzzy
 msgid "Rename"
 msgstr "Renommage"
 
-#: js/data/Actions.js:601
+#: js/data/Actions.js:648
 #, fuzzy
 msgid "Please enter a new name"
 msgstr "Merci de renseigner un nouveau nom"
 
-#: js/data/Actions.js:745
+#: js/data/Actions.js:792
 msgid "Downloading"
 msgstr ""
 
-#: js/data/Actions.js:745
+#: js/data/Actions.js:792
 msgid "Download started... please wait!"
 msgstr ""
 
-#: js/data/Actions.js:792 js/data/NavigatorTreeLoader.js:108
+#: js/data/Actions.js:839 js/data/NavigatorTreeLoader.js:108
 #: js/data/ResponseHandler.js:128 js/data/ResponseHandler.js:135
 #: js/ui/dialogs/FilesUploadContentPanel.js:192
 #: js/ui/FilesRecordAccountView.js:128
 msgid "Error"
 msgstr "Erreur"
 
-#: js/data/Actions.js:793
+#: js/data/Actions.js:840
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
 
-#: js/data/Actions.js:912 js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/data/Actions.js:913
+msgid "Keep both"
+msgstr ""
+
+#: js/data/Actions.js:916
+#, fuzzy
+msgid "Overwrite"
+msgstr "Confirmer la suppression"
+
+#: js/data/Actions.js:919 js/settings/SettingsResetWidget.js:67
+#: js/settings/ui/AccountEditPanel.js:43
+#: js/ui/dialogs/FilesUploadContentPanel.js:149
+#: js/ui/dialogs/FilesUploadContentPanel.js:151
+#: js/ui/dialogs/UploadStatusPanel.js:137
+msgid "Cancel"
+msgstr "Annuler"
+
+#: js/data/Actions.js:969 js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:125
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:160
@@ -128,71 +161,61 @@ msgstr "l d/m/Y G\\Hi"
 msgid "Never"
 msgstr "Jamais"
 
-#: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
-#: js/ui/FilesListToolbar.js:41
+#: js/FilesContext.js:218 js/ui/dialogs/FilesUploadContentPanel.js:30
+#: js/ui/FilesListToolbar.js:42
 #, fuzzy
 msgid "Upload file"
 msgstr "Transfert du fichier"
 
-#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:42
+#: js/FilesContext.js:219 js/ui/FilesListToolbar.js:43
 #, fuzzy
 msgid "Upload one or more files"
 msgstr "Transfert des fichiers"
 
-#: js/FilesContext.js:244 js/FilesContext.js:277 js/FilesContext.js:279
-#, fuzzy
-msgid "Send file"
-msgstr "Envoi du fichier"
-
-#: js/FilesContext.js:280
-#, fuzzy
-msgid "Create a new email message with some files attached."
-msgstr "Créer un message électronique avec des fichiers joints"
-
-#: js/FilesContext.js:328 js/FilesContext.js:330
+#: js/FilesContext.js:241 js/FilesContext.js:243
 msgid "No preview"
 msgstr "Aucune prévisualisation"
 
-#: js/FilesContext.js:336 js/FilesContext.js:338
+#: js/FilesContext.js:249 js/FilesContext.js:251
 msgid "Right preview"
 msgstr "Affichage à droite"
 
-#: js/FilesContext.js:344 js/FilesContext.js:346
+#: js/FilesContext.js:257 js/FilesContext.js:259
 msgid "Bottom preview"
 msgstr "Affichage en bas"
 
-#: js/FilesContext.js:367
+#: js/FilesContext.js:280
 msgid "Switch view"
 msgstr "Changer de vue"
 
-#: js/FilesContext.js:379 js/FilesContext.js:380 js/FilesContext.js:381
+#: js/FilesContext.js:292 js/FilesContext.js:293 js/FilesContext.js:294
 msgid "List"
 msgstr "Liste"
 
-#: js/FilesContext.js:387 js/FilesContext.js:388 js/FilesContext.js:389
+#: js/FilesContext.js:300 js/FilesContext.js:301 js/FilesContext.js:302
 msgid "Icons"
 msgstr "Icônes"
 
-#: js/FilesContext.js:490 js/FilesContextModel.js:111
+#: js/FilesContext.js:403 js/FilesContextModel.js:110
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
 #, fuzzy
 msgid "Files"
 msgstr "Fichiers"
 
-#: js/FilesPlugin.js:78
+#: js/FilesPlugin.js:77
 msgid "Add from Files"
 msgstr ""
 
-#: js/FilesPlugin.js:106 js/FilesPlugin.js:124
+#: js/FilesPlugin.js:105 js/FilesPlugin.js:123
 msgid "Add to Files"
 msgstr ""
 
-#: js/FilesPlugin.js:138 js/ui/dialogs/AttachFromFilesContentPanel.js:25
+#: js/FilesPlugin.js:137 js/ui/dialogs/AttachFromFilesContentPanel.js:25
 #, fuzzy
 msgid "Add attachment from Files"
 msgstr "Ajouter une pièce jointe depuis {0}"
 
-#: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1294
+#: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1321
 msgid "Untitled"
 msgstr "Sans nom"
 
@@ -233,14 +256,7 @@ msgstr ""
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: js/settings/SettingsResetWidget.js:67 js/settings/ui/AccountEditPanel.js:42
-#: js/ui/dialogs/FilesUploadContentPanel.js:149
-#: js/ui/dialogs/FilesUploadContentPanel.js:151
-#: js/ui/dialogs/UploadStatusPanel.js:135
-msgid "Cancel"
-msgstr "Annuler"
-
-#: js/settings/SettingsResetWidget.js:89
+#: js/settings/SettingsResetWidget.js:94
 msgid "Webapp is reloading, Please wait."
 msgstr "WebApp est en train de recharger, veuillez patienter."
 
@@ -253,28 +269,28 @@ msgstr ""
 msgid "Save"
 msgstr "Enregistrer"
 
-#: js/settings/ui/AccountEditPanel.js:137
+#: js/settings/ui/AccountEditPanel.js:138
 #, fuzzy
 msgid "Account Information"
 msgstr "Informations sur la version"
 
-#: js/settings/ui/AccountEditPanel.js:148
+#: js/settings/ui/AccountEditPanel.js:149
 msgid "Account name"
 msgstr ""
 
-#: js/settings/ui/AccountEditPanel.js:156
+#: js/settings/ui/AccountEditPanel.js:157
 msgid "Account type"
 msgstr ""
 
-#: js/settings/ui/AccountEditPanel.js:168
+#: js/settings/ui/AccountEditPanel.js:169
 msgid "Select backend..."
 msgstr ""
 
-#: js/settings/ui/AccountEditPanel.js:182
+#: js/settings/ui/AccountEditPanel.js:183
 msgid "Account Configuration"
 msgstr ""
 
-#: js/settings/ui/AccountEditPanel.js:239
+#: js/settings/ui/AccountEditPanel.js:240
 msgid "Update"
 msgstr ""
 
@@ -331,8 +347,8 @@ msgstr "Informations sur la version"
 msgid "Show version information"
 msgstr "Informations sur la version"
 
-#: js/settings/ui/AccountGridColumnModel.js:87 js/ui/FilesListToolbar.js:91
-#: js/ui/FilesListToolbar.js:94
+#: js/settings/ui/AccountGridColumnModel.js:87 js/ui/FilesListToolbar.js:93
+#: js/ui/FilesListToolbar.js:96
 #, fuzzy
 msgid "Share files"
 msgstr "Die Datei"
@@ -359,7 +375,7 @@ msgstr "Chargement de la pièce jointe"
 msgid "No account created!"
 msgstr "Dossier non créé"
 
-#: js/settings/ui/AccountGrid.js:197
+#: js/settings/ui/AccountGrid.js:204
 msgid "Do you really want to delete the account \"{0}\"?"
 msgstr ""
 
@@ -503,7 +519,7 @@ msgstr ""
 msgid "New folder"
 msgstr "Nouveau dossier"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:54
+#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:56
 #, fuzzy
 msgid "Create a new folder"
 msgstr "Créer un nouveau dossier dans"
@@ -562,120 +578,120 @@ msgstr "Dossier créé"
 msgid "Share Files"
 msgstr "Fichiers"
 
-#: js/ui/dialogs/UploadStatusContentPanel.js:30
+#: js/ui/dialogs/UploadStatusContentPanel.js:20
 #, fuzzy
 msgid "Uploading files to "
 msgstr "Transfert des fichiers"
 
-#: js/ui/dialogs/UploadStatusPanel.js:125
+#: js/ui/dialogs/UploadStatusPanel.js:127
 msgid "Starting upload"
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:136
 #: js/ui/dialogs/UploadStatusPanel.js:138
+#: js/ui/dialogs/UploadStatusPanel.js:140
 #, fuzzy
 msgid "Cancel upload"
 msgstr "Annuler"
 
-#: js/ui/dialogs/UploadStatusPanel.js:169
-#: js/ui/dialogs/UploadStatusPanel.js:278
+#: js/ui/dialogs/UploadStatusPanel.js:171
+#: js/ui/dialogs/UploadStatusPanel.js:281
 msgid "- seconds left"
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:251
+#: js/ui/dialogs/UploadStatusPanel.js:254
 msgid " seconds left"
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:255
+#: js/ui/dialogs/UploadStatusPanel.js:258
 msgid " minutes left"
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:300
+#: js/ui/dialogs/UploadStatusPanel.js:303
 #, fuzzy
 msgid "Uploading: "
 msgstr "Transfert des fichiers"
 
-#: js/ui/dialogs/UploadStatusPanel.js:303
+#: js/ui/dialogs/UploadStatusPanel.js:306
 msgid "Upload status unavailable... please wait."
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:321
+#: js/ui/dialogs/UploadStatusPanel.js:324
 #, fuzzy
 msgid "Upload finished!"
 msgstr "Transfert du fichier"
 
-#: js/ui/dialogs/UploadStatusPanel.js:344
+#: js/ui/dialogs/UploadStatusPanel.js:347
 #, fuzzy
 msgid "Upload aborted!"
 msgstr "Transfert en erreur"
 
-#: js/ui/dialogs/UploadStatusPanel.js:366
+#: js/ui/dialogs/UploadStatusPanel.js:369
 #, fuzzy
 msgid "Upload failed!"
 msgstr "Transfert en erreur"
 
-#: js/ui/FilesListToolbar.js:44
+#: js/ui/FilesListToolbar.js:45
 #, fuzzy
 msgid "Upload files"
 msgstr "Transfert du fichier"
 
-#: js/ui/FilesListToolbar.js:51 js/ui/FilesListToolbar.js:53
+#: js/ui/FilesListToolbar.js:52 js/ui/FilesListToolbar.js:55
 #: js/ui/FilesTreeContextMenu.js:60
 #, fuzzy
 msgid "Create folder"
 msgstr "Création de dossier"
 
-#: js/ui/FilesListToolbar.js:56
+#: js/ui/FilesListToolbar.js:58
 #, fuzzy
 msgid "Create new folder"
 msgstr "Créer un nouveau dossier dans"
 
-#: js/ui/FilesListToolbar.js:63 js/ui/FilesMainContextMenu.js:34
+#: js/ui/FilesListToolbar.js:65 js/ui/FilesMainContextMenu.js:34
 msgid "Download"
 msgstr "Téléchargement"
 
-#: js/ui/FilesListToolbar.js:68 js/ui/FilesListToolbar.js:71
+#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:73
 #, fuzzy
 msgid "Download files"
 msgstr "Transfert du fichier"
 
-#: js/ui/FilesListToolbar.js:69
+#: js/ui/FilesListToolbar.js:71
 #, fuzzy
 msgid "Download the selected files"
 msgstr "Stocker le fichier sélectionné"
 
-#: js/ui/FilesListToolbar.js:78 js/ui/FilesMainContextMenu.js:45
+#: js/ui/FilesListToolbar.js:80 js/ui/FilesMainContextMenu.js:45
 msgid "Share"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:92
+#: js/ui/FilesListToolbar.js:94
 #, fuzzy
 msgid "Share the selected files"
 msgstr "Stocker le fichier sélectionné"
 
-#: js/ui/FilesListToolbar.js:101 js/ui/FilesListToolbar.js:106
-#: js/ui/FilesListToolbar.js:109 js/ui/FilesMainContextMenu.js:68
+#: js/ui/FilesListToolbar.js:103 js/ui/FilesListToolbar.js:108
+#: js/ui/FilesListToolbar.js:111 js/ui/FilesMainContextMenu.js:68
 #, fuzzy
 msgid "Attach to mail"
 msgstr "Ajouter au message électronique"
 
-#: js/ui/FilesListToolbar.js:107
+#: js/ui/FilesListToolbar.js:109
 #, fuzzy
 msgid "Attach the selected files to mail"
 msgstr "Stocker le fichier sélectionné"
 
-#: js/ui/FilesListToolbar.js:128 js/ui/FilesListToolbar.js:129
+#: js/ui/FilesListToolbar.js:130 js/ui/FilesListToolbar.js:131
 #: js/ui/FilesMainContextMenu.js:111 js/ui/FilesTreeContextMenu.js:49
 #, fuzzy
 msgid "Delete"
 msgstr "Supprimer"
 
-#: js/ui/FilesListToolbar.js:212 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
 #, fuzzy
 msgid "Attaching"
 msgstr "Ajout"
 
-#: js/ui/FilesListToolbar.js:212 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
 #, fuzzy
 msgid "Creating email... Please wait!"
 msgstr "Création du message électronique ... Veuillez attendre!"
@@ -815,57 +831,57 @@ msgstr "Stocker le fichier sélectionné"
 msgid "{0} of {1} in use"
 msgstr ""
 
-#: php/class.filesaccountmodule.php:339 php/class.filesaccountmodule.php:388
-#: php/class.filesaccountmodule.php:437
+#: php/class.filesaccountmodule.php:340 php/class.filesaccountmodule.php:389
+#: php/class.filesaccountmodule.php:438
 msgid "Unknown account ID"
 msgstr ""
 
-#: php/class.filesaccountmodule.php:347
+#: php/class.filesaccountmodule.php:348
 msgid "Feature \"Quota Information\" is not supported by this backend!"
 msgstr ""
 
-#: php/class.filesaccountmodule.php:360
+#: php/class.filesaccountmodule.php:361
 msgid "Used"
 msgstr ""
 
-#: php/class.filesaccountmodule.php:361
+#: php/class.filesaccountmodule.php:362
 msgid "Free"
 msgstr "Libre"
 
-#: php/class.filesaccountmodule.php:396
+#: php/class.filesaccountmodule.php:397
 msgid "Feature \"Version Information\" is not supported by this backend!"
 msgstr ""
 
-#: php/class.filesaccountmodule.php:445
+#: php/class.filesaccountmodule.php:446
 msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1080 php/class.filesbrowsermodule.php:1081
+#: php/class.filesbrowsermodule.php:1107 php/class.filesbrowsermodule.php:1108
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1334 php/class.filesbrowsermodule.php:1335
-#: php/class.filesbrowsermodule.php:1399 php/class.filesbrowsermodule.php:1400
-#: php/class.filesbrowsermodule.php:1466 php/class.filesbrowsermodule.php:1467
-#: php/class.filesbrowsermodule.php:1524 php/class.filesbrowsermodule.php:1525
+#: php/class.filesbrowsermodule.php:1361 php/class.filesbrowsermodule.php:1362
+#: php/class.filesbrowsermodule.php:1426 php/class.filesbrowsermodule.php:1427
+#: php/class.filesbrowsermodule.php:1493 php/class.filesbrowsermodule.php:1494
+#: php/class.filesbrowsermodule.php:1551 php/class.filesbrowsermodule.php:1552
 msgid "No record given!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1361
+#: php/class.filesbrowsermodule.php:1388
 msgid "Fetching sharing information failed"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1427
+#: php/class.filesbrowsermodule.php:1454
 #, fuzzy
 msgid "Sharing failed"
 msgstr "Chargement en erreur"
 
-#: php/class.filesbrowsermodule.php:1492
+#: php/class.filesbrowsermodule.php:1519
 #, fuzzy
 msgid "Updating share failed"
 msgstr "Chargement en erreur"
 
-#: php/class.filesbrowsermodule.php:1545
+#: php/class.filesbrowsermodule.php:1572
 #, fuzzy
 msgid "Deleting share failed"
 msgstr "Création en erreur"
@@ -1000,7 +1016,7 @@ msgstr "Mot de passe"
 msgid "PHP-Curl is not available. Contact your system administrator."
 msgstr ""
 
-#: php/Files/Core/class.accountstore.php:219
+#: php/Files/Core/class.accountstore.php:238
 msgid "Account is ready to use."
 msgstr ""
 

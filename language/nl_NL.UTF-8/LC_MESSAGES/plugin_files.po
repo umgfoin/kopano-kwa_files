@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Files Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-06 13:33+0100\n"
+"POT-Creation-Date: 2017-07-11 16:07+0200\n"
 "PO-Revision-Date: 2016-09-06 15:01+0000\n"
 "Last-Translator: martijn <m.alberts@zarafa.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
@@ -20,82 +20,118 @@ msgstr ""
 msgid "Add attachment from {0}"
 msgstr "Voeg bijlage toe van {0}"
 
-#: js/data/Actions.js:190 js/settings/ui/AccountGrid.js:196
+#: js/data/Actions.js:204 js/settings/ui/AccountGrid.js:203
 msgid "Confirm deletion"
 msgstr "Bevestig verwijderen"
 
-#: js/data/Actions.js:190
-msgid "Are you sure?"
-msgstr "Weet u het zeker?"
+#: js/data/Actions.js:224
+#, fuzzy
+msgid "Are you sure you want to delete {0}?"
+msgstr "Weet je zeker dat je account \"{0}\" wilt verwijderen?"
 
-#: js/data/Actions.js:308 js/ui/dialogs/SaveToFilesTreePanel.js:285
+#: js/data/Actions.js:228
+msgid "Are you sure you want to delete {0} and all of its contents?"
+msgstr ""
+
+#: js/data/Actions.js:232
+#, fuzzy
+msgid "Are you sure you want to delete {0} files?"
+msgstr "Weet je zeker dat je account \"{0}\" wilt verwijderen?"
+
+#: js/data/Actions.js:236
+msgid "Are you sure want to delete {0} folders and all of their contents?"
+msgstr ""
+
+#: js/data/Actions.js:240
+msgid ""
+"Are you sure want to delete the selected items and all of their contents?"
+msgstr ""
+
+#: js/data/Actions.js:355 js/ui/dialogs/SaveToFilesTreePanel.js:285
 msgid "Folder already exists"
 msgstr "Map bestaat al"
 
-#: js/data/Actions.js:310 js/ui/dialogs/SaveToFilesTreePanel.js:252
+#: js/data/Actions.js:357 js/ui/dialogs/SaveToFilesTreePanel.js:252
 msgid "Incorrect foldername"
 msgstr "Onjuiste mapnaam"
 
-#: js/data/Actions.js:317
+#: js/data/Actions.js:364
 msgid "This name already exists"
 msgstr "Deze naam bestaat reeds"
 
-#: js/data/Actions.js:319
+#: js/data/Actions.js:366
 msgid "Incorrect name"
 msgstr "Onjuiste naam"
 
-#: js/data/Actions.js:328 js/data/Actions.js:862
+#: js/data/Actions.js:375 js/data/Actions.js:908
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 msgid "Confirm overwrite"
 msgstr "Bevestig overschrijven"
 
-#: js/data/Actions.js:329 js/data/Actions.js:863
+#: js/data/Actions.js:376 js/data/Actions.js:910
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "Bestand bestaat reeds. Wil je het overschrijven?"
 
-#: js/data/Actions.js:353
+#: js/data/Actions.js:400
 msgid "Folder name"
 msgstr "Mapnaam"
 
-#: js/data/Actions.js:353 js/ui/dialogs/SaveToFilesTreePanel.js:237
+#: js/data/Actions.js:400 js/ui/dialogs/SaveToFilesTreePanel.js:237
 msgid "Please enter a foldername"
 msgstr "Geef een mapnaam op"
 
-#: js/data/Actions.js:429
+#: js/data/Actions.js:476
 msgid "Folder could not be created!"
 msgstr "Map kon niet worden gemaakt!"
 
-#: js/data/Actions.js:600 js/ui/FilesListToolbar.js:117
-#: js/ui/FilesListToolbar.js:118 js/ui/FilesMainContextMenu.js:102
+#: js/data/Actions.js:647 js/ui/FilesListToolbar.js:119
+#: js/ui/FilesListToolbar.js:120 js/ui/FilesMainContextMenu.js:102
 #: js/ui/FilesTreeContextMenu.js:38
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: js/data/Actions.js:601
+#: js/data/Actions.js:648
 msgid "Please enter a new name"
 msgstr "Geef een nieuwe naam op"
 
-#: js/data/Actions.js:745
+#: js/data/Actions.js:792
 msgid "Downloading"
 msgstr "Downloaden"
 
-#: js/data/Actions.js:745
+#: js/data/Actions.js:792
 msgid "Download started... please wait!"
 msgstr "Download gestart... moment geduld!"
 
-#: js/data/Actions.js:792 js/data/NavigatorTreeLoader.js:108
+#: js/data/Actions.js:839 js/data/NavigatorTreeLoader.js:108
 #: js/data/ResponseHandler.js:128 js/data/ResponseHandler.js:135
 #: js/ui/dialogs/FilesUploadContentPanel.js:192
 #: js/ui/FilesRecordAccountView.js:128
 msgid "Error"
 msgstr "Fout"
 
-#: js/data/Actions.js:793
+#: js/data/Actions.js:840
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr "Ten minste één bestand is te groot! Maximum bestandsgrootte: {0}."
 
-#: js/data/Actions.js:912 js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/data/Actions.js:913
+msgid "Keep both"
+msgstr ""
+
+#: js/data/Actions.js:916
+#, fuzzy
+msgid "Overwrite"
+msgstr "Bevestig overschrijven"
+
+#: js/data/Actions.js:919 js/settings/SettingsResetWidget.js:67
+#: js/settings/ui/AccountEditPanel.js:43
+#: js/ui/dialogs/FilesUploadContentPanel.js:149
+#: js/ui/dialogs/FilesUploadContentPanel.js:151
+#: js/ui/dialogs/UploadStatusPanel.js:137
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: js/data/Actions.js:969 js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:125
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:160
@@ -114,65 +150,57 @@ msgstr "l d/m/Y G:i"
 msgid "Never"
 msgstr "Nooit"
 
-#: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
-#: js/ui/FilesListToolbar.js:41
+#: js/FilesContext.js:218 js/ui/dialogs/FilesUploadContentPanel.js:30
+#: js/ui/FilesListToolbar.js:42
 msgid "Upload file"
 msgstr "Bestand uploaden"
 
-#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:42
+#: js/FilesContext.js:219 js/ui/FilesListToolbar.js:43
 msgid "Upload one or more files"
 msgstr "Bestanden uploaden"
 
-#: js/FilesContext.js:244 js/FilesContext.js:277 js/FilesContext.js:279
-msgid "Send file"
-msgstr "Bestand versturen"
-
-#: js/FilesContext.js:280
-msgid "Create a new email message with some files attached."
-msgstr "Maak nieuw bericht met bijlagen aan."
-
-#: js/FilesContext.js:328 js/FilesContext.js:330
+#: js/FilesContext.js:241 js/FilesContext.js:243
 msgid "No preview"
 msgstr "Geen voorbeeld"
 
-#: js/FilesContext.js:336 js/FilesContext.js:338
+#: js/FilesContext.js:249 js/FilesContext.js:251
 msgid "Right preview"
 msgstr "Voorbeeld rechts"
 
-#: js/FilesContext.js:344 js/FilesContext.js:346
+#: js/FilesContext.js:257 js/FilesContext.js:259
 msgid "Bottom preview"
 msgstr "Voorbeeld onder"
 
-#: js/FilesContext.js:367
+#: js/FilesContext.js:280
 msgid "Switch view"
 msgstr "Weergave wijzigen"
 
-#: js/FilesContext.js:379 js/FilesContext.js:380 js/FilesContext.js:381
+#: js/FilesContext.js:292 js/FilesContext.js:293 js/FilesContext.js:294
 msgid "List"
 msgstr "Lijst"
 
-#: js/FilesContext.js:387 js/FilesContext.js:388 js/FilesContext.js:389
+#: js/FilesContext.js:300 js/FilesContext.js:301 js/FilesContext.js:302
 msgid "Icons"
 msgstr "Iconen"
 
-#: js/FilesContext.js:490 js/FilesContextModel.js:111
+#: js/FilesContext.js:403 js/FilesContextModel.js:110
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
 msgid "Files"
 msgstr "Bestanden"
 
-#: js/FilesPlugin.js:78
+#: js/FilesPlugin.js:77
 msgid "Add from Files"
 msgstr "Toevoegen uit Files"
 
-#: js/FilesPlugin.js:106 js/FilesPlugin.js:124
+#: js/FilesPlugin.js:105 js/FilesPlugin.js:123
 msgid "Add to Files"
 msgstr "Toevoegen aan Files"
 
-#: js/FilesPlugin.js:138 js/ui/dialogs/AttachFromFilesContentPanel.js:25
+#: js/FilesPlugin.js:137 js/ui/dialogs/AttachFromFilesContentPanel.js:25
 msgid "Add attachment from Files"
 msgstr "Voeg bijlage toe uit Files"
 
-#: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1294
+#: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1321
 msgid "Untitled"
 msgstr "Geen naam"
 
@@ -214,14 +242,7 @@ msgstr "WebApp zal automatisch herstarten om deze wijzigingen door te voeren"
 msgid "Reset"
 msgstr "Herstellen"
 
-#: js/settings/SettingsResetWidget.js:67 js/settings/ui/AccountEditPanel.js:42
-#: js/ui/dialogs/FilesUploadContentPanel.js:149
-#: js/ui/dialogs/FilesUploadContentPanel.js:151
-#: js/ui/dialogs/UploadStatusPanel.js:135
-msgid "Cancel"
-msgstr "Annuleren"
-
-#: js/settings/SettingsResetWidget.js:89
+#: js/settings/SettingsResetWidget.js:94
 msgid "Webapp is reloading, Please wait."
 msgstr "WebApp herlaadt, moment geduld."
 
@@ -234,27 +255,27 @@ msgstr "Account wijzigen"
 msgid "Save"
 msgstr "Opslaan"
 
-#: js/settings/ui/AccountEditPanel.js:137
+#: js/settings/ui/AccountEditPanel.js:138
 msgid "Account Information"
 msgstr "Account informatie"
 
-#: js/settings/ui/AccountEditPanel.js:148
+#: js/settings/ui/AccountEditPanel.js:149
 msgid "Account name"
 msgstr "Account naam"
 
-#: js/settings/ui/AccountEditPanel.js:156
+#: js/settings/ui/AccountEditPanel.js:157
 msgid "Account type"
 msgstr "Account type"
 
-#: js/settings/ui/AccountEditPanel.js:168
+#: js/settings/ui/AccountEditPanel.js:169
 msgid "Select backend..."
 msgstr "Backend selecteren..."
 
-#: js/settings/ui/AccountEditPanel.js:182
+#: js/settings/ui/AccountEditPanel.js:183
 msgid "Account Configuration"
 msgstr "Account configuratie"
 
-#: js/settings/ui/AccountEditPanel.js:239
+#: js/settings/ui/AccountEditPanel.js:240
 msgid "Update"
 msgstr "Bijwerken"
 
@@ -307,8 +328,8 @@ msgstr "Toon quotum informatie"
 msgid "Show version information"
 msgstr "Toon versie informatie"
 
-#: js/settings/ui/AccountGridColumnModel.js:87 js/ui/FilesListToolbar.js:91
-#: js/ui/FilesListToolbar.js:94
+#: js/settings/ui/AccountGridColumnModel.js:87 js/ui/FilesListToolbar.js:93
+#: js/ui/FilesListToolbar.js:96
 msgid "Share files"
 msgstr "Bestanden delen"
 
@@ -332,7 +353,7 @@ msgstr "Accounts laden"
 msgid "No account created!"
 msgstr "Geen account aangemaakt!"
 
-#: js/settings/ui/AccountGrid.js:197
+#: js/settings/ui/AccountGrid.js:204
 msgid "Do you really want to delete the account \"{0}\"?"
 msgstr "Weet je zeker dat je account \"{0}\" wilt verwijderen?"
 
@@ -462,7 +483,7 @@ msgstr "Voeg item toe aan Files"
 msgid "New folder"
 msgstr "Nieuwe map"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:54
+#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:56
 msgid "Create a new folder"
 msgstr "Maak een nieuwe map aan"
 
@@ -511,104 +532,104 @@ msgstr "Map aangemaakt!"
 msgid "Share Files"
 msgstr "Bestanden delen"
 
-#: js/ui/dialogs/UploadStatusContentPanel.js:30
+#: js/ui/dialogs/UploadStatusContentPanel.js:20
 msgid "Uploading files to "
 msgstr "Bestanden uploaden naar "
 
-#: js/ui/dialogs/UploadStatusPanel.js:125
+#: js/ui/dialogs/UploadStatusPanel.js:127
 msgid "Starting upload"
 msgstr "Uploaden starten"
 
-#: js/ui/dialogs/UploadStatusPanel.js:136
 #: js/ui/dialogs/UploadStatusPanel.js:138
+#: js/ui/dialogs/UploadStatusPanel.js:140
 msgid "Cancel upload"
 msgstr "Uploaden annuleren"
 
-#: js/ui/dialogs/UploadStatusPanel.js:169
-#: js/ui/dialogs/UploadStatusPanel.js:278
+#: js/ui/dialogs/UploadStatusPanel.js:171
+#: js/ui/dialogs/UploadStatusPanel.js:281
 msgid "- seconds left"
 msgstr "- seconden over"
 
-#: js/ui/dialogs/UploadStatusPanel.js:251
+#: js/ui/dialogs/UploadStatusPanel.js:254
 msgid " seconds left"
 msgstr " seconden over"
 
-#: js/ui/dialogs/UploadStatusPanel.js:255
+#: js/ui/dialogs/UploadStatusPanel.js:258
 msgid " minutes left"
 msgstr " minuten over"
 
-#: js/ui/dialogs/UploadStatusPanel.js:300
+#: js/ui/dialogs/UploadStatusPanel.js:303
 msgid "Uploading: "
 msgstr "Uploaden: "
 
-#: js/ui/dialogs/UploadStatusPanel.js:303
+#: js/ui/dialogs/UploadStatusPanel.js:306
 msgid "Upload status unavailable... please wait."
 msgstr "Upload status niet beschikbaar... moment geduld."
 
-#: js/ui/dialogs/UploadStatusPanel.js:321
+#: js/ui/dialogs/UploadStatusPanel.js:324
 msgid "Upload finished!"
 msgstr "Upload voltooid!"
 
-#: js/ui/dialogs/UploadStatusPanel.js:344
+#: js/ui/dialogs/UploadStatusPanel.js:347
 msgid "Upload aborted!"
 msgstr "Upload geannuleerd!"
 
-#: js/ui/dialogs/UploadStatusPanel.js:366
+#: js/ui/dialogs/UploadStatusPanel.js:369
 msgid "Upload failed!"
 msgstr "Uploaden mislukt!"
 
-#: js/ui/FilesListToolbar.js:44
+#: js/ui/FilesListToolbar.js:45
 msgid "Upload files"
 msgstr "Bestanden uploaden"
 
-#: js/ui/FilesListToolbar.js:51 js/ui/FilesListToolbar.js:53
+#: js/ui/FilesListToolbar.js:52 js/ui/FilesListToolbar.js:55
 #: js/ui/FilesTreeContextMenu.js:60
 msgid "Create folder"
 msgstr "Map aanmaken"
 
-#: js/ui/FilesListToolbar.js:56
+#: js/ui/FilesListToolbar.js:58
 msgid "Create new folder"
 msgstr "Nieuwe map aanmaken"
 
-#: js/ui/FilesListToolbar.js:63 js/ui/FilesMainContextMenu.js:34
+#: js/ui/FilesListToolbar.js:65 js/ui/FilesMainContextMenu.js:34
 msgid "Download"
 msgstr "Downloaden"
 
-#: js/ui/FilesListToolbar.js:68 js/ui/FilesListToolbar.js:71
+#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:73
 msgid "Download files"
 msgstr "Bestanden downloaden"
 
-#: js/ui/FilesListToolbar.js:69
+#: js/ui/FilesListToolbar.js:71
 msgid "Download the selected files"
 msgstr "Geselecteerd bestanden downloaden"
 
-#: js/ui/FilesListToolbar.js:78 js/ui/FilesMainContextMenu.js:45
+#: js/ui/FilesListToolbar.js:80 js/ui/FilesMainContextMenu.js:45
 msgid "Share"
 msgstr "Delen"
 
-#: js/ui/FilesListToolbar.js:92
+#: js/ui/FilesListToolbar.js:94
 msgid "Share the selected files"
 msgstr "Geselecteerde bestanden delen"
 
-#: js/ui/FilesListToolbar.js:101 js/ui/FilesListToolbar.js:106
-#: js/ui/FilesListToolbar.js:109 js/ui/FilesMainContextMenu.js:68
+#: js/ui/FilesListToolbar.js:103 js/ui/FilesListToolbar.js:108
+#: js/ui/FilesListToolbar.js:111 js/ui/FilesMainContextMenu.js:68
 msgid "Attach to mail"
 msgstr "Toevoegen aan mail"
 
-#: js/ui/FilesListToolbar.js:107
+#: js/ui/FilesListToolbar.js:109
 msgid "Attach the selected files to mail"
 msgstr "Geselecteerde bestanden aan mail toevoegen"
 
-#: js/ui/FilesListToolbar.js:128 js/ui/FilesListToolbar.js:129
+#: js/ui/FilesListToolbar.js:130 js/ui/FilesListToolbar.js:131
 #: js/ui/FilesMainContextMenu.js:111 js/ui/FilesTreeContextMenu.js:49
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: js/ui/FilesListToolbar.js:212 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
 msgid "Attaching"
 msgstr "Toevoegen"
 
-#: js/ui/FilesListToolbar.js:212 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
 msgid "Creating email... Please wait!"
 msgstr "Mail aan het aanmaken... moment geduld!"
 
@@ -733,55 +754,55 @@ msgstr "bestanden geselecteerd"
 msgid "{0} of {1} in use"
 msgstr "{0} van {1} in gebruik"
 
-#: php/class.filesaccountmodule.php:339 php/class.filesaccountmodule.php:388
-#: php/class.filesaccountmodule.php:437
+#: php/class.filesaccountmodule.php:340 php/class.filesaccountmodule.php:389
+#: php/class.filesaccountmodule.php:438
 msgid "Unknown account ID"
 msgstr "Onbekend account ID"
 
-#: php/class.filesaccountmodule.php:347
+#: php/class.filesaccountmodule.php:348
 msgid "Feature \"Quota Information\" is not supported by this backend!"
 msgstr "Functie \"Quota Informatie\" niet ondersteund door deze backend!"
 
-#: php/class.filesaccountmodule.php:360
+#: php/class.filesaccountmodule.php:361
 msgid "Used"
 msgstr "Gebruikt"
 
-#: php/class.filesaccountmodule.php:361
+#: php/class.filesaccountmodule.php:362
 msgid "Free"
 msgstr "Beschikbaar"
 
-#: php/class.filesaccountmodule.php:396
+#: php/class.filesaccountmodule.php:397
 msgid "Feature \"Version Information\" is not supported by this backend!"
 msgstr "Functie \"Versie Informatie\" niet ondersteund door deze backend!"
 
-#: php/class.filesaccountmodule.php:445
+#: php/class.filesaccountmodule.php:446
 msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr "Functie \"OAUTH\" niet ondersteund door deze backend!"
 
-#: php/class.filesbrowsermodule.php:1080 php/class.filesbrowsermodule.php:1081
+#: php/class.filesbrowsermodule.php:1107 php/class.filesbrowsermodule.php:1108
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr "Onbekend type - kan niet worden opgeslagen op het Files backend!"
 
-#: php/class.filesbrowsermodule.php:1334 php/class.filesbrowsermodule.php:1335
-#: php/class.filesbrowsermodule.php:1399 php/class.filesbrowsermodule.php:1400
-#: php/class.filesbrowsermodule.php:1466 php/class.filesbrowsermodule.php:1467
-#: php/class.filesbrowsermodule.php:1524 php/class.filesbrowsermodule.php:1525
+#: php/class.filesbrowsermodule.php:1361 php/class.filesbrowsermodule.php:1362
+#: php/class.filesbrowsermodule.php:1426 php/class.filesbrowsermodule.php:1427
+#: php/class.filesbrowsermodule.php:1493 php/class.filesbrowsermodule.php:1494
+#: php/class.filesbrowsermodule.php:1551 php/class.filesbrowsermodule.php:1552
 msgid "No record given!"
 msgstr "Geen item gegeven!"
 
-#: php/class.filesbrowsermodule.php:1361
+#: php/class.filesbrowsermodule.php:1388
 msgid "Fetching sharing information failed"
 msgstr "Ophalen informatie delen mislukt"
 
-#: php/class.filesbrowsermodule.php:1427
+#: php/class.filesbrowsermodule.php:1454
 msgid "Sharing failed"
 msgstr "Delen mislukt"
 
-#: php/class.filesbrowsermodule.php:1492
+#: php/class.filesbrowsermodule.php:1519
 msgid "Updating share failed"
 msgstr "Bijwerken delen mislukt"
 
-#: php/class.filesbrowsermodule.php:1545
+#: php/class.filesbrowsermodule.php:1572
 msgid "Deleting share failed"
 msgstr "Verwijderen delen mislukt"
 
@@ -916,7 +937,7 @@ msgstr "Wachtwoord"
 msgid "PHP-Curl is not available. Contact your system administrator."
 msgstr "PHP-Curl niet beschikbaar. Neem contact op met uw systeembeheerder."
 
-#: php/Files/Core/class.accountstore.php:219
+#: php/Files/Core/class.accountstore.php:238
 msgid "Account is ready to use."
 msgstr "Account klaar voor gebruik."
 
