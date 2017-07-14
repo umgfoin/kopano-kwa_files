@@ -802,6 +802,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	 * @param string $src_path Source path
 	 * @param string $dest_path Destination path
 	 * @param bool $overwrite Overwrite if collection exists in $dst_path
+	 * @param bool $coll Set this to true if you want to copy a folder.
 	 *
 	 * @throws BackendException if request is not successful
 	 *
