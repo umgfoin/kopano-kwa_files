@@ -30,6 +30,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	const WD_ERR_UNAUTHORIZED = 401;
 	const WD_ERR_FORBIDDEN = 403;
 	const WD_ERR_NOTFOUND = 404;
+	const WD_ERR_NOTALLOWED = 405;
 	const WD_ERR_TIMEOUT = 408;
 	const WD_ERR_LOCKED = 423;
 	const WD_ERR_FAILED_DEPENDENCY = 423;
@@ -908,6 +909,9 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 			case CURLE_OPERATION_TIMEOUTED:
 			case self::WD_ERR_UNREACHABLE:
 				$msg = dgettext('plugin_files', 'File-server is not reachable. Wrong IP entered?');
+				break;
+			case self::WD_ERR_NOTALLOWED:
+				$msg = dgettext('plugin_files', 'File-server is not reachable. Incorrect URL?');
 				break;
 			case self::WD_ERR_FORBIDDEN:
 				$msg = dgettext('plugin_files', 'You don\'t have enough permissions for this operation.');
