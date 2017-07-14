@@ -81,7 +81,7 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 				anchor : '100% 80%',
 				forceLayout : true,
 				ref : '../hierarchyTree',
-				accountFilter : accountFilter,
+				accountFilter : accountFilter
 			}]
 		}];
 	},
