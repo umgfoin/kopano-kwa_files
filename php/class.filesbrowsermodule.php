@@ -820,6 +820,7 @@ class FilesBrowserModule extends ListModule
 	{
 		$actionData = $actionData["props"];
 		$dirname = $actionData["id"];
+		$path = isset($actionData['path']) && !empty($actionData['path']) ? $actionData['path'] : "/";
 		$virtualRecord = isset($actionData["virtualRecord"]) ? $actionData["virtualRecord"] : false;
 
 		// only add the folder if the virtualRecord flag is false!
@@ -835,10 +836,20 @@ class FilesBrowserModule extends ListModule
 			// initialize the backend
 			$initializedBackend = $backendStore->getInstanceOfBackend($account->getBackend());
 			$initializedBackend->init_backend($account->getBackendConfig());
+			$initializedBackend->setAccountID($account->getId());
 
 			$initializedBackend->open();
+
 			$relDirname = stringToUTF8Encode($relDirname);
 			$result = $initializedBackend->mkcol($relDirname); // create it !
+
+			$filesPath = $path;
+			if ($filesPath != "/") {
+				$filesPath = $filesPath . "/";
+			}
+
+			$dir = $initializedBackend->ls($filesPath);
+			$this->cache->set($this->uid . md5($initializedBackend->getAccountID() . $path), $dir);
 
 			// clear the cache
 			$this->cache->delete(md5($this->uid . $accountID . dirname($relDirname)));
@@ -875,7 +886,6 @@ class FilesBrowserModule extends ListModule
 				'parent_entryid' => $parentdir
 			);
 			$response['item'] = array_values($folder);
-
 			$this->addActionData($actionType == "save" ? "update" : $actionType, $response);
 			$GLOBALS["bus"]->addData($this->getResponseData());
 
