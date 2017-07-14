@@ -228,12 +228,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 				$this->set_user($GLOBALS['mapisession']->getUserName());
 				$password = $_SESSION['password']; 
 				if(function_exists('openssl_decrypt')) {
-					// In PHP 5.3.3 the iv parameter was added
-					if(version_compare(phpversion(), "5.3.3", "<")) {
-						$this->set_pass(openssl_decrypt($password, "des-ede3-cbc", PASSWORD_KEY, 0));
-					} else {
-						$this->set_pass(openssl_decrypt($password, "des-ede3-cbc", PASSWORD_KEY, 0, PASSWORD_IV));
-					}
+					$this->set_pass(openssl_decrypt($password, "des-ede3-cbc", PASSWORD_KEY, 0, PASSWORD_IV));
 				}
 			}
 		}

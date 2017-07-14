@@ -83,11 +83,7 @@ include('/usr/share/php/mapi/mapiguid.php');
 function encryptBackendConfigProperty($value) {
 	// if user has openssl module installed encrypt
 	if (function_exists("openssl_encrypt") && !is_bool($value)) {
-		if (version_compare(phpversion(), "5.3.3", "<")) {
-			$value = openssl_encrypt($value, "des-ede3-cbc", FILES_PASSWORD_KEY, 0);
-		} else {
-			$value = openssl_encrypt($value, "des-ede3-cbc", FILES_PASSWORD_KEY, 0, FILES_PASSWORD_IV);
-		}
+		$value = openssl_encrypt($value, "des-ede3-cbc", FILES_PASSWORD_KEY, 0, FILES_PASSWORD_IV);
 	}
 
 	return $value;
