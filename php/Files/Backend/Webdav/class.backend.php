@@ -909,6 +909,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 			case CURLE_COULDNT_CONNECT:
 			case CURLE_OPERATION_TIMEOUTED:
 			case self::WD_ERR_UNREACHABLE:
+			case self::WD_ERR_NOTALLOWED:
 				$msg = dgettext('plugin_files', 'File-server is not reachable. Wrong IP entered?');
 				break;
 			case self::WD_ERR_NOTALLOWED:
