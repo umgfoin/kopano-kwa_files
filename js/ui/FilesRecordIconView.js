@@ -81,7 +81,7 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 							return 'files48icon_blank';
 							break;
 					}
-				},
+				}
 			}
 		);
 	},
