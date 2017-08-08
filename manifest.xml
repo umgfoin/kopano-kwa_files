@@ -43,10 +43,13 @@
 					<clientfile load="source">js/ui/FilesListToolbar.js</clientfile>
 					<clientfile load="source">js/ui/FilesTopToolbar.js</clientfile>
 					<clientfile load="source">js/ui/NavigatorTreePanel.js</clientfile>
+					<clientfile load="source">js/ui/Tree.js</clientfile>
 					<clientfile load="source">js/ui/MultipleFileUploadField.js</clientfile>
 					<clientfile load="source">js/ui/UploadComponent.js</clientfile>
 					<clientfile load="source">js/ui/FilesContextNavigatorBuilder.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/AttachFromFilesContentPanel.js</clientfile>
+					<clientfile load="source">js/ui/dialogs/CreateFolderContentPanel.js</clientfile>
+					<clientfile load="source">js/ui/dialogs/CreateFolderPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/AttachFromFilesTreePanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/FilesRecordContentPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/FilesUploadContentPanel.js</clientfile>

@@ -152,7 +152,7 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 
 		var store = attachmentStore.getParentRecord().get('store_entryid');
 		var entryid = attachmentStore.getAttachmentParentRecordEntryId();
-		var attachNum = new Array(1);
+		var attachNum = [1];
 		if (attachmentRecord.get('attach_num') != -1) {
 			attachNum[0] = attachmentRecord.get('attach_num');
 		} else {
@@ -161,14 +161,13 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		var dialog_attachments = attachmentStore.getId();
 		var filename = attachmentRecord.get('name');
 
-		jsonRecords = new Array();
-		jsonRecords[0] = {
+		var jsonRecords = [{
 			entryid           : entryid,
 			store             : store,
 			attachNum         : attachNum,
 			dialog_attachments: dialog_attachments,
 			filename          : filename
-		};
+		}];
 
 		var configRecord = {
 			items: jsonRecords,

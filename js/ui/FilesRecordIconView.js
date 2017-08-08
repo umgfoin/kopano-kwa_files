@@ -53,7 +53,6 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 			'<tpl for=".">',
 			'<div class="zarafa-files-iconview-container {.:this.getHidden}">',
 			'<div class="zarafa-files-iconview-thumb {.:this.getTheme} {.:this.getHidden}">',
-			'{.:this.getImage}',
 			'</div>',
 			'<span class="zarafa-files-iconview-subject">{filename:htmlEncode}</span>',
 			'</div>',
@@ -82,42 +81,6 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 							return 'files48icon_blank';
 							break;
 					}
-				},
-
-				getImage: function (record) {
-					var extension = Zarafa.plugins.files.data.Utils.File.getExtension(record.filename).toLowerCase();
-					var imageExtension = ["jpg", "gif", "png", "bmp"];
-
-					var cls = "";
-					var src = "";
-					var img = "";
-					if (Ext.isEmpty(extension) || imageExtension.indexOf(extension) === -1) {
-						cls = "files_type_hidden ";
-					} else {
-						var store = Zarafa.plugins.files.data.ComponentBox.getStore();
-						var rec = store.getById(record.id);
-						if (Ext.isDefined(rec)) {
-							src = rec.getThumbnailImageUrl(40, 50);
-						}
-					}
-
-					switch (record.type) {
-						case Zarafa.plugins.files.data.FileTypes.FOLDER:
-							cls = "files_image files_type_hidden";
-							break;
-						case Zarafa.plugins.files.data.FileTypes.FILE:
-							cls = cls + "files_image";
-							break;
-						default:
-							cls = 'files_image_hidden';
-							break;
-					}
-
-					if (!Ext.isEmpty(src)) {
-						img = '<img class="' + cls + '" src="' + src + '" />';
-					}
-
-					return img;
 				}
 			}
 		);
