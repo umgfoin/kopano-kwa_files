@@ -24,7 +24,7 @@ class AccountStore
 	/**
 	 * @var Account[] Account array
 	 */
-	private $accounts = FALSE;
+	private $accounts = [];
 
 	/**
 	 *
