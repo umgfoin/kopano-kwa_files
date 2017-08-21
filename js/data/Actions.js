@@ -576,8 +576,8 @@ Zarafa.plugins.files.data.Actions = {
 
 		var new_id = path + text + isFolder;
 		record.data.virtualRecord = false;
-		var newRecord = record.copy();
-		var new_record_data = newRecord.data;
+		var isFile = record.isMessageClass("IPM.Files");
+		var new_record_data = isFile ? record.copy().data : record.data;
 		new_record_data.id = new_id; // dont use set - so the store will not be updated!
 		new_record_data.filename = text;
 
