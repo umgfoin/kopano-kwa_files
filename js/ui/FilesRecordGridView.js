@@ -44,7 +44,7 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 	},
 
 	initEvents: function () {
-		Zarafa.mail.ui.MailGrid.superclass.initEvents.call(this);
+		Zarafa.plugins.files.ui.FilesRecordGridView.superclass.initEvents.call(this);
 
 		this.mon(this, 'cellcontextmenu', this.onCellContextMenu, this);
 		this.mon(this, 'rowbodycontextmenu', this.onRowBodyContextMenu, this);
