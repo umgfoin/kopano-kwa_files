@@ -2,9 +2,11 @@
 
 require_once __DIR__ . "/Files/Core/class.downloadhandler.php";
 require_once __DIR__ . "/Files/Core/class.uploadhandler.php";
+require_once __DIR__ . "/Files/Core/class.recipienthandler.php";
 
 use \Files\Core\DownloadHandler;
 use \Files\Core\UploadHandler;
+use \Files\Core\RecipientHandler;
 
 /**
  * Files Plugin
@@ -40,12 +42,16 @@ class Pluginfiles extends Plugin
 				$this->injectPluginSettings($data);
 				break;
 			case 'server.index.load.custom':
-				if ($data['name'] == 'download_file') {
-					DownloadHandler::doDownload();
-				} else {
-					if ($data['name'] == 'upload_file') {
+				switch($data['name']) {
+					case 'download_file':
+						DownloadHandler::doDownload();
+						break;
+					case 'upload_file':
 						UploadHandler::doUpload();
-					}
+						break;
+					case 'files_get_recipients':
+						RecipientHandler::doGetRecipients();
+						break;
 				}
 				break;
 		}

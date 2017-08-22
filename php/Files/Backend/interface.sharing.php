@@ -71,10 +71,4 @@ interface iFeatureSharing
 	 */
 	public function unshare($patharray);
 
-	/**
-	 * Get a list of sharees.
-	 *
-	 * @return array
-	 */
-	public function shareeDetails();
 }

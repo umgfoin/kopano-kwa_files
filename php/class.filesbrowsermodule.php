@@ -188,9 +188,6 @@ class FilesBrowserModule extends ListModule
 						case "loadsharingdetails":
 							$result = $this->getSharingInformation($actionType, $actionData);
 							break;
-						case "loadsharees":
-							$result = $this->getShareeInformation($actionType, $actionData);
-							break;
 						case "createnewshare":
 							$result = $this->createNewShare($actionType, $actionData);
 							break;
@@ -1339,43 +1336,6 @@ class FilesBrowserModule extends ListModule
 
 		$response['status'] = true;
 		$response['shares'] = $sharingInfo;
-		$this->addActionData($actionType, $response);
-		$GLOBALS["bus"]->addData($this->getResponseData());
-
-		return true;
-	}
-
-	/**
-	 * Get sharee information from the backend.
-	 *
-	 * @param string $actionType type of the action
-	 * @param array $actionData containing the needed information to handle this action
-	 * @return bool
-	 */
-	private function getShareeInformation($actionType, $actionData)
-	{
-		$response = array();
-		$recordId = $actionData["recordId"];
-
-		$account = $this->accountFromNode($recordId);
-
-		// initialize the backend
-		$initializedBackend = $this->initializeBackend($account);
-
-		try {
-			$sInfo = $initializedBackend->shareeDetails();
-		} catch (Exception $e) {
-			$response['status'] = false;
-			$response['header'] = dgettext('plugin_files', 'Fetching sharing information failed');
-			$response['message'] = $e->getMessage();
-			$this->addActionData("error", $response);
-			$GLOBALS["bus"]->addData($this->getResponseData());
-
-			return false;
-		}
-		
-		$response['status'] = true;
-		$response['sharees'] = $sInfo;
 		$this->addActionData($actionType, $response);
 		$GLOBALS["bus"]->addData($this->getResponseData());
 
