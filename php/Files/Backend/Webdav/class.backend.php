@@ -843,10 +843,10 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	/**
 	 * Create the base webdav url
 	 *
-	 * @access private
+	 * @access protected
 	 * @return string baseURL
 	 */
-	private function webdavUrl()
+	protected function webdavUrl()
 	{
 		if ($this->ssl) {
 			$url = "https://";
