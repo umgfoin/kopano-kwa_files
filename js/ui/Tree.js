@@ -63,7 +63,8 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 			'filename' : node.attributes.filename,
 			'path' : node.attributes.path,
 			'type' : node.attributes.isFolder ? Zarafa.plugins.files.data.FileTypes.FOLDER : Zarafa.plugins.files.data.FileTypes.FILE,
-			'entryid' : node.attributes.id
+			'entryid' : node.attributes.id,
+			'message_class' : 'IPM.Files'
 		},node.attributes.id);
 		fileRecord.store = Zarafa.plugins.files.data.ComponentBox.getStore();
 		return fileRecord;
