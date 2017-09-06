@@ -100,12 +100,18 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 		});
 	},
 
-	onAfterRender: function () {
+	onAfterRender: function ()
+	{
+		// Add key maps only while keyboard shortcut is enable
+		if (Zarafa.core.KeyMapMgr.isGloballyEnabled()) {
+			this.keyMap = new Ext.KeyMap(this.getEl(), {
+				key: Ext.EventObject.DELETE,
+				fn: this.onKeyDelete.createDelegate(this)
+			});
 
-		this.keyMap = new Ext.KeyMap(this.getEl(), {
-			key: Ext.EventObject.DELETE,
-			fn : this.onKeyDelete.createDelegate(this)
-		});
+			// Disable all other key maps for this element
+			Zarafa.core.KeyMapMgr.disableAllKeymaps(this.getEl());
+		}
 
 		this.initDropTarget();
 	},

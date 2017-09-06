@@ -203,9 +203,13 @@ Zarafa.plugins.files.data.Actions = {
 			if (askOnDelete) {
 				Ext.MessageBox.confirm(dgettext('plugin_files', 'Confirm deletion'),
 					this.createDeletionMessage(fileCount, firstFileName, folderCount, firstFolderName),
-					this.doDelete.createDelegate(this, [records], true), this);
+					function (button) {
+						if (button === 'yes') {
+							this.doDelete(records);
+						}
+					}, this);
 			} else {
-				this.doDelete();
+				this.doDelete(records);
 			}
 		}
 	},
@@ -244,32 +248,28 @@ Zarafa.plugins.files.data.Actions = {
 	/**
 	 * Delete the selected files.
 	 *
-	 * @param {String} button The value of the button
-	 * @param {String} text Unused
-	 * @param {Object} options Unused
-	 * @param {Array} records (@Zarafa.plugins.files.data.FilesRecord)
+	 * @param {Zarafa.plugins.files.data.FilesRecord[]} records The records that must be deleted.
 	 * @private
 	 */
-	doDelete: function (button, value, options, selections) {
-		if (!Ext.isDefined(button) || button === 'yes') {
-			var ids = [];
-			Ext.each(selections, function (record) {
-				ids.push({
-					id: record.get('id')
-				});
+	doDelete: function (records)
+	{
+		var ids = [];
+		Ext.each(records, function (record) {
+			ids.push({
+				id: record.get('id')
 			});
+		});
 
-			container.getRequest().singleRequest(
-				'filesbrowsermodule',
-				'delete',
-				{
-					records: ids
-				},
-				new Zarafa.plugins.files.data.ResponseHandler({
-					successCallback: this.deleteDone.createDelegate(this, [ids], true)
-				})
-			);
-		}
+		container.getRequest().singleRequest(
+			'filesbrowsermodule',
+			'delete',
+			{
+				records: ids
+			},
+			new Zarafa.plugins.files.data.ResponseHandler({
+				successCallback: this.deleteDone.createDelegate(this, [ids], true)
+			})
+		);
 	},
 
 	/**
