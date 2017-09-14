@@ -575,17 +575,16 @@ Zarafa.plugins.files.data.Actions = {
 		var isFolder = /\/$/.test(recordID) ? "/" : "";
 
 		var new_id = path + text + isFolder;
-		record.data.virtualRecord = false;
-		var isFile = record.isMessageClass("IPM.Files");
-		var new_record_data = isFile ? record.copy().data : record.data;
-		new_record_data.id = new_id; // dont use set - so the store will not be updated!
+		var new_record_data = record.copy().data;
+		new_record_data.id = new_id;
 		new_record_data.filename = text;
+		new_record_data.virtualRecord = false;
 
 		container.getRequest().singleRequest(
 			'filesbrowsermodule',
 			'rename',
 			{
-				entryid: recordID,
+				entryid: record.id,
 				props  : new_record_data
 			},
 			new Zarafa.plugins.files.data.ResponseHandler({
@@ -604,32 +603,34 @@ Zarafa.plugins.files.data.Actions = {
 	 */
 	renameDone: function (response, text, record)
 	{
-		var recordID = record.get('id');
+		var recordID = record.id;
 		var path = Zarafa.plugins.files.data.Utils.File.getDirName(recordID) + '/';
 		var isFolder = /\/$/.test(recordID) ? "/" : "";
-
 
 		var old_id = recordID;
 		var new_id = path + text + isFolder;
 
-		// update navbar
+		// Update the relevant items
+		// - navigator tree node and its children if we have a folder
+		// - the main view of the renamed item if it is shown
 		var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(old_id);
 		var renamedNode = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID).getNodeById(old_id);
 		if (Ext.isDefined(renamedNode) && renamedNode.rendered) {
 			renamedNode.setId(new_id);
 			renamedNode.setText(text);
+			renamedNode.attributes.filename = text;
+			var navPanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
+			var re = new RegExp('^' + old_id);
+			if (re.test(navPanel.nodeToSelect)) {
+				navPanel.nodeToSelect = new_id;
+			}
+			navPanel.refreshNode(new_id, true);
 		}
 
-		// update store
-		var store = record.getStore();
+		var store = Zarafa.plugins.files.data.ComponentBox.getStore();
 		if (store.getPath() === path) {
 			store.on("update", this.doRefreshIconView, this, {single: true});
-			record.beginEdit();
-			record.set('id', new_id);
-			record.set('filename', text);
-			record.set('virtualRecord', true);
-			record.endEdit();
-			store.commitChanges();
+			store.reload({noNavBar: true});
 		}
 	},
 

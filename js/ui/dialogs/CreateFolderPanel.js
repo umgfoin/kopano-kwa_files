@@ -240,6 +240,7 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 		var newFolder = {
 			id          : props.id,
 			text        : props.filename,
+			filename    : props.filename,
 			has_children: false,
 			expanded    : true,
 			iconCls     : 'icon_folder_note',
