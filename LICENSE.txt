@@ -11,3 +11,10 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License along with this program.
 If not, see http://www.gnu.org/licenses/.
+=================================================================================
+Ext.ux.form.Metaform
+Copyright (C) 2008 Ing. Jozef Sakáloša.
+Ext.ux.form.MetaForm is licensed under the terms of the Open Source LGPL 3.0
+license. Commercial use is permitted to the extent that the code/component(s)
+do NOT become part of another Open Source or Commercially licensed development
+library or toolkit without explicit permission. http://www.gnu.org/licenses/lgpl.html
