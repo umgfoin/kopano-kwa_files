@@ -307,7 +307,7 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 	 */
 	onTreeNodeLoad : function(node)
 	{
-		var node = this.getNodeFromPath(this.selectedFolderId);
+		node = this.getNodeFromPath(this.selectedFolderId);
 		if (node.id === this.selectedFolderId) {
 			this.hierarchyTree.selectNode(node);
 			node.expand(false, true , function(){

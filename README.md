@@ -21,7 +21,7 @@ $ sudo apt-get update
 $ sudo apt-get install php5-curl
 $ sudo apt-get install memcached php5-memcached
 ```
-After the successful installation of all dependencies you can install the plugin to Zartafa Webapp.
+After the successful installation of all dependencies you can install the plugin to Kopano Webapp.
 Therefore copy the whole folder **'files'** to the Webapp plugin directory:
 ```sh
 $ sudo cp -r files /usr/share/kopano-webapp/plugins/
