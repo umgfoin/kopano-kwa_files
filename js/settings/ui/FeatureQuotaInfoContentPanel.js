@@ -9,7 +9,7 @@ Zarafa.plugins.files.settings.ui.FeatureQuotaInfoContentPanel = Ext.extend(Zaraf
 
 	/**
 	 * @constructor
-	 * @param config
+	 * @param {Object} config configuration object with the account.
 	 */
 	constructor: function (config) {
 		config = config || {};
@@ -17,13 +17,10 @@ Zarafa.plugins.files.settings.ui.FeatureQuotaInfoContentPanel = Ext.extend(Zaraf
 		Ext.applyIf(config, {
 
 			xtype: 'filesplugin.featurequotainfocontentpanel',
-
-			layout    : 'fit',
-			model     : true,
-			autoSave  : false,
-			width     : 400,
-			autoHeight: true,
 			title     : dgettext('plugin_files', 'Quota Information'),
+			statefull : false,
+			width     : 200,
+			autoHeight: true,
 			items     : [{
 				xtype: 'filesplugin.featurequotainfopanel',
 				item : config.item
