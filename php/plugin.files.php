@@ -54,7 +54,7 @@ class Pluginfiles extends Plugin
 					break;
 				case 'form':
 					if (isset($_GET['backend'])) {
-						$backend = $_GET["backend"];
+						$backend = urldecode($_GET["backend"]);
 					} else {
 						$backend = '';
 					}
