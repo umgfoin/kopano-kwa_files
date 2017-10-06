@@ -113,7 +113,12 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 		return {
 			enableRowBody: false,
 			forceFit     : true,
-			emptyText    : '<div class=\'emptytext\'>' + dgettext('plugin_files', 'No account created!') + '</div>'
+			emptyText    : '<div class=\'emptytext\'>' + dgettext('plugin_files', 'No account created!') + '</div>',
+			getRowClass: function(record) {
+				if (record.get('status') !== 'ok') {
+					return 'files-faulty-account';
+				}
+			}
 		};
 	},
 
