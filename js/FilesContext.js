@@ -288,11 +288,8 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			handler  : function () {
 				this.showMenu();
 			},
-			listeners: {
-				afterrender: this.onAfterRenderMainToolbarButtons,
-				scope      : this
-			},
-			menu     : new Ext.menu.Menu({
+			menu : {
+				xtype : 'menu',
 				items: [{
 					text        : dgettext('plugin_files', 'List'),
 					overflowText: dgettext('plugin_files', 'List'),
@@ -310,7 +307,25 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 					handler     : this.onSwitchView,
 					scope       : this
 				}]
-			})
+			},
+			listeners: {
+				afterrender: this.onAfterRenderMainToolbarButtons,
+				menuhide : function(splitBtn, viewMenu){
+					viewMenu.find().forEach(function(item){
+						var hasClass = item.getEl().hasClass('x-menu-item-selected');
+						if(hasClass) {
+							item.getEl().removeClass('x-menu-item-selected');
+						}
+					}, this);
+				},
+				menushow : function (splitBtn, viewMenu) {
+					var menuItem = viewMenu.find('valueView', this.getCurrentView())[0];
+					if (Ext.isDefined(menuItem)) {
+						menuItem.addClass('x-menu-item-selected');
+					}
+				},
+				scope : this
+			}
 		}]
 	},
 
