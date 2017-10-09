@@ -27,22 +27,22 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 
 		Ext.applyIf(config, {
 
-			xtype      : 'filesplugin.accounteditpanel',
-			autoHeight : true,
-			layout     : 'fit',
-			defaultType: 'textfield',
-			items      : this.createPanelItems(config),
-			buttons    : [{
-				text    : dgettext('plugin_files', 'Save'),
-				ref     : "../saveBtn",
-				cls     : "zarafa-action",
+			xtype: 'filesplugin.accounteditpanel',
+			layout: "anchor",
+			autoScroll: true,
+			border: false,
+			items: this.createPanelItems(config),
+			buttons: [{
+				text: dgettext('plugin_files', 'Save'),
+				ref: "../saveBtn",
+				cls: "zarafa-action",
 				disabled: true,
-				handler : this.doSave,
-				scope   : this
+				handler: this.doSave,
+				scope: this
 			}, {
-				text   : dgettext('plugin_files', 'Cancel'),
+				text: dgettext('plugin_files', 'Cancel'),
 				handler: this.doClose,
-				scope  : this
+				scope: this
 			}]
 		});
 
@@ -136,21 +136,24 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 			xtype         : 'fieldset',
 			checkboxToggle: false,
 			title         : dgettext('plugin_files', 'Account Information'),
-			autoHeight    : true,
-			defaults      : {
-				width: 390
-			},
 			defaultType   : 'textfield',
+			ref           : 'accInfo',
 			collapsed     : false,
 			items         : [{
-				xtype      : "form",
+				xtype       : 'panel',
+				layout      : 'form',
+				border : false,
+				flex : 1,
+				defaults : {
+					anchor :'100%',
+					style : 'margin-bottom: 10px;'
+				},
 				defaultType: 'textfield',
 				items      : [{
 					fieldLabel: dgettext('plugin_files', 'Account name'),
 					labelAlign: 'top',
 					ref       : '../../../accName',
 					value     : name,
-					width     : 282,
 					name      : "accountName"
 				}, {
 					xtype         : "combo",
@@ -159,7 +162,6 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 					store         : Zarafa.plugins.files.data.singleton.BackendController.getBackendNameStore(),
 					valueField    : 'backend',
 					value         : backend,
-					width         : 282,
 					displayField  : 'displayName',
 
 					// Template for the dropdown menu.
@@ -182,22 +184,25 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 			checkboxToggle: false,
 			title         : dgettext('plugin_files', 'Account Configuration'),
 			autoHeight    : true,
-			defaults      : {
-				width: 390
-			},
 			defaultType   : 'textfield',
+			ref           : 'metaInfo',
 			collapsed     : false,
 			items         : [{
 				xtype    : 'metaform',
 				autoInit : initMetaForm,
 				method   : 'GET',
+				flex : 1,
+				defaults : {
+					anchor :'100%',
+					style : 'margin-bottom: 10px;'
+				},
 				ref      : '../../metaForm',
 				url      : formConfigUrl,
 				listeners: {
 					actioncomplete: this.onMetaFormReady.createDelegate(this)
 				}
 			}]
-		}]
+		}];
 	},
 
 	/**
@@ -229,7 +234,6 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 	 * @param data
 	 */
 	onMetaFormReady: function (form, data) {
-		console.log("Meta loaded");
 		if (Ext.isDefined(this.item)) {
 			var saveButton = this.saveBtn;
 
@@ -245,6 +249,8 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 		// chrome and ff will work without this re-layouting
 		this.dialog.metaForm.on('afterlayout', function () {
 			this.dialog.metaForm.doLayout();
+			var win = Ext.WindowMgr.getActive();
+			win.setHeight(this.accInfo.getHeight() + this.metaInfo.getHeight() + 90);
 		}, this, {single: true});
 	}
 });
