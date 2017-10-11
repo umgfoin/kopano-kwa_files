@@ -58,7 +58,7 @@ Zarafa.plugins.files.data.FilesRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	 * @return {String} URL for downloading inline images.
 	 */
 	getInlineImageUrl: function () {
-		return container.getBasePath() + "index.php?sessionid=" + container.getUser().getSessionId() + "&load=custom&name=download_file&" + Ext.urlEncode({
+		return container.getBasePath() + "index.php?load=custom&name=download_file&" + Ext.urlEncode({
 			id    : this.get('id'),
 			inline: true
 		});
