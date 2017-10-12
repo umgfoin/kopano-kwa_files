@@ -961,7 +961,7 @@ class FilesBrowserModule extends ListModule
 			$filesize = filesize($tmpname);
 
 			// switch between large files or normal attachment
-			if (!!ENABLE_LARGEFILES && $filesize > getMaxUploadSize()) {
+			if ($filesize > getMaxUploadSize()) {
 				$lf_backend = new LargeFile();
 
 				// Move the uploaded file into the large files backend
