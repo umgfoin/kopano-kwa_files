@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Files Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-06 13:33+0100\n"
+"POT-Creation-Date: 2017-10-12 11:00+0200\n"
 "PO-Revision-Date: 2017-07-11 14:02+0000\n"
 "Last-Translator: martijn <m.alberts@zarafa.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
@@ -24,114 +24,94 @@ msgstr "Voeg bijlage toe van {0}"
 msgid "Confirm deletion"
 msgstr "Bevestig verwijderen"
 
-#: js/data/Actions.js:224
+#: js/data/Actions.js:228
 #, fuzzy
 msgid "Are you sure you want to delete {0}?"
 msgstr "Weet je zeker dat je account \"{0}\" wilt verwijderen?"
 
-#: js/data/Actions.js:228
+#: js/data/Actions.js:232
 msgid "Are you sure you want to delete {0} and all of its contents?"
 msgstr ""
 
-#: js/data/Actions.js:232
+#: js/data/Actions.js:236
 #, fuzzy
 msgid "Are you sure you want to delete {0} files?"
 msgstr "Weet je zeker dat je account \"{0}\" wilt verwijderen?"
 
-#: js/data/Actions.js:236
+#: js/data/Actions.js:240
 msgid "Are you sure want to delete {0} folders and all of their contents?"
 msgstr ""
 
-#: js/data/Actions.js:240
+#: js/data/Actions.js:244
 msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
 msgstr ""
 
-#: js/data/Actions.js:355 js/ui/dialogs/SaveToFilesTreePanel.js:285
-msgid "Folder already exists"
-msgstr "Map bestaat al"
-
-#: js/data/Actions.js:357 js/ui/dialogs/SaveToFilesTreePanel.js:252
-msgid "Incorrect foldername"
-msgstr "Onjuiste mapnaam"
-
-#: js/data/Actions.js:364
+#: js/data/Actions.js:355
 msgid "This name already exists"
 msgstr "Deze naam bestaat reeds"
 
-#: js/data/Actions.js:366
+#: js/data/Actions.js:357
 msgid "Incorrect name"
 msgstr "Onjuiste naam"
 
-#: js/data/Actions.js:375 js/data/Actions.js:908
+#: js/data/Actions.js:366 js/data/Actions.js:786
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 msgid "Confirm overwrite"
 msgstr "Bevestig overschrijven"
 
-#: js/data/Actions.js:376 js/data/Actions.js:910
+#: js/data/Actions.js:367 js/data/Actions.js:788
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "Bestand bestaat reeds. Wil je het overschrijven?"
 
-#: js/data/Actions.js:400
-msgid "Folder name"
-msgstr "Mapnaam"
-
-#: js/data/Actions.js:400 js/ui/dialogs/SaveToFilesTreePanel.js:237
-msgid "Please enter a foldername"
-msgstr "Geef een mapnaam op"
-
-#: js/data/Actions.js:476
-msgid "Folder could not be created!"
-msgstr "Map kon niet worden gemaakt!"
-
-#: js/data/Actions.js:647 js/ui/FilesListToolbar.js:119
+#: js/data/Actions.js:524 js/ui/FilesListToolbar.js:119
 #: js/ui/FilesListToolbar.js:120 js/ui/FilesMainContextMenu.js:102
 #: js/ui/FilesTreeContextMenu.js:38
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: js/data/Actions.js:648
+#: js/data/Actions.js:525
 msgid "Please enter a new name"
 msgstr "Geef een nieuwe naam op"
 
-#: js/data/Actions.js:792
+#: js/data/Actions.js:670
 msgid "Downloading"
 msgstr "Downloaden"
 
-#: js/data/Actions.js:792
+#: js/data/Actions.js:670
 msgid "Download started... please wait!"
 msgstr "Download gestart... moment geduld!"
 
-#: js/data/Actions.js:839 js/data/NavigatorTreeLoader.js:108
+#: js/data/Actions.js:717 js/data/NavigatorTreeLoader.js:108
 #: js/data/ResponseHandler.js:128 js/data/ResponseHandler.js:135
 #: js/ui/dialogs/FilesUploadContentPanel.js:192
 #: js/ui/FilesRecordAccountView.js:128
 msgid "Error"
 msgstr "Fout"
 
-#: js/data/Actions.js:840
+#: js/data/Actions.js:718
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr "Ten minste één bestand is te groot! Maximum bestandsgrootte: {0}."
 
-#: js/data/Actions.js:913
+#: js/data/Actions.js:791
 msgid "Keep both"
 msgstr ""
 
-#: js/data/Actions.js:916
+#: js/data/Actions.js:794
 #, fuzzy
 msgid "Overwrite"
 msgstr "Bevestig overschrijven"
 
-#: js/data/Actions.js:919 js/settings/SettingsResetWidget.js:67
-#: js/settings/ui/AccountEditPanel.js:43
+#: js/data/Actions.js:797 js/settings/SettingsResetWidget.js:67
+#: js/settings/ui/AccountEditPanel.js:43 js/ui/dialogs/CreateFolderPanel.js:45
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
 #: js/ui/dialogs/UploadStatusPanel.js:137
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: js/data/Actions.js:969 js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/data/Actions.js:847 js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:125
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:160
@@ -150,40 +130,40 @@ msgstr "l d/m/Y G:i"
 msgid "Never"
 msgstr "Nooit"
 
-#: js/FilesContext.js:218 js/ui/dialogs/FilesUploadContentPanel.js:30
+#: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
 #: js/ui/FilesListToolbar.js:42
 msgid "Upload file"
 msgstr "Bestand uploaden"
 
-#: js/FilesContext.js:219 js/ui/FilesListToolbar.js:43
+#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:43
 msgid "Upload one or more files"
 msgstr "Bestanden uploaden"
 
-#: js/FilesContext.js:241 js/FilesContext.js:243
+#: js/FilesContext.js:246 js/FilesContext.js:248
 msgid "No preview"
 msgstr "Geen voorbeeld"
 
-#: js/FilesContext.js:249 js/FilesContext.js:251
+#: js/FilesContext.js:254 js/FilesContext.js:256
 msgid "Right preview"
 msgstr "Voorbeeld rechts"
 
-#: js/FilesContext.js:257 js/FilesContext.js:259
+#: js/FilesContext.js:262 js/FilesContext.js:264
 msgid "Bottom preview"
 msgstr "Voorbeeld onder"
 
-#: js/FilesContext.js:280
+#: js/FilesContext.js:285
 msgid "Switch view"
 msgstr "Weergave wijzigen"
 
-#: js/FilesContext.js:292 js/FilesContext.js:293 js/FilesContext.js:294
+#: js/FilesContext.js:294 js/FilesContext.js:295 js/FilesContext.js:296
 msgid "List"
 msgstr "Lijst"
 
-#: js/FilesContext.js:300 js/FilesContext.js:301 js/FilesContext.js:302
+#: js/FilesContext.js:302 js/FilesContext.js:303 js/FilesContext.js:304
 msgid "Icons"
 msgstr "Iconen"
 
-#: js/FilesContext.js:403 js/FilesContextModel.js:110
+#: js/FilesContext.js:423 js/FilesContextModel.js:110
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
 msgid "Files"
 msgstr "Bestanden"
@@ -200,11 +180,11 @@ msgstr "Toevoegen aan Files"
 msgid "Add attachment from Files"
 msgstr "Voeg bijlage toe uit Files"
 
-#: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1321
+#: js/FilesPlugin.js:200 php/class.filesbrowsermodule.php:1263
 msgid "Untitled"
 msgstr "Geen naam"
 
-#: js/FilesPlugin.js:298
+#: js/FilesPlugin.js:297
 msgid "Files Plugin"
 msgstr "Files Plugin"
 
@@ -257,23 +237,23 @@ msgstr "Opslaan"
 msgid "Account Information"
 msgstr "Account informatie"
 
-#: js/settings/ui/AccountEditPanel.js:149
+#: js/settings/ui/AccountEditPanel.js:153
 msgid "Account name"
 msgstr "Account naam"
 
-#: js/settings/ui/AccountEditPanel.js:157
+#: js/settings/ui/AccountEditPanel.js:160
 msgid "Account type"
 msgstr "Account type"
 
-#: js/settings/ui/AccountEditPanel.js:169
+#: js/settings/ui/AccountEditPanel.js:171
 msgid "Select backend..."
 msgstr "Backend selecteren..."
 
-#: js/settings/ui/AccountEditPanel.js:183
+#: js/settings/ui/AccountEditPanel.js:185
 msgid "Account Configuration"
 msgstr "Account configuratie"
 
-#: js/settings/ui/AccountEditPanel.js:240
+#: js/settings/ui/AccountEditPanel.js:244
 msgid "Update"
 msgstr "Bijwerken"
 
@@ -295,6 +275,7 @@ msgid "Sort by: Status"
 msgstr "Sorteer op: Status"
 
 #: js/settings/ui/AccountGridColumnModel.js:55
+#: js/ui/dialogs/CreateFolderPanel.js:74
 msgid "Name"
 msgstr "Naam"
 
@@ -431,6 +412,42 @@ msgstr "max"
 msgid "You have to choose at least one file!"
 msgstr "Kies in ieder geval één bestand!"
 
+#: js/ui/dialogs/CreateFolderContentPanel.js:23
+#, fuzzy
+msgid "Create New Folder"
+msgstr "Nieuwe map aanmaken"
+
+#: js/ui/dialogs/CreateFolderPanel.js:38
+msgid "Ok"
+msgstr ""
+
+#: js/ui/dialogs/CreateFolderPanel.js:80
+#, fuzzy
+msgid "Select where to place the folder"
+msgstr "Selecteer uploadmap"
+
+#: js/ui/dialogs/CreateFolderPanel.js:125
+msgid "Kopano WebApp"
+msgstr ""
+
+#: js/ui/dialogs/CreateFolderPanel.js:126
+msgid "You must specify a name."
+msgstr ""
+
+#: js/ui/dialogs/CreateFolderPanel.js:181
+#: js/ui/dialogs/SaveToFilesTreePanel.js:285
+msgid "Folder already exists"
+msgstr "Map bestaat al"
+
+#: js/ui/dialogs/CreateFolderPanel.js:184
+#: js/ui/dialogs/SaveToFilesTreePanel.js:252
+msgid "Incorrect foldername"
+msgstr "Onjuiste mapnaam"
+
+#: js/ui/dialogs/CreateFolderPanel.js:234
+msgid "Folder could not be created!"
+msgstr "Map kon niet worden gemaakt!"
+
 #: js/ui/dialogs/FilesRecordContentPanel.js:24
 #: js/ui/FilesRecordDetailsPanel.js:68
 msgid "File information"
@@ -501,6 +518,10 @@ msgstr "Je moet een map kiezen!"
 #: js/ui/dialogs/SaveToFilesTreePanel.js:237
 msgid "Folder Name"
 msgstr "Mapnaam"
+
+#: js/ui/dialogs/SaveToFilesTreePanel.js:237
+msgid "Please enter a foldername"
+msgstr "Geef een mapnaam op"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:344
 msgid "Uploaded"
@@ -777,30 +798,30 @@ msgstr "Functie \"Versie Informatie\" niet ondersteund door deze backend!"
 msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr "Functie \"OAUTH\" niet ondersteund door deze backend!"
 
-#: php/class.filesbrowsermodule.php:1107 php/class.filesbrowsermodule.php:1108
+#: php/class.filesbrowsermodule.php:1049 php/class.filesbrowsermodule.php:1050
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr "Onbekend type - kan niet worden opgeslagen op het Files backend!"
 
+#: php/class.filesbrowsermodule.php:1303 php/class.filesbrowsermodule.php:1304
 #: php/class.filesbrowsermodule.php:1361 php/class.filesbrowsermodule.php:1362
-#: php/class.filesbrowsermodule.php:1426 php/class.filesbrowsermodule.php:1427
-#: php/class.filesbrowsermodule.php:1493 php/class.filesbrowsermodule.php:1494
-#: php/class.filesbrowsermodule.php:1551 php/class.filesbrowsermodule.php:1552
+#: php/class.filesbrowsermodule.php:1421 php/class.filesbrowsermodule.php:1422
+#: php/class.filesbrowsermodule.php:1473 php/class.filesbrowsermodule.php:1474
 msgid "No record given!"
 msgstr "Geen item gegeven!"
 
-#: php/class.filesbrowsermodule.php:1388
+#: php/class.filesbrowsermodule.php:1323
 msgid "Fetching sharing information failed"
 msgstr "Ophalen informatie delen mislukt"
 
-#: php/class.filesbrowsermodule.php:1454
+#: php/class.filesbrowsermodule.php:1382
 msgid "Sharing failed"
 msgstr "Delen mislukt"
 
-#: php/class.filesbrowsermodule.php:1519
+#: php/class.filesbrowsermodule.php:1441
 msgid "Updating share failed"
 msgstr "Bijwerken delen mislukt"
 
-#: php/class.filesbrowsermodule.php:1572
+#: php/class.filesbrowsermodule.php:1488
 msgid "Deleting share failed"
 msgstr "Verwijderen delen mislukt"
 
@@ -849,52 +870,52 @@ msgid "Unparsable server response."
 msgstr "Server reactie onleesbaar."
 
 #: php/Files/Backend/FTP/class.backend.php:871
-#: php/Files/Backend/Webdav/class.backend.php:898
+#: php/Files/Backend/Webdav/class.backend.php:899
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
 #: php/Files/Backend/FTP/class.backend.php:875
-#: php/Files/Backend/Webdav/class.backend.php:903
+#: php/Files/Backend/Webdav/class.backend.php:904
 msgid "Unauthorized. Wrong username or password."
 msgstr "Niet geauthoriseerd. Onjuiste gebruikersnaam of wachtwoord."
 
 #: php/Files/Backend/FTP/class.backend.php:878
-#: php/Files/Backend/Webdav/class.backend.php:910
+#: php/Files/Backend/Webdav/class.backend.php:911
 msgid "File-server is not reachable. Wrong IP entered?"
 msgstr "File-server niet bereikbaar. Onjuist IP ingevoerd?"
 
 #: php/Files/Backend/FTP/class.backend.php:881
-#: php/Files/Backend/Webdav/class.backend.php:913
+#: php/Files/Backend/Webdav/class.backend.php:914
 msgid "You don't have enough permissions for this operation."
 msgstr "Je hebt niet voldoende toegangsrechten voor deze operatie."
 
 #: php/Files/Backend/FTP/class.backend.php:884
-#: php/Files/Backend/Webdav/class.backend.php:916
+#: php/Files/Backend/Webdav/class.backend.php:917
 msgid "File is not available any more."
 msgstr "Bestand is niet meer beschikbaar."
 
 #: php/Files/Backend/FTP/class.backend.php:887
-#: php/Files/Backend/Webdav/class.backend.php:919
+#: php/Files/Backend/Webdav/class.backend.php:920
 msgid "Connection to server timed out. Retry later."
 msgstr "Time-out in connectie naar server. Probeer later opnieuw."
 
 #: php/Files/Backend/FTP/class.backend.php:890
-#: php/Files/Backend/Webdav/class.backend.php:922
+#: php/Files/Backend/Webdav/class.backend.php:923
 msgid "This file is locked by another user."
 msgstr "Dit bestand is in gebruik door een andere gebruiker."
 
 #: php/Files/Backend/FTP/class.backend.php:893
-#: php/Files/Backend/Webdav/class.backend.php:925
+#: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
 msgstr "Het verzoek is mislukt doordat een eerder verzoek is mislukt."
 
 #: php/Files/Backend/FTP/class.backend.php:896
-#: php/Files/Backend/Webdav/class.backend.php:928
+#: php/Files/Backend/Webdav/class.backend.php:929
 msgid "File-server encountered a problem. Wrong IP entered?"
 msgstr "Probleem opgetreden in de file-server. Verkeerde IP adres ingevoerd?"
 
 #: php/Files/Backend/FTP/class.backend.php:899
-#: php/Files/Backend/Webdav/class.backend.php:931
+#: php/Files/Backend/Webdav/class.backend.php:932
 msgid ""
 "Could not write to temporary directory. Contact the server administrator."
 msgstr ""
@@ -902,7 +923,7 @@ msgstr ""
 "systeembeheerder."
 
 #: php/Files/Backend/FTP/class.backend.php:902
-#: php/Files/Backend/Webdav/class.backend.php:934
+#: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
 "Could not retrieve list of server features. Contact the server administrator."
 msgstr ""
@@ -931,7 +952,7 @@ msgstr "Gebruikersnaam"
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: php/Files/Backend/Webdav/class.backend.php:937
+#: php/Files/Backend/Webdav/class.backend.php:938
 msgid "PHP-Curl is not available. Contact your system administrator."
 msgstr "PHP-Curl niet beschikbaar. Neem contact op met uw systeembeheerder."
 

@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-11 16:07+0200\n"
+"POT-Creation-Date: 2017-10-12 11:00+0200\n"
 "PO-Revision-Date: 2017-09-27 10:20+0000\n"
 "Last-Translator: Klaus <klaus@linuxavdelingen.no>\n"
-"Language-Team: Norwegian Bokmål "
-"<http://translate.kopano.io/projects/kopano/files/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <http://translate.kopano.io/projects/kopano/"
+"files/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,111 +22,91 @@ msgstr "Legg til vedlegg fra {0}"
 msgid "Confirm deletion"
 msgstr "Bekreft sletting"
 
-#: js/data/Actions.js:224
+#: js/data/Actions.js:228
 msgid "Are you sure you want to delete {0}?"
 msgstr "Er du sikker på at du vil slette {0}?"
 
-#: js/data/Actions.js:228
+#: js/data/Actions.js:232
 msgid "Are you sure you want to delete {0} and all of its contents?"
 msgstr "Er du sikker på at du vil slette {0} og alt innholdet der?"
 
-#: js/data/Actions.js:232
+#: js/data/Actions.js:236
 msgid "Are you sure you want to delete {0} files?"
 msgstr "Er du sikker på at vil slette {0} filer?"
 
-#: js/data/Actions.js:236
+#: js/data/Actions.js:240
 msgid "Are you sure want to delete {0} folders and all of their contents?"
 msgstr "Er du sikker på at du vil slette {0} mapper og alt innholdet?"
 
-#: js/data/Actions.js:240
+#: js/data/Actions.js:244
 msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
 msgstr "Er du sikker på at vil slette de merkede objektene og alt innholdet?"
 
-#: js/data/Actions.js:355 js/ui/dialogs/SaveToFilesTreePanel.js:285
-msgid "Folder already exists"
-msgstr "Mappen finnes allerede"
-
-#: js/data/Actions.js:357 js/ui/dialogs/SaveToFilesTreePanel.js:252
-msgid "Incorrect foldername"
-msgstr "Mappenavnet er ikke korrekt"
-
-#: js/data/Actions.js:364
+#: js/data/Actions.js:355
 msgid "This name already exists"
 msgstr "Dette navnet finnes allerede"
 
-#: js/data/Actions.js:366
+#: js/data/Actions.js:357
 msgid "Incorrect name"
 msgstr "Navnet er ikke korrekt"
 
-#: js/data/Actions.js:375 js/data/Actions.js:908
+#: js/data/Actions.js:366 js/data/Actions.js:786
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 msgid "Confirm overwrite"
 msgstr "Bekreft overskriving"
 
-#: js/data/Actions.js:376 js/data/Actions.js:910
+#: js/data/Actions.js:367 js/data/Actions.js:788
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "Filen finnes allerede. Vil du overskrive den?"
 
-#: js/data/Actions.js:400
-msgid "Folder name"
-msgstr "Mappenavn"
-
-#: js/data/Actions.js:400 js/ui/dialogs/SaveToFilesTreePanel.js:237
-msgid "Please enter a foldername"
-msgstr "Oppgi mappenavn"
-
-#: js/data/Actions.js:476
-msgid "Folder could not be created!"
-msgstr "Mappen kunne ikke bli opprettet!"
-
-#: js/data/Actions.js:647 js/ui/FilesListToolbar.js:119
+#: js/data/Actions.js:524 js/ui/FilesListToolbar.js:119
 #: js/ui/FilesListToolbar.js:120 js/ui/FilesMainContextMenu.js:102
 #: js/ui/FilesTreeContextMenu.js:38
 msgid "Rename"
 msgstr "Nytt navn"
 
-#: js/data/Actions.js:648
+#: js/data/Actions.js:525
 msgid "Please enter a new name"
 msgstr "Vennligst oppgi et nytt navn"
 
-#: js/data/Actions.js:792
+#: js/data/Actions.js:670
 msgid "Downloading"
 msgstr "Laster ned"
 
-#: js/data/Actions.js:792
+#: js/data/Actions.js:670
 msgid "Download started... please wait!"
 msgstr "Nedlasting startet... vennligst vent!"
 
-#: js/data/Actions.js:839 js/data/NavigatorTreeLoader.js:108
+#: js/data/Actions.js:717 js/data/NavigatorTreeLoader.js:108
 #: js/data/ResponseHandler.js:128 js/data/ResponseHandler.js:135
 #: js/ui/dialogs/FilesUploadContentPanel.js:192
 #: js/ui/FilesRecordAccountView.js:128
 msgid "Error"
 msgstr "Feil"
 
-#: js/data/Actions.js:840
+#: js/data/Actions.js:718
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr "Minst en fil er for stor! Største tillate størrelse er: {0}."
 
-#: js/data/Actions.js:913
+#: js/data/Actions.js:791
 msgid "Keep both"
 msgstr "Behold begge"
 
-#: js/data/Actions.js:916
+#: js/data/Actions.js:794
 msgid "Overwrite"
 msgstr "Overskriv"
 
-#: js/data/Actions.js:919 js/settings/SettingsResetWidget.js:67
-#: js/settings/ui/AccountEditPanel.js:43
+#: js/data/Actions.js:797 js/settings/SettingsResetWidget.js:67
+#: js/settings/ui/AccountEditPanel.js:43 js/ui/dialogs/CreateFolderPanel.js:45
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
 #: js/ui/dialogs/UploadStatusPanel.js:137
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: js/data/Actions.js:969 js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/data/Actions.js:847 js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:125
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:160
@@ -145,40 +125,40 @@ msgstr "l d.m.Y G:i"
 msgid "Never"
 msgstr "Aldri"
 
-#: js/FilesContext.js:218 js/ui/dialogs/FilesUploadContentPanel.js:30
+#: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
 #: js/ui/FilesListToolbar.js:42
 msgid "Upload file"
 msgstr "Last opp fil"
 
-#: js/FilesContext.js:219 js/ui/FilesListToolbar.js:43
+#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:43
 msgid "Upload one or more files"
 msgstr "Last opp en eller flere filer"
 
-#: js/FilesContext.js:241 js/FilesContext.js:243
+#: js/FilesContext.js:246 js/FilesContext.js:248
 msgid "No preview"
 msgstr "Ingen forhåndsvisning"
 
-#: js/FilesContext.js:249 js/FilesContext.js:251
+#: js/FilesContext.js:254 js/FilesContext.js:256
 msgid "Right preview"
 msgstr "Forhåndsvisning på høyre side"
 
-#: js/FilesContext.js:257 js/FilesContext.js:259
+#: js/FilesContext.js:262 js/FilesContext.js:264
 msgid "Bottom preview"
 msgstr "Forhåndsvisning under"
 
-#: js/FilesContext.js:280
+#: js/FilesContext.js:285
 msgid "Switch view"
 msgstr "Bytt visningsmodus"
 
-#: js/FilesContext.js:292 js/FilesContext.js:293 js/FilesContext.js:294
+#: js/FilesContext.js:294 js/FilesContext.js:295 js/FilesContext.js:296
 msgid "List"
 msgstr "Liste"
 
-#: js/FilesContext.js:300 js/FilesContext.js:301 js/FilesContext.js:302
+#: js/FilesContext.js:302 js/FilesContext.js:303 js/FilesContext.js:304
 msgid "Icons"
 msgstr "Ikoner"
 
-#: js/FilesContext.js:403 js/FilesContextModel.js:110
+#: js/FilesContext.js:423 js/FilesContextModel.js:110
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
 msgid "Files"
 msgstr "Filer"
@@ -195,11 +175,11 @@ msgstr "Legg til Filer"
 msgid "Add attachment from Files"
 msgstr "Legg til vedlegg fra Filer"
 
-#: js/FilesPlugin.js:201 php/class.filesbrowsermodule.php:1321
+#: js/FilesPlugin.js:200 php/class.filesbrowsermodule.php:1263
 msgid "Untitled"
 msgstr "Uten navn"
 
-#: js/FilesPlugin.js:298
+#: js/FilesPlugin.js:297
 msgid "Files Plugin"
 msgstr "Filer Plugin"
 
@@ -253,23 +233,23 @@ msgstr "Lagre"
 msgid "Account Information"
 msgstr "Kontoinformasjon"
 
-#: js/settings/ui/AccountEditPanel.js:149
+#: js/settings/ui/AccountEditPanel.js:153
 msgid "Account name"
 msgstr "Kontonavn"
 
-#: js/settings/ui/AccountEditPanel.js:157
+#: js/settings/ui/AccountEditPanel.js:160
 msgid "Account type"
 msgstr "Kontotype"
 
-#: js/settings/ui/AccountEditPanel.js:169
+#: js/settings/ui/AccountEditPanel.js:171
 msgid "Select backend..."
 msgstr ""
 
-#: js/settings/ui/AccountEditPanel.js:183
+#: js/settings/ui/AccountEditPanel.js:185
 msgid "Account Configuration"
 msgstr ""
 
-#: js/settings/ui/AccountEditPanel.js:240
+#: js/settings/ui/AccountEditPanel.js:244
 msgid "Update"
 msgstr ""
 
@@ -291,6 +271,7 @@ msgid "Sort by: Status"
 msgstr "Sorter på: status"
 
 #: js/settings/ui/AccountGridColumnModel.js:55
+#: js/ui/dialogs/CreateFolderPanel.js:74
 msgid "Name"
 msgstr "Navn"
 
@@ -427,6 +408,41 @@ msgstr ""
 msgid "You have to choose at least one file!"
 msgstr ""
 
+#: js/ui/dialogs/CreateFolderContentPanel.js:23
+#, fuzzy
+msgid "Create New Folder"
+msgstr "Ny mappe"
+
+#: js/ui/dialogs/CreateFolderPanel.js:38
+msgid "Ok"
+msgstr ""
+
+#: js/ui/dialogs/CreateFolderPanel.js:80
+msgid "Select where to place the folder"
+msgstr ""
+
+#: js/ui/dialogs/CreateFolderPanel.js:125
+msgid "Kopano WebApp"
+msgstr ""
+
+#: js/ui/dialogs/CreateFolderPanel.js:126
+msgid "You must specify a name."
+msgstr ""
+
+#: js/ui/dialogs/CreateFolderPanel.js:181
+#: js/ui/dialogs/SaveToFilesTreePanel.js:285
+msgid "Folder already exists"
+msgstr "Mappen finnes allerede"
+
+#: js/ui/dialogs/CreateFolderPanel.js:184
+#: js/ui/dialogs/SaveToFilesTreePanel.js:252
+msgid "Incorrect foldername"
+msgstr "Mappenavnet er ikke korrekt"
+
+#: js/ui/dialogs/CreateFolderPanel.js:234
+msgid "Folder could not be created!"
+msgstr "Mappen kunne ikke bli opprettet!"
+
 #: js/ui/dialogs/FilesRecordContentPanel.js:24
 #: js/ui/FilesRecordDetailsPanel.js:68
 msgid "File information"
@@ -497,6 +513,10 @@ msgstr ""
 #: js/ui/dialogs/SaveToFilesTreePanel.js:237
 msgid "Folder Name"
 msgstr "Mappenavn"
+
+#: js/ui/dialogs/SaveToFilesTreePanel.js:237
+msgid "Please enter a foldername"
+msgstr "Oppgi mappenavn"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:344
 msgid "Uploaded"
@@ -772,30 +792,30 @@ msgstr ""
 msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1107 php/class.filesbrowsermodule.php:1108
+#: php/class.filesbrowsermodule.php:1049 php/class.filesbrowsermodule.php:1050
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr ""
 
+#: php/class.filesbrowsermodule.php:1303 php/class.filesbrowsermodule.php:1304
 #: php/class.filesbrowsermodule.php:1361 php/class.filesbrowsermodule.php:1362
-#: php/class.filesbrowsermodule.php:1426 php/class.filesbrowsermodule.php:1427
-#: php/class.filesbrowsermodule.php:1493 php/class.filesbrowsermodule.php:1494
-#: php/class.filesbrowsermodule.php:1551 php/class.filesbrowsermodule.php:1552
+#: php/class.filesbrowsermodule.php:1421 php/class.filesbrowsermodule.php:1422
+#: php/class.filesbrowsermodule.php:1473 php/class.filesbrowsermodule.php:1474
 msgid "No record given!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1388
+#: php/class.filesbrowsermodule.php:1323
 msgid "Fetching sharing information failed"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1454
+#: php/class.filesbrowsermodule.php:1382
 msgid "Sharing failed"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1519
+#: php/class.filesbrowsermodule.php:1441
 msgid "Updating share failed"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1572
+#: php/class.filesbrowsermodule.php:1488
 msgid "Deleting share failed"
 msgstr ""
 
@@ -844,58 +864,58 @@ msgid "Unparsable server response."
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:871
-#: php/Files/Backend/Webdav/class.backend.php:898
+#: php/Files/Backend/Webdav/class.backend.php:899
 msgid "Unknown error"
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:875
-#: php/Files/Backend/Webdav/class.backend.php:903
+#: php/Files/Backend/Webdav/class.backend.php:904
 msgid "Unauthorized. Wrong username or password."
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:878
-#: php/Files/Backend/Webdav/class.backend.php:910
+#: php/Files/Backend/Webdav/class.backend.php:911
 msgid "File-server is not reachable. Wrong IP entered?"
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:881
-#: php/Files/Backend/Webdav/class.backend.php:913
+#: php/Files/Backend/Webdav/class.backend.php:914
 msgid "You don't have enough permissions for this operation."
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:884
-#: php/Files/Backend/Webdav/class.backend.php:916
+#: php/Files/Backend/Webdav/class.backend.php:917
 msgid "File is not available any more."
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:887
-#: php/Files/Backend/Webdav/class.backend.php:919
+#: php/Files/Backend/Webdav/class.backend.php:920
 msgid "Connection to server timed out. Retry later."
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:890
-#: php/Files/Backend/Webdav/class.backend.php:922
+#: php/Files/Backend/Webdav/class.backend.php:923
 msgid "This file is locked by another user."
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:893
-#: php/Files/Backend/Webdav/class.backend.php:925
+#: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:896
-#: php/Files/Backend/Webdav/class.backend.php:928
+#: php/Files/Backend/Webdav/class.backend.php:929
 msgid "File-server encountered a problem. Wrong IP entered?"
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:899
-#: php/Files/Backend/Webdav/class.backend.php:931
+#: php/Files/Backend/Webdav/class.backend.php:932
 msgid ""
 "Could not write to temporary directory. Contact the server administrator."
 msgstr ""
 
 #: php/Files/Backend/FTP/class.backend.php:902
-#: php/Files/Backend/Webdav/class.backend.php:934
+#: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
 "Could not retrieve list of server features. Contact the server administrator."
 msgstr ""
@@ -921,7 +941,7 @@ msgstr "Brukernavn"
 msgid "Password"
 msgstr "Passord"
 
-#: php/Files/Backend/Webdav/class.backend.php:937
+#: php/Files/Backend/Webdav/class.backend.php:938
 msgid "PHP-Curl is not available. Contact your system administrator."
 msgstr ""
 
