@@ -135,6 +135,7 @@
 						var Ext = {};
 						var Zarafa = {};
 						var container = {};
+						var console = {};
 						var odf = {};
 						var PDFJS = {};
 						var _ = function(key, domain) {};
