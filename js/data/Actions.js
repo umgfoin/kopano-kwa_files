@@ -44,24 +44,10 @@ Zarafa.plugins.files.data.Actions = {
 	 */
 	openCreateMailContent: function (emailRecord, records, config) {
 		var attachmentStore = emailRecord.getAttachmentStore();
-		var attachmentRecord = null;
-		var isHtml = emailRecord.get("isHTML");
 
-		var server = container.getServerConfig();
-
-		var max_attachment_size = server.getMaxAttachmentSize();
-
-		var large_files_enabled = (typeof server.isLargeFilesEnabled === 'function') ? server.isLargeFilesEnabled() : false;
-
-		Ext.each(records, function (record, index) {
-			attachmentRecord = this.convertDownloadedFileInfoToAttachmentRecord(record);
+		Ext.each(records, function (record) {
+			var attachmentRecord = this.convertDownloadedFileInfoToAttachmentRecord(record);
 			attachmentStore.add(attachmentRecord);
-			if (large_files_enabled && attachmentRecord.get('size') > max_attachment_size) {
-
-				var currBody = emailRecord.getBody();
-				var lfLink = attachmentRecord.getLargeFileLink(isHtml);
-				emailRecord.setBody(currBody + lfLink, isHtml);
-			}
 		}, this);
 
 		Zarafa.core.data.UIFactory.openCreateRecord(emailRecord, config);
