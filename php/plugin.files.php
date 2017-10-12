@@ -3,6 +3,7 @@
 require_once __DIR__ . "/Files/Core/class.downloadhandler.php";
 require_once __DIR__ . "/Files/Core/class.uploadhandler.php";
 require_once __DIR__ . "/Files/Core/class.recipienthandler.php";
+require_once __DIR__ . "/Files/Backend/class.backendstore.php";
 
 use \Files\Core\DownloadHandler;
 use \Files\Core\UploadHandler;
@@ -43,17 +44,32 @@ class Pluginfiles extends Plugin
 				break;
 			case 'server.index.load.custom':
 				switch($data['name']) {
-					case 'download_file':
-						DownloadHandler::doDownload();
-						break;
-					case 'upload_file':
-						UploadHandler::doUpload();
-						break;
-					case 'files_get_recipients':
-						RecipientHandler::doGetRecipients();
-						break;
-				}
-				break;
+				case 'files_get_recipients':
+					RecipientHandler::doGetRecipients();
+				case 'download_file':
+					DownloadHandler::doDownload();
+					break;
+				case 'upload_file':
+					UploadHandler::doUpload();
+					break;
+				case 'form':
+					if (isset($_GET['backend'])) {
+						$backend = urldecode($_GET["backend"]);
+					} else {
+						$backend = '';
+					}
+					$backendstore = Files\Backend\BackendStore::getInstance();
+
+					if ($backendstore->backendExists($backend)) {
+						$backendInstance = $backendstore->getInstanceOfBackend($backend);
+						$formdata = $backendInstance->getFormConfig();
+						die($formdata);
+					} else {
+						die("Specified backend does not exist!");
+					}
+					break;
+			}
+			break;
 		}
 	}
 

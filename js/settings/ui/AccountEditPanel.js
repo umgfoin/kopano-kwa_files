@@ -123,13 +123,13 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 		var name = "";
 		var backend = "";
 		var initMetaForm = false;
-		var formConfigUrl = undefined;
+		var formConfigUrl;
 
 		if (Ext.isDefined(config.item)) {// set defaultvalues if available
 			name = config.item.get("name");
 			backend = config.item.get("backend");
 			initMetaForm = true;
-			formConfigUrl = "plugins/files/php/backendFormConfig.php?backend=" + backend;
+			formConfigUrl = Ext.urlAppend(container.getBaseURL(), 'load=custom&name=form&backend=' + encodeURI(backend));
 		}
 
 		return [{
@@ -217,7 +217,7 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 		var selectedBackend = record.data.backend;
 		var metaForm = this.dialog.metaForm;
 		var saveButton = this.saveBtn;
-		var formConfigUrl = "plugins/files/php/backendFormConfig.php?backend=" + selectedBackend;
+		var formConfigUrl = Ext.urlAppend(container.getBaseURL(), 'load=custom&name=form&backend=' + encodeURI(selectedBackend));
 
 		// reinitialize metaform
 		metaForm.url = formConfigUrl;
