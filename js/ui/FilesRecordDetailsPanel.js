@@ -274,7 +274,6 @@ Zarafa.plugins.files.ui.FilesRecordDetailsPanel = Ext.extend(Ext.form.FormPanel,
 				}
 			}
 		} else if (odfEnabled && !Ext.isEmpty(extension) && (/\.(odp|odt|ods)$/i).test(extension)) {
-			console.log("odf preview!");
 			component = {
 				xtype : 'filesplugin.webodfpanel',
 				src   : Zarafa.plugins.files.data.Actions.getDownloadLink(record),

@@ -229,11 +229,8 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 
 	/**
 	 * Fired after meta data is processed and form fields are created.
-	 *
-	 * @param Ext.form.BasicForm form
-	 * @param data
 	 */
-	onMetaFormReady: function (form, data) {
+	onMetaFormReady: function () {
 		if (Ext.isDefined(this.item)) {
 			var saveButton = this.saveBtn;
 
