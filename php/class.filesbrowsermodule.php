@@ -984,10 +984,10 @@ class FilesBrowserModule extends ListModule
 					'tmpname' => PathUtil::getFilenameFromPath($tmpname)
 				);
 
-				// mimetype is not required...
 				$attachment_state->addAttachmentFile($dialogAttachmentId, PathUtil::getFilenameFromPath($tmpname), Array(
 					"name" => $filename,
 					"size" => $filesize,
+					"type" => PathUtil::get_mime($tmpname),
 					"sourcetype" => 'default'
 				));
 			}
