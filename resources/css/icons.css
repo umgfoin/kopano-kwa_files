@@ -8,7 +8,7 @@
 }
 .files_icon_action {
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 3px center !important;
 }
 .files_icon_action_upload {
     background-image: url(../resources/icons/actions/upload.png);
