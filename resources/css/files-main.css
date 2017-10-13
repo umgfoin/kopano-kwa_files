@@ -3,6 +3,11 @@
 	background-repeat: no-repeat;
 	background-position: left 9px !important;
 }
+
+button.icon_files {
+	background-position: 5px 5px !important;
+}
+
 .icon_files_category {
 	background-image:url(../resources/icons/files_icon_category.png);
 	background-position: 4px center;
@@ -12,7 +17,7 @@
 }
 
 .x-menu-item-icon.icon_files_category {
-	background-position: -1px center;
+	background-position: center;
 }
 
 .icon_files_category_white {
