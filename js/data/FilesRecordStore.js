@@ -205,24 +205,23 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 			previewPanel.topToolbar.disable();
 			mainPanel.filesSwitchViewButton.disable();
 
-		} else if (currViewPanel instanceof Zarafa.plugins.files.ui.FilesRecordAccountView) {
+		} else {
 
 			// enable toolbar buttons
 			toolbar.enableButtons();
-			mainPanel.filesSwitchViewButton.enable();
 
-			switch (Zarafa.plugins.files.data.ComponentBox.getContext().getCurrentView()) {
-				case Zarafa.plugins.files.data.Views.LIST:
-					Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-gridview');
-					break;
-				case Zarafa.plugins.files.data.Views.ICON:
-					Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-iconview');
-					break;
+			if (currViewPanel instanceof Zarafa.plugins.files.ui.FilesRecordAccountView) {
+				mainPanel.filesSwitchViewButton.enable();
+
+				switch (Zarafa.plugins.files.data.ComponentBox.getContext().getCurrentView()) {
+					case Zarafa.plugins.files.data.Views.LIST:
+						Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-gridview');
+						break;
+					case Zarafa.plugins.files.data.Views.ICON:
+						Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-iconview');
+						break;
+				}
 			}
-		} else if (currViewPanel instanceof Zarafa.plugins.files.ui.FilesRecordGridView){
-
-			// enable toolbar buttons
-			toolbar.enableButtons();
 		}
 	},
 
