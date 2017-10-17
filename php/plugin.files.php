@@ -46,6 +46,7 @@ class Pluginfiles extends Plugin
 				switch($data['name']) {
 				case 'files_get_recipients':
 					RecipientHandler::doGetRecipients();
+					break;
 				case 'download_file':
 					DownloadHandler::doDownload();
 					break;
