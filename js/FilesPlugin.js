@@ -90,6 +90,8 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 	onAttachmentUploadBeforeShow : function(item, record) {
 		// embedded messages can not be downloaded to files
 		item.setDisabled(record.isEmbeddedMessage());
+		// unsaved attachments can not be added to files without depending on Webapp internals (AttachmentState)
+		item.setDisabled(record.isTmpFile());
 	},
 
 	/**
