@@ -50,6 +50,7 @@
 
 	
 	<!-- Determine plugin name -->
+	<var name="plugin" unset="true"/>
 	<basename file="${basedir}" property="plugin"/>
 
 	<!-- The Plugin distribution files -->

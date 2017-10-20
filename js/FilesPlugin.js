@@ -47,8 +47,6 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		Zarafa.plugins.files.data.singleton.BackendController.init();
 		Zarafa.plugins.files.data.singleton.AccountStore.init();
 		Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.setUpListeners();
-
-		Ext.chart.Chart.CHART_URL = 'plugins/files/resources/flash/charts.swf';
 	},
 
 	/**
