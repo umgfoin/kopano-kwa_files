@@ -75,16 +75,11 @@ Zarafa.plugins.files.data.AccountRecord = Ext.extend(Zarafa.core.data.IPMRecord,
 	 * @return {boolean}
 	 */
 	supportsFeature: function (featureName) {
-		var features = this.get('backend_features');
+		var features = this.get('backend_features') || [];
 
-		var i = features.length;
-		while (i--) {
-			if (features[i] === featureName) {
-				return true;
-			}
-		}
-
-		return false;
+		return features.some(function(feature) {
+			return feature === featureName;
+		});
 	},
 
 	/**
