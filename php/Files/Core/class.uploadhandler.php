@@ -83,6 +83,8 @@ class UploadHandler
 					fwrite($fileWriter, $buffer);
 				}
 			} else { // fallback to tmp files
+				$targetPath = UploadHandler::checkFilesNameConflict($targetPath, $initializedBackend, $relNodeId);
+				$targetPath = rawurldecode($targetPath);
 				$temp_file = tempnam(TMP_PATH, "$targetPath");
 				$fileReader = fopen('php://input', "r");
 				$fileWriter = fopen($temp_file, "w");
@@ -100,7 +102,6 @@ class UploadHandler
 					fwrite($fileWriter, $buffer);
 				}
 
-				$targetPath = UploadHandler::checkFilesNameConflict($targetPath, $initializedBackend, $relNodeId);
 				// upload tmp file to backend
 				$initializedBackend->put_file($targetPath, $temp_file);
 				// clean up tmp file
@@ -163,7 +164,7 @@ class UploadHandler
 		// then append the counter in files name.
 		if (strtolower($keepBoth) === 'true') {
 			$lsNodes = $initializedBackend->ls($relNodeId);
-			$nodeExist = array_key_exists($targetPath, $lsNodes);
+			$nodeExist = array_key_exists(rawurldecode($targetPath), $lsNodes);
 			if($nodeExist) {
 				$i = 1;
 				$targetPathInfo = pathinfo($targetPath);
@@ -171,7 +172,7 @@ class UploadHandler
 					$targetPath = $targetPathInfo["dirname"] . "/" . $targetPathInfo["filename"] . " (" . $i . ")." . $targetPathInfo["extension"];
 					$targetPath = str_replace('//', '/', $targetPath);
 					$i++;
-				} while (array_key_exists($targetPath, $lsNodes));
+				} while (array_key_exists(rawurldecode($targetPath), $lsNodes));
 			}
 		}
 
