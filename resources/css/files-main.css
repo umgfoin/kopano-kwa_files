@@ -872,3 +872,7 @@ span.error_files {
 .files-create-folder-tree-panel .x-tree-node-el {
 	padding-left: 10px;
 }
+
+.files-faulty-account .x-action-col-icon {
+	cursor: default;
+}

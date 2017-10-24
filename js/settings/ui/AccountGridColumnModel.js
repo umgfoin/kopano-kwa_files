@@ -3,26 +3,22 @@ Ext.namespace('Zarafa.plugins.files.settings.ui');
 /**
  * @class Zarafa.plugins.files.settings.ui.AccountGridColumnModel
  * @extends Zarafa.common.ui.grid.ColumnModel
- *
  */
 Zarafa.plugins.files.settings.ui.AccountGridColumnModel = Ext.extend(Zarafa.common.ui.grid.ColumnModel, {
 
 	/**
 	 * @constructor
-	 * @param config Configuration structure
+	 * @param {Object} config Configuration structure
 	 */
 	constructor: function (config) {
 		config = config || {};
 
-		this.defaultColumns = this.createDefaultColumns();
-
 		Ext.applyIf(config, {
-			columns : this.defaultColumns,
+			columns : this.createDefaultColumns(),
 			defaults: {
 				sortable: true
 			}
 		});
-		Ext.apply(this, config);
 
 		Zarafa.plugins.files.settings.ui.AccountGridColumnModel.superclass.constructor.call(this, config);
 	},
@@ -75,12 +71,12 @@ Zarafa.plugins.files.settings.ui.AccountGridColumnModel = Ext.extend(Zarafa.comm
 					getClass: Zarafa.plugins.files.settings.data.AccountRenderUtil.featureRenderer.createDelegate(this, [Zarafa.plugins.files.data.AccountRecordFeature.QUOTA], true),
 					icon    : 'plugins/files/resources/icons/features/quota.png',
 					tooltip : dgettext('plugin_files', 'Show quota information'),
-					handler : this.doFeatureQuotaClick
+					handler : this.showDialog.createDelegate(this, ['filesplugin.featurequotainfo'], 2)
 				}, {
 					getClass: Zarafa.plugins.files.settings.data.AccountRenderUtil.featureRenderer.createDelegate(this, [Zarafa.plugins.files.data.AccountRecordFeature.VERSION_INFO], true),
 					icon    : 'plugins/files/resources/icons/features/info.png',
 					tooltip : dgettext('plugin_files', 'Show version information'),
-					handler : this.doFeatureVersionInfoClick
+					handler : this.showDialog.createDelegate(this, ['filesplugin.featureversioninfo'], 2)
 				}, {
 					getClass: Zarafa.plugins.files.settings.data.AccountRenderUtil.featureRenderer.createDelegate(this, [Zarafa.plugins.files.data.AccountRecordFeature.SHARING], true),
 					icon    : 'plugins/files/resources/icons/features/sharing.png',
@@ -97,30 +93,19 @@ Zarafa.plugins.files.settings.ui.AccountGridColumnModel = Ext.extend(Zarafa.comm
 	 * This method gets called if the user clicks on the quota icon.
 	 * It will then display the {@link Zarafa.plugins.files.settings.ui.FeatureQuotaInfoContentPanel quota panel}.
 	 *
-	 * @param grid
-	 * @param rowIndex
-	 * @param colIndex
+	 * @param {Object} grid the grid
+	 * @param {Number} rowIndex used to retrieve the selected record
+	 * @param {String} componentType the component to show
 	 */
-	doFeatureQuotaClick: function (grid, rowIndex, colIndex) {
-		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['filesplugin.featurequotainfo'], undefined, {
-			store  : grid.getStore(),
-			item   : grid.getStore().getAt(rowIndex),
-			manager: Ext.WindowMgr
-		});
-	},
+	showDialog: function(grid, rowIndex, componentType) {
+		const record = grid.getStore().getAt(rowIndex);
+		if (record.get('status') !== 'ok') {
+			return;
+		}
 
-	/**
-	 * This method gets called if the user clicks on the version icon.
-	 * It will then display the {@link Zarafa.plugins.files.settings.ui.FeatureVersionInfoContentPanel version info panel}.
-	 *
-	 * @param grid
-	 * @param rowIndex
-	 * @param colIndex
-	 */
-	doFeatureVersionInfoClick: function (grid, rowIndex, colIndex) {
-		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['filesplugin.featureversioninfo'], undefined, {
+		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType[componentType], undefined, {
 			store  : grid.getStore(),
-			item   : grid.getStore().getAt(rowIndex),
+			item   : record,
 			manager: Ext.WindowMgr
 		});
 	}
