@@ -98,7 +98,7 @@ Zarafa.plugins.files.settings.ui.AccountGridColumnModel = Ext.extend(Zarafa.comm
 	 * @param {String} componentType the component to show
 	 */
 	showDialog: function(grid, rowIndex, componentType) {
-		const record = grid.getStore().getAt(rowIndex);
+		var record = grid.getStore().getAt(rowIndex);
 		if (record.get('status') !== 'ok') {
 			return;
 		}
