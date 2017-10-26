@@ -1,6 +1,10 @@
+# Kopano Webapp Files Hungarian translation.
+# Copyright (C) 2017
+# This file is distributed under the same license as the kopano-webapp-files package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Kopano Webapp Files Hungarian\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-12 11:00+0200\n"
 "PO-Revision-Date: 2017-04-28 09:45+0000\n"
