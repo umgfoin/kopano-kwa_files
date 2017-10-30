@@ -750,7 +750,7 @@ Zarafa.plugins.files.data.Actions = {
 				destination : destination,
 				keepBoth : button === "keepboth",
 				manager : Ext.WindowMgr,
-				callbackAllDone : this.uploadDone
+				callbackAllDone : this.uploadDone.bind(this)
 			});
 		}
 	},
@@ -759,13 +759,15 @@ Zarafa.plugins.files.data.Actions = {
 	 * Callback if the upload has completed.
 	 *
 	 * @param files
-	 * @param destionation
+	 * @param destination
 	 * @param xhr
 	 */
-	uploadDone: function (files, destionation, xhr) {
+	uploadDone: function (files, destination, xhr) {
 		var store = Zarafa.plugins.files.data.ComponentBox.getStore();
-		if (store.getPath() == destionation) {
+		if (store.getPath() === destination) {
 			store.reload();
+		} else {
+			this.updateCache(destination);
 		}
 	},
 
@@ -896,5 +898,21 @@ Zarafa.plugins.files.data.Actions = {
 		} else if (!checked && this.portField.getValue() === "443") {
 			this.portField.setValue("80");
 		}
+	},
+
+	/**
+	 * Updates the cache for given record
+	 *
+	 * @param destination record id.
+	 */
+	updateCache: function (destination)
+	{
+		container.getRequest().singleRequest(
+			'filesbrowsermodule',
+			'updatecache',
+			{
+				id: destination
+			}
+		);
 	}
 };

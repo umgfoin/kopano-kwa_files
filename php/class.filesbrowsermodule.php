@@ -197,6 +197,9 @@ class FilesBrowserModule extends ListModule
 						case "deleteexistingshare":
 							$result = $this->deleteExistingShare($actionType, $actionData);
 							break;
+                        case "updatecache":
+                            $result = $this->updateCache($actionType, $actionData);
+                            break;
 						default:
 							$this->handleUnknownActionType($actionType);
 					}
@@ -673,7 +676,7 @@ class FilesBrowserModule extends ListModule
 			$result = $initializedBackend->move($relSrc, $relDst, $overwrite);
 
 			// clear the cache
-			$this->deleteCache($account->getId(), dirname($relDest));
+			$this->deleteCache($account->getId(), dirname($relDst));
 			$this->deleteCache($account->getId(), dirname($relSrc));
 
 			if (!$result) {
@@ -1586,4 +1589,37 @@ class FilesBrowserModule extends ListModule
 		Logger::debug(self::LOG_CONTEXT, "Removing cache for node: " . $accountID .  $path . " ## " . $key);
                 $this->cache->delete($key);
 	}
+
+    /**
+     * Function will use to update the cache
+     *
+     * @param string $actionType name of the current action
+     * @param array $actionData all parameters contained in this request
+     *
+     * @return boolean true on success or false on failure.
+     */
+    public function updateCache($actionType, $actionData)
+    {
+        $nodeId = $actionData['id'];
+        $accountID = $this->accountIDFromNode($nodeId);
+        $account = $this->accountStore->getAccount($accountID);
+        // initialize the backend
+        $initializedBackend = $this->initializeBackend($account, true);
+        $relNodeId = substr($nodeId, strpos($nodeId, '/'));
+
+        // remove the trailing slash for the cache key
+        $cachePath = rtrim($relNodeId, '/');
+        if ($cachePath === "") {
+            $cachePath = "/";
+        }
+        $dir = $initializedBackend->ls($relNodeId);
+        $this->setCache($accountID, $cachePath, $dir);
+
+        $response = array();
+        $response['status'] = true;
+        $this->addActionData($actionType, $response);
+        $GLOBALS["bus"]->addData($this->getResponseData());
+
+        return true;
+    }
 }
