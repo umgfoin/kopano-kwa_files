@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Files Plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-12 11:00+0200\n"
-"PO-Revision-Date: 2017-07-11 14:02+0000\n"
-"Last-Translator: martijn <m.alberts@zarafa.com>\n"
+"PO-Revision-Date: 2017-11-02 09:30+0000\n"
+"Last-Translator: Bob <b.huisman@kopano.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
@@ -25,27 +25,27 @@ msgid "Confirm deletion"
 msgstr "Bevestig verwijderen"
 
 #: js/data/Actions.js:228
-#, fuzzy
 msgid "Are you sure you want to delete {0}?"
-msgstr "Weet je zeker dat je account \"{0}\" wilt verwijderen?"
+msgstr "Weet je zeker dat je {0} wilt verwijderen?"
 
 #: js/data/Actions.js:232
 msgid "Are you sure you want to delete {0} and all of its contents?"
-msgstr ""
+msgstr "Weet je zeker dat je {0} en alle inhoud wilt verwijderen?"
 
 #: js/data/Actions.js:236
-#, fuzzy
 msgid "Are you sure you want to delete {0} files?"
-msgstr "Weet je zeker dat je account \"{0}\" wilt verwijderen?"
+msgstr "Weet je zeker dat je {0} bestanden wilt verwijderen?"
 
 #: js/data/Actions.js:240
 msgid "Are you sure want to delete {0} folders and all of their contents?"
-msgstr ""
+msgstr "Weet je zeker dat je {0} mappen en hun inhoud wilt verwijderen?"
 
 #: js/data/Actions.js:244
 msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
 msgstr ""
+"Weet je zeker dat je de geselecteerde items en al hun inhoud wilt "
+"verwijderen?"
 
 #: js/data/Actions.js:355
 msgid "This name already exists"
@@ -96,12 +96,11 @@ msgstr "Ten minste één bestand is te groot! Maximum bestandsgrootte: {0}."
 
 #: js/data/Actions.js:791
 msgid "Keep both"
-msgstr ""
+msgstr "Beide behouden"
 
 #: js/data/Actions.js:794
-#, fuzzy
 msgid "Overwrite"
-msgstr "Bevestig overschrijven"
+msgstr "Overschrijven"
 
 #: js/data/Actions.js:797 js/settings/SettingsResetWidget.js:67
 #: js/settings/ui/AccountEditPanel.js:43 js/ui/dialogs/CreateFolderPanel.js:45
@@ -210,6 +209,8 @@ msgstr ""
 msgid ""
 "Are you sure you want to reset all Files settings and remove all accounts?"
 msgstr ""
+"Weet je zeker dat je alle Files instellingen wilt herstellen en alle "
+"accounts wilt verwijderen?"
 
 #: js/settings/SettingsResetWidget.js:55
 msgid ""
@@ -413,26 +414,24 @@ msgid "You have to choose at least one file!"
 msgstr "Kies in ieder geval één bestand!"
 
 #: js/ui/dialogs/CreateFolderContentPanel.js:23
-#, fuzzy
 msgid "Create New Folder"
 msgstr "Nieuwe map aanmaken"
 
 #: js/ui/dialogs/CreateFolderPanel.js:38
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: js/ui/dialogs/CreateFolderPanel.js:80
-#, fuzzy
 msgid "Select where to place the folder"
-msgstr "Selecteer uploadmap"
+msgstr "Selecteer locatie voor de map"
 
 #: js/ui/dialogs/CreateFolderPanel.js:125
 msgid "Kopano WebApp"
-msgstr ""
+msgstr "Kopano WebApp"
 
 #: js/ui/dialogs/CreateFolderPanel.js:126
 msgid "You must specify a name."
-msgstr ""
+msgstr "Specificeer een naam."
 
 #: js/ui/dialogs/CreateFolderPanel.js:181
 #: js/ui/dialogs/SaveToFilesTreePanel.js:285
