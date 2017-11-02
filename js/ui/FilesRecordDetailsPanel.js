@@ -217,10 +217,13 @@ Zarafa.plugins.files.ui.FilesRecordDetailsPanel = Ext.extend(Ext.form.FormPanel,
 				}
 			}
 		} else if (!Ext.isEmpty(extension) && (/\.(mp3|wav)$/i).test(extension)) {
-			audioType = '';
+			var audioType = '';
 			switch(extension.toLowerCase()) {
-				case '.wav' : audioType = 'audio/wav'; break;
-				default: audioType = 'audio/mpeg';
+				case '.wav':
+					audioType = 'audio/wav';
+					break;
+				default:
+					audioType = 'audio/mpeg';
 			}
 
 			component = {
@@ -240,11 +243,16 @@ Zarafa.plugins.files.ui.FilesRecordDetailsPanel = Ext.extend(Ext.form.FormPanel,
 				}
 			}
 		} else if (!Ext.isEmpty(extension) && (/\.(mp4|ogg|webm)$/i).test(extension)) {
-			videoType = '';
+			var videoType = '';
 			switch(extension.toLowerCase()) {
-				case '.ogg' : videoType = 'video/ogg'; break;
-				case '.webm' : videoType = 'video/webm'; break;
-				default: videoType = 'audio/mp4';
+				case '.ogg':
+					videoType = 'video/ogg';
+					break;
+				case '.webm':
+					videoType = 'video/webm';
+					break;
+				default:
+					videoType = 'audio/mp4';
 			}
 
 			component = {
@@ -266,7 +274,6 @@ Zarafa.plugins.files.ui.FilesRecordDetailsPanel = Ext.extend(Ext.form.FormPanel,
 				}
 			}
 		} else if (odfEnabled && !Ext.isEmpty(extension) && (/\.(odp|odt|ods)$/i).test(extension)) {
-			console.log("odf preview!");
 			component = {
 				xtype : 'filesplugin.webodfpanel',
 				src   : Zarafa.plugins.files.data.Actions.getDownloadLink(record),

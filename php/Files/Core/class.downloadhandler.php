@@ -116,7 +116,6 @@ class DownloadHandler
 
 						die();
 					}
-					Logger::debug(self::LOG_CONTEXT, "Zip added file: " . $res . " file: " . $tmpfiles[$i] . " id: " . $relNodeId);
 				}
 				$zip->close();
 

@@ -47,8 +47,6 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		Zarafa.plugins.files.data.singleton.BackendController.init();
 		Zarafa.plugins.files.data.singleton.AccountStore.init();
 		Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.setUpListeners();
-
-		Ext.chart.Chart.CHART_URL = 'plugins/files/resources/flash/charts.swf';
 	},
 
 	/**
@@ -90,6 +88,8 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 	onAttachmentUploadBeforeShow : function(item, record) {
 		// embedded messages can not be downloaded to files
 		item.setDisabled(record.isEmbeddedMessage());
+		// unsaved attachments can not be added to files without depending on Webapp internals (AttachmentState)
+		item.setDisabled(record.isTmpFile());
 	},
 
 	/**

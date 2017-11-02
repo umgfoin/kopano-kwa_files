@@ -942,7 +942,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 
 		// remove all html entities and urlencode the path...
 		$nohtml = html_entity_decode($dir);
-		$dir = implode("/", array_map("rawurlencode", explode("/", $nohtml)));
+		$dir = implode("/", explode("/", $nohtml));
 
 		return $dir;
 	}

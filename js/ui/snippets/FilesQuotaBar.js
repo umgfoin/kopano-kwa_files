@@ -164,12 +164,13 @@ Zarafa.plugins.files.ui.snippets.FilesQuotaBar = Ext.extend(Ext.Panel, {
 	 * @param response
 	 */
 	gotQuotaValues: function (response) {
+		if (!this.quotaPanel) {
+			return;
+		}
 
 		var used = parseInt(response["quota"][0].amount);
 		var free = parseInt(response["quota"][1].amount);
 		var total = used + free;
-
-		var usedPercentage = parseInt((100 * used) / total); // dont show fractional digits
 
 		// show/hide components
 		this.loadingIcon.hide();
