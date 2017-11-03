@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Plugin German\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-12 11:00+0200\n"
-"PO-Revision-Date: 2017-03-26 12:52+0000\n"
-"Last-Translator: Andreas <a.roesler@kopano.com>\n"
-"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/"
-">\n"
+"PO-Revision-Date: 2017-11-03 10:07+0000\n"
+"Last-Translator: Björn <b.neumann@kopano.com>\n"
+"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -438,7 +438,7 @@ msgstr "Einen neuen Ordner erstellen"
 
 #: js/ui/dialogs/CreateFolderPanel.js:38
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: js/ui/dialogs/CreateFolderPanel.js:80
 #, fuzzy
@@ -447,11 +447,11 @@ msgstr "Ordner zum Hochladen auswählen"
 
 #: js/ui/dialogs/CreateFolderPanel.js:125
 msgid "Kopano WebApp"
-msgstr ""
+msgstr "Kopano WebApp"
 
 #: js/ui/dialogs/CreateFolderPanel.js:126
 msgid "You must specify a name."
-msgstr ""
+msgstr "Sie müssen einen Namen angeben."
 
 #: js/ui/dialogs/CreateFolderPanel.js:181
 #: js/ui/dialogs/SaveToFilesTreePanel.js:285
