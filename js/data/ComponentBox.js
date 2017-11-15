@@ -32,7 +32,8 @@ Zarafa.plugins.files.data.ComponentBox = Ext.extend(Object, {
 	 * @return {Zarafa.plugins.files.data.FilesRecordStore}
 	 */
 	getStore: function () {
-		return Zarafa.plugins.files.data.singleton.FilesRecordStoreManager.getStore(); // get the default store
+		// get the default store
+		return Zarafa.plugins.files.data.singleton.FilesRecordStoreManager.getStore();
 	},
 
 	/**
@@ -62,8 +63,7 @@ Zarafa.plugins.files.data.ComponentBox = Ext.extend(Object, {
 		try {
 			return container.getContentPanel();
 		} catch (e) {
-
-			return container.getTabPanel().getItem(0).getActiveItem();
+			return container.getTabPanel().get(0).getActiveItem();
 		}
 	},
 
@@ -86,15 +86,6 @@ Zarafa.plugins.files.data.ComponentBox = Ext.extend(Object, {
 	},
 
 	/**
-	 * Get the tabpanel items.
-	 *
-	 * @return {Array}
-	 */
-	getTabPanelItems: function () {
-		return this.getTabPanel().items.items;
-	},
-
-	/**
 	 * Get the files viewpanel.
 	 *
 	 * @return {Zarafa.core.ui.SwitchViewContentContainer}
@@ -109,21 +100,17 @@ Zarafa.plugins.files.data.ComponentBox = Ext.extend(Object, {
 	 * @return {Zarafa.plugins.files.ui.FilesRecordGridView} or {Zarafa.plugins.files.ui.FilesRecordIconView}
 	 */
 	getItemsView: function () {
-		return this.getViewPanel().items.get(0);
+		return this.getViewPanel().getActiveItem();
 	},
 
 	/**
 	 * Get the files grid toolbar.
 	 *
-	 * @return {Zarafa.plugins.files.ui.FilesToolbar}
+	 * @return {Zarafa.plugins.files.ui.FilesTopToolbar | undefined }
 	 */
 	getViewPanelToolbar: function () {
 		var viewPanel = this.getMainPanel().filesViewPanel;
-		if (viewPanel) {
-			return viewPanel.topToolbar;
-		} else {
-			return undefined;
-		}
+		return viewPanel ? viewPanel.getTopToolbar() : undefined;
 	}
 });
 

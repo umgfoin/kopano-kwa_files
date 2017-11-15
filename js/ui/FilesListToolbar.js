@@ -28,114 +28,159 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 		config = config || {};
 
 		if (!Ext.isDefined(config.model) && Ext.isDefined(config.context)) {
-			config.model = config.context.getModel();
+			this.model = config.context.getModel();
 		}
 
 		Ext.applyIf(config, {
 			enableOverflow: true,
-			items         : [{
-				xtype       : 'zarafa.toolbarbutton',
-				cls         : 'files_icon_actionbutton',
-				text        : dgettext('plugin_files', 'Upload'),
-				ref         : 'uploadButton',
-				tooltip     : {
-					title: dgettext('plugin_files', 'Upload file'),
-					text : dgettext('plugin_files', 'Upload one or more files')
-				},
-				overflowText: dgettext('plugin_files', 'Upload files'),
-				iconCls     : 'files_icon_action files_icon_action_upload',
-				handler     : this.onFileUpload.createDelegate(this),
-				model       : config.model
-			}, {
-				xtype       : 'zarafa.toolbarbutton',
-				cls         : 'files_icon_actionbutton',
-				text        : dgettext('plugin_files', 'Create folder'),
-				ref         : 'createFolderButton',
-				tooltip     : {
-					title: dgettext('plugin_files', 'Create folder'),
-					text : dgettext('plugin_files', 'Create a new folder')
-				},
-				overflowText: dgettext('plugin_files', 'Create new folder'),
-				iconCls     : 'files_icon_action files_icon_action_new_folder',
-				handler     : this.onCreateFolder,
-				model       : config.model
-			}, {
-				xtype                  : 'zarafa.toolbarbutton',
-				cls                    : 'files_icon_actionbutton',
-				text                   : dgettext('plugin_files', 'Download'),
-				onRecordSelectionChange: function (model, records) {
-					this.setDisabled(!Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, true, true));
-				},
-				tooltip                : {
-					title: dgettext('plugin_files', 'Download files'),
-					text : dgettext('plugin_files', 'Download the selected files')
-				},
-				overflowText           : dgettext('plugin_files', 'Download files'),
-				iconCls                : 'files_icon_action files_icon_action_download',
-				handler                : this.onFileDownload,
-				model                  : config.model
-			}, {
-				xtype                  : 'zarafa.toolbarbutton',
-				cls                    : 'files_icon_actionbutton',
-				text                   : dgettext('plugin_files', 'Share'),
-				onRecordSelectionChange: function (model, records) {
-					this.setDisabled(!Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, true));
-
-					var visible = false;
-					if (Ext.isDefined(records) && records.length > 0) {
-						var account = records[0].getAccount();
-						visible = account.supportsFeature(Zarafa.plugins.files.data.AccountRecordFeature.SHARING);
-					}
-
-					this.setVisible(visible);
-				},
-				tooltip                : {
-					title: dgettext('plugin_files', 'Share files'),
-					text : dgettext('plugin_files', 'Share the selected files')
-				},
-				overflowText           : dgettext('plugin_files', 'Share files'),
-				iconCls                : 'files_icon_action files_icon_action_share',
-				handler                : this.onFileShare,
-				model                  : config.model
-			}, {
-				xtype                  : 'zarafa.toolbarbutton',
-				cls                    : 'files_icon_actionbutton',
-				text                   : dgettext('plugin_files', 'Attach to mail'),
-				onRecordSelectionChange: function (model, records) {
-					this.setDisabled(!Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, true, true));
-				},
-				tooltip                : {
-					title: dgettext('plugin_files', 'Attach to mail'),
-					text : dgettext('plugin_files', 'Attach the selected files to mail')
-				},
-				overflowText           : dgettext('plugin_files', 'Attach to mail'),
-				iconCls                : 'files_icon_action files_icon_action_attach_to_mail',
-				handler                : this.onFileAddToMail.createDelegate(this),
-				model                  : config.model
-			}, {
-				xtype: 'tbfill'
-			}, {
-				xtype                  : 'zarafa.toolbarbutton',
-				tooltip                : dgettext('plugin_files', 'Rename'),
-				overflowText           : dgettext('plugin_files', 'Rename'),
-				iconCls                : 'files_icon_action files_icon_action_edit',
-				onRecordSelectionChange: function (model, records) {
-					this.setDisabled(!Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, true));
-				},
-				nonEmptySelectOnly     : true,
-				handler                : this.onRename,
-				model                  : config.model
-			}, {
-				xtype             : 'zarafa.toolbarbutton',
-				tooltip           : dgettext('plugin_files', 'Delete'),
-				overflowText      : dgettext('plugin_files', 'Delete'),
-				iconCls           : 'files_icon_action files_icon_action_delete',
-				nonEmptySelectOnly: true,
-				handler           : this.onDelete,
-				model             : config.model
-			}]
+			items         :  this.createToolbarItems()
 		});
 		Zarafa.plugins.files.ui.FilesListToolbar.superclass.constructor.call(this, config);
+
+		this.initEvent()
+	},
+
+	/**
+	 * Called after constructing files list toolbar.
+	 */
+	initEvent : function () {
+		this.mon(this.model.getStore(), 'load', this.onLoad, this);
+		this.mon(this.model, 'recordselectionchange', this.onRecordSelectionChange, this);
+	},
+
+	/**
+	 * Create configuration object array which used to
+	 * create toolbar items.
+	 *
+	 * @return {Array} configuration object array for toolbar.
+	 */
+	createToolbarItems : function()
+	{
+		return [{
+			cls         : 'files_icon_actionbutton',
+			text        : dgettext('plugin_files', 'Upload'),
+			ref         : 'uploadButton',
+			tooltip     : {
+				title: dgettext('plugin_files', 'Upload file'),
+				text : dgettext('plugin_files', 'Upload one or more files')
+			},
+			overflowText: dgettext('plugin_files', 'Upload files'),
+			iconCls     : 'files_icon_action files_icon_action_upload',
+			handler     : this.onFileUpload,
+			model       : this.model,
+			scope       : this
+		}, {
+			cls         : 'files_icon_actionbutton',
+			text        : dgettext('plugin_files', 'Create folder'),
+			ref         : 'createFolderButton',
+			tooltip     : {
+				title: dgettext('plugin_files', 'Create folder'),
+				text : dgettext('plugin_files', 'Create a new folder')
+			},
+			overflowText: dgettext('plugin_files', 'Create new folder'),
+			iconCls     : 'files_icon_action files_icon_action_new_folder',
+			handler     : this.onCreateFolder,
+			model       : this.model
+		}, {
+			ref                    : 'downloadBtn',
+			cls                    : 'files_icon_actionbutton',
+			text                   : dgettext('plugin_files', 'Download'),
+			tooltip                : {
+				title: dgettext('plugin_files', 'Download files'),
+				text : dgettext('plugin_files', 'Download the selected files')
+			},
+			overflowText           : dgettext('plugin_files', 'Download files'),
+			iconCls                : 'files_icon_action files_icon_action_download',
+			handler                : this.onFileDownload,
+			model                  : this.model
+		}, {
+			cls                    : 'files_icon_actionbutton',
+			ref                    : 'shareBtn',
+			text                   : dgettext('plugin_files', 'Share'),
+			tooltip                : {
+				title: dgettext('plugin_files', 'Share files'),
+				text : dgettext('plugin_files', 'Share the selected files')
+			},
+			overflowText           : dgettext('plugin_files', 'Share files'),
+			iconCls                : 'files_icon_action files_icon_action_share',
+			handler                : this.onFileShare,
+			model                  : this.model
+		}, {
+			cls                    : 'files_icon_actionbutton',
+			ref                    : 'attachToMailBtn',
+			text                   : dgettext('plugin_files', 'Attach to mail'),
+			tooltip                : {
+				title: dgettext('plugin_files', 'Attach to mail'),
+				text : dgettext('plugin_files', 'Attach the selected files to mail')
+			},
+			overflowText           : dgettext('plugin_files', 'Attach to mail'),
+			iconCls                : 'files_icon_action files_icon_action_attach_to_mail',
+			handler                : this.onFileAddToMail,
+			model                  : this.model,
+			scope                  : this
+		}, {
+			xtype: 'tbfill'
+		}, {
+			tooltip                : dgettext('plugin_files', 'Rename'),
+			overflowText           : dgettext('plugin_files', 'Rename'),
+			ref                    : "renameBtn",
+			iconCls                : 'files_icon_action files_icon_action_edit',
+			handler                : this.onRename,
+			model                  : this.model
+		}, {
+			xtype             : 'zarafa.toolbarbutton',
+			tooltip           : dgettext('plugin_files', 'Delete'),
+			overflowText      : dgettext('plugin_files', 'Delete'),
+			iconCls           : 'files_icon_action files_icon_action_delete',
+			nonEmptySelectOnly: true,
+			handler           : this.onDelete,
+			model             : this.model
+		}];
+	},
+
+	/**
+	 * Event handler triggered when selection was changed in
+	 * grid. it will disable/enable download, attach to mail,
+	 * share and rename buttons in toolbar.
+	 *
+	 * @param {Zarafa.core.ContextModel} model this model.
+	 * @param {Zarafa.plugins.files.data.FilesRecord[]} records The selected records
+	 */
+	onRecordSelectionChange : function(model, records)
+	{
+		var validator = Zarafa.plugins.files.data.Utils.Validator;
+		var isVisible = validator.actionSelectionVisibilityFilter(records, false, true, true);
+		this.downloadBtn.setDisabled(!isVisible);
+		this.attachToMailBtn.setDisabled(!isVisible);
+
+		isVisible = validator.actionSelectionVisibilityFilter(records, true, false, true);
+		if (isVisible) {
+			this.shareBtn.setDisabled(!isVisible);
+			var account = records[0].getAccount();
+			this.shareBtn.setVisible(account.supportsFeature(Zarafa.plugins.files.data.AccountRecordFeature.SHARING));
+		} else {
+			this.shareBtn.setVisible(false);
+		}
+		this.renameBtn.setDisabled(!isVisible);
+	},
+
+	/**
+	 * Event handler which is triggered when store get's load.
+	 * it will disable or enable the toolbar items.
+	 *
+	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store
+	 * @param {Zarafa.plugins.files.data.FilesRecord} records
+	 * @param {Object} options
+	 */
+	onLoad : function (store, records, options) {
+		var path = options.params.id;
+		if (Ext.isEmpty(path) || path === "#R#" ) {
+			this.setDisabled(true);
+			this.shareBtn.setVisible(false);
+		} else {
+			this.createFolderButton.setDisabled(false);
+			this.uploadButton.setDisabled(false);
+		}
 	},
 
 	/**
@@ -279,16 +324,6 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 		var records = this.model.getSelectedRecords();
 
 		Zarafa.plugins.files.data.Actions.deleteRecords(records);
-	},
-
-	/**
-	 * Function which is use to enable toolbar buttons
-	 * It will enable upload and create folder button.
-	 */
-	enableButtons : function ()
-	{
-		this.createFolderButton.setDisabled(false);
-		this.uploadButton.setDisabled(false);
 	}
 });
 

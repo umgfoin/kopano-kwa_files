@@ -188,41 +188,29 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 	onLoad: function (store, records, options)
 	{
 		var path = options.params.id;
-		var currViewPanel = Zarafa.plugins.files.data.ComponentBox.getItemsView();
-		var toolbar = Zarafa.plugins.files.data.ComponentBox.getViewPanelToolbar();
-		var previewPanel = Zarafa.plugins.files.data.ComponentBox.getPreviewPanel();
-		var mainPanel = container.getMainPanel();
+		var componentBox = Zarafa.plugins.files.data.ComponentBox;
+		var viewPanel = componentBox.getViewPanel();
+		var disabledSwitchViewButton = false;
 
-		//disable toolbar buttons
-		toolbar.disable();
-		if (!Ext.isDefined(path) || path === "#R#" || path === "") {
+		if (Ext.isEmpty(path) || path === "#R#" ) {
 			// switch to the account overview!
-			Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-accountview');
+			viewPanel.switchView('files-accountview');
 
 			// remove all selections as we are in the root folder
 			Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.unselectAllNavPanels();
-
-			previewPanel.topToolbar.disable();
-			mainPanel.filesSwitchViewButton.disable();
-
-		} else {
-
-			// enable toolbar buttons
-			toolbar.enableButtons();
-
-			if (currViewPanel instanceof Zarafa.plugins.files.ui.FilesRecordAccountView) {
-				mainPanel.filesSwitchViewButton.enable();
-
-				switch (Zarafa.plugins.files.data.ComponentBox.getContext().getCurrentView()) {
-					case Zarafa.plugins.files.data.Views.LIST:
-						Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-gridview');
-						break;
-					case Zarafa.plugins.files.data.Views.ICON:
-						Zarafa.plugins.files.data.ComponentBox.getViewPanel().switchView('files-iconview');
-						break;
-				}
+			componentBox.getPreviewPanel().topToolbar.disable();
+			disabledSwitchViewButton = true;
+		} else if (componentBox.getItemsView() instanceof Zarafa.plugins.files.ui.FilesRecordAccountView) {
+			switch (componentBox.getContext().getCurrentView()) {
+				case Zarafa.plugins.files.data.Views.LIST:
+					viewPanel.switchView('files-gridview');
+					break;
+				case Zarafa.plugins.files.data.Views.ICON:
+					viewPanel.switchView('files-iconview');
+					break;
 			}
 		}
+		container.getMainPanel().filesSwitchViewButton.setDisabled(disabledSwitchViewButton);
 	},
 
 	/**
