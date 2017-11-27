@@ -100,30 +100,13 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 		var attachmentStore = emailRecord.getAttachmentStore();
 		var server = container.getServerConfig();
 		var max_attachment_size = server.getMaxAttachmentSize();
-		var max_largefile_size = max_attachment_size;
-		var large_files_enabled = false;
-
-		if (typeof server.isLargeFilesEnabled === 'function') {
-			max_largefile_size = server.getMaxLargefileSize();
-			large_files_enabled = server.isLargeFilesEnabled();
-		}
-
 		var size_exceeded = false;
 
 		Ext.each(selectedNodes, function (node, index) {
-			if (!large_files_enabled && node.attributes.filesize > max_attachment_size) {
+			if (node.attributes.filesize > max_attachment_size) {
 				Zarafa.common.dialogs.MessageBox.show({
 					title  : dgettext('plugin_files', 'Warning'),
 					msg    : String.format(dgettext('plugin_files', 'The file {0} is too large!'), node.attributes.filename) + ' (' + dgettext('plugin_files', 'max') + ': ' + Ext.util.Format.fileSize(max_attachment_size) + ')',
-					icon   : Zarafa.common.dialogs.MessageBox.WARNING,
-					buttons: Zarafa.common.dialogs.MessageBox.OK
-				});
-				size_exceeded = true;
-				return false;
-			} else if (large_files_enabled && node.attributes.filesize > max_largefile_size) {
-				Zarafa.common.dialogs.MessageBox.show({
-					title  : dgettext('plugin_files', 'Warning'),
-					msg    : String.format(dgettext('plugin_files', 'The file {0} is too large!'), node.attributes.filename) + ' (' + dgettext('plugin_files', 'max') + ': ' + Ext.util.Format.fileSize(max_largefile_size) + ')',
 					icon   : Zarafa.common.dialogs.MessageBox.WARNING,
 					buttons: Zarafa.common.dialogs.MessageBox.OK
 				});
@@ -192,36 +175,11 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 		if (Ext.isDefined(this.emailRecord)) {
 			emailRecord = this.emailRecord;
 		}
-
 		var attachmentStore = emailRecord.getAttachmentStore();
-		var attachmentRecord = null;
-		var isHtml = emailRecord.get("isHTML");
 
-		var server = container.getServerConfig();
-
-		var max_attachment_size = server.getMaxAttachmentSize();
-
-		var large_files_enabled = (typeof server.isLargeFilesEnabled === 'function') ? server.isLargeFilesEnabled() : false;
-
-		Ext.each(downloadedFilesInfoArray, function (downloadedFileInfo, index) {
-			attachmentRecord = this.convertDownloadedFileInfoToAttachmentRecord(downloadedFileInfo);
+		Ext.each(downloadedFilesInfoArray, function (downloadedFileInfo) {
+			var attachmentRecord = this.convertDownloadedFileInfoToAttachmentRecord(downloadedFileInfo);
 			attachmentStore.add(attachmentRecord);
-			if (large_files_enabled && attachmentRecord.get('size') > max_attachment_size) {
-
-				var tabs = container.getTabPanel().items.items;
-				Ext.each(tabs, function (tab, index) {
-
-					if (tab instanceof Zarafa.mail.dialogs.MailCreateContentPanel) {
-						if (tab.record === emailRecord) {
-
-							var currentBody = tab.mainPanel.editorField.getRawValue();
-							var lfLink = attachmentRecord.getLargeFileLink(isHtml);
-							tab.mainPanel.editorField.setValue(lfLink + currentBody);
-							return false;
-						}
-					}
-				});
-			}
 		}, this);
 		this.dialog.close();
 	}

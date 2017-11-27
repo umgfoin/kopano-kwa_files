@@ -70,25 +70,11 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			handler   : this.onContextItemAttach,
 			beforeShow: function (item, records) {
 				var visible = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, true, true);
-				var server = container.getServerConfig();
-
-				var max_attachment_size = server.getMaxAttachmentSize();
-
-				var max_largefile_size = max_attachment_size;
-
-				var large_files_enabled = false;
-
-				if (typeof server.isLargeFilesEnabled === 'function') {
-					max_largefile_size = server.getMaxLargefileSize();
-					large_files_enabled = server.isLargeFilesEnabled();
-				}
+				var max_attachment_size = container.getServerConfig().getMaxAttachmentSize();
 
 				for (var i = 0; i < records.length; i++) {
 					var record = records[i];
-					if (!large_files_enabled && record.get('message_size') > max_attachment_size) {
-						visible = false;
-						break;
-					} else if (large_files_enabled && record.get('message_size') > max_largefile_size) {
+					if (record.get('message_size') > max_attachment_size) {
 						visible = false;
 						break;
 					}

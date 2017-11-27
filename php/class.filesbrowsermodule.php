@@ -950,50 +950,24 @@ class FilesBrowserModule extends ListModule
 
 		foreach ($ids as $file) {
 			$filename = basename($file);
-
 			$tmpname = $attachment_state->getAttachmentTmpPath($filename);
-
-			$path = dirname($file);
+			$filesize = filesize($tmpname);
 
 			Logger::debug(self::LOG_CONTEXT, "Downloading: " . $filename . " to: " . $tmpname);
 
-			// download file from the backend
-			$relRecId = substr($file, strpos($file, '/'));
-			$http_status = $initializedBackend->get_file($relRecId, $tmpname);
+			$response['items'][] = array(
+				'name' => $filename,
+				'size' => $filesize,
+				'tmpname' => PathUtil::getFilenameFromPath($tmpname)
+			);
 
-			$filesize = filesize($tmpname);
+			$attachment_state->addAttachmentFile($dialogAttachmentId, PathUtil::getFilenameFromPath($tmpname), Array(
+				"name" => $filename,
+				"size" => $filesize,
+				"type" => PathUtil::get_mime($tmpname),
+				"sourcetype" => 'default'
+			));
 
-			// switch between large files or normal attachment
-			if ($filesize > getMaxUploadSize()) {
-				$lf_backend = new LargeFile();
-
-				// Move the uploaded file into the large files backend
-				$attachid = $lf_backend->addUploadedAttachmentFile($dialogAttachmentId, $filename, $tmpname, array(
-					'name' => $filename,
-					'size' => $filesize,
-					'type' => 'application/octet-stream',
-					'sourcetype' => 'default'
-				));
-
-				$response['items'][] = array(
-					'tmpname' => $attachid,
-					'name' => $filename,
-					'size' => $filesize
-				);
-			} else {
-				$response['items'][] = array(
-					'name' => $filename,
-					'size' => $filesize,
-					'tmpname' => PathUtil::getFilenameFromPath($tmpname)
-				);
-
-				$attachment_state->addAttachmentFile($dialogAttachmentId, PathUtil::getFilenameFromPath($tmpname), Array(
-					"name" => $filename,
-					"size" => $filesize,
-					"type" => PathUtil::get_mime($tmpname),
-					"sourcetype" => 'default'
-				));
-			}
 			Logger::debug(self::LOG_CONTEXT, "filesize: " . $filesize);
 		}
 
