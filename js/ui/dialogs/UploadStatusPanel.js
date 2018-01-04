@@ -55,6 +55,12 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 	callbackUploadAborted: Ext.emptyFn,
 
 	/**
+	 * @cfg {@link Zarafa.plugins.files.data.FilesRecordStore store} which contains
+	 * {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}.
+	 */
+	store : undefined,
+
+	/**
 	 * @constructor
 	 * @param config
 	 */
@@ -403,7 +409,7 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 	 */
 	onUploadsFinished: function () {
 		this.dialog.close();
-		this.callbackAllDone(this.files, this.destination, this.xhr);
+		this.callbackAllDone(this.files, this.destination, this.store);
 	}
 });
 

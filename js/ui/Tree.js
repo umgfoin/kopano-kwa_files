@@ -66,7 +66,7 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 			'entryid' : node.attributes.id,
 			'message_class' : 'IPM.Files'
 		},node.attributes.id);
-		fileRecord.store = Zarafa.plugins.files.data.ComponentBox.getStore();
+		fileRecord.store = this.filesStore;
 		return fileRecord;
 	},
 
@@ -77,8 +77,6 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 	 * @param {Ext.tree.AsyncTreeNode} childnode asynchronous tree child node.
 	 */
 	selectNode: function (node, childnode) {
-		Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.unselectAllNavPanels();
-
 		if (!Ext.isDefined(childnode)) {
 			this.nodeToSelect = node.id;
 		}
@@ -90,7 +88,6 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 			node.select();
 			node.expand();
 		} else {
-
 			var parentNode = node.id.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, '') + "/";
 			var nToSelectParent = this.getNodeById(parentNode);
 			if (Ext.isDefined(nToSelectParent)) {

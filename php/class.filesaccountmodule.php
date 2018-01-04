@@ -46,9 +46,9 @@ class FilesAccountModule extends ListModule
 						case "save":
 							// check if we should create a new account or edit an existing one
 							if (isset($actionData["entryid"])) {
-								$result = $this->accountUpdate($actionType, $actionData);
+								$result = $this->accountUpdate($actionData);
 							} else {
-								$result = $this->accountCreate($actionType, $actionData);
+								$result = $this->accountCreate($actionData);
 							}
 							break;
 						case "delete":
@@ -100,10 +100,9 @@ class FilesAccountModule extends ListModule
 	}
 
 	/**
-	 * @param {String} $actionType
 	 * @param {Array} $actionData
 	 */
-	public function accountCreate($actionType, $actionData)
+	public function accountCreate($actionData)
 	{
 		$response = array();
 		$requestProperties = $actionData["props"];
@@ -177,12 +176,11 @@ class FilesAccountModule extends ListModule
 		// get a list of all accounts
 		$accountStore = new \Files\Core\AccountStore();
 		$accounts = $accountStore->getAllAccounts();
-
 		$accountList = array();
 
 		if (is_array($accounts)) {
 			foreach ($accounts as $account) {
-
+				$account = $accountStore->updateAccount($account);
 				$accountList[$account->getId()] = array(
 					"props" => array(
 						"id" => $account->getId(),
@@ -229,10 +227,9 @@ class FilesAccountModule extends ListModule
 	/**
 	 * update some values of an account
 	 *
-	 * @param {String} $actionType
 	 * @param {Array} $actionData
 	 */
-	public function accountUpdate($actionType, $actionData)
+	public function accountUpdate($actionData)
 	{
 		$response = array();
 

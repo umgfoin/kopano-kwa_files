@@ -872,7 +872,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	 *
 	 * @return string trimmed directory path
 	 */
-	private function removeSlash($dir)
+	function removeSlash($dir)
 	{
 		if (strpos($dir, '/') === 0) {
 			$dir = substr($dir, 1);

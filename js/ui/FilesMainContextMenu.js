@@ -2,18 +2,17 @@ Ext.namespace('Zarafa.plugins.files.ui');
 
 Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu, {
 
-	context: undefined,
+	/**
+	 * @cfg {Zarafa.plugins.files.FilesContext} context The context to which this context menu belongs.
+	 */
+	context : undefined,
 
-	model: undefined,
-
-	grid: undefined,
-
+	/**
+	 * @constructor
+	 * @param {Object} config configuration object.
+	 */
 	constructor: function (config) {
 		config = config || {};
-
-		if (!Ext.isDefined(config.model) && Ext.isDefined(config.context)) {
-			config.model = config.context.getModel();
-		}
 
 		Ext.applyIf(config, {
 			items: [
@@ -28,12 +27,18 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 		Zarafa.plugins.files.ui.FilesMainContextMenu.superclass.constructor.call(this, config);
 	},
 
+	/**
+	 * Create a context menu items.
+	 *
+	 * @return {Array} return an array which contains the configuration objects for
+	 * context menu.
+	 */
 	createContextActionItems: function () {
 		return [{
 			xtype     : 'zarafa.conditionalitem',
 			text      : dgettext('plugin_files', 'Download'),
 			iconCls   : 'files_icon_action files_icon_action_download',
-			handler   : this.onContextItemOpen,
+			handler   : this.onContextItemDownload,
 			beforeShow: function (item, records) {
 				var visible = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, true, false);
 
@@ -102,31 +107,49 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			},
 			scope     : this
 		}, {
-			xtype     : 'zarafa.conditionalitem',
-			text      : dgettext('plugin_files', 'Info'),
-			iconCls   : 'icon_info',
-			disabled  : Zarafa.plugins.files.data.ComponentBox.getContext().getCurrentViewMode() != Zarafa.plugins.files.data.ViewModes.NO_PREVIEW,
-			handler   : this.onContextItemInfo,
+			xtype : 'zarafa.conditionalitem',
+			text : dgettext('plugin_files', 'Info'),
+			iconCls : 'icon_info',
+			handler : this.onContextItemInfo,
 			beforeShow: function (item, records) {
-				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, true));
+				var visibilityFilter = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, true);
+				var noPreviewPanel = this.context.getCurrentViewMode() === Zarafa.plugins.files.data.ViewModes.NO_PREVIEW;
+				item.setDisabled(!visibilityFilter || !noPreviewPanel);
 			},
-			scope     : this
+			scope : this
 		}];
 	},
 
-	onContextItemOpen: function () {
-		Zarafa.plugins.files.data.Actions.openFilesContent(this.records);
+	/**
+	 * Handler called when 'Download' context menu item is pressed.
+	 */
+	onContextItemDownload : function ()
+	{
+		Zarafa.plugins.files.data.Actions.downloadItem(this.records);
 	},
 
-	onContextItemDelete: function () {
+	/**
+	 * Handler called when 'Delete' context menu item is pressed.
+	 */
+	onContextItemDelete: function ()
+	{
 		Zarafa.plugins.files.data.Actions.deleteRecords(this.records);
 	},
 
-	onContextItemShare: function () {
+	/**
+	 * Handler called when 'share' context menu item is pressed.
+	 */
+	onContextItemShare: function ()
+	{
 		Zarafa.plugins.files.data.Actions.createShareDialog(this.records);
 	},
 
-	onContextItemInfo: function () {
+	/**
+	 * Handler called when 'Info' context menu item is pressed.
+	 * It will open the {@link Zarafa.plugins.files.ui.dialogs.FilesRecordContentPanel FilesRecordContentPanel}.
+	 */
+	onContextItemInfo: function ()
+	{
 		var count = this.records.length;
 		var record = undefined;
 
@@ -143,10 +166,17 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 		Zarafa.core.data.UIFactory.openLayerComponent(componentType, undefined, config);
 	},
 
+	/**
+	 * Handler called when 'Rename' context menu item is pressed.
+	 */
 	onContextItemRename: function () {
-		Zarafa.plugins.files.data.Actions.openRenameDialog(this.model, this.records[0]);
+		Zarafa.plugins.files.data.Actions.openRenameDialog(this.records[0]);
 	},
 
+	/**
+	 * Handler called when 'Attach to mail' context menu item is pressed.
+	 * It will create new mail with selected file(s) as an attachment.
+	 */
 	onContextItemAttach: function () {
 		var emailRecord = container.getContextByName("mail").getModel().createRecord();
 		var idsList = [];
@@ -176,7 +206,16 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 		}
 	},
 
-	attachToMail: function (response, emailRecord) {
+	/**
+	 * Open newly created mail record into tab panel.
+	 *
+	 * @param {Array} responseItems The File records that will be added as attachments.
+	 * @param {Object} response The response object belonging to the given command.
+	 * @param {Zarafa.core.data.IPMRecord} emailRecord The mail record which contains files records
+	 * as an attachments.
+	 */
+	attachToMail: function (response, emailRecord)
+	{
 		Zarafa.plugins.files.data.Actions.openCreateMailContent(emailRecord, response.items);
 	}
 });

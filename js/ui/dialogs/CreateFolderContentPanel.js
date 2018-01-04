@@ -26,7 +26,8 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderContentPanel = Ext.extend(Zarafa.cor
 			items: [{
 				xtype: 'filesplugin.createfolderpanel',
 				accountFilter : config.accountFilter,
-				selectedFolderId : config.selectedFolderId
+				selectedFolderId : config.selectedFolderId,
+				store : config.store
 			}]
 		});
 

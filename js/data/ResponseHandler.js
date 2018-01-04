@@ -118,7 +118,8 @@ Zarafa.plugins.files.data.ResponseHandler = Ext.extend(Zarafa.core.data.IPMRespo
 				Ext.MessageBox.confirm(
 					dgettext('plugin_files', 'Confirm overwrite'),
 					dgettext('plugin_files', 'File already exists. Do you want to overwrite it?'),
-					Zarafa.plugins.files.data.Actions.doMoveRecords.createDelegate(this, ['yes', null, null, this.sendRecords, destination], false),
+					//Zarafa.plugins.files.data.Actions.doMoveRecords.createDelegate(this, ['yes', null, null, this.sendRecords, destination], false),
+					Zarafa.plugins.files.data.Actions.doMoveRecords.createDelegate(this, [null, null, this.sendRecords, destination], 1),
 					this
 				);
 			}

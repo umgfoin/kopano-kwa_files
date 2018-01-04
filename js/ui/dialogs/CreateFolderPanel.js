@@ -17,6 +17,13 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 	selectedFolderId : undefined,
 
 	/**
+	 * {@link Zarafa.plugins.files.data.FilesRecordStore store} which contains the
+	 * {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}.
+	 * @property
+	 */
+	store : undefined,
+
+	/**
 	 * @constructor
 	 * @param {Object} config Configuration structure
 	 */
@@ -235,19 +242,6 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 			return false;
 		}
 
-		var props = response.item[0].props;
-
-		var newFolder = {
-			id          : props.id,
-			text        : props.filename,
-			filename    : props.filename,
-			has_children: false,
-			expanded    : true,
-			iconCls     : 'icon_folder_note',
-			loaded      : true,
-			isFolder    : true
-		};
-
 		var d = new Date();
 		var data = {
 			"filename"     : folderName,
@@ -259,24 +253,7 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 			"type"         : Zarafa.plugins.files.data.FileTypes.FOLDER
 		};
 
-		var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(props.id);
-		var navpanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-		var currentNode = navpanel.getNodeById(parentFolderId);
-
-		// create the folder in the navbar
-		if (Ext.isDefined(currentNode) && currentNode.rendered) {
-			currentNode.appendChild(newFolder);
-		}
-
-		// add the file to the grid
-		if (Zarafa.plugins.files.data.ComponentBox.getStore().getPath() === parentFolderId) {
-			var record = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_FILES, data);
-			var store = Zarafa.plugins.files.data.ComponentBox.getStore();
-			store.add(record);
-			store.on("update", Zarafa.plugins.files.data.Actions.doRefreshIconView, Zarafa.plugins.files.data.Actions, {single: true});
-			record.commit(true);
-		}
-
+		this.store.fireEvent('createfolder', this.store, parentFolderId, data);
 		this.dialog.close();
 	},
 

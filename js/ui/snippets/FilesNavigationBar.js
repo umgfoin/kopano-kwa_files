@@ -55,28 +55,36 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 	currentPath: '#R#',
 
 	/**
+	 * filesStore which contains the {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}.
+	 *
+	 * @property
+	 * @type {Zarafa.plugins.files.data.FilesRecordStore}
+	 */
+	filesStore : undefined,
+
+	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
 	constructor: function (config) {
 		config = config || {};
 
-		if (!Ext.isDefined(config.model) && Ext.isDefined(config.context)) {
-			config.model = config.context.getModel();
+		if (Ext.isDefined(config.model) && !Ext.isDefined(config.filesStore)) {
+			config.filesStore = config.model.getStore();
+			this.currentPath = config.filesStore.getPath();
 		}
 
 		Ext.applyIf(config, {
-			xtype       : 'filesplugin.navigationbar',
+			xtype : 'filesplugin.navigationbar',
 			maskDisabled: false,
 			hideBorders : true,
-			border      : false,
+			border : false,
 			cls: 'navbar_container',
 			height: 25,
 			defaults: {
 				height: 25
 			},
-			layout      : 'column',
-			items       : []
+			layout : 'column',
 		});
 
 		Zarafa.plugins.files.ui.snippets.FilesNavigationBar.superclass.constructor.call(this, config);
@@ -87,22 +95,18 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 	 * @private
 	 */
 	initEvents: function () {
-		var filesStore = Zarafa.plugins.files.data.ComponentBox.getStore();
-
-		this.mon(filesStore, {
+		this.mon(this.filesStore, {
 			'beforeload': this.onStoreLoad,
 			scope       : this
 		});
 
-		// do the inital check after rendering
-		this.currentPath = filesStore.getPath();
 		this.on('afterrender', this.generateNavigationButtons.createDelegate(
 			this,
 			[
 				Zarafa.plugins.files.data.Utils.File.stripAccountId(this.currentPath),
 				Zarafa.plugins.files.data.Utils.File.getAccountId(this.currentPath)
 			]
-		), this, {single: true});
+		), this);
 	},
 
 	/**
@@ -110,16 +114,15 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 	 * {@link Zarafa.plugins.files.data.FilesRecordStore#beforeload} event.
 	 *
 	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store the files store.
-	 * @param {Array} records
-	 * @param {Object} options
 	 * @private
 	 */
-	onStoreLoad: function (store, records, options) {
+	onStoreLoad: function (store)
+	{
 		var currentPath = store.getPath();
-		var accID = Zarafa.plugins.files.data.Utils.File.getAccountId(currentPath);
-		var backendPath = Zarafa.plugins.files.data.Utils.File.stripAccountId(currentPath);
-		if(this.currentPath != currentPath) {
+		if(this.currentPath !== currentPath) {
 			this.currentPath = currentPath;
+			var accID = Zarafa.plugins.files.data.Utils.File.getAccountId(currentPath);
+			var backendPath = Zarafa.plugins.files.data.Utils.File.stripAccountId(currentPath);
 			this.generateNavigationButtons(backendPath, accID);
 		}
 	},
@@ -162,58 +165,82 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 	},
 
 	/**
+	 * Create home button in navigation bar.
+	 */
+	createHomeButton : function()
+	{
+		// Added Home button in files navigation bar.
+		this.add({
+			xtype : 'button',
+			cls: "files_navbar_button files_navbar_button_first",
+			path: "#R#", // root folder
+			listeners: {
+				click: this.doNavButtonClick,
+				scope : this
+			},
+			iconCls: "files_navbar files_navbar_home"
+		});
+	},
+
+	/**
+	 * Create backend root button in navigation bar.
+	 * @param {String} path The path of selected node/button in files navigation bar.
+	 * @param {String} accountID The accountID of selected configured account.
+	 * @param {Boolean} isLastButton true if selected node/button is last button in
+	 * navigation bar
+	 */
+	createBackEndRootButton : function (path, accountID, isLastButton)
+	{
+		if (Ext.isEmpty(accountID)) {
+			return;
+		}
+
+		var account = this.accountsStore.getById(accountID);
+		if (Ext.isEmpty(account)) {
+			return;
+		}
+
+		var lastCls = isLastButton ? " files_navbar_button_last" : "";
+		var accountName = Zarafa.plugins.files.data.Utils.Format.truncate(account.get("name"), this.maxStringBeforeTruncate);
+		var accButton = {
+			xtype : 'button',
+			cls : "files_navbar_button" + lastCls,
+			path : "#R#" + accountID + "/",
+			listeners : {
+				click : this.doNavButtonClick,
+				scope : this
+			},
+			text : accountName
+		};
+
+		// If account name is not set by user then show account backend icon
+		if (Ext.isEmpty(accountName)) {
+			accButton.iconCls = "files_navbar icon_16_" + account.get("backend");
+		}
+		this.add(accButton);
+	},
+
+	/**
 	 * Create buttons for the given folder path.
 	 *
 	 * @param path
 	 * @param accountID
 	 */
-	generateNavigationButtons: function (path, accountID) {
-
+	generateNavigationButtons: function (path, accountID)
+	{
 		// recalculate the width
 		this.recalculateMaxPath();
 
 		// first remove old buttons
 		this.removeAll(true);
 
-		var accStore = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
+		// Create home button.
+		this.createHomeButton();
+		var isLastButton = path.indexOf("/") === -1 || path === "/";
+		// Create Backend root button.
+		this.createBackEndRootButton(path, accountID, isLastButton);
 
-		// look up the account
-		var account = null;
-
-		if (!Ext.isEmpty(accountID)) {
-			account = accStore.getById(accountID);
-		}
-
-		var homeButton = new Ext.Button({
-			cls: "files_navbar_button files_navbar_button_first",
-			path: "#R#", // root folder
-			listeners: {
-				click: this.doNavButtonClick
-			},
-			iconCls: "files_navbar files_navbar_home"
-		});
-		this.add(homeButton);
-
-		if (!Ext.isEmpty(accountID) && Ext.isDefined(account)) {
-			var lastCls = (path.indexOf("/") === -1 || path === "/") ? " files_navbar_button_last" : "";
-			var accountName = Zarafa.plugins.files.data.Utils.Format.truncate(account.get("name"), this.maxStringBeforeTruncate);
-			var accButton = new Ext.Button({
-				cls: "files_navbar_button" + lastCls,
-				path: "#R#" + accountID + "/", // backend root folder
-				listeners: {
-					click: this.doNavButtonClick
-				},
-				text   : accountName
-			});
-
-			// If account name is not set by user then show account backend icon
-			if (accountName === '') {
-				accButton.setIconClass("files_navbar icon_16_" + account.get("backend"));
-			}
-			this.add(accButton);
-		}
-
-		if (path.indexOf("/") !== -1 && path !== "/") {
+		if (!isLastButton) {
 			var currPath = "/";
 			var pathParts = path.replace(/^\/|\/$/g, '').split("/"); // trim leading and trailing slash and split afterwards
 
@@ -229,14 +256,15 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 						text: Zarafa.plugins.files.data.Utils.Format.truncate(pathPart, this.maxStringBeforeTruncate),
 						handler: this.doNavButtonClick,
 						iconCls: 'icon_folder_note',
-						path: "#R#" + accountID + currPath
+						path: "#R#" + accountID + currPath,
+						scope : this
 					});
 				}, this);
 
 				var overflowButton = new Ext.Button({
 					cls: "files_navbar_button",
 					menu: menu,
-					text   : this.pathTruncateText
+					text : this.pathTruncateText
 				});
 				this.add(overflowButton);
 			} else {
@@ -251,7 +279,8 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 					cls: "files_navbar_button" + lastCls,
 					path: "#R#" + accountID + currPath,
 					listeners: {
-						click: this.doNavButtonClick
+						click: this.doNavButtonClick,
+						scope : this
 					}
 				});
 				this.add(navBtn);
@@ -267,23 +296,12 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 	 * @param button
 	 * @param event
 	 */
-	doNavButtonClick: function(button, event) {
-		// read the path property
-		var path = button.path;
-
-		// reload main store
-		Zarafa.plugins.files.data.ComponentBox.getStore().loadPath(path);
-
-		// reselect navigator tree
-		var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(path);
-		var nav = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-
-		if(nav) {
-			var n = nav.getNodeById(path);
-			if (Ext.isDefined(n)) {
-				n.select();
-			}
+	doNavButtonClick: function(button, event)
+	{
+		if(button.path === '#R#') {
+			this.model.setPreviewRecord(undefined);
 		}
+		this.filesStore.loadPath(button.path);
 	}
 });
 

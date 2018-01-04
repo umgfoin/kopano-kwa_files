@@ -15,6 +15,12 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 	nodeToSelect : null,
 
 	/**
+	 * @cfg {@link Zarafa.plugins.files.data.FilesRecordStore filesStore} which contains
+	 * {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}.
+	 */
+	filesStore : undefined,
+
+	/**
 	 * @constructor
 	 * @param config
 	 */
@@ -23,7 +29,7 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 		config = config || {};
 
 		Ext.applyIf(config, {
-			xtype : 'filesplugin.tree',
+			xtype : 'filesplugin.navigatortreepanel',
 			bodyCssClass : 'files-context-navigation-node',
 			accountFilter: config.accountFilter
 		});
@@ -132,8 +138,7 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 	onNodeClick: function (node)
 	{
 		this.nodeToSelect = node.attributes.id;
-		Zarafa.plugins.files.data.ComponentBox.getStore().loadPath(this.nodeToSelect);
-		Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.unselectAllNavPanels();
+		this.filesStore.loadPath(this.nodeToSelect);
 
 		var n = this.getNodeById(this.nodeToSelect);
 		if (Ext.isDefined(n)) {
@@ -206,7 +211,8 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 	 */
 	onContextMenu: function (node, event)
 	{
-		Zarafa.core.data.UIFactory.openContextMenu(Zarafa.core.data.SharedComponentType['zarafa.plugins.files.treecontextmenu'], [this.convertNodeToRecord(node)], {
+		var component = Zarafa.core.data.SharedComponentType['zarafa.plugins.files.treecontextmenu'];
+		Zarafa.core.data.UIFactory.openContextMenu(component, [this.convertNodeToRecord(node)], {
 			position: event.getXY(),
 			context : Zarafa.plugins.files.data.ComponentBox.getContext()
 		});

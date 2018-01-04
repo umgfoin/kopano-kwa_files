@@ -12,19 +12,31 @@ Zarafa.plugins.files.data.AccountStore = Ext.extend(Zarafa.core.data.ListModuleS
 	/**
 	 * @constructor
 	 */
-	constructor: function () {
-		Zarafa.plugins.files.data.AccountStore.superclass.constructor.call(this, {
+	constructor: function (config)
+	{
+		config = Ext.applyIf(config || {}, {
 			preferredMessageClass: 'IPM.FilesAccount',
-			autoSave             : true,
-			actionType           : Zarafa.core.Actions['list'],
-			defaultSortInfo      : {
-				field    : 'account_sequence',
+			autoLoad : true,
+			autoSave : true,
+			defaultSortInfo : {
+				field : 'account_sequence',
 				direction: 'asc'
 			}
 		});
 
-		// add custom event
-		this.addEvents('reorder'); // reorder has two arguments: panel a and panel b, those got swapped
+		Zarafa.plugins.files.data.AccountStore.superclass.constructor.call(this, config);
+
+		this.addEvents(
+			/**
+			 * @event reorder
+			 * Fires when order of a configured account is changed in
+			 * {@link Zarafa.plugins.files.settings.ui.AccountGrid AccountGrid}
+			 *
+			 * @param {Zarafa.plugins.files.data.AccountRecord} firstAccount which reorder.
+			 * @param {Zarafa.plugins.files.data.AccountRecord} secondAccount which reorder.
+			 */
+			'reorder'
+		);
 	}
 });
 
