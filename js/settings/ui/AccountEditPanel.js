@@ -159,7 +159,7 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 					xtype         : "combo",
 					fieldLabel    : dgettext('plugin_files', 'Account type'),
 					ref           : '../../../accBackend',
-					store         : Zarafa.plugins.files.data.singleton.BackendController.getBackendNameStore(),
+					store         : config.backendStore,
 					valueField    : 'backend',
 					value         : backend,
 					displayField  : 'displayName',

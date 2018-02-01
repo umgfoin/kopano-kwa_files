@@ -43,6 +43,8 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 
 		this.registerModules();
 
+		this.registerInsertionPoint('context.settings.categories', this.createSettingCategories, this);
+
 		this.registerInsertionPoint('main.maintabbar.left', this.createMainTab, this);
 
 		this.registerInsertionPoint('main.maintoolbar.new.item', this.createNewFilesButton, this);
@@ -72,6 +74,20 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			tabOrderIndex: 7,
 			context      : this.getName()
 		};
+	},
+
+	/**
+	 * Create the files {@link Zarafa.settings.SettingsMainCategory Settings Category}
+	 * to the {@link Zarafa.settings.SettingsContext}. This will create new
+	 * {@link Zarafa.settings.ui.SettingsCategoryTab tabs} for the
+	 * {@link Zarafa.plugins.files.settings.SettingsFilesCategory Files Plugin}.
+	 * @return {Object} configuration object for the categories to register
+	 */
+	createSettingCategories: function () {
+		return {
+			xtype: 'filesplugin.settingsmaincategory',
+			model : this.getModel()
+		}
 	},
 
 	/**

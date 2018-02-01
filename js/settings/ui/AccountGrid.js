@@ -15,6 +15,12 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	store: null,
 
 	/**
+	 * @cfg {Zarafa.plugins.files.data.BackendStore} backendStore which
+	 * contains {@link Zarafa.plugins.files.data.FilesBackendRecord backend} records.
+	 */
+	backendStore : undefined,
+
+	/**
 	 * @constructor
 	 * @param {Object} config
 	 */
@@ -42,7 +48,8 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 				iconCls: 'filesplugin_icon_add',
 				text   : dgettext('plugin_files', 'Add Account'),
 				ref    : '../addAccountBtn',
-				handler: this.onAccountAdd
+				handler: this.onAccountAdd,
+				scope : this
 			}, {
 				iconCls : 'filesplugin_icon_delete',
 				text    : dgettext('plugin_files', 'Remove Account'),
@@ -177,22 +184,21 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['filesplugin.accountedit'], undefined, {
 			store  : grid.getStore(),
 			item   : grid.getStore().getAt(rowIndex),
+			backendStore : this.backendStore,
 			manager: Ext.WindowMgr
 		});
 	},
 
 	/**
 	 * Clickhandler for the "add account" button.
-	 *
-	 * @param button
-	 * @param event
 	 */
-	onAccountAdd: function (button, event) {
-		var grid = button.refOwner;
-
-		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['filesplugin.accountedit'], undefined, {
-			store  : grid.getStore(),
-			manager: Ext.WindowMgr
+	onAccountAdd: function ()
+	{
+		var component = Zarafa.core.data.SharedComponentType['filesplugin.accountedit'];
+		Zarafa.core.data.UIFactory.openLayerComponent(component, undefined, {
+			store  : this.getStore(),
+			backendStore : this.backendStore,
+			modal : true
 		});
 	},
 

@@ -9,6 +9,12 @@ Ext.namespace('Zarafa.plugins.files.context');
 Zarafa.plugins.files.FilesContextModel = Ext.extend(Zarafa.core.ContextModel, {
 
 	/**
+	 * @cfg {Zarafa.plugins.files.data.BackendStore} backendStore which
+	 * contains {@link Zarafa.plugins.files.data.FilesBackendRecord backend} records.
+	 */
+	backendStore : undefined,
+
+	/**
 	 * @constructor
 	 * @param {Object} config Configuration object.
 	 */
@@ -19,6 +25,10 @@ Zarafa.plugins.files.FilesContextModel = Ext.extend(Zarafa.core.ContextModel, {
 			config.store = Zarafa.plugins.files.data.singleton.FilesRecordStoreManager.getStore(); // get the default store
 		}
 
+		if(!Ext.isDefined(config.backendStore)) {
+			config.backendStore = new Zarafa.plugins.files.data.BackendStore();
+		}
+		
 		Zarafa.plugins.files.FilesContextModel.superclass.constructor.call(this, config);
 	},
 

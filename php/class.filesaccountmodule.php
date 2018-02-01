@@ -55,10 +55,11 @@ class FilesAccountModule extends ListModule
 							$result = $this->accountDelete($actionType, $actionData);
 							break;
 						case "list":
-							$result = $this->accountList($actionType, $actionData);
-							break;
-						case "getbackends":
-							$result = $this->backendInformation($actionType, $actionData);
+							if(isset($actionData["list_backend"]) && $actionData["list_backend"]) {
+								$result = $this->backendInformation($actionType);
+							} else {
+								$result = $this->accountList($actionType, $actionData);
+							}
 							break;
 						case "getquota":
 							$result = $this->getQuotaInformation($actionType, $actionData);
@@ -286,36 +287,31 @@ class FilesAccountModule extends ListModule
 	 * Return all Informations about the existing backends.
 	 *
 	 * @param {String} $actionType
-	 * @param {String} $actionData
 	 */
-	public function backendInformation($actionType, $actionData)
+	public function backendInformation($actionType)
 	{
-		$response = array();
-
 		// find all registered backends
 		$backendStore = \Files\Backend\BackendStore::getInstance();
 		$backendNames = $backendStore->getRegisteredBackendNames();
 
-		$response['backends'] = array();
+		$data = array();
+		$items = array();
 		foreach ($backendNames as $backendName) {
 			$backendInstance = $backendStore->getInstanceOfBackend($backendName);
-
 			if ($backendInstance !== FALSE) {
-				$response['backends'][] = array(
+				array_push($items, array('props' => array(
 					"name" => $backendName,
-					"displayName" => $backendInstance->getDisplayName(),
-					"description" => $backendInstance->getDescription(),
-					"features" => $backendInstance->getAvailableFeatures()
-
-				);
+					"message_class" => "IPM.FilesBackend",
+					"displayName" => $backendInstance->getDisplayName()
+				)));
 			}
 		}
 
-		$response['status'] = true;
-		$this->addActionData($actionType, $response);
-		$GLOBALS["bus"]->addData($this->getResponseData());
+		$data = array_merge($data, array('item' => $items));
 
-		return $response['status'];
+		$this->addActionData($actionType, $data);
+		$GLOBALS["bus"]->addData($this->getResponseData());
+		return true;
 	}
 
 	/**
