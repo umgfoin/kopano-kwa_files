@@ -23,10 +23,8 @@ Zarafa.plugins.files.ui.dialogs.ShareContentPanel = Ext.extend(Zarafa.core.ui.Co
 		Ext.applyIf(config, {
 			layout     : 'fit',
 			title      : dgettext('plugin_files', 'Share Files'),
-			closeOnSave: true,
 			width      : 800,
-			height     : 445,
-
+			height     : 500,
 			items: [
 				container.populateInsertionPoint('plugin.files.sharedialog', this, config.context)
 			]
