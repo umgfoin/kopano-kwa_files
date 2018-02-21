@@ -9,21 +9,17 @@ Zarafa.plugins.files.settings.ui.FeatureVersionInfoContentPanel = Ext.extend(Zar
 
 	/**
 	 * @constructor
-	 * @param config Configuration structure
+	 * @param {Object} config Configuration structure
 	 */
 	constructor: function (config) {
 		config = config || {};
 
 		Ext.applyIf(config, {
-
 			xtype: 'filesplugin.featureversioninfocontentpanel',
-
-			layout    : 'fit',
-			model     : true,
-			autoSave  : false,
-			width     : 400,
-			autoHeight: true,
+			stateful : false,
 			title     : dgettext('plugin_files', 'Version Information'),
+			width      : 300,
+			height     : 100,
 			items     : [{
 				xtype: 'filesplugin.featureversioninfopanel',
 				item : config.item

@@ -16,7 +16,7 @@ Zarafa.plugins.files.settings.ui.FeatureVersionInfoPanel = Ext.extend(Ext.Panel,
 
 	/**
 	 * @constructor
-	 * @param config Configuration structure.
+	 * @param {Object} config Configuration structure.
 	 */
 	constructor: function (config) {
 		config = config || {};
@@ -28,9 +28,6 @@ Zarafa.plugins.files.settings.ui.FeatureVersionInfoPanel = Ext.extend(Ext.Panel,
 		Ext.applyIf(config, {
 
 			xtype      : 'filesplugin.featureversioninfopanel',
-			autoHeight : true,
-			layout     : 'fit',
-			defaultType: 'textfield',
 			items      : this.createPanelItems(config),
 			buttons    : [{
 				text   : dgettext('plugin_files', 'Close'),
@@ -73,10 +70,9 @@ Zarafa.plugins.files.settings.ui.FeatureVersionInfoPanel = Ext.extend(Ext.Panel,
 	 * Function is called after we received the response object from the server.
 	 * It will update the textfield values.
 	 *
-	 * @param response
+	 * @param {Object} response version information object
 	 */
 	gotVersionValues: function (response) {
-
 		this.backendVersionField.setValue(response.version.backend);
 		this.serverVersionField.setValue(response.version.server);
 	},
@@ -84,25 +80,23 @@ Zarafa.plugins.files.settings.ui.FeatureVersionInfoPanel = Ext.extend(Ext.Panel,
 	/**
 	 * Function will create panel items for {@link Zarafa.plugins.files.settings.ui.FeatureVersionInfoPanel FeatureVersionInfoPanel}.
 	 *
-	 * @param {Object} config
 	 * @return {Array} array of items that should be added to panel.
 	 * @private
 	 */
-	createPanelItems: function (config) {
+	createPanelItems: function () {
 		return [{
 			xtype     : 'form',
-			autoHeight: true,
-			labelWidth: 200,
-			title     : dgettext('plugin_files', 'This account uses the following Backend:'),
+			border    : false,
+			labelAlign: 'left',
 			items     : [{
 				xtype     : 'displayfield',
 				ref       : '../backendVersionField',
-				fieldLabel: dgettext('plugin_files', 'Backend version'),
+				fieldLabel: dgettext('plugin_files', 'Backend'),
 				value     : dgettext('plugin_files', 'Loading') + '&hellip;'
 			}, {
 				xtype     : 'displayfield',
 				ref       : '../serverVersionField',
-				fieldLabel: dgettext('plugin_files', 'Storage server version'),
+				fieldLabel: this.account.get('backend'),
 				value     : dgettext('plugin_files', 'Loading') + '&hellip;'
 			}]
 		}];
