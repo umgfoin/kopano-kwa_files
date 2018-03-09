@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Japanese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 11:00+0200\n"
+"POT-Creation-Date: 2018-03-09 14:17+0100\n"
 "PO-Revision-Date: 2016-09-24 23:44+0000\n"
 "Last-Translator: Nobuyoshi <nobuyoshi.kumada@actplex.com>\n"
 "Language-Team: Japanese <http://translate.kopano.io/projects/kopano/files/ja/"
@@ -18,95 +18,95 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.4\n"
 
-#: js/data/Actions.js:84
+#: js/data/Actions.js:70
 msgid "Add attachment from {0}"
 msgstr "{0} から添付ファイルを追加"
 
-#: js/data/Actions.js:204 js/settings/ui/AccountGrid.js:203
+#: js/data/Actions.js:190 js/settings/ui/AccountGrid.js:208
 msgid "Confirm deletion"
 msgstr "削除確認"
 
-#: js/data/Actions.js:228
+#: js/data/Actions.js:214
 #, fuzzy
 msgid "Are you sure you want to delete {0}?"
 msgstr "アカウント \"{0}\" を削除してもよろしいですか?"
 
-#: js/data/Actions.js:232
+#: js/data/Actions.js:218
 msgid "Are you sure you want to delete {0} and all of its contents?"
 msgstr ""
 
-#: js/data/Actions.js:236
+#: js/data/Actions.js:222
 #, fuzzy
 msgid "Are you sure you want to delete {0} files?"
 msgstr "アカウント \"{0}\" を削除してもよろしいですか?"
 
-#: js/data/Actions.js:240
+#: js/data/Actions.js:226
 msgid "Are you sure want to delete {0} folders and all of their contents?"
 msgstr ""
 
-#: js/data/Actions.js:244
+#: js/data/Actions.js:230
 msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
 msgstr ""
 
-#: js/data/Actions.js:355
+#: js/data/Actions.js:341
 msgid "This name already exists"
 msgstr "この名前は既に存在しています"
 
-#: js/data/Actions.js:357
+#: js/data/Actions.js:343
 msgid "Incorrect name"
 msgstr "名前が正しくありません"
 
-#: js/data/Actions.js:366 js/data/Actions.js:786
+#: js/data/Actions.js:352 js/data/Actions.js:774
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 msgid "Confirm overwrite"
 msgstr "上書き確認"
 
-#: js/data/Actions.js:367 js/data/Actions.js:788
+#: js/data/Actions.js:353 js/data/Actions.js:776
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "ファイルが既に存在しています.上書きをしますか？"
 
-#: js/data/Actions.js:524 js/ui/FilesListToolbar.js:119
-#: js/ui/FilesListToolbar.js:120 js/ui/FilesMainContextMenu.js:102
+#: js/data/Actions.js:510 js/ui/FilesListToolbar.js:124
+#: js/ui/FilesListToolbar.js:125 js/ui/FilesMainContextMenu.js:88
 #: js/ui/FilesTreeContextMenu.js:38
 msgid "Rename"
 msgstr "名前変更"
 
-#: js/data/Actions.js:525
+#: js/data/Actions.js:511
 msgid "Please enter a new name"
 msgstr "新しい名前を入力してください"
 
-#: js/data/Actions.js:670
+#: js/data/Actions.js:656
 msgid "Downloading"
 msgstr "ダウンロード中です"
 
-#: js/data/Actions.js:670
+#: js/data/Actions.js:656
 msgid "Download started... please wait!"
 msgstr "ダウンロードを開始しました...しばらくお待ちください!"
 
-#: js/data/Actions.js:717 js/data/NavigatorTreeLoader.js:108
+#: js/data/Actions.js:703 js/data/NavigatorTreeLoader.js:108
 #: js/data/ResponseHandler.js:128 js/data/ResponseHandler.js:135
 #: js/ui/dialogs/FilesUploadContentPanel.js:192
 #: js/ui/FilesRecordAccountView.js:128
 msgid "Error"
 msgstr "エラー"
 
-#: js/data/Actions.js:718
+#: js/data/Actions.js:704
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
 "少なくとも１つのファイルサイズが大きすぎます。最大許容サイズは {0} です。"
 
-#: js/data/Actions.js:791
+#: js/data/Actions.js:779
 msgid "Keep both"
 msgstr ""
 
-#: js/data/Actions.js:794
+#: js/data/Actions.js:782
 #, fuzzy
 msgid "Overwrite"
 msgstr "上書き確認"
 
-#: js/data/Actions.js:797 js/settings/SettingsResetWidget.js:67
+#: js/data/Actions.js:785 js/settings/SettingsResetWidget.js:67
 #: js/settings/ui/AccountEditPanel.js:43 js/ui/dialogs/CreateFolderPanel.js:45
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
@@ -114,10 +114,9 @@ msgstr "上書き確認"
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: js/data/Actions.js:847 js/ui/dialogs/AttachFromFilesTreePanel.js:116
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:125
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:139
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:160
+#: js/data/Actions.js:835 js/ui/dialogs/AttachFromFilesTreePanel.js:108
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:122
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:143
 msgid "Warning"
 msgstr "警告"
 
@@ -134,11 +133,11 @@ msgid "Never"
 msgstr "記録なし"
 
 #: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
-#: js/ui/FilesListToolbar.js:42
+#: js/ui/FilesListToolbar.js:64
 msgid "Upload file"
 msgstr "ファイルをアップロード"
 
-#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:43
+#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:65
 msgid "Upload one or more files"
 msgstr "複数ファイルをアップロード"
 
@@ -171,7 +170,7 @@ msgstr "アイコン"
 msgid "Files"
 msgstr "ファイル"
 
-#: js/FilesPlugin.js:77
+#: js/FilesPlugin.js:75
 msgid "Add from Files"
 msgstr "ファイル共有から追加"
 
@@ -183,7 +182,7 @@ msgstr "ファイル共有へ追加"
 msgid "Add attachment from Files"
 msgstr "ファイル共有から添付ファイルを追加"
 
-#: js/FilesPlugin.js:200 php/class.filesbrowsermodule.php:1263
+#: js/FilesPlugin.js:200 php/class.filesbrowsermodule.php:1240
 msgid "Untitled"
 msgstr "タイトル無し"
 
@@ -257,66 +256,67 @@ msgstr "バックエンドを選択..."
 msgid "Account Configuration"
 msgstr "アカウント設定"
 
-#: js/settings/ui/AccountEditPanel.js:244
+#: js/settings/ui/AccountEditPanel.js:241
 msgid "Update"
 msgstr "アップデート"
 
-#: js/settings/ui/AccountGridColumnModel.js:41
+#: js/settings/ui/AccountGridColumnModel.js:37
 msgid "ID"
 msgstr "ID"
 
-#: js/settings/ui/AccountGridColumnModel.js:46
+#: js/settings/ui/AccountGridColumnModel.js:42
 #: js/ui/FilesRecordGridColumnModel.js:45
 msgid "Sort by: ID"
 msgstr "並べ替え順 : ID"
 
-#: js/settings/ui/AccountGridColumnModel.js:48
+#: js/settings/ui/AccountGridColumnModel.js:44
 msgid "Status"
 msgstr "ステータス"
 
-#: js/settings/ui/AccountGridColumnModel.js:53
+#: js/settings/ui/AccountGridColumnModel.js:49
 msgid "Sort by: Status"
 msgstr "並べ替え順 : ステータス"
 
-#: js/settings/ui/AccountGridColumnModel.js:55
+#: js/settings/ui/AccountGridColumnModel.js:51
 #: js/ui/dialogs/CreateFolderPanel.js:74
 msgid "Name"
 msgstr "名前"
 
-#: js/settings/ui/AccountGridColumnModel.js:59
+#: js/settings/ui/AccountGridColumnModel.js:55
 msgid "Sort by: Name"
 msgstr "並べ替え順 : 名前"
 
-#: js/settings/ui/AccountGridColumnModel.js:61
+#: js/settings/ui/AccountGridColumnModel.js:57
+#: js/settings/ui/FeatureVersionInfoPanel.js:94
 msgid "Backend"
 msgstr "バックエンド"
 
-#: js/settings/ui/AccountGridColumnModel.js:66
+#: js/settings/ui/AccountGridColumnModel.js:62
 msgid "Sort by: Backend"
 msgstr "並べ替え順 : バックエンド"
 
-#: js/settings/ui/AccountGridColumnModel.js:69
+#: js/settings/ui/AccountGridColumnModel.js:65
 msgid "Features"
 msgstr "機能"
 
-#: js/settings/ui/AccountGridColumnModel.js:73
+#: js/settings/ui/AccountGridColumnModel.js:69
 msgid "Shows all available features of the backend."
 msgstr "バックエンドとして利用可能な全ての機能を表示する。"
 
-#: js/settings/ui/AccountGridColumnModel.js:77
+#: js/settings/ui/AccountGridColumnModel.js:73
 msgid "Show quota information"
 msgstr "クォータ情報を表示"
 
-#: js/settings/ui/AccountGridColumnModel.js:82
+#: js/settings/ui/AccountGridColumnModel.js:78
 msgid "Show version information"
 msgstr "バージョン情報を表示"
 
-#: js/settings/ui/AccountGridColumnModel.js:87 js/ui/FilesListToolbar.js:93
-#: js/ui/FilesListToolbar.js:96
+#: js/settings/ui/AccountGridColumnModel.js:83 js/ui/FilesListToolbar.js:101
+#: js/ui/FilesListToolbar.js:104
 msgid "Share files"
 msgstr "ファイル共有"
 
-#: js/settings/ui/AccountGridColumnModel.js:91
+#: js/settings/ui/AccountGridColumnModel.js:87
 msgid "Fast Down/Upload"
 msgstr "高速ダウンロード/アップロード"
 
@@ -336,62 +336,48 @@ msgstr "アカウントを読み込み中です"
 msgid "No account created!"
 msgstr "アカウントが作成されていません!"
 
-#: js/settings/ui/AccountGrid.js:204
+#: js/settings/ui/AccountGrid.js:209
 msgid "Do you really want to delete the account \"{0}\"?"
 msgstr "アカウント \"{0}\" を削除してもよろしいですか?"
 
-#: js/settings/ui/FeatureQuotaInfoContentPanel.js:26
+#: js/settings/ui/FeatureQuotaInfoContentPanel.js:20
 msgid "Quota Information"
 msgstr "クオータ情報"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:58
+#: js/settings/ui/FeatureQuotaInfoPanel.js:32
 msgid "Reload"
 msgstr "再読み込み"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:63
-#: js/settings/ui/FeatureVersionInfoPanel.js:36
+#: js/settings/ui/FeatureQuotaInfoPanel.js:36
+#: js/settings/ui/FeatureVersionInfoPanel.js:33
 msgid "Close"
 msgstr "閉じる"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:148
-msgid "Your current storage usage"
-msgstr "現在のストレージ使用容量"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:116
+#: php/class.filesaccountmodule.php:361
+msgid "Used"
+msgstr "使用中"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:152
-msgid "Used storage"
-msgstr "使用中のストレージ"
-
-#: js/settings/ui/FeatureQuotaInfoPanel.js:153
-#: js/settings/ui/FeatureQuotaInfoPanel.js:158
-#: js/settings/ui/FeatureQuotaInfoPanel.js:163
-#: js/settings/ui/FeatureVersionInfoPanel.js:101
-#: js/settings/ui/FeatureVersionInfoPanel.js:106
+#: js/settings/ui/FeatureQuotaInfoPanel.js:117
+#: js/settings/ui/FeatureQuotaInfoPanel.js:122
+#: js/settings/ui/FeatureQuotaInfoPanel.js:127
+#: js/settings/ui/FeatureVersionInfoPanel.js:95
+#: js/settings/ui/FeatureVersionInfoPanel.js:100
 msgid "Loading"
 msgstr "読み込み中"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:157
-msgid "Free storage"
-msgstr "空き容量"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:121
+#: php/class.filesaccountmodule.php:362
+msgid "Free"
+msgstr "空き"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:162
-msgid "Total storage size"
-msgstr "全ストレージ容量"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:126
+msgid "Total"
+msgstr ""
 
-#: js/settings/ui/FeatureVersionInfoContentPanel.js:26
+#: js/settings/ui/FeatureVersionInfoContentPanel.js:20
 msgid "Version Information"
 msgstr "バージョン情報"
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:96
-msgid "This account uses the following Backend:"
-msgstr "このアカウントは次のバックエンドを使用します:"
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:100
-msgid "Backend version"
-msgstr "バックエンド バージョン"
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:105
-msgid "Storage server version"
-msgstr "ストレージ サーバ バージョン"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:77
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:79
@@ -404,17 +390,15 @@ msgstr ""
 "電子メールの添付ファイルとして、選択されたファイル共有からのファイルを添付す"
 "る。"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:117
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:126
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:109
 msgid "The file {0} is too large!"
 msgstr "ファイル {0} は大きすぎます!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:117
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:126
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:109
 msgid "max"
 msgstr "最大"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:140
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:123
 msgid "You have to choose at least one file!"
 msgstr "少なくとも１つのファイルを選択してください!"
 
@@ -475,7 +459,7 @@ msgstr "一覧表示"
 msgid "Select upload folder"
 msgstr "アップロードするフォルダを選択"
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:39
+#: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:61
 msgid "Upload"
 msgstr "アップロード"
 
@@ -505,7 +489,7 @@ msgstr "ファイル共有へアイテムを追加"
 msgid "New folder"
 msgstr "新しいフォルダ"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:56
+#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:78
 msgid "Create a new folder"
 msgstr "新しいフォルダを作成"
 
@@ -604,58 +588,58 @@ msgstr "アップロードが中断されました!"
 msgid "Upload failed!"
 msgstr "アップロードが失敗しました!"
 
-#: js/ui/FilesListToolbar.js:45
+#: js/ui/FilesListToolbar.js:67
 msgid "Upload files"
 msgstr "ファイルをアップロード"
 
-#: js/ui/FilesListToolbar.js:52 js/ui/FilesListToolbar.js:55
+#: js/ui/FilesListToolbar.js:74 js/ui/FilesListToolbar.js:77
 #: js/ui/FilesTreeContextMenu.js:60
 msgid "Create folder"
 msgstr "フォルダを作成"
 
-#: js/ui/FilesListToolbar.js:58
+#: js/ui/FilesListToolbar.js:80
 msgid "Create new folder"
 msgstr "新しいフォルダを作成"
 
-#: js/ui/FilesListToolbar.js:65 js/ui/FilesMainContextMenu.js:34
+#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:34
 msgid "Download"
 msgstr "ダウンロード"
 
-#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:73
+#: js/ui/FilesListToolbar.js:89 js/ui/FilesListToolbar.js:92
 msgid "Download files"
 msgstr "ダウンロードファイル"
 
-#: js/ui/FilesListToolbar.js:71
+#: js/ui/FilesListToolbar.js:90
 msgid "Download the selected files"
 msgstr "選択したファイルをダウンロード"
 
-#: js/ui/FilesListToolbar.js:80 js/ui/FilesMainContextMenu.js:45
+#: js/ui/FilesListToolbar.js:99 js/ui/FilesMainContextMenu.js:45
 msgid "Share"
 msgstr "共有"
 
-#: js/ui/FilesListToolbar.js:94
+#: js/ui/FilesListToolbar.js:102
 msgid "Share the selected files"
 msgstr "選択されたファイルを共有"
 
-#: js/ui/FilesListToolbar.js:103 js/ui/FilesListToolbar.js:108
-#: js/ui/FilesListToolbar.js:111 js/ui/FilesMainContextMenu.js:68
+#: js/ui/FilesListToolbar.js:111 js/ui/FilesListToolbar.js:113
+#: js/ui/FilesListToolbar.js:116 js/ui/FilesMainContextMenu.js:68
 msgid "Attach to mail"
 msgstr "メールへ添付"
 
-#: js/ui/FilesListToolbar.js:109
+#: js/ui/FilesListToolbar.js:114
 msgid "Attach the selected files to mail"
 msgstr "選択されたファイルをメールへ添付"
 
-#: js/ui/FilesListToolbar.js:130 js/ui/FilesListToolbar.js:131
-#: js/ui/FilesMainContextMenu.js:111 js/ui/FilesTreeContextMenu.js:49
+#: js/ui/FilesListToolbar.js:132 js/ui/FilesListToolbar.js:133
+#: js/ui/FilesMainContextMenu.js:97 js/ui/FilesTreeContextMenu.js:49
 msgid "Delete"
 msgstr "削除"
 
-#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:259 js/ui/FilesMainContextMenu.js:159
 msgid "Attaching"
 msgstr "添付中"
 
-#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:259 js/ui/FilesMainContextMenu.js:159
 msgid "Creating email... Please wait!"
 msgstr "メールを作成中です しばらくお待ちください!"
 
@@ -663,7 +647,7 @@ msgstr "メールを作成中です しばらくお待ちください!"
 msgid "Edit share"
 msgstr "共有を編集"
 
-#: js/ui/FilesMainContextMenu.js:120
+#: js/ui/FilesMainContextMenu.js:106
 msgid "Info"
 msgstr "情報"
 
@@ -701,32 +685,32 @@ msgstr "共有されています"
 msgid "File preview"
 msgstr "ファイル・レビュー"
 
-#: js/ui/FilesRecordDetailsPanel.js:238
+#: js/ui/FilesRecordDetailsPanel.js:241
 msgid "Your browser does not support previewing of audio files!"
 msgstr ""
 "ご利用中のブラウザは、オーディオファイルのレビューをサポートしていません!"
 
-#: js/ui/FilesRecordDetailsPanel.js:264
+#: js/ui/FilesRecordDetailsPanel.js:272
 msgid "Your browser does not support previewing of video files!"
 msgstr "ご利用中のブラウザでは、動画ファイルのレビューをサポートしていません!"
 
-#: js/ui/FilesRecordDetailsPanel.js:298
+#: js/ui/FilesRecordDetailsPanel.js:305
 msgid "d.m.Y G:i"
 msgstr "Y.m.d G:i"
 
-#: js/ui/FilesRecordDetailsPanel.js:299
+#: js/ui/FilesRecordDetailsPanel.js:306
 msgid "File ({0})"
 msgstr "ファイル ({0})"
 
-#: js/ui/FilesRecordDetailsPanel.js:299
+#: js/ui/FilesRecordDetailsPanel.js:306
 msgid "Folder"
 msgstr "フォルダ"
 
-#: js/ui/FilesRecordDetailsPanel.js:303
+#: js/ui/FilesRecordDetailsPanel.js:310
 msgid "Yes"
 msgstr "はい"
 
-#: js/ui/FilesRecordDetailsPanel.js:303
+#: js/ui/FilesRecordDetailsPanel.js:310
 msgid "No"
 msgstr "いいえ"
 
@@ -790,14 +774,6 @@ msgid "Feature \"Quota Information\" is not supported by this backend!"
 msgstr ""
 "このバックエンドでは \"Quota Information\" 機能はサポートされていません!"
 
-#: php/class.filesaccountmodule.php:361
-msgid "Used"
-msgstr "使用中"
-
-#: php/class.filesaccountmodule.php:362
-msgid "Free"
-msgstr "空き"
-
 #: php/class.filesaccountmodule.php:397
 msgid "Feature \"Version Information\" is not supported by this backend!"
 msgstr ""
@@ -807,31 +783,31 @@ msgstr ""
 msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr "このバックエンドでは \"OAUTH\" 機能はサポートされていません!"
 
-#: php/class.filesbrowsermodule.php:1049 php/class.filesbrowsermodule.php:1050
+#: php/class.filesbrowsermodule.php:1026 php/class.filesbrowsermodule.php:1027
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr ""
 "不明な種別 - ファイルバックエンドへこのファイルを保存することができません!"
 
-#: php/class.filesbrowsermodule.php:1303 php/class.filesbrowsermodule.php:1304
-#: php/class.filesbrowsermodule.php:1361 php/class.filesbrowsermodule.php:1362
-#: php/class.filesbrowsermodule.php:1421 php/class.filesbrowsermodule.php:1422
-#: php/class.filesbrowsermodule.php:1473 php/class.filesbrowsermodule.php:1474
+#: php/class.filesbrowsermodule.php:1280 php/class.filesbrowsermodule.php:1281
+#: php/class.filesbrowsermodule.php:1338 php/class.filesbrowsermodule.php:1339
+#: php/class.filesbrowsermodule.php:1398 php/class.filesbrowsermodule.php:1399
+#: php/class.filesbrowsermodule.php:1450 php/class.filesbrowsermodule.php:1451
 msgid "No record given!"
 msgstr "レコードが与えられていません!"
 
-#: php/class.filesbrowsermodule.php:1323
+#: php/class.filesbrowsermodule.php:1300
 msgid "Fetching sharing information failed"
 msgstr "共有情報の取り込みに失敗しました"
 
-#: php/class.filesbrowsermodule.php:1382
+#: php/class.filesbrowsermodule.php:1359
 msgid "Sharing failed"
 msgstr "共有に失敗しました"
 
-#: php/class.filesbrowsermodule.php:1441
+#: php/class.filesbrowsermodule.php:1418
 msgid "Updating share failed"
 msgstr "共有の更新に失敗しました"
 
-#: php/class.filesbrowsermodule.php:1488
+#: php/class.filesbrowsermodule.php:1465
 msgid "Deleting share failed"
 msgstr "削除の共有に失敗しました"
 
@@ -983,7 +959,7 @@ msgstr ""
 msgid "Zip file generation failed. Please inform the administrator."
 msgstr "ZIPファイルの生成に失敗しました.システム管理者へご連絡ください."
 
-#: php/Files/Core/class.downloadhandler.php:212
-#: php/Files/Core/class.downloadhandler.php:215
+#: php/Files/Core/class.downloadhandler.php:211
+#: php/Files/Core/class.downloadhandler.php:214
 msgid "This file is no longer available. Please reload the folder."
 msgstr "このファイルは存在していません.フォルダを再読み込みしてください."

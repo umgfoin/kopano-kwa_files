@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Chinese (Taiwan)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 11:00+0200\n"
+"POT-Creation-Date: 2018-03-09 14:17+0100\n"
 "PO-Revision-Date: 2016-05-03 07:00+0100\n"
 "Last-Translator: Björn Neumann <b.neumann@kopano.com>\n"
-"Language-Team: Chinese (Taiwan) <https://translate.kopano.io/projects/"
-"kopano/files/zh_TW/\n"
+"Language-Team: Chinese (Taiwan) <https://translate.kopano.io/projects/kopano/"
+"files/zh_TW/\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,78 +21,78 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: js/data/Actions.js:84
+#: js/data/Actions.js:70
 #, fuzzy
 msgid "Add attachment from {0}"
 msgstr "從{0}新增檔案"
 
-#: js/data/Actions.js:204 js/settings/ui/AccountGrid.js:203
+#: js/data/Actions.js:190 js/settings/ui/AccountGrid.js:208
 #, fuzzy
 msgid "Confirm deletion"
 msgstr "確認刪除"
 
-#: js/data/Actions.js:228
+#: js/data/Actions.js:214
 msgid "Are you sure you want to delete {0}?"
 msgstr ""
 
-#: js/data/Actions.js:232
+#: js/data/Actions.js:218
 msgid "Are you sure you want to delete {0} and all of its contents?"
 msgstr ""
 
-#: js/data/Actions.js:236
+#: js/data/Actions.js:222
 msgid "Are you sure you want to delete {0} files?"
 msgstr ""
 
-#: js/data/Actions.js:240
+#: js/data/Actions.js:226
 msgid "Are you sure want to delete {0} folders and all of their contents?"
 msgstr ""
 
-#: js/data/Actions.js:244
+#: js/data/Actions.js:230
 msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
 msgstr ""
 
-#: js/data/Actions.js:355
+#: js/data/Actions.js:341
 msgid "This name already exists"
 msgstr ""
 
-#: js/data/Actions.js:357
+#: js/data/Actions.js:343
 #, fuzzy
 msgid "Incorrect name"
 msgstr "不正確的檔名"
 
-#: js/data/Actions.js:366 js/data/Actions.js:786
+#: js/data/Actions.js:352 js/data/Actions.js:774
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 #, fuzzy
 msgid "Confirm overwrite"
 msgstr "確認刪除"
 
-#: js/data/Actions.js:367 js/data/Actions.js:788
+#: js/data/Actions.js:353 js/data/Actions.js:776
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
 msgstr ""
 
-#: js/data/Actions.js:524 js/ui/FilesListToolbar.js:119
-#: js/ui/FilesListToolbar.js:120 js/ui/FilesMainContextMenu.js:102
+#: js/data/Actions.js:510 js/ui/FilesListToolbar.js:124
+#: js/ui/FilesListToolbar.js:125 js/ui/FilesMainContextMenu.js:88
 #: js/ui/FilesTreeContextMenu.js:38
 #, fuzzy
 msgid "Rename"
 msgstr "重新命名"
 
-#: js/data/Actions.js:525
+#: js/data/Actions.js:511
 #, fuzzy
 msgid "Please enter a new name"
 msgstr "請輸入新的名稱"
 
-#: js/data/Actions.js:670
+#: js/data/Actions.js:656
 msgid "Downloading"
 msgstr ""
 
-#: js/data/Actions.js:670
+#: js/data/Actions.js:656
 msgid "Download started... please wait!"
 msgstr ""
 
-#: js/data/Actions.js:717 js/data/NavigatorTreeLoader.js:108
+#: js/data/Actions.js:703 js/data/NavigatorTreeLoader.js:108
 #: js/data/ResponseHandler.js:128 js/data/ResponseHandler.js:135
 #: js/ui/dialogs/FilesUploadContentPanel.js:192
 #: js/ui/FilesRecordAccountView.js:128
@@ -100,20 +100,20 @@ msgstr ""
 msgid "Error"
 msgstr "錯誤"
 
-#: js/data/Actions.js:718
+#: js/data/Actions.js:704
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
 
-#: js/data/Actions.js:791
+#: js/data/Actions.js:779
 msgid "Keep both"
 msgstr ""
 
-#: js/data/Actions.js:794
+#: js/data/Actions.js:782
 #, fuzzy
 msgid "Overwrite"
 msgstr "確認刪除"
 
-#: js/data/Actions.js:797 js/settings/SettingsResetWidget.js:67
+#: js/data/Actions.js:785 js/settings/SettingsResetWidget.js:67
 #: js/settings/ui/AccountEditPanel.js:43 js/ui/dialogs/CreateFolderPanel.js:45
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
@@ -122,10 +122,9 @@ msgstr "確認刪除"
 msgid "Cancel"
 msgstr "取消"
 
-#: js/data/Actions.js:847 js/ui/dialogs/AttachFromFilesTreePanel.js:116
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:125
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:139
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:160
+#: js/data/Actions.js:835 js/ui/dialogs/AttachFromFilesTreePanel.js:108
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:122
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:143
 #, fuzzy
 msgid "Warning"
 msgstr "等待中"
@@ -146,12 +145,12 @@ msgid "Never"
 msgstr "從不"
 
 #: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
-#: js/ui/FilesListToolbar.js:42
+#: js/ui/FilesListToolbar.js:64
 #, fuzzy
 msgid "Upload file"
 msgstr "上傳檔案"
 
-#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:43
+#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:65
 #, fuzzy
 msgid "Upload one or more files"
 msgstr "上傳檔案中"
@@ -189,7 +188,7 @@ msgstr ""
 msgid "Files"
 msgstr "檔案"
 
-#: js/FilesPlugin.js:77
+#: js/FilesPlugin.js:75
 msgid "Add from Files"
 msgstr ""
 
@@ -202,7 +201,7 @@ msgstr ""
 msgid "Add attachment from Files"
 msgstr "從{0}新增檔案"
 
-#: js/FilesPlugin.js:200 php/class.filesbrowsermodule.php:1263
+#: js/FilesPlugin.js:200 php/class.filesbrowsermodule.php:1240
 msgid "Untitled"
 msgstr ""
 
@@ -278,73 +277,74 @@ msgstr ""
 msgid "Account Configuration"
 msgstr ""
 
-#: js/settings/ui/AccountEditPanel.js:244
+#: js/settings/ui/AccountEditPanel.js:241
 msgid "Update"
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:41
+#: js/settings/ui/AccountGridColumnModel.js:37
 msgid "ID"
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:46
+#: js/settings/ui/AccountGridColumnModel.js:42
 #: js/ui/FilesRecordGridColumnModel.js:45
 #, fuzzy
 msgid "Sort by: ID"
 msgstr "依ID排序"
 
-#: js/settings/ui/AccountGridColumnModel.js:48
+#: js/settings/ui/AccountGridColumnModel.js:44
 msgid "Status"
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:53
+#: js/settings/ui/AccountGridColumnModel.js:49
 #, fuzzy
 msgid "Sort by: Status"
 msgstr "依路徑排序"
 
-#: js/settings/ui/AccountGridColumnModel.js:55
+#: js/settings/ui/AccountGridColumnModel.js:51
 #: js/ui/dialogs/CreateFolderPanel.js:74
 msgid "Name"
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:59
+#: js/settings/ui/AccountGridColumnModel.js:55
 #, fuzzy
 msgid "Sort by: Name"
 msgstr "依檔案名稱排序"
 
-#: js/settings/ui/AccountGridColumnModel.js:61
+#: js/settings/ui/AccountGridColumnModel.js:57
+#: js/settings/ui/FeatureVersionInfoPanel.js:94
 msgid "Backend"
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:66
+#: js/settings/ui/AccountGridColumnModel.js:62
 #, fuzzy
 msgid "Sort by: Backend"
 msgstr "依類型排序"
 
-#: js/settings/ui/AccountGridColumnModel.js:69
+#: js/settings/ui/AccountGridColumnModel.js:65
 msgid "Features"
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:73
+#: js/settings/ui/AccountGridColumnModel.js:69
 msgid "Shows all available features of the backend."
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:77
+#: js/settings/ui/AccountGridColumnModel.js:73
 #, fuzzy
 msgid "Show quota information"
 msgstr "版本資訊"
 
-#: js/settings/ui/AccountGridColumnModel.js:82
+#: js/settings/ui/AccountGridColumnModel.js:78
 #, fuzzy
 msgid "Show version information"
 msgstr "版本資訊"
 
-#: js/settings/ui/AccountGridColumnModel.js:87 js/ui/FilesListToolbar.js:93
-#: js/ui/FilesListToolbar.js:96
+#: js/settings/ui/AccountGridColumnModel.js:83 js/ui/FilesListToolbar.js:101
+#: js/ui/FilesListToolbar.js:104
 #, fuzzy
 msgid "Share files"
 msgstr "Die Datei"
 
-#: js/settings/ui/AccountGridColumnModel.js:91
+#: js/settings/ui/AccountGridColumnModel.js:87
 msgid "Fast Down/Upload"
 msgstr ""
 
@@ -366,66 +366,52 @@ msgstr "載入檔案中"
 msgid "No account created!"
 msgstr "目錄沒有建立"
 
-#: js/settings/ui/AccountGrid.js:204
+#: js/settings/ui/AccountGrid.js:209
 msgid "Do you really want to delete the account \"{0}\"?"
 msgstr ""
 
-#: js/settings/ui/FeatureQuotaInfoContentPanel.js:26
+#: js/settings/ui/FeatureQuotaInfoContentPanel.js:20
 #, fuzzy
 msgid "Quota Information"
 msgstr "檔案資訊"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:58
+#: js/settings/ui/FeatureQuotaInfoPanel.js:32
 #, fuzzy
 msgid "Reload"
 msgstr "上傳"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:63
-#: js/settings/ui/FeatureVersionInfoPanel.js:36
+#: js/settings/ui/FeatureQuotaInfoPanel.js:36
+#: js/settings/ui/FeatureVersionInfoPanel.js:33
 msgid "Close"
 msgstr ""
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:148
-msgid "Your current storage usage"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:116
+#: php/class.filesaccountmodule.php:361
+msgid "Used"
 msgstr ""
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:152
-msgid "Used storage"
-msgstr ""
-
-#: js/settings/ui/FeatureQuotaInfoPanel.js:153
-#: js/settings/ui/FeatureQuotaInfoPanel.js:158
-#: js/settings/ui/FeatureQuotaInfoPanel.js:163
-#: js/settings/ui/FeatureVersionInfoPanel.js:101
-#: js/settings/ui/FeatureVersionInfoPanel.js:106
+#: js/settings/ui/FeatureQuotaInfoPanel.js:117
+#: js/settings/ui/FeatureQuotaInfoPanel.js:122
+#: js/settings/ui/FeatureQuotaInfoPanel.js:127
+#: js/settings/ui/FeatureVersionInfoPanel.js:95
+#: js/settings/ui/FeatureVersionInfoPanel.js:100
 #, fuzzy
 msgid "Loading"
 msgstr "載入檔案中"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:157
-msgid "Free storage"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:121
+#: php/class.filesaccountmodule.php:362
+msgid "Free"
 msgstr ""
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:162
-msgid "Total storage size"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:126
+msgid "Total"
 msgstr ""
 
-#: js/settings/ui/FeatureVersionInfoContentPanel.js:26
+#: js/settings/ui/FeatureVersionInfoContentPanel.js:20
 #, fuzzy
 msgid "Version Information"
 msgstr "版本資訊"
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:96
-msgid "This account uses the following Backend:"
-msgstr ""
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:100
-msgid "Backend version"
-msgstr ""
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:105
-msgid "Storage server version"
-msgstr ""
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:77
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:79
@@ -438,19 +424,17 @@ msgstr "新增檔案"
 msgid "Add selected attachment from files to email attachment."
 msgstr "從files新增選擇的檔案到郵件附件"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:117
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:126
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:109
 #, fuzzy
 msgid "The file {0} is too large!"
 msgstr "{0}此檔案太大"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:117
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:126
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:109
 #, fuzzy
 msgid "max"
 msgstr "最大"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:140
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:123
 #, fuzzy
 msgid "You have to choose at least one file!"
 msgstr "您至少需要選擇一個檔案"
@@ -517,7 +501,7 @@ msgstr "瀏覽"
 msgid "Select upload folder"
 msgstr "選擇上傳的資料夾"
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:39
+#: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:61
 #, fuzzy
 msgid "Upload"
 msgstr "上傳"
@@ -551,7 +535,7 @@ msgstr ""
 msgid "New folder"
 msgstr "新資料夾"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:56
+#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:78
 #, fuzzy
 msgid "Create a new folder"
 msgstr "建立新資料夾在"
@@ -669,68 +653,68 @@ msgstr "上傳失敗"
 msgid "Upload failed!"
 msgstr "上傳失敗"
 
-#: js/ui/FilesListToolbar.js:45
+#: js/ui/FilesListToolbar.js:67
 #, fuzzy
 msgid "Upload files"
 msgstr "上傳檔案"
 
-#: js/ui/FilesListToolbar.js:52 js/ui/FilesListToolbar.js:55
+#: js/ui/FilesListToolbar.js:74 js/ui/FilesListToolbar.js:77
 #: js/ui/FilesTreeContextMenu.js:60
 #, fuzzy
 msgid "Create folder"
 msgstr "建立資料夾"
 
-#: js/ui/FilesListToolbar.js:58
+#: js/ui/FilesListToolbar.js:80
 #, fuzzy
 msgid "Create new folder"
 msgstr "建立新資料夾在"
 
-#: js/ui/FilesListToolbar.js:65 js/ui/FilesMainContextMenu.js:34
+#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:34
 msgid "Download"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:73
+#: js/ui/FilesListToolbar.js:89 js/ui/FilesListToolbar.js:92
 #, fuzzy
 msgid "Download files"
 msgstr "上傳檔案"
 
-#: js/ui/FilesListToolbar.js:71
+#: js/ui/FilesListToolbar.js:90
 #, fuzzy
 msgid "Download the selected files"
 msgstr "儲存選擇的檔案"
 
-#: js/ui/FilesListToolbar.js:80 js/ui/FilesMainContextMenu.js:45
+#: js/ui/FilesListToolbar.js:99 js/ui/FilesMainContextMenu.js:45
 msgid "Share"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:94
+#: js/ui/FilesListToolbar.js:102
 #, fuzzy
 msgid "Share the selected files"
 msgstr "儲存選擇的檔案"
 
-#: js/ui/FilesListToolbar.js:103 js/ui/FilesListToolbar.js:108
-#: js/ui/FilesListToolbar.js:111 js/ui/FilesMainContextMenu.js:68
+#: js/ui/FilesListToolbar.js:111 js/ui/FilesListToolbar.js:113
+#: js/ui/FilesListToolbar.js:116 js/ui/FilesMainContextMenu.js:68
 #, fuzzy
 msgid "Attach to mail"
 msgstr "增加到郵件"
 
-#: js/ui/FilesListToolbar.js:109
+#: js/ui/FilesListToolbar.js:114
 #, fuzzy
 msgid "Attach the selected files to mail"
 msgstr "儲存選擇的檔案"
 
-#: js/ui/FilesListToolbar.js:130 js/ui/FilesListToolbar.js:131
-#: js/ui/FilesMainContextMenu.js:111 js/ui/FilesTreeContextMenu.js:49
+#: js/ui/FilesListToolbar.js:132 js/ui/FilesListToolbar.js:133
+#: js/ui/FilesMainContextMenu.js:97 js/ui/FilesTreeContextMenu.js:49
 #, fuzzy
 msgid "Delete"
 msgstr "刪除"
 
-#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:259 js/ui/FilesMainContextMenu.js:159
 #, fuzzy
 msgid "Attaching"
 msgstr "增加附件中"
 
-#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:259 js/ui/FilesMainContextMenu.js:159
 #, fuzzy
 msgid "Creating email... Please wait!"
 msgstr "建立郵件中....請稍待"
@@ -739,7 +723,7 @@ msgstr "建立郵件中....請稍待"
 msgid "Edit share"
 msgstr ""
 
-#: js/ui/FilesMainContextMenu.js:120
+#: js/ui/FilesMainContextMenu.js:106
 #, fuzzy
 msgid "Info"
 msgstr "資訊"
@@ -783,34 +767,34 @@ msgstr ""
 msgid "File preview"
 msgstr "預覽檔案"
 
-#: js/ui/FilesRecordDetailsPanel.js:238
+#: js/ui/FilesRecordDetailsPanel.js:241
 msgid "Your browser does not support previewing of audio files!"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:264
+#: js/ui/FilesRecordDetailsPanel.js:272
 msgid "Your browser does not support previewing of video files!"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:298
+#: js/ui/FilesRecordDetailsPanel.js:305
 #, fuzzy
 msgid "d.m.Y G:i"
 msgstr "l d/m/Y G:i"
 
-#: js/ui/FilesRecordDetailsPanel.js:299
+#: js/ui/FilesRecordDetailsPanel.js:306
 #, fuzzy
 msgid "File ({0})"
 msgstr "檔案 ({0})"
 
-#: js/ui/FilesRecordDetailsPanel.js:299
+#: js/ui/FilesRecordDetailsPanel.js:306
 #, fuzzy
 msgid "Folder"
 msgstr "資料夾"
 
-#: js/ui/FilesRecordDetailsPanel.js:303
+#: js/ui/FilesRecordDetailsPanel.js:310
 msgid "Yes"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:303
+#: js/ui/FilesRecordDetailsPanel.js:310
 msgid "No"
 msgstr ""
 
@@ -882,14 +866,6 @@ msgstr ""
 msgid "Feature \"Quota Information\" is not supported by this backend!"
 msgstr ""
 
-#: php/class.filesaccountmodule.php:361
-msgid "Used"
-msgstr ""
-
-#: php/class.filesaccountmodule.php:362
-msgid "Free"
-msgstr ""
-
 #: php/class.filesaccountmodule.php:397
 msgid "Feature \"Version Information\" is not supported by this backend!"
 msgstr ""
@@ -898,32 +874,32 @@ msgstr ""
 msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1049 php/class.filesbrowsermodule.php:1050
+#: php/class.filesbrowsermodule.php:1026 php/class.filesbrowsermodule.php:1027
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1303 php/class.filesbrowsermodule.php:1304
-#: php/class.filesbrowsermodule.php:1361 php/class.filesbrowsermodule.php:1362
-#: php/class.filesbrowsermodule.php:1421 php/class.filesbrowsermodule.php:1422
-#: php/class.filesbrowsermodule.php:1473 php/class.filesbrowsermodule.php:1474
+#: php/class.filesbrowsermodule.php:1280 php/class.filesbrowsermodule.php:1281
+#: php/class.filesbrowsermodule.php:1338 php/class.filesbrowsermodule.php:1339
+#: php/class.filesbrowsermodule.php:1398 php/class.filesbrowsermodule.php:1399
+#: php/class.filesbrowsermodule.php:1450 php/class.filesbrowsermodule.php:1451
 msgid "No record given!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1323
+#: php/class.filesbrowsermodule.php:1300
 msgid "Fetching sharing information failed"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1382
+#: php/class.filesbrowsermodule.php:1359
 #, fuzzy
 msgid "Sharing failed"
 msgstr "載入失敗"
 
-#: php/class.filesbrowsermodule.php:1441
+#: php/class.filesbrowsermodule.php:1418
 #, fuzzy
 msgid "Updating share failed"
 msgstr "載入失敗"
 
-#: php/class.filesbrowsermodule.php:1488
+#: php/class.filesbrowsermodule.php:1465
 #, fuzzy
 msgid "Deleting share failed"
 msgstr "建立失敗"
@@ -1074,7 +1050,7 @@ msgstr ""
 msgid "Zip file generation failed. Please inform the administrator."
 msgstr ""
 
-#: php/Files/Core/class.downloadhandler.php:212
-#: php/Files/Core/class.downloadhandler.php:215
+#: php/Files/Core/class.downloadhandler.php:211
+#: php/Files/Core/class.downloadhandler.php:214
 msgid "This file is no longer available. Please reload the folder."
 msgstr ""

@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Norwegian (Bokmål)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 11:00+0200\n"
+"POT-Creation-Date: 2018-03-09 14:17+0100\n"
 "PO-Revision-Date: 2018-02-09 20:04+0000\n"
 "Last-Translator: Klaus <klaus@linuxavdelingen.no>\n"
-"Language-Team: Norwegian Bokmål "
-"<http://translate.kopano.io/projects/kopano/files/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <http://translate.kopano.io/projects/kopano/"
+"files/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,91 +18,91 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.4\n"
 
-#: js/data/Actions.js:84
+#: js/data/Actions.js:70
 msgid "Add attachment from {0}"
 msgstr "Legg til vedlegg fra {0}"
 
-#: js/data/Actions.js:204 js/settings/ui/AccountGrid.js:203
+#: js/data/Actions.js:190 js/settings/ui/AccountGrid.js:208
 msgid "Confirm deletion"
 msgstr "Bekreft sletting"
 
-#: js/data/Actions.js:228
+#: js/data/Actions.js:214
 msgid "Are you sure you want to delete {0}?"
 msgstr "Er du sikker på at du vil slette {0}?"
 
-#: js/data/Actions.js:232
+#: js/data/Actions.js:218
 msgid "Are you sure you want to delete {0} and all of its contents?"
 msgstr "Er du sikker på at du vil slette {0} og alt innholdet der?"
 
-#: js/data/Actions.js:236
+#: js/data/Actions.js:222
 msgid "Are you sure you want to delete {0} files?"
 msgstr "Er du sikker på at vil slette {0} filer?"
 
-#: js/data/Actions.js:240
+#: js/data/Actions.js:226
 msgid "Are you sure want to delete {0} folders and all of their contents?"
 msgstr "Er du sikker på at du vil slette {0} mapper og alt innholdet?"
 
-#: js/data/Actions.js:244
+#: js/data/Actions.js:230
 msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
 msgstr "Er du sikker på at vil slette de merkede objektene og alt innholdet?"
 
-#: js/data/Actions.js:355
+#: js/data/Actions.js:341
 msgid "This name already exists"
 msgstr "Dette navnet finnes allerede"
 
-#: js/data/Actions.js:357
+#: js/data/Actions.js:343
 msgid "Incorrect name"
 msgstr "Navnet er ikke korrekt"
 
-#: js/data/Actions.js:366 js/data/Actions.js:786
+#: js/data/Actions.js:352 js/data/Actions.js:774
 #: js/ui/dialogs/SaveToFilesTreePanel.js:300
 msgid "Confirm overwrite"
 msgstr "Bekreft overskriving"
 
-#: js/data/Actions.js:367 js/data/Actions.js:788
+#: js/data/Actions.js:353 js/data/Actions.js:776
 #: js/ui/dialogs/SaveToFilesTreePanel.js:301
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "Filen finnes allerede. Vil du overskrive den?"
 
-#: js/data/Actions.js:524 js/ui/FilesListToolbar.js:119
-#: js/ui/FilesListToolbar.js:120 js/ui/FilesMainContextMenu.js:102
+#: js/data/Actions.js:510 js/ui/FilesListToolbar.js:124
+#: js/ui/FilesListToolbar.js:125 js/ui/FilesMainContextMenu.js:88
 #: js/ui/FilesTreeContextMenu.js:38
 msgid "Rename"
 msgstr "Gi nytt navn"
 
-#: js/data/Actions.js:525
+#: js/data/Actions.js:511
 msgid "Please enter a new name"
 msgstr "Vennligst oppgi et nytt navn"
 
-#: js/data/Actions.js:670
+#: js/data/Actions.js:656
 msgid "Downloading"
 msgstr "Laster ned"
 
-#: js/data/Actions.js:670
+#: js/data/Actions.js:656
 msgid "Download started... please wait!"
 msgstr "Nedlasting startet... vennligst vent!"
 
-#: js/data/Actions.js:717 js/data/NavigatorTreeLoader.js:108
+#: js/data/Actions.js:703 js/data/NavigatorTreeLoader.js:108
 #: js/data/ResponseHandler.js:128 js/data/ResponseHandler.js:135
 #: js/ui/dialogs/FilesUploadContentPanel.js:192
 #: js/ui/FilesRecordAccountView.js:128
 msgid "Error"
 msgstr "Feil"
 
-#: js/data/Actions.js:718
+#: js/data/Actions.js:704
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr "Minst en fil er for stor! Største tillate størrelse er: {0}."
 
-#: js/data/Actions.js:791
+#: js/data/Actions.js:779
 msgid "Keep both"
 msgstr "Behold begge"
 
-#: js/data/Actions.js:794
+#: js/data/Actions.js:782
 msgid "Overwrite"
 msgstr "Overskriv"
 
-#: js/data/Actions.js:797 js/settings/SettingsResetWidget.js:67
+#: js/data/Actions.js:785 js/settings/SettingsResetWidget.js:67
 #: js/settings/ui/AccountEditPanel.js:43 js/ui/dialogs/CreateFolderPanel.js:45
 #: js/ui/dialogs/FilesUploadContentPanel.js:149
 #: js/ui/dialogs/FilesUploadContentPanel.js:151
@@ -110,10 +110,9 @@ msgstr "Overskriv"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: js/data/Actions.js:847 js/ui/dialogs/AttachFromFilesTreePanel.js:116
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:125
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:139
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:160
+#: js/data/Actions.js:835 js/ui/dialogs/AttachFromFilesTreePanel.js:108
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:122
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:143
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -130,11 +129,11 @@ msgid "Never"
 msgstr "Aldri"
 
 #: js/FilesContext.js:223 js/ui/dialogs/FilesUploadContentPanel.js:30
-#: js/ui/FilesListToolbar.js:42
+#: js/ui/FilesListToolbar.js:64
 msgid "Upload file"
 msgstr "Last opp fil"
 
-#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:43
+#: js/FilesContext.js:224 js/ui/FilesListToolbar.js:65
 msgid "Upload one or more files"
 msgstr "Last opp en eller flere filer"
 
@@ -167,7 +166,7 @@ msgstr "Ikoner"
 msgid "Files"
 msgstr "Filer"
 
-#: js/FilesPlugin.js:77
+#: js/FilesPlugin.js:75
 msgid "Add from Files"
 msgstr "Legg til fra Filer"
 
@@ -179,7 +178,7 @@ msgstr "Legg til Filer"
 msgid "Add attachment from Files"
 msgstr "Legg til vedlegg fra Filer"
 
-#: js/FilesPlugin.js:200 php/class.filesbrowsermodule.php:1263
+#: js/FilesPlugin.js:200 php/class.filesbrowsermodule.php:1240
 msgid "Untitled"
 msgstr "Uten navn"
 
@@ -253,66 +252,67 @@ msgstr "Velg serverdel..."
 msgid "Account Configuration"
 msgstr "Konfigurasjon av konto"
 
-#: js/settings/ui/AccountEditPanel.js:244
+#: js/settings/ui/AccountEditPanel.js:241
 msgid "Update"
 msgstr "Oppdater"
 
-#: js/settings/ui/AccountGridColumnModel.js:41
+#: js/settings/ui/AccountGridColumnModel.js:37
 msgid "ID"
 msgstr "ID"
 
-#: js/settings/ui/AccountGridColumnModel.js:46
+#: js/settings/ui/AccountGridColumnModel.js:42
 #: js/ui/FilesRecordGridColumnModel.js:45
 msgid "Sort by: ID"
 msgstr "Sorter på: ID"
 
-#: js/settings/ui/AccountGridColumnModel.js:48
+#: js/settings/ui/AccountGridColumnModel.js:44
 msgid "Status"
 msgstr "Status"
 
-#: js/settings/ui/AccountGridColumnModel.js:53
+#: js/settings/ui/AccountGridColumnModel.js:49
 msgid "Sort by: Status"
 msgstr "Sorter på: status"
 
-#: js/settings/ui/AccountGridColumnModel.js:55
+#: js/settings/ui/AccountGridColumnModel.js:51
 #: js/ui/dialogs/CreateFolderPanel.js:74
 msgid "Name"
 msgstr "Navn"
 
-#: js/settings/ui/AccountGridColumnModel.js:59
+#: js/settings/ui/AccountGridColumnModel.js:55
 msgid "Sort by: Name"
 msgstr "Sorter på: navn"
 
-#: js/settings/ui/AccountGridColumnModel.js:61
+#: js/settings/ui/AccountGridColumnModel.js:57
+#: js/settings/ui/FeatureVersionInfoPanel.js:94
 msgid "Backend"
 msgstr "Serverdel"
 
-#: js/settings/ui/AccountGridColumnModel.js:66
+#: js/settings/ui/AccountGridColumnModel.js:62
 msgid "Sort by: Backend"
 msgstr "Sorter på: serverdel"
 
-#: js/settings/ui/AccountGridColumnModel.js:69
+#: js/settings/ui/AccountGridColumnModel.js:65
 msgid "Features"
 msgstr "Funksjoner"
 
-#: js/settings/ui/AccountGridColumnModel.js:73
+#: js/settings/ui/AccountGridColumnModel.js:69
 msgid "Shows all available features of the backend."
 msgstr "Vis alle tilgjengelige valg for denne serverdelen."
 
-#: js/settings/ui/AccountGridColumnModel.js:77
+#: js/settings/ui/AccountGridColumnModel.js:73
 msgid "Show quota information"
 msgstr "Vis kvoteinformasjon"
 
-#: js/settings/ui/AccountGridColumnModel.js:82
+#: js/settings/ui/AccountGridColumnModel.js:78
 msgid "Show version information"
 msgstr "Vis versjons informasjon"
 
-#: js/settings/ui/AccountGridColumnModel.js:87 js/ui/FilesListToolbar.js:93
-#: js/ui/FilesListToolbar.js:96
+#: js/settings/ui/AccountGridColumnModel.js:83 js/ui/FilesListToolbar.js:101
+#: js/ui/FilesListToolbar.js:104
 msgid "Share files"
 msgstr "Del filer"
 
-#: js/settings/ui/AccountGridColumnModel.js:91
+#: js/settings/ui/AccountGridColumnModel.js:87
 msgid "Fast Down/Upload"
 msgstr ""
 
@@ -332,62 +332,48 @@ msgstr "Laster inn konto"
 msgid "No account created!"
 msgstr "Ingen konto ble opprettet!"
 
-#: js/settings/ui/AccountGrid.js:204
+#: js/settings/ui/AccountGrid.js:209
 msgid "Do you really want to delete the account \"{0}\"?"
 msgstr "Vil du virkelig slette kontoen \"{0}\"?"
 
-#: js/settings/ui/FeatureQuotaInfoContentPanel.js:26
+#: js/settings/ui/FeatureQuotaInfoContentPanel.js:20
 msgid "Quota Information"
 msgstr "Kvoteinformajon"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:58
+#: js/settings/ui/FeatureQuotaInfoPanel.js:32
 msgid "Reload"
 msgstr "Last inn på nytt"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:63
-#: js/settings/ui/FeatureVersionInfoPanel.js:36
+#: js/settings/ui/FeatureQuotaInfoPanel.js:36
+#: js/settings/ui/FeatureVersionInfoPanel.js:33
 msgid "Close"
 msgstr "Lukk"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:148
-msgid "Your current storage usage"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:116
+#: php/class.filesaccountmodule.php:361
+msgid "Used"
 msgstr ""
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:152
-msgid "Used storage"
-msgstr "Brukt lagringsplass"
-
-#: js/settings/ui/FeatureQuotaInfoPanel.js:153
-#: js/settings/ui/FeatureQuotaInfoPanel.js:158
-#: js/settings/ui/FeatureQuotaInfoPanel.js:163
-#: js/settings/ui/FeatureVersionInfoPanel.js:101
-#: js/settings/ui/FeatureVersionInfoPanel.js:106
+#: js/settings/ui/FeatureQuotaInfoPanel.js:117
+#: js/settings/ui/FeatureQuotaInfoPanel.js:122
+#: js/settings/ui/FeatureQuotaInfoPanel.js:127
+#: js/settings/ui/FeatureVersionInfoPanel.js:95
+#: js/settings/ui/FeatureVersionInfoPanel.js:100
 msgid "Loading"
 msgstr "Laster inn"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:157
-msgid "Free storage"
-msgstr "Ledig lagringsplass"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:121
+#: php/class.filesaccountmodule.php:362
+msgid "Free"
+msgstr "Ledig"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:162
-msgid "Total storage size"
-msgstr "Total lagringsplass"
+#: js/settings/ui/FeatureQuotaInfoPanel.js:126
+msgid "Total"
+msgstr ""
 
-#: js/settings/ui/FeatureVersionInfoContentPanel.js:26
+#: js/settings/ui/FeatureVersionInfoContentPanel.js:20
 msgid "Version Information"
 msgstr "Versjonsinformasjon"
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:96
-msgid "This account uses the following Backend:"
-msgstr "Denne kontoen bruker følgende serverdel:"
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:100
-msgid "Backend version"
-msgstr "Serverdel versjon"
-
-#: js/settings/ui/FeatureVersionInfoPanel.js:105
-msgid "Storage server version"
-msgstr ""
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:77
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:79
@@ -398,17 +384,15 @@ msgstr "Legg til vedlegg"
 msgid "Add selected attachment from files to email attachment."
 msgstr ""
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:117
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:126
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:109
 msgid "The file {0} is too large!"
 msgstr "Filen {0} er for stor!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:117
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:126
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:109
 msgid "max"
 msgstr "maks"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:140
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:123
 msgid "You have to choose at least one file!"
 msgstr "Du må velge minst en fil!"
 
@@ -467,7 +451,7 @@ msgstr "Bla gjennom"
 msgid "Select upload folder"
 msgstr ""
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:39
+#: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:61
 msgid "Upload"
 msgstr "Laste opp"
 
@@ -496,7 +480,7 @@ msgstr ""
 msgid "New folder"
 msgstr "Ny mappe"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:56
+#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:78
 msgid "Create a new folder"
 msgstr ""
 
@@ -595,58 +579,58 @@ msgstr ""
 msgid "Upload failed!"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:45
+#: js/ui/FilesListToolbar.js:67
 msgid "Upload files"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:52 js/ui/FilesListToolbar.js:55
+#: js/ui/FilesListToolbar.js:74 js/ui/FilesListToolbar.js:77
 #: js/ui/FilesTreeContextMenu.js:60
 msgid "Create folder"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:58
+#: js/ui/FilesListToolbar.js:80
 msgid "Create new folder"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:65 js/ui/FilesMainContextMenu.js:34
+#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:34
 msgid "Download"
 msgstr "Last ned"
 
-#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:73
+#: js/ui/FilesListToolbar.js:89 js/ui/FilesListToolbar.js:92
 msgid "Download files"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:71
+#: js/ui/FilesListToolbar.js:90
 msgid "Download the selected files"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:80 js/ui/FilesMainContextMenu.js:45
+#: js/ui/FilesListToolbar.js:99 js/ui/FilesMainContextMenu.js:45
 msgid "Share"
 msgstr "Del"
 
-#: js/ui/FilesListToolbar.js:94
+#: js/ui/FilesListToolbar.js:102
 msgid "Share the selected files"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:103 js/ui/FilesListToolbar.js:108
-#: js/ui/FilesListToolbar.js:111 js/ui/FilesMainContextMenu.js:68
+#: js/ui/FilesListToolbar.js:111 js/ui/FilesListToolbar.js:113
+#: js/ui/FilesListToolbar.js:116 js/ui/FilesMainContextMenu.js:68
 msgid "Attach to mail"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:109
+#: js/ui/FilesListToolbar.js:114
 msgid "Attach the selected files to mail"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:130 js/ui/FilesListToolbar.js:131
-#: js/ui/FilesMainContextMenu.js:111 js/ui/FilesTreeContextMenu.js:49
+#: js/ui/FilesListToolbar.js:132 js/ui/FilesListToolbar.js:133
+#: js/ui/FilesMainContextMenu.js:97 js/ui/FilesTreeContextMenu.js:49
 msgid "Delete"
 msgstr "Slett"
 
-#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:259 js/ui/FilesMainContextMenu.js:159
 msgid "Attaching"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:214 js/ui/FilesMainContextMenu.js:173
+#: js/ui/FilesListToolbar.js:259 js/ui/FilesMainContextMenu.js:159
 msgid "Creating email... Please wait!"
 msgstr ""
 
@@ -654,7 +638,7 @@ msgstr ""
 msgid "Edit share"
 msgstr ""
 
-#: js/ui/FilesMainContextMenu.js:120
+#: js/ui/FilesMainContextMenu.js:106
 msgid "Info"
 msgstr "Info"
 
@@ -692,31 +676,31 @@ msgstr ""
 msgid "File preview"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:238
+#: js/ui/FilesRecordDetailsPanel.js:241
 msgid "Your browser does not support previewing of audio files!"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:264
+#: js/ui/FilesRecordDetailsPanel.js:272
 msgid "Your browser does not support previewing of video files!"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:298
+#: js/ui/FilesRecordDetailsPanel.js:305
 msgid "d.m.Y G:i"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:299
+#: js/ui/FilesRecordDetailsPanel.js:306
 msgid "File ({0})"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:299
+#: js/ui/FilesRecordDetailsPanel.js:306
 msgid "Folder"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:303
+#: js/ui/FilesRecordDetailsPanel.js:310
 msgid "Yes"
 msgstr "Ja"
 
-#: js/ui/FilesRecordDetailsPanel.js:303
+#: js/ui/FilesRecordDetailsPanel.js:310
 msgid "No"
 msgstr "Nei"
 
@@ -779,14 +763,6 @@ msgstr ""
 msgid "Feature \"Quota Information\" is not supported by this backend!"
 msgstr ""
 
-#: php/class.filesaccountmodule.php:361
-msgid "Used"
-msgstr ""
-
-#: php/class.filesaccountmodule.php:362
-msgid "Free"
-msgstr "Ledig"
-
 #: php/class.filesaccountmodule.php:397
 msgid "Feature \"Version Information\" is not supported by this backend!"
 msgstr ""
@@ -795,30 +771,30 @@ msgstr ""
 msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1049 php/class.filesbrowsermodule.php:1050
+#: php/class.filesbrowsermodule.php:1026 php/class.filesbrowsermodule.php:1027
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1303 php/class.filesbrowsermodule.php:1304
-#: php/class.filesbrowsermodule.php:1361 php/class.filesbrowsermodule.php:1362
-#: php/class.filesbrowsermodule.php:1421 php/class.filesbrowsermodule.php:1422
-#: php/class.filesbrowsermodule.php:1473 php/class.filesbrowsermodule.php:1474
+#: php/class.filesbrowsermodule.php:1280 php/class.filesbrowsermodule.php:1281
+#: php/class.filesbrowsermodule.php:1338 php/class.filesbrowsermodule.php:1339
+#: php/class.filesbrowsermodule.php:1398 php/class.filesbrowsermodule.php:1399
+#: php/class.filesbrowsermodule.php:1450 php/class.filesbrowsermodule.php:1451
 msgid "No record given!"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1323
+#: php/class.filesbrowsermodule.php:1300
 msgid "Fetching sharing information failed"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1382
+#: php/class.filesbrowsermodule.php:1359
 msgid "Sharing failed"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1441
+#: php/class.filesbrowsermodule.php:1418
 msgid "Updating share failed"
 msgstr ""
 
-#: php/class.filesbrowsermodule.php:1488
+#: php/class.filesbrowsermodule.php:1465
 msgid "Deleting share failed"
 msgstr ""
 
@@ -962,7 +938,7 @@ msgstr ""
 msgid "Zip file generation failed. Please inform the administrator."
 msgstr ""
 
-#: php/Files/Core/class.downloadhandler.php:212
-#: php/Files/Core/class.downloadhandler.php:215
+#: php/Files/Core/class.downloadhandler.php:211
+#: php/Files/Core/class.downloadhandler.php:214
 msgid "This file is no longer available. Please reload the folder."
 msgstr ""
