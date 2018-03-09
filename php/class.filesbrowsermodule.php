@@ -951,6 +951,11 @@ class FilesBrowserModule extends ListModule
 		foreach ($ids as $file) {
 			$filename = basename($file);
 			$tmpname = $attachment_state->getAttachmentTmpPath($filename);
+
+			// download file from the backend
+			$relRecId = substr($file, strpos($file, '/'));
+		    $http_status = $initializedBackend->get_file($relRecId, $tmpname);
+
 			$filesize = filesize($tmpname);
 
 			Logger::debug(self::LOG_CONTEXT, "Downloading: " . $filename . " to: " . $tmpname);
