@@ -960,9 +960,11 @@ class FilesBrowserModule extends ListModule
 
 			Logger::debug(self::LOG_CONTEXT, "Downloading: " . $filename . " to: " . $tmpname);
 
+			$attach_id = uniqid();
 			$response['items'][] = array(
 				'name' => $filename,
 				'size' => $filesize,
+				"attach_id" => $attach_id,
 				'tmpname' => PathUtil::getFilenameFromPath($tmpname)
 			);
 
@@ -970,6 +972,7 @@ class FilesBrowserModule extends ListModule
 				"name" => $filename,
 				"size" => $filesize,
 				"type" => PathUtil::get_mime($tmpname),
+				"attach_id" => $attach_id,
 				"sourcetype" => 'default'
 			));
 

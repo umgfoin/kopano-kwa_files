@@ -162,6 +162,7 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 		attachmentRecord.set('tmpname', downloadedFileInfo.tmpname);
 		attachmentRecord.set('name', downloadedFileInfo.name);
 		attachmentRecord.set('size', downloadedFileInfo.size);
+		attachmentRecord.set('attach_id', downloadedFileInfo.attach_id);
 		return attachmentRecord;
 	},
 
