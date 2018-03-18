@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Hungarian\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-09 14:17+0100\n"
-"PO-Revision-Date: 2017-04-28 09:45+0000\n"
+"PO-Revision-Date: 2018-03-18 22:09+0000\n"
 "Last-Translator: Zoltan Kiss <zoltan.kiss@serverside.hu>\n"
-"Language-Team: Hungarian <http://translate.kopano.io/projects/kopano/files/"
-"hu/>\n"
+"Language-Team: Hungarian "
+"<http://translate.kopano.io/projects/kopano/files/hu/>\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -272,7 +272,7 @@ msgstr "Rendezés: ID"
 
 #: js/settings/ui/AccountGridColumnModel.js:44
 msgid "Status"
-msgstr "Állapot"
+msgstr "Státusz"
 
 #: js/settings/ui/AccountGridColumnModel.js:49
 msgid "Sort by: Status"
@@ -402,13 +402,12 @@ msgid "You have to choose at least one file!"
 msgstr "Válasszon ki egy fájlt!"
 
 #: js/ui/dialogs/CreateFolderContentPanel.js:23
-#, fuzzy
 msgid "Create New Folder"
 msgstr "Új mappa"
 
 #: js/ui/dialogs/CreateFolderPanel.js:38
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: js/ui/dialogs/CreateFolderPanel.js:80
 #, fuzzy
@@ -417,11 +416,11 @@ msgstr "Válassza ki a feltöltési mappát"
 
 #: js/ui/dialogs/CreateFolderPanel.js:125
 msgid "Kopano WebApp"
-msgstr ""
+msgstr "Kopano WebApp"
 
 #: js/ui/dialogs/CreateFolderPanel.js:126
 msgid "You must specify a name."
-msgstr ""
+msgstr "Meg kell adnia egy nevet."
 
 #: js/ui/dialogs/CreateFolderPanel.js:181
 #: js/ui/dialogs/SaveToFilesTreePanel.js:285
