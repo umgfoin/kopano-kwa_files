@@ -267,8 +267,8 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 					maxAttachmentSize : container.getServerConfig().getMaxAttachmentSize(),
 					dialog_attachments: attachmentStore.getId()
 				},
-				new Zarafa.plugins.files.data.ResponseHandler({
-					successCallback: this.attachToMail.createDelegate(this, [emailRecord], true)
+				new Zarafa.core.data.AbstractResponseHandler({
+					doDownloadtotmp: this.attachToMail.createDelegate(this, [emailRecord], true)
 				})
 			);
 		} catch (e) {
@@ -294,8 +294,8 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 	 * @param response
 	 * @param emailRecord
 	 */
-	attachToMail: function (responseItems, response, emailRecord) {
-		Zarafa.plugins.files.data.Actions.openCreateMailContent(emailRecord, responseItems);
+	attachToMail: function (response, emailRecord) {
+		Zarafa.plugins.files.data.Actions.openCreateMailContent(emailRecord, response.items);
 	},
 
 	/**

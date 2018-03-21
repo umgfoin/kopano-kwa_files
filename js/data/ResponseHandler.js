@@ -7,7 +7,7 @@ Ext.namespace('Zarafa.plugins.files.data');
  *
  * Files plugin specific response handler.
  */
-Zarafa.plugins.files.data.ResponseHandler = Ext.extend(Zarafa.core.data.AbstractResponseHandler, {
+Zarafa.plugins.files.data.ResponseHandler = Ext.extend(Zarafa.core.data.IPMResponseHandler, {
 
 	/**
 	 * @cgf {String} The id of the opened node in fuile tree recieved from the Files
@@ -32,6 +32,16 @@ Zarafa.plugins.files.data.ResponseHandler = Ext.extend(Zarafa.core.data.Abstract
 	 * @param {Object} response Object contained the response data.
 	 */
 	doGetquota: function (response) {
+		this.successCallback(response);
+	},
+
+	/**
+	 * Call the successCallback callback function.
+	 *
+	 * @param {Object} response Object contained the response data.
+	 */
+	doGetbackends: function (response) {
+
 		this.successCallback(response);
 	},
 
@@ -85,24 +95,6 @@ Zarafa.plugins.files.data.ResponseHandler = Ext.extend(Zarafa.core.data.Abstract
 	 *
 	 * @param {Object} response Object contained the response data.
 	 */
-	doRename: function (response) {
-		this.successCallback(response);
-	},
-
-	/**
-	 * Call the successCallback callback function.
-	 *
-	 * @param {Object} response Object contained the response data.
-	 */
-	doDelete: function (response) {
-		this.successCallback(response);
-	},
-
-	/**
-	 * Call the successCallback callback function.
-	 *
-	 * @param {Object} response Object contained the response data.
-	 */
 	doUploadtobackend: function (response) {
 		this.successCallback(response);
 	},
@@ -114,13 +106,22 @@ Zarafa.plugins.files.data.ResponseHandler = Ext.extend(Zarafa.core.data.Abstract
 	 * @param {Object} response Object contained the response data.
 	 */
 	doError: function (response) {
-		if (response.error) {
-			Zarafa.common.dialogs.MessageBox.show({
-				title  : dgettext('plugin_files', 'Error'),
-				msg    : response.error.info.original_message,
-				icon   : Zarafa.common.dialogs.MessageBox.ERROR,
-				buttons: Zarafa.common.dialogs.MessageBox.OK
-			});
+		if (Ext.isDefined(response.info.duplicate)) {
+			if (response.info.duplicate === true) {
+
+				var destination = Zarafa.core.data.RecordFactory.createRecordObjectByObjectType(Zarafa.core.mapi.ObjectType.ZARAFA_FILES, {
+					id            : response.info.destination,
+					entryid       : response.info.destination,
+				}, response.info.destination);
+
+
+				Ext.MessageBox.confirm(
+					dgettext('plugin_files', 'Confirm overwrite'),
+					dgettext('plugin_files', 'File already exists. Do you want to overwrite it?'),
+					Zarafa.plugins.files.data.Actions.doMoveRecords.createDelegate(this, ['yes', null, null, this.sendRecords, destination], false),
+					this
+				);
+			}
 		} else {
 			Zarafa.common.dialogs.MessageBox.show({
 				title  : dgettext('plugin_files', 'Error'),

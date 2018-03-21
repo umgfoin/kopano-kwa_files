@@ -55,8 +55,8 @@ Zarafa.plugins.files.settings.ui.FeatureQuotaInfoPanel = Ext.extend(Ext.Panel, {
 	 * Reload the quota store.
 	 */
 	doReload: function () {
-		var responseHandler = new Zarafa.plugins.files.data.ResponseHandler({
-			successCallback: this.gotQuotaValues.createDelegate(this)
+		var responseHandler = new Zarafa.core.data.AbstractResponseHandler({
+			doGetquota: this.gotQuotaValues.createDelegate(this)
 		});
 
 		container.getRequest().singleRequest(

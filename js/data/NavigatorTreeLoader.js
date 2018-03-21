@@ -64,9 +64,8 @@ Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, 
 	 * @param {Function} callback The function which need to be called after response received
 	 */
 	loadFolder: function (nodeId, callback) {
-		var responseHandler = new Zarafa.plugins.files.data.ResponseHandler({
-			successCallback: this.loadSuccess.createDelegate(this, [callback], true),
-			failureCallback: this.loadFailure.createDelegate(this, [callback], true),
+		var responseHandler = new Zarafa.core.data.AbstractResponseHandler({
+			doGetfilestree : this.doGetfilestree.createDelegate(this, [callback], true),
 			nodeId         : nodeId
 		});
 
@@ -84,24 +83,38 @@ Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, 
 	},
 
 	/**
-	 * This method gets called after a successful response from the server.
+	 * This method gets called when response arrives from the server.
+	 *
+	 * @param {Object} response Object contained the response data.
+	 * @param {Function} callback The function which need to be called after response received
+	 */
+	doGetfilestree : function(response, callback){
+		if (response.status) {
+			this.loadSuccess(response.items, response, callback);
+		} else {
+			this.loadFailure(response.items, response, callback);
+		}
+	},
+
+	/**
+	 * Helper function to handle successful response from the server.
 	 * It will then call the callback method.
 	 *
-	 * @param items
-	 * @param response
-	 * @param callback
+	 * @param {array} items which received from server.
+	 * @param {Object} response Object contained the response data.
+	 * @param {Function} callback The function which need to be called after response received
 	 */
 	loadSuccess: function (items, response, callback) {
 		callback(items, response);
 	},
 
 	/**
-	 * This method gets called after a failed response from the server.
+	 * Helper function to handle failure response from the server.
 	 * It will display a messagebox and then call the callback method.
 	 *
-	 * @param items
-	 * @param response
-	 * @param callback
+	 * @param {array} items which received from server.
+	 * @param {Object} response Object contained the response data.
+	 * @param {Function} callback The function which need to be called after response received
 	 */
 	loadFailure: function (items, response, callback) {
 		Zarafa.common.dialogs.MessageBox.show({

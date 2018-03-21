@@ -167,8 +167,8 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 					maxAttachmentSize : container.getServerConfig().getMaxAttachmentSize(),
 					dialog_attachments: attachmentStore.getId()
 				},
-				new Zarafa.plugins.files.data.ResponseHandler({
-					successCallback: this.attachToMail.createDelegate(this, [emailRecord], true)
+				new Zarafa.core.data.AbstractResponseHandler({
+					doDownloadtotmp: this.attachToMail.createDelegate(this, [emailRecord], true)
 				})
 			);
 		} catch (e) {
@@ -176,8 +176,8 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 		}
 	},
 
-	attachToMail: function (responseItems, response, emailRecord) {
-		Zarafa.plugins.files.data.Actions.openCreateMailContent(emailRecord, responseItems);
+	attachToMail: function (response, emailRecord) {
+		Zarafa.plugins.files.data.Actions.openCreateMailContent(emailRecord, response.items);
 	}
 });
 

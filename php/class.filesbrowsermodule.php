@@ -117,7 +117,14 @@ class FilesBrowserModule extends ListModule
 							$result = $this->loadFilesTree($actionType, $actionData);
 							break;
 						case "checkifexists":
-							$result = $this->checkIfExists($actionType, $actionData);
+							$records = $actionData["records"];
+							$destination = isset($actionData["destination"]) ? $actionData["destination"] : false;
+							$result = $this->checkIfExists($records, $destination);
+							$response = array();
+							$response['status'] = true;
+							$response['duplicate'] = $result;
+							$this->addActionData($actionType, $response);
+							$GLOBALS["bus"]->addData($this->getResponseData());
 							break;
 						case "downloadtotmp":
 							$result = $this->downloadSelectedFilesToTmp($actionType, $actionData);
@@ -572,6 +579,7 @@ class FilesBrowserModule extends ListModule
 	 */
 	private function delete($actionType, $actionData)
 	{
+		$result = false;
 		if (isset($actionData['records']) && is_array($actionData['records'])) {
 			foreach ($actionData['records'] as $record) {
 				$nodeId = $record['id'];
@@ -630,10 +638,25 @@ class FilesBrowserModule extends ListModule
 	 * @param string $actionType name of the current action
 	 * @param array $actionData all parameters contained in this request
 	 * @return bool if the backend request failed
-	 *
 	 */
 	private function move($actionType, $actionData)
 	{
+		$records = $actionData["message_action"]["records"];
+		$destination = isset($actionData["message_action"]["destination_parent_entryid"]) ? $actionData["message_action"]["destination_parent_entryid"] : false;
+
+		if ($actionData["message_action"]["overwrite"] !== "yes" && $this->checkIfExists($records, $destination)) {
+			$this->sendFeedback(false, array(
+				'type' => ERROR_GENERAL,
+				'info' => array(
+					'duplicate' => true,
+					'records' => $records,
+					'destination' => $destination
+				)
+			));
+
+			return true;
+		}
+
 		$dst = rtrim($actionData['message_action']["destination_parent_entryid"], '/');
 		$overwrite = true;
 
@@ -718,6 +741,18 @@ class FilesBrowserModule extends ListModule
 	 */
 	private function rename($actionType, $actionData)
 	{
+		$records = $actionData["records"];
+		$destination = isset($actionData["destination"]) ? $actionData["destination"] : false;
+
+		if ($this->checkIfExists($records, $destination)) {
+			$response = array();
+			$response['status'] = true;
+			$response['duplicate'] = true;
+			$this->addActionData($actionType, $response);
+			$GLOBALS["bus"]->addData($this->getResponseData());
+			return;
+		}
+
 		$isfolder = "";
 		if (substr($actionData['entryid'], -1) == '/') {
 			$isfolder = "/"; // we have a folder...
@@ -858,16 +893,14 @@ class FilesBrowserModule extends ListModule
 	 * Check if given filename or folder already exists on server
 	 *
 	 * @access private
-	 * @param string $actionType name of the current action
-	 * @param array $actionData all parameters contained in this request
+	 * @param array $records which needs to be check for existence.
+	 * @param array $destination where the given records needs to be moved, uploaded, or renamed.
 	 * @throws BackendException if the backend request fails
 	 *
-	 * @return void
+	 * @return boolean True if duplicate found, false otherwise
 	 */
-	private function checkIfExists($actionType, $actionData)
+	private function checkIfExists($records, $destination)
 	{
-		$records = $actionData["records"];
-		$destination = isset($actionData["destination"]) ? $actionData["destination"] : false;
 		$duplicate = false;
 
 		if (isset($records) && is_array($records)) {
@@ -917,11 +950,7 @@ class FilesBrowserModule extends ListModule
 			}
 		}
 
-		$response = array();
-		$response['status'] = true;
-		$response['duplicate'] = $duplicate;
-		$this->addActionData($actionType, $response);
-		$GLOBALS["bus"]->addData($this->getResponseData());
+		return $duplicate;
 	}
 
 	/**
