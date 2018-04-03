@@ -27,7 +27,8 @@ Zarafa.plugins.files.settings.SettingsAccountsWidget = Ext.extend(Zarafa.setting
 				type: 'fit'
 			},
 			items : [{
-				xtype: "filesplugin.accountpanel"
+				xtype: "filesplugin.accountpanel",
+				model : config.model
 			}]
 		});
 

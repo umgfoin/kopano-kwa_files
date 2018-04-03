@@ -78,6 +78,8 @@
 					<clientfile load="source">js/settings/ui/FeatureVersionInfoPanel.js</clientfile>
 					<clientfile load="source">js/data/AccountRecord.js</clientfile>
 					<clientfile load="source">js/data/AccountStore.js</clientfile>
+					<clientfile load="source">js/data/FilesBackendRecord.js</clientfile>
+					<clientfile load="source">js/data/FilesBackendStore.js</clientfile>
 					<clientfile load="source">js/data/Actions.js</clientfile>
 					<clientfile load="source">js/data/ComponentBox.js</clientfile>
 					<clientfile load="source">js/data/ViewModes.js</clientfile>
@@ -92,7 +94,6 @@
 					<clientfile load="source">js/data/AsyncFilesTreeNode.js</clientfile>
 					<clientfile load="source">js/data/singleton/AccountStore.js</clientfile>
 					<clientfile load="source">js/data/singleton/FilesRecordStoreManager.js</clientfile>
-					<clientfile load="source">js/data/singleton/BackendController.js</clientfile>
 					<clientfile load="source">php/jsloader.php?debug=true</clientfile>
 				</client>
 				<resources>

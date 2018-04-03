@@ -28,8 +28,6 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 	initPlugin: function () {
 		Zarafa.plugins.files.FilesPlugin.superclass.initPlugin.apply(this, arguments);
 
-		this.registerInsertionPoint('context.settings.categories', this.createSettingCategories, this);
-
 		this.registerInsertionPoint('main.attachment.method', this.createAttachmentDownloadInsertionPoint, this);
 
 		this.registerInsertionPoint('common.contextmenu.attachment.actions', this.createAttachmentUploadInsertionPoint, this);
@@ -44,22 +42,8 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.attachments.files');
 		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.attachments.savetofiles');
 
-		Zarafa.plugins.files.data.singleton.BackendController.init();
 		Zarafa.plugins.files.data.singleton.AccountStore.init();
 		Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.setUpListeners();
-	},
-
-	/**
-	 * Create the files {@link Zarafa.settings.SettingsMainCategory Settings Category}
-	 * to the {@link Zarafa.settings.SettingsContext}. This will create new
-	 * {@link Zarafa.settings.ui.SettingsCategoryTab tabs} for the
-	 * {@link Zarafa.plugins.files.settings.SettingsFilesCategory Files Plugin}.
-	 * @return {Object} configuration object for the categories to register
-	 */
-	createSettingCategories: function () {
-		return {
-			xtype: 'filesplugin.settingsmaincategory'
-		}
 	},
 
 	/**

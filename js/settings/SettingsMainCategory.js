@@ -22,7 +22,8 @@ Zarafa.plugins.files.settings.SettingsMainCategory = Ext.extend(Zarafa.settings.
 			categoryIndex: 1,
 			iconCls      : 'icon_files_category',
 			items        : [{
-				xtype: 'filesplugin.settingsaccountswidget'
+				xtype: 'filesplugin.settingsaccountswidget',
+				model : config.model
 			}, {
 				xtype: 'filesplugin.settingsresetwidget'
 			},

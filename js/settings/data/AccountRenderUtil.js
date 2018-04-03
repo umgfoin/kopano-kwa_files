@@ -64,20 +64,15 @@ Zarafa.plugins.files.settings.data.AccountRenderUtil = {
 
 	/**
 	 * Renderer for the backend column of the accountgrid
-	 * @param value
-	 * @param metadata
-	 * @param record
-	 * @param rowIndex
-	 * @param colIndex
-	 * @param store
-	 * @param feature
-	 * @returns {string}
+	 * @param {String} value The value holds backend name.
+	 * @returns {string} return HTML markups
 	 */
-	backendRenderer: function (value, metadata, record, rowIndex, colIndex, store, feature) {
-		var backendNameStore = Zarafa.plugins.files.data.singleton.BackendController.getBackendNameStore();
-		var backendNameObj = backendNameStore.getAt(backendNameStore.findExact("backend", value));
-
-		return '<span class="icon_16_' + value + ' files_backend_selector">&nbsp;</span>' + backendNameObj.get("displayName");
+	backendRenderer: function (value)
+	{
+		if (Ext.isEmpty(value)) {
+			return '';
+		}
+		return '<span class="icon_16_' + value + ' files_backend_selector">&nbsp;</span>' + value;
 	},
 
 	/**

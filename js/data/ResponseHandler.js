@@ -31,15 +31,6 @@ Zarafa.plugins.files.data.ResponseHandler = Ext.extend(Zarafa.core.data.Abstract
 	 *
 	 * @param {Object} response Object contained the response data.
 	 */
-	doGetbackends: function (response) {
-		this.successCallback(response);
-	},
-
-	/**
-	 * Call the successCallback callback function.
-	 *
-	 * @param {Object} response Object contained the response data.
-	 */
 	doGetquota: function (response) {
 		this.successCallback(response);
 	},
