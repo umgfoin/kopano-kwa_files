@@ -86,6 +86,7 @@
 					<clientfile load="source">js/data/Views.js</clientfile>
 					<clientfile load="source">js/data/DataModes.js</clientfile>
 					<clientfile load="source">js/data/FileTypes.js</clientfile>
+					<clientfile load="source">js/data/FilesProxy.js</clientfile>
 					<clientfile load="source">js/data/FilesRecord.js</clientfile>
 					<clientfile load="source">js/data/FilesRecordStore.js</clientfile>
 					<clientfile load="source">js/data/NavigatorTreeLoader.js</clientfile>

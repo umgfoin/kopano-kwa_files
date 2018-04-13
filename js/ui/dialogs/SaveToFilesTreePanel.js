@@ -215,8 +215,8 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 					{
 						records: checkMe
 					},
-					new Zarafa.plugins.files.data.ResponseHandler({
-						successCallback: this.checkForDuplicateFileDone.createDelegate(this)
+					new Zarafa.core.data.AbstractResponseHandler({
+						doCheckifexists: this.checkForDuplicateFileDone.createDelegate(this)
 					})
 				);
 			} catch (e) {
@@ -258,8 +258,8 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 						{
 							records: [{id: (this.selectedFolder + text), isFolder: true}]
 						},
-						new Zarafa.plugins.files.data.ResponseHandler({
-							successCallback: this.checkForDuplicateFolderDone.createDelegate(this, [text], true)
+						new Zarafa.core.data.AbstractResponseHandler({
+							doCheckifexists: this.checkForDuplicateFolderDone.createDelegate(this, [text], true)
 						})
 					);
 				} catch (e) {
@@ -323,8 +323,8 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 						type   : this.response.type,
 						destdir: this.selectedFolder
 					},
-					new Zarafa.plugins.files.data.ResponseHandler({
-						successCallback: this.uploadDone.createDelegate(this)
+					new Zarafa.core.data.AbstractResponseHandler({
+						diUploadtobackend: this.uploadDone.createDelegate(this)
 					})
 				);
 			} catch (e) {
@@ -366,8 +366,8 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 					entryid : this.selectedFolder + foldername,
 					parentID: this.selectedFolder
 				},
-				new Zarafa.plugins.files.data.ResponseHandler({
-					successCallback: this.createDirDone.createDelegate(this)
+				new Zarafa.core.data.AbstractResponseHandler({
+					doCreatedir: this.createDirDone.createDelegate(this)
 				})
 			);
 		} catch (e) {

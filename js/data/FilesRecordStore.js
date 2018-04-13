@@ -44,7 +44,11 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 			listeners            : {
 				load: this.onLoad,
 				exception: this.onLoadException
-			}
+			},
+			proxy : new Zarafa.plugins.files.data.FilesProxy({
+				listModuleName : 'filesbrowsermodule',
+				itemModuleName : 'filesbrowsermodule'
+			})
 		});
 	},
 

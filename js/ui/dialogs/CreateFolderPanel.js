@@ -159,8 +159,8 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 				}],
 				destination: this.selectedFolderId
 			},
-			new Zarafa.plugins.files.data.ResponseHandler({
-				successCallback: this.checkForDuplicateDone.createDelegate(this, [folderName, this.selectedFolderId], true)
+			new Zarafa.core.data.AbstractResponseHandler({
+				doCheckifexists : this.checkForDuplicateDone.createDelegate(this, [folderName, this.selectedFolderId], true)
 			})
 		);
 	},
@@ -213,8 +213,8 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 			{
 				props: data
 			},
-			new Zarafa.plugins.files.data.ResponseHandler({
-				successCallback:this.createFolderDone.createDelegate(this, [folderName, parentFolderId], true)
+			new Zarafa.core.data.AbstractResponseHandler({
+				doCreatedir:this.createFolderDone.createDelegate(this, [folderName, parentFolderId], true)
 			})
 		);
 	},

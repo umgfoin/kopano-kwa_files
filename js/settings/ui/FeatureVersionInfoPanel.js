@@ -52,8 +52,8 @@ Zarafa.plugins.files.settings.ui.FeatureVersionInfoPanel = Ext.extend(Ext.Panel,
 	 * Reload the version store.
 	 */
 	doReload: function () {
-		var responseHandler = new Zarafa.plugins.files.data.ResponseHandler({
-			successCallback: this.gotVersionValues.createDelegate(this)
+		var responseHandler = new Zarafa.core.data.AbstractResponseHandler({
+			doGetversion: this.gotVersionValues.createDelegate(this)
 		});
 
 		container.getRequest().singleRequest(

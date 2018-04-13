@@ -142,8 +142,8 @@ Zarafa.plugins.files.ui.snippets.FilesQuotaBar = Ext.extend(Ext.Panel, {
 	 * Request quota values from the server.
 	 */
 	loadQuotaInformation: function (accountID, directory) {
-		var responseHandler = new Zarafa.plugins.files.data.ResponseHandler({
-			successCallback: this.gotQuotaValues.createDelegate(this)
+		var responseHandler = new Zarafa.core.data.AbstractResponseHandler({
+			doGetquota: this.gotQuotaValues.createDelegate(this)
 		});
 
 		container.getRequest().singleRequest(
@@ -181,8 +181,6 @@ Zarafa.plugins.files.ui.snippets.FilesQuotaBar = Ext.extend(Ext.Panel, {
 
 		// Update progressbar
 		this.progressBar.updateProgress(used / total);
-
-
 	}
 });
 

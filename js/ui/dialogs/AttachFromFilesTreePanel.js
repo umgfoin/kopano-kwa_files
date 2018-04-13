@@ -134,8 +134,8 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 							ids               : idsList,
 							dialog_attachments: attachmentStore.getId()
 						},
-						new Zarafa.plugins.files.data.ResponseHandler({
-							successCallback: this.addDownloadedFilesAsAttachmentToEmail.createDelegate(this)
+						new Zarafa.core.data.AbstractResponseHandler({
+							doDownloadtotmp: this.addDownloadedFilesAsAttachmentToEmail.createDelegate(this)
 						})
 					);
 				} catch (e) {
@@ -171,7 +171,8 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 	 *
 	 * @param downloadedFilesInfoArray
 	 */
-	addDownloadedFilesAsAttachmentToEmail: function (downloadedFilesInfoArray) {
+	addDownloadedFilesAsAttachmentToEmail: function (downloadedFilesInfo) {
+		var downloadedFilesInfoArray = downloadedFilesInfo.items;
 		var emailRecord = this.dialog.record;
 		if (Ext.isDefined(this.emailRecord)) {
 			emailRecord = this.emailRecord;

@@ -41,8 +41,6 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			current_view_mode: Zarafa.plugins.files.data.ViewModes.RIGHT_PREVIEW
 		});
 
-		this.registerModules();
-
 		this.registerInsertionPoint('context.settings.categories', this.createSettingCategories, this);
 
 		this.registerInsertionPoint('main.maintabbar.left', this.createMainTab, this);
@@ -414,16 +412,6 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 		this.switchView(view, viewMode);
 
 		this.getModel().setPreviewRecord(undefined, true);
-	},
-
-	/**
-	 * This method registers the Files module names to the main WebApp.
-	 */
-	registerModules: function () {
-		Zarafa.core.ModuleNames['IPM.FILES'] = {
-			list: 'filesbrowsermodule',
-			item: 'filesbrowsermodule'
-		}
 	}
 });
 
