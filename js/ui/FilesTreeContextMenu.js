@@ -2,8 +2,16 @@ Ext.namespace('Zarafa.plugins.files.ui');
 
 Zarafa.plugins.files.ui.FilesTreeContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu, {
 
-	context: undefined,
+	/**
+	 * @cfg {Zarafa.plugins.files.FilesContext} context The context to which this context menu belongs.
+	 */
+	context : undefined,
 
+	/**
+	 * The {@link Zarafa.plugins.files.FilesContextModel} which is obtained from the {@link #context}.
+	 * @property
+	 * @type Zarafa.plugins.files.FilesContextModel
+	 */
 	model: undefined,
 
 	records: undefined,
@@ -75,7 +83,7 @@ Zarafa.plugins.files.ui.FilesTreeContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	},
 
 	onContextItemRename: function (menuitem, event) {
-		Zarafa.plugins.files.data.Actions.openRenameDialog(this.model, this.records[0]);
+		Zarafa.plugins.files.data.Actions.openRenameDialog(this.records[0]);
 	}
 });
 

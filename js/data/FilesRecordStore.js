@@ -29,19 +29,29 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 	constructor: function () {
 		this.rootID = "#R#";
 
+		this.addEvents(
+			/**
+			 * @event createfolder
+			 * Fires when a folder has been created.
+			 * @param {Zarafa.plugins.files.data.FilesRecordStore} store store in which folder record was created.
+			 * @param {String} parentFolderId The parentFolderId under which folder was created.
+			 * @param {Object} data The data contains the information about newly created folder.
+			 */
+			'createfolder'
+		);
+
 		Zarafa.plugins.files.data.FilesRecordStore.superclass.constructor.call(this, {
 			preferredMessageClass: 'IPM.Files',
-			autoSave             : true,
-			actionType           : Zarafa.core.Actions['list'],
-			defaultSortInfo      : {
+			autoSave : true,
+			defaultSortInfo : {
 				field    : 'filename',
 				direction: 'asc'
 			},
-			baseParams           : {
+			baseParams : {
 				id: this.rootID,
 				reload: false
 			},
-			listeners            : {
+			listeners : {
 				load: this.onLoad,
 				exception: this.onLoadException
 			},
@@ -199,9 +209,6 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 		if (Ext.isEmpty(path) || path === "#R#" ) {
 			// switch to the account overview!
 			viewPanel.switchView('files-accountview');
-
-			// remove all selections as we are in the root folder
-			Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.unselectAllNavPanels();
 			componentBox.getPreviewPanel().topToolbar.disable();
 			disabledSwitchViewButton = true;
 		} else if (componentBox.getItemsView() instanceof Zarafa.plugins.files.ui.FilesRecordAccountView) {
@@ -236,12 +243,9 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 				// first we need to get the account
 				var failedID = options.params.id;
 				var accID = Zarafa.plugins.files.data.Utils.File.getAccountId(failedID);
-
-				var accStore = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
-
+				var accStore = container.getCurrentContext().getAccountsStore();
 				// look up the account
 				var account = accStore.getById(accID);
-
 				if (Ext.isDefined(account) && account.supportsFeature(Zarafa.plugins.files.data.AccountRecordFeature.OAUTH)) {
 					account.renewOauthToken();
 				}
@@ -270,15 +274,6 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 		});
 
 		Zarafa.plugins.files.data.FilesRecordStore.superclass.reload.call(this, options);
-
-		// reload the navigator tree too
-		if(!Ext.isDefined(options.noNavBar) || !options.noNavBar) {
-			var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(currentPath);
-			var navPanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-			if(navPanel) {
-				navPanel.refreshNode(currentPath);
-			}
-		}
 	},
 
 	/**

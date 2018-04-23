@@ -1,9 +1,16 @@
 Ext.namespace('Zarafa.plugins.files.ui');
 
 Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
+	/**
+	 * @cfg {Zarafa.plugins.files.FilesContext} context The context to which this context menu belongs.
+	 */
+	context : undefined,
 
-	context: undefined,
-
+	/**
+	 * The {@link Zarafa.plugins.files.FilesContextModel} which is obtained from the {@link #context}.
+	 * @property
+	 * @type Zarafa.plugins.files.FilesContextModel
+	 */
 	model: undefined,
 
 	dropTarget: undefined,
@@ -27,7 +34,6 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 
 		Ext.applyIf(config, {
 			xtype: 'filesplugin.filesrecordiconview',
-
 			cls           : 'zarafa-files-iconview',
 			loadingText   : dgettext('plugin_files', 'Loading files') + '...',
 			deferEmptyText: false,
@@ -50,26 +56,21 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 	initTemplate: function () {
 		return new Ext.XTemplate(
 			'<div style="height: 100%; width: 100%; overflow: auto;">',
-			'<tpl for=".">',
-			'<div class="zarafa-files-iconview-container {.:this.getHidden}">',
-			'<div class="zarafa-files-iconview-thumb {.:this.getTheme} {.:this.getHidden}">',
-			'</div>',
-			'<span class="zarafa-files-iconview-subject">{filename:htmlEncode}</span>',
-			'</div>',
-			'</tpl>',
+				'<tpl for=".">',
+					'<div class="zarafa-files-iconview-container {.:this.getHidden}">',
+						'<div class="zarafa-files-iconview-thumb {.:this.getTheme} {.:this.getHidden}"></div>',
+						'<span class="zarafa-files-iconview-subject">{filename:htmlEncode}</span>',
+					'</div>',
+				'</tpl>',
 			'</div>',
 			{
-
 				getHidden: function (record) {
 					if (record.filename === "..") {
 						return "files_type_hidden";
 					}
-
 					return "";
 				},
-
 				getTheme: function (record) {
-
 					switch (record.type) {
 						case Zarafa.plugins.files.data.FileTypes.FOLDER:
 							return Zarafa.plugins.files.data.Utils.File.getIconClass("folder");
@@ -86,11 +87,8 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 		);
 	},
 
-	getMainPanel: function () {
-		return this.ownerCt;
-	},
-
-	initEvents: function () {
+	initEvents: function ()
+	{
 		this.on({
 			'contextmenu'    : this.onFilesIconContextMenu,
 			'dblclick'       : this.onIconDblClick,
@@ -98,6 +96,25 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 			'afterrender'    : this.onAfterRender,
 			scope            : this
 		});
+
+		this.mon(this.store, 'createfolder', this.onCreateFolder, this);
+	},
+
+	/**
+	 * Event handler triggers when folder is record is created.
+	 *
+	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store The store which fires this event.
+	 * @param {String} parentFolderId The parentFolderId under which folder was created.
+	 * @param {Object} data The data contains the information about newly created folder.
+	 */
+	onCreateFolder : function (store, parentFolderId, data)
+	{
+		if (store.getPath() === parentFolderId) {
+			var record = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_FILES, data);
+			store.add(record);
+			store.on("update", Zarafa.plugins.files.data.Actions.doRefreshIconView, Zarafa.plugins.files.data.Actions, {single: true});
+			record.commit(true);
+		}
 	},
 
 	onAfterRender: function ()
@@ -124,39 +141,8 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 	initDropTarget: function () {
 		var iconViewDropTargetEl = this.getEl();
 
-		iconViewDropTargetEl.dom.addEventListener("dragstart", function (e) {
-			e.dataTransfer.effectAllowed = "copy";
-			e.preventDefault();
-			e.stopPropagation();
-		}, false);
-
-		iconViewDropTargetEl.dom.addEventListener("dragenter", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-		}, false);
-
-		iconViewDropTargetEl.dom.addEventListener("dragover", function (e) {
-			e.dataTransfer.dropEffect = "copy";
-			e.preventDefault();
-			e.stopPropagation();
-		}, false);
-
-		iconViewDropTargetEl.dom.addEventListener("dragleave", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-		}, false);
-
-		iconViewDropTargetEl.dom.addEventListener("drop", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-
-			var dt = e.dataTransfer;
-			var files = dt.files;
-
-			Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, Zarafa.plugins.files.data.ComponentBox.getStore());
-
-			return false;
-		}, false);
+		var wrap = iconViewDropTargetEl.wrap({cls: 'x-form-field-wrap'});
+		this.mon(wrap, 'drop', this.onDropItemToUpload, this);
 
 		this.dropTarget = new Ext.dd.DropTarget(iconViewDropTargetEl, {
 			ddGroup    : 'dd.filesrecord',
@@ -244,6 +230,21 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 		}
 	},
 
+	/**
+	 * Event handler for the 'drop' event which happens if the user drops a file
+	 * from the desktop to the {@link #wrap} element.
+	 * @param {Ext.EventObject} event The event object
+	 * @private
+	 */
+	onDropItemToUpload : function (event)
+	{
+		event.stopPropagation();
+		event.preventDefault();
+
+		var files = event.browserEvent.target.files || event.browserEvent.dataTransfer.files;
+		Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, this.getStore());
+	},
+
 	onFilesIconContextMenu: function (dataview, index, node, eventObj) {
 
 		if (!dataview.isSelected(node)) {
@@ -268,9 +269,15 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 		}
 	},
 
-	onIconDblClick: function (dataview, index, node, event) {
-		var record = this.getStore().getAt(index);
-		Zarafa.plugins.files.data.Actions.openFilesContent([record]);
+	onIconDblClick: function (dataview, index, node, event)
+	{
+		var store = this.getStore();
+		var record = store.getAt(index);
+		if (record.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER) {
+			store.loadPath(record.get('id'));
+		} else {
+			Zarafa.plugins.files.data.Actions.downloadItem(record);
+		}
 	},
 
 	onSelectionChange: function (dataView, selections) {

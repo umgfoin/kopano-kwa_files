@@ -30,6 +30,16 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 	oldViewMode: undefined,
 
 	/**
+	 * accountsStore which contains all configured
+	 * {@link Zarafa.plugins.files.data.AccountRecord accounts}.
+	 *
+	 * @property
+	 * @type Zarafa.plugins.files.data.AccountStore
+	 * @private
+	 */
+	accountsStore : undefined,
+
+	/**
 	 * @constructor
 	 * @param {Object} config
 	 */
@@ -42,13 +52,9 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 		});
 
 		this.registerInsertionPoint('context.settings.categories', this.createSettingCategories, this);
-
 		this.registerInsertionPoint('main.maintabbar.left', this.createMainTab, this);
-
 		this.registerInsertionPoint('main.maintoolbar.new.item', this.createNewFilesButton, this);
-
 		this.registerInsertionPoint('main.toolbar.actions.last', this.createMainToolbarButtons, this);
-
 		this.registerInsertionPoint('navigation.center', this.createNavigatorTreePanel, this);
 
 		Zarafa.plugins.files.FilesContext.superclass.constructor.call(this, config);
@@ -84,7 +90,8 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 	createSettingCategories: function () {
 		return {
 			xtype: 'filesplugin.settingsmaincategory',
-			model : this.getModel()
+			model : this.getModel(),
+			store : this.getAccountsStore()
 		}
 	},
 
@@ -94,11 +101,26 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 	 *
 	 * @return {Zarafa.plugins.files.FilesContextModel} The files context model.
 	 */
-	getModel: function () {
+	getModel: function ()
+	{
 		if (!Ext.isDefined(this.model)) {
 			this.model = new Zarafa.plugins.files.FilesContextModel();
 		}
 		return this.model;
+	},
+
+	/**
+	 * Function will create an object of {@link Zarafa.plugins.files.data.AccountStore AccountStore} if
+	 * it is not created yet.
+	 * @return {Zarafa.plugins.files.data.AccountStore} return {@link Zarafa.plugins.files.data.AccountStore AccountStore}
+	 * object.
+	 */
+	getAccountsStore : function ()
+	{
+		if(!Ext.isDefined(this.accountsStore)) {
+			this.accountsStore = new Zarafa.plugins.files.data.AccountStore();
+		}
+		return this.accountsStore;
 	},
 
 	/**
@@ -206,8 +228,14 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 	 *
 	 * @return {Object}
 	 */
-	createNavigatorTreePanel: function () {
-		return Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.getNavigatorTreePanelContainer(this);
+	createNavigatorTreePanel: function ()
+	{
+		return {
+			xtype : 'filesplugin.filescontextnavigationpanel',
+			bodyCssClass : "files_navbar_panel",
+			context : this,
+			store : this.getAccountsStore()
+		};
 	},
 
 	/**

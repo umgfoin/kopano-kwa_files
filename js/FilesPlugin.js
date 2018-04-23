@@ -29,9 +29,7 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		Zarafa.plugins.files.FilesPlugin.superclass.initPlugin.apply(this, arguments);
 
 		this.registerInsertionPoint('main.attachment.method', this.createAttachmentDownloadInsertionPoint, this);
-
 		this.registerInsertionPoint('common.contextmenu.attachment.actions', this.createAttachmentUploadInsertionPoint, this);
-
 		this.registerInsertionPoint('context.mail.contextmenu.actions', this.createEmailUploadInsertionPoint, this);
 
 		Zarafa.core.mapi.IconIndex.addProperty("files");
@@ -41,9 +39,6 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		Zarafa.core.data.SharedComponentType.addProperty('filesplugin.featureversioninfo');
 		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.attachments.files');
 		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.attachments.savetofiles');
-
-		Zarafa.plugins.files.data.singleton.AccountStore.init();
-		Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.setUpListeners();
 	},
 
 	/**
@@ -54,12 +49,45 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * @param btn
 	 * @returns {Object}
 	 */
-	createAttachmentDownloadInsertionPoint: function (include, btn) {
+	createAttachmentDownloadInsertionPoint: function (include, btn)
+	{
 		return {
-			text   : dgettext('plugin_files', 'Add from Files'),
-			handler: this.showFilesDownloadAttachmentDialog.createDelegate(this, [btn]),
-			scope  : this,
-			iconCls: 'icon_files_category'
+			text : dgettext('plugin_files', 'Add from Files'),
+			handler : this.showFilesDownloadAttachmentDialog,
+			scope : btn,
+			iconCls : 'icon_files_category'
+		};
+	},
+
+	/**
+	 * This method will open the {@link Zarafa.plugins.files.ui.dialogs.AttachFromFilesContentPanel file chooser panel}.
+	 *
+	 * @param btn
+	 */
+	showFilesDownloadAttachmentDialog: function (btn)
+	{
+		var component = Zarafa.core.data.SharedComponentType['common.dialog.attachments.files'];
+		Zarafa.core.data.UIFactory.openLayerComponent(component, this.record, {
+			title  : dgettext('plugin_files', 'Add attachment from Files'),
+			modal  : true
+		});
+	},
+
+	/**
+	 * This method hooks to the attachment context menu and allows users to store files from
+	 * their emails to the  Files plugin.
+	 *
+	 * @param include
+	 * @param btn
+	 * @returns {Object}
+	 */
+	createAttachmentUploadInsertionPoint: function (include, btn) {
+		return {
+			text   : dgettext('plugin_files', 'Add to Files'),
+			handler: this.showFilesUploadAttachmentDialog,
+			scope  : btn,
+			iconCls: 'icon_files_category',
+			beforeShow : this.onAttachmentUploadBeforeShow
 		};
 	},
 
@@ -77,67 +105,17 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 	},
 
 	/**
-	 * This method hooks to the attachment context menu and allows users to store files from
-	 * their emails to the  Files plugin.
-	 *
-	 * @param include
-	 * @param btn
-	 * @returns {Object}
-	 */
-	createAttachmentUploadInsertionPoint: function (include, btn) {
-		return {
-			text   : dgettext('plugin_files', 'Add to Files'),
-			handler: this.showFilesUploadAttachmentDialog.createDelegate(this, [btn]),
-			scope  : this,
-			iconCls: 'icon_files_category',
-			beforeShow : this.onAttachmentUploadBeforeShow
-		};
-	},
-
-	/**
-	 * This method hooks to the email context menu and allows users to store emails from
-	 * to the  Files plugin.
-	 *
-	 * @param include
-	 * @param btn
-	 * @returns {Object}
-	 */
-	createEmailUploadInsertionPoint: function (include, btn) {
-		return {
-			text   : dgettext('plugin_files', 'Add to Files'),
-			handler: this.showFilesUploadEmailDialog.createDelegate(this, [btn]),
-			scope  : this,
-			iconCls: 'icon_files_category'
-		};
-	},
-
-	/**
-	 * This method will open the {@link Zarafa.plugins.files.ui.dialogs.AttachFromFilesContentPanel file chooser panel}.
-	 *
-	 * @param btn
-	 */
-	showFilesDownloadAttachmentDialog: function (btn) {
-		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['common.dialog.attachments.files'], btn.record, {
-			title  : dgettext('plugin_files', 'Add attachment from Files'),
-			modal  : true,
-			manager: Ext.WindowMgr
-		});
-	},
-
-	/**
 	 * This method will open the {@link Zarafa.plugins.files.ui.dialogs.SaveToFilesContentPanel folder chooser panel}.
-	 *
-	 * @param btn
 	 */
-	showFilesUploadAttachmentDialog: function (btn) {
-
-		var attachmentRecord = btn.records;
+	showFilesUploadAttachmentDialog: function()
+	{
+		var attachmentRecord = this.records;
 		var attachmentStore = attachmentRecord.store;
 
 		var store = attachmentStore.getParentRecord().get('store_entryid');
 		var entryid = attachmentStore.getAttachmentParentRecordEntryId();
-		var attachNum = [1];
-		if (attachmentRecord.get('attach_num') != -1) {
+		var attachNum = [];
+		if (attachmentRecord.isUploaded()) {
 			attachNum[0] = attachmentRecord.get('attach_num');
 		} else {
 			attachNum[0] = attachmentRecord.get('tmpname');
@@ -159,29 +137,46 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 			count: jsonRecords.length
 		};
 
-		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['common.dialog.attachments.savetofiles'], configRecord, {
-			manager: Ext.WindowMgr
+		var component = Zarafa.core.data.SharedComponentType['common.dialog.attachments.savetofiles'];
+		Zarafa.core.data.UIFactory.openLayerComponent(component, configRecord, {
+			modal : true
 		});
 	},
 
 	/**
-	 * This method will open the {@link Zarafa.plugins.files.ui.dialogs.SaveToFilesContentPanel folder chooser panel}.
+	 * This method hooks to the email context menu and allows users to store emails from
+	 * to the  Files plugin.
 	 *
+	 * @param include
 	 * @param btn
+	 * @returns {Object}
 	 */
-	showFilesUploadEmailDialog: function (btn) {
+	createEmailUploadInsertionPoint: function (include, btn)
+	{
+		return {
+			text : dgettext('plugin_files', 'Add to Files'),
+			handler: this.showFilesUploadEmailDialog,
+			scope : btn,
+			iconCls: 'icon_files_category'
+		};
+	},
 
-		/* store the eml to a temporary folder and prepare it for uploading */
-		var emailRecord = btn.records;
+	/**
+	 * This method will open the {@link Zarafa.plugins.files.ui.dialogs.SaveToFilesContentPanel folder chooser panel}.
+	 */
+	showFilesUploadEmailDialog: function ()
+	{
+		var records = this.records;
+		if (!Array.isArray(records)) {
+			records = [records];
+		}
 
-		var records = [].concat(emailRecord);
-
-		var jsonRecords = new Array();
+		var jsonRecords = [];
 		for (var i = 0, len = records.length; i < len; i++) {
 			jsonRecords[i] = {
 				store   : records[i].get('store_entryid'),
 				entryid : records[i].get('entryid'),
-				filename: (Ext.isEmpty(records[i].get('subject')) ? dgettext('plugin_files', 'Untitled') : records[i].get('subject')) + ".eml"
+				filename: Ext.isEmpty(records[i].get('subject') ? dgettext('plugin_files', 'Untitled') : records[i].get('subject')) + ".eml"
 			};
 		}
 
@@ -191,8 +186,9 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 			count: jsonRecords.length
 		};
 
-		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['common.dialog.attachments.savetofiles'], configRecord, {
-			manager: Ext.WindowMgr
+		var component = Zarafa.core.data.SharedComponentType['common.dialog.attachments.savetofiles'];
+		Zarafa.core.data.UIFactory.openLayerComponent(component, configRecord, {
+			modal  : true
 		});
 	},
 
@@ -217,14 +213,8 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		var bid = -1;
 		switch (type) {
 			case Zarafa.core.data.SharedComponentType['filesplugin.accountedit']:
-				bid = 2;
-				break;
 			case Zarafa.core.data.SharedComponentType['filesplugin.featurequotainfo']:
-				bid = 2;
-				break;
 			case Zarafa.core.data.SharedComponentType['filesplugin.featureversioninfo']:
-				bid = 2;
-				break;
 			case Zarafa.core.data.SharedComponentType['common.dialog.attachments.savetofiles']:
 				bid = 1;
 				break;

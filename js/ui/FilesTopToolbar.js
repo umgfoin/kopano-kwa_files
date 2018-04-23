@@ -14,9 +14,9 @@ Zarafa.plugins.files.ui.FilesTopToolbar = Ext.extend(Ext.Toolbar, {
 	context: undefined,
 
 	/**
-	 * The {@link Zarafa.core.ContextModel} which is obtained from the {@link #context}.
+	 * The {@link Zarafa.plugins.files.FilesContextModel} which is obtained from the {@link #context}.
 	 * @property
-	 * @type Zarafa.mail.MailContextModel
+	 * @type Zarafa.plugins.files.FilesContextModel
 	 */
 	model: undefined,
 
@@ -34,11 +34,15 @@ Zarafa.plugins.files.ui.FilesTopToolbar = Ext.extend(Ext.Toolbar, {
 		Ext.applyIf(config, {
 			cls: 'files_top_toolbar',
 			items: [{
-				xtype: 'filesplugin.navigationbar'
+				xtype: 'filesplugin.navigationbar',
+				model: config.model,
+				accountsStore : config.context.getAccountsStore()
 			}, {
 				xtype: 'tbfill'
 			}, {
-				xtype: 'filesplugin.quotabar'
+				xtype: 'filesplugin.quotabar',
+				model: config.model,
+				accountsStore : config.context.getAccountsStore()
 			}]
 		});
 		Zarafa.plugins.files.ui.FilesTopToolbar.superclass.constructor.call(this, config);

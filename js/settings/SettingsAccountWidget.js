@@ -21,14 +21,11 @@ Zarafa.plugins.files.settings.SettingsAccountsWidget = Ext.extend(Zarafa.setting
 			title : dgettext('plugin_files', 'Manage Accounts'),
 			xtype : 'filesplugin.settingsaccountswidget',
 			height: 400,
-			layout: {
-
-				// override from SettingsWidget
-				type: 'fit'
-			},
+			layout: 'fit',
 			items : [{
 				xtype: "filesplugin.accountpanel",
-				model : config.model
+				model : config.model,
+				store : config.store
 			}]
 		});
 

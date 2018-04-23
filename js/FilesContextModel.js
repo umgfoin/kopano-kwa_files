@@ -22,7 +22,7 @@ Zarafa.plugins.files.FilesContextModel = Ext.extend(Zarafa.core.ContextModel, {
 		config = config || {};
 
 		if (!Ext.isDefined(config.store)) {
-			config.store = Zarafa.plugins.files.data.singleton.FilesRecordStoreManager.getStore(); // get the default store
+			config.store = new Zarafa.plugins.files.data.FilesRecordStore();
 		}
 
 		if(!Ext.isDefined(config.backendStore)) {
@@ -45,7 +45,7 @@ Zarafa.plugins.files.FilesContextModel = Ext.extend(Zarafa.core.ContextModel, {
 			store_entryid : "files",
 			parent_entryid: parentid
 		});
-
+		record.store = this.getStore();
 		return record;
 	},
 

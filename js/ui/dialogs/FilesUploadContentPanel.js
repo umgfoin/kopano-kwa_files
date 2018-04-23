@@ -143,17 +143,16 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 			iconCls : 'icon_files',
 			handler : this.doUpload,
 			scope   : this
-		},
-			{
-				xtype  : 'button',
-				text   : dgettext('plugin_files', 'Cancel'),
-				tooltip: {
-					title: dgettext('plugin_files', 'Cancel'),
-					text : dgettext('plugin_files', 'Close this window')
-				},
-				handler: this.onClose,
-				scope  : this
-			}];
+		}, {
+			xtype  : 'button',
+			text   : dgettext('plugin_files', 'Cancel'),
+			tooltip: {
+				title: dgettext('plugin_files', 'Cancel'),
+				text : dgettext('plugin_files', 'Close this window')
+			},
+			handler: this.onClose,
+			scope  : this
+		}];
 	},
 
 	/**
@@ -214,10 +213,8 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 	 * Eventhandler that will start the upload process.
 	 */
 	doUpload: function () {
-		var form = this.mainuploadfield.ownerCt.ownerCt.getForm();
 		var files = this.mainuploadfield.fileInput.dom.files;
-
-		Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, this.targetFolder);
+		Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, this.record.getStore(), this.targetFolder);
 		this.onClose();
 	},
 

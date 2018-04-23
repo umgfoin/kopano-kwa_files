@@ -131,31 +131,6 @@ Zarafa.plugins.files.data.Actions = {
 	},
 
 	/**
-	 * Open a Panel in which the {@link Zarafa.core.data.IPMRecord record}
-	 * can be viewed, or further edited.
-	 *
-	 * @param {Zarafa.core.data.IPMRecord} records The records to open
-	 * @param {Object} config (optional) Configuration object used to create
-	 * the Content Panel.
-	 */
-	openFilesContent: function (records, config) {
-		if (records.length == 1 && records[0].get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER) {
-			var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(records[0].get('id'));
-			var navpanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-			var store = Zarafa.plugins.files.data.ComponentBox.getStore();
-
-			store.loadPath(records[0].get('id'));
-			Zarafa.plugins.files.ui.FilesContextNavigatorBuilder.unselectAllNavPanels();
-			var nodeToSelect = navpanel.getNodeById(records[0].get('id'));
-			if (Ext.isDefined(nodeToSelect)) {
-				navpanel.selectNode(nodeToSelect);
-			}
-		} else if (records.length > 0) {
-			this.downloadItem(records);
-		}
-	},
-
-	/**
 	 * Function is used to delete files or folders.
 	 *
 	 * @param {Array} records
@@ -253,7 +228,7 @@ Zarafa.plugins.files.data.Actions = {
 				records: ids
 			},
 			new Zarafa.core.data.AbstractResponseHandler({
-				doDelete: this.deleteDone.createDelegate(this, [ids], true)
+				doDelete: this.deleteDone.createDelegate(this, [records], true)
 			})
 		);
 	},
@@ -261,48 +236,33 @@ Zarafa.plugins.files.data.Actions = {
 	/**
 	 * Function gets called after files were removed.
 	 *
-	 * @param {Object} response
-	 * @param {Array} recordids
+	 * @param {Object} response The response which received from server.
+	 * @param {Array} records The records which was deleted.
 	 * @private
 	 */
-	deleteDone: function (response, recordids) {
-		var store = Zarafa.plugins.files.data.ComponentBox.getStore();
-
-		Ext.each(recordids, function (record) {
-			var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(record.id);
-			var navpanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-			var nodeToDelete = navpanel.getNodeById(record.id);
-			if (Ext.isDefined(nodeToDelete) && nodeToDelete.rendered) {
-				nodeToDelete.remove(true);
-			}
-
+	deleteDone: function (response, records) {
+		Ext.each(records, function (record) {
+			var store = record.getStore();
 			// delete the file from the grid
 			var path = Zarafa.plugins.files.data.Utils.File.getDirName(record.id) + '/';
-			if (Zarafa.plugins.files.data.ComponentBox.getStore().getPath() === path) {
-
+			if (store.getPath() === path) {
 				var rec = store.getById(record.id);
 				store.on("update", this.doRefreshIconView, this, {single: true});
 				store.remove(rec);
 				store.commitChanges();
+			} else if(record.isFolder()) {
+				var accountId = record.getAccount().id;
+				var filesContextNavPanel = container.getNavigationBar().findByType("filesplugin.filescontextnavigationpanel")[0];
+				var treePanel = filesContextNavPanel['filesNavigatorTreePanel_'+accountId];
+				var node = treePanel.getNodeById(record.get('id'));
+				if (Ext.isDefined(node)) {
+					node.remove(true);
+				}
 			}
 		});
 
-
 		if (container.getCurrentContext().getCurrentView() === Zarafa.plugins.files.data.Views.ICON) {
 			Zarafa.plugins.files.data.ComponentBox.getItemsView().refresh();
-		}
-	},
-
-	/**
-	 * Refreshes the left navigator tree.
-	 */
-	refreshNavigatorTree: function () {
-		var store = Zarafa.plugins.files.data.ComponentBox.getStore();
-		var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(store.getPath());
-		var navpanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-
-		if (Ext.isDefined(navpanel)) {
-			navpanel.refreshNode(store.getPath());
 		}
 	},
 
@@ -339,7 +299,8 @@ Zarafa.plugins.files.data.Actions = {
 		config = Ext.applyIf(config || {}, {
 			modal  : true,
 			accountFilter : Zarafa.plugins.files.data.Utils.File.getAccountId(path),
-			selectedFolderId : path
+			selectedFolderId : path,
+			store : model.getStore()
 		});
 
 		var componentType = Zarafa.core.data.SharedComponentType['zarafa.plugins.files.createfolderdialog'];
@@ -363,7 +324,8 @@ Zarafa.plugins.files.data.Actions = {
 	 * @param {Object} destination record or treenode
 	 * @param {Boolean} overwrite boolean flag - if true, existing dst records will be overwritten, default: true
 	 */
-	moveRecords: function (records, destination, overwrite) {
+	moveRecords: function (records, destination, overwrite)
+	{
 		overwrite = Ext.isDefined(overwrite) ? overwrite : false;
 
 		if (!Ext.isDefined(destination.data)) {
@@ -375,7 +337,7 @@ Zarafa.plugins.files.data.Actions = {
 			}, destination.id);
 		}
 
-		this.doMoveRecords("no", null, null, records, destination);
+		this.doMoveRecords(undefined, null, null, records, destination);
 	},
 
 	/**
@@ -389,52 +351,27 @@ Zarafa.plugins.files.data.Actions = {
 	 * @private
 	 */
 	doMoveRecords: function (overwrite, value, options, files, destination) {
-		var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(destination.get('id'));
-		var navpanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-		var destinationNode = navpanel.getNodeById(destination.get('id'));
+		var store = store = files[0].getStore();
+		if(!Ext.isDefined(overwrite) || overwrite === 'yes' ) {
+			Ext.each(files, function (record) {
+				var ids = [{
+					id: record.get('id'),
+					isFolder: (record.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER)
+				}];
 
-		Ext.each(files, function (record) {
-
-			var ids = [{
-				id      : record.get('id'),
-				isFolder: (record.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER)
-			}];
-
-			record.beginEdit();
-			record.moveTo(destination);
-			record.addMessageAction('records', ids);
-			record.addMessageAction('overwrite', overwrite);
-			record.set("deleted", true);
-			record.dirty = true;
-			record.endEdit();
-			record.commit();
-
-			if (Ext.isDefined(navpanel)) {
-				var nodeToDelete = navpanel.getNodeById(record.get('id'));
-				if (Ext.isDefined(nodeToDelete) && nodeToDelete.rendered) {
-					var deleted = nodeToDelete.remove();
-
-					if (Ext.isDefined(destinationNode) && destinationNode.rendered && deleted.attributes.isFolder === true) {
-
-						var has_children = deleted.has_children ? true : deleted.childNodes.length > 0;
-						var node = {
-							id          : (destinationNode.attributes.id + deleted.text + '/'),
-							text        : deleted.text,
-							isFolder    : true,
-							has_children: has_children,
-							expanded    : !has_children,
-							loaded      : false,
-							iconCls     : 'icon_folder_note',
-							filename    : deleted.text,
-							leaf        : false
-						};
-						destinationNode.appendChild(node);
-					}
-				}
-			}
-		});
-
-		Zarafa.plugins.files.data.ComponentBox.getStore().filter("deleted", false);
+				record.beginEdit();
+				record.moveTo(destination);
+				record.addMessageAction('records', ids);
+				record.addMessageAction('overwrite', Ext.isDefined(overwrite) ? overwrite : 'no');
+				record.set("deleted", true);
+				record.dirty = true;
+				record.endEdit();
+				record.commit();
+			});
+			store.filter("deleted", false);
+		} else {
+			store.reload();
+		}
 
 		if (Zarafa.plugins.files.data.ComponentBox.getContext().getCurrentView() === Zarafa.plugins.files.data.Views.ICON) {
 			Zarafa.plugins.files.data.ComponentBox.getItemsView().refresh();
@@ -444,10 +381,9 @@ Zarafa.plugins.files.data.Actions = {
 	/**
 	 * Open a rename dialog and rename the item
 	 *
-	 * @param {Zarafa.plugins.files.context.FilesContextModel} model
 	 * @param {Zarafa.plugins.files.data.FilesRecord} record
 	 */
-	openRenameDialog: function (model, record) {
+	openRenameDialog: function (record) {
 		Ext.MessageBox.prompt(
 			dgettext('plugin_files', 'Rename'),
 			dgettext('plugin_files', 'Please enter a new name'),
@@ -479,14 +415,13 @@ Zarafa.plugins.files.data.Actions = {
 	 * @param {Zarafa.plugins.files.data.FilesRecord} record
 	 * @private
 	 */
-	doRename: function (text, record) {
+	doRename: function (text, record)
+	{
 		var recordID = record.get('id');
 		var path = Zarafa.plugins.files.data.Utils.File.getDirName(recordID) + '/';
-		var isFolder = /\/$/.test(recordID) ? "/" : "";
-
-		var new_id = path + text + isFolder;
+		var new_id = path + text;
 		var new_record_data = record.copy().data;
-		new_record_data.id = new_id;
+		new_record_data.id = record.isFolder() ? new_id+'/' : new_id;
 		new_record_data.filename = text;
 		new_record_data.virtualRecord = false;
 
@@ -498,7 +433,7 @@ Zarafa.plugins.files.data.Actions = {
 				props  : new_record_data,
 				records    : [{
 					id : new_id,
-					isFolder: isFolder === "/"
+					isFolder: record.isFolder()
 				}],
 				destination: path
 			},
@@ -525,61 +460,19 @@ Zarafa.plugins.files.data.Actions = {
 		} else {
 			var recordID = record.id;
 			var path = Zarafa.plugins.files.data.Utils.File.getDirName(recordID) + '/';
-			var isFolder = /\/$/.test(recordID) ? "/" : "";
-
-			var old_id = recordID;
-			var new_id = path + text + isFolder;
-
-			// Update the relevant items
-			// - navigator tree node and its children if we have a folder
-			// - the main view of the renamed item if it is shown
-			var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(old_id);
-			var renamedNode = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID).getNodeById(old_id);
-			if (Ext.isDefined(renamedNode) && renamedNode.rendered) {
-				renamedNode.setId(new_id);
-				renamedNode.setText(text);
-				renamedNode.attributes.filename = text;
-				var navPanel = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(accountID);
-				var re = new RegExp('^' + old_id);
-				if (re.test(navPanel.nodeToSelect)) {
-					navPanel.nodeToSelect = new_id;
-				}
-				navPanel.refreshNode(new_id, true);
-			}
-
-			var store = Zarafa.plugins.files.data.ComponentBox.getStore();
+			var newId = path + text;
+			var params = {
+				id : record.isFolder() ?  newId+'/' : newId,
+				text : text,
+				oldId : recordID
+			};
+			var store = record.getStore();
+			store.fireEvent('write', store, 'rename', response, params, record);
 			if (store.getPath() === path) {
 				store.on("update", this.doRefreshIconView, this, {single: true});
-				store.reload({noNavBar: true});
+				store.reload();
 			}
 		}
-	},
-
-	/**
-	 * Does a full reload of the current directory.
-	 */
-	reloadCurrentDir: function () {
-		Zarafa.plugins.files.data.ComponentBox.getStore().reload();
-	},
-
-	/**
-	 * Reloads the root node of the Treepanel.
-	 */
-	reloadNavigatorTree: function () {
-		var accountStore = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
-
-		accountStore.each(function (account, index) {
-			var tree = Zarafa.plugins.files.data.ComponentBox.getNavigatorTreePanel(account.get('id'));
-
-			if (Ext.isDefined(tree)) {
-				tree.setRootNode({
-					nodeType: 'async',
-					text    : '/',
-					id      : '#R#',
-					expanded: true
-				});
-			}
-		});
 	},
 
 	/**
@@ -587,13 +480,17 @@ Zarafa.plugins.files.data.Actions = {
 	 *
 	 * @param {Array} records An array of ids
 	 */
-	downloadItem: function (records) {
-		container.getNotifier().notify('info.files', dgettext('plugin_files', 'Downloading'), dgettext('plugin_files', 'Download started... please wait!'));
+	downloadItem: function (records)
+	{
+		if (!Array.isArray(records)) {
+			records = [records];
+		}
 
 		var downloadFrame = Ext.getBody().createChild({
 			tag: 'iframe',
 			cls: 'x-hidden'
 		});
+
 		if (records.length == 1) {
 			var url = this.getDownloadLink(records[0], false);
 			downloadFrame.dom.contentWindow.location = url;
@@ -601,6 +498,7 @@ Zarafa.plugins.files.data.Actions = {
 			var url = this.getDownloadLinkForMultipleFiles(records, false);
 			downloadFrame.dom.contentWindow.location = url;
 		}
+		container.getNotifier().notify('info.files', dgettext('plugin_files', 'Downloading'), dgettext('plugin_files', 'Download started... please wait!'));
 	},
 
 	/**
@@ -608,16 +506,16 @@ Zarafa.plugins.files.data.Actions = {
 	 * upload the files to the server.
 	 *
 	 * @param {Array} files An array of files
-	 * @param {Object|string} store The destination {@Zarafa.plugins.files.data.FilesStore} or a simple {string} path
+	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store which
+	 * contains {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}
+	 * @param {string} destination The destination folder id where file gets uploaded.
 	 */
-	uploadAsyncItems: function (files, store) {
-		var destination;
-		if ((typeof store) == "string") {
-			destination = store;
-		} else {
+	uploadAsyncItems: function (files, store, destination) {
+		if (!Ext.isDefined(destination)) {
 			destination = store.getPath();
 		}
 
+		var fileStore = store;
 		// build the ids:
 		var ids = [];
 		var fileTooLarge = false;
@@ -649,8 +547,9 @@ Zarafa.plugins.files.data.Actions = {
 					records    : ids,
 					destination: destination
 				},
+
 				new Zarafa.core.data.AbstractResponseHandler({
-					doCheckifexists: this.checkForExistingFilesDone.createDelegate(this, [files, destination, this.doAsyncUpload], true)
+					doCheckifexists:  this.checkForExistingFilesDone.createDelegate(this, [files, destination, fileStore, this.doAsyncUpload], true)
 				})
 			);
 		}
@@ -661,9 +560,10 @@ Zarafa.plugins.files.data.Actions = {
 	 *
 	 * @param {Zarafa.common.dialogs.MessageBox.addCustomButtons} button
 	 * @param {Array} files An array of files
-	 * @param destination record id.
+	 * @param {string} destination The destination folder id where file gets uploaded.
+	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store which contains {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}
 	 */
-	doAsyncUpload: function (button, files, destination) {
+	doAsyncUpload: function (button, files, destination, store) {
 		if (button === "overwrite" || button === "keepboth") {
 			var componentType = Zarafa.core.data.SharedComponentType['zarafa.plugins.files.uploadstatusdialog'];
 			Zarafa.core.data.UIFactory.openLayerComponent(componentType, undefined, {
@@ -671,6 +571,7 @@ Zarafa.plugins.files.data.Actions = {
 				destination : destination,
 				keepBoth : button === "keepboth",
 				manager : Ext.WindowMgr,
+				store : store,
 				callbackAllDone : this.uploadDone.bind(this)
 			});
 		}
@@ -679,12 +580,12 @@ Zarafa.plugins.files.data.Actions = {
 	/**
 	 * Callback if the upload has completed.
 	 *
-	 * @param files
-	 * @param destination
-	 * @param xhr
+	 * @param {Array} files An array of files
+	 * @param {string} destination The destination folder id where file gets uploaded.
+	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store which contains {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}
 	 */
-	uploadDone: function (files, destination, xhr) {
-		var store = Zarafa.plugins.files.data.ComponentBox.getStore();
+	uploadDone: function (files, destination, store)
+	{
 		if (store.getPath() === destination) {
 			store.reload();
 		} else {
@@ -700,16 +601,18 @@ Zarafa.plugins.files.data.Actions = {
 	 * @param {Object} response
 	 * @param {File[]} files The files that should be uploaded
 	 * @param {string} destination record id
+ 	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store which contains
+	 * {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}
 	 * @param {Function} callback function which triggers {@link #doAsyncUpload} function.
 	 * @private
 	 */
-	checkForExistingFilesDone: function (response, files, destination, callback) {
+	checkForExistingFilesDone: function (response, files, destination, store, callback) {
 		if (response.duplicate === true) {
 			Zarafa.common.dialogs.MessageBox.addCustomButtons({
 				title : dgettext('plugin_files', 'Confirm overwrite'),
 				icon: Ext.MessageBox.QUESTION,
 				msg : dgettext('plugin_files', 'File already exists. Do you want to overwrite it?'),
-				fn : callback.createDelegate(this, [files, destination], true),
+				fn : callback.createDelegate(this, [files, destination, store], true),
 				customButton : [{
 					text :  dgettext('plugin_files', 'Keep both'),
 					name : 'keepboth'
@@ -723,7 +626,7 @@ Zarafa.plugins.files.data.Actions = {
 				scope : this
 			});
 		} else {
-			callback.createDelegate(this, ["overwrite", files, destination])();
+			callback.createDelegate(this, ["overwrite", files, destination, store])();
 		}
 	},
 

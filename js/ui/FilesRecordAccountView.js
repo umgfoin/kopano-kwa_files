@@ -1,12 +1,18 @@
 Ext.namespace('Zarafa.plugins.files.ui');
 
-Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
+Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 
-	context: undefined,
+	/**
+	 * @cfg {Zarafa.plugins.files.FilesContext} context The context to which this context menu belongs.
+	 */
+	context : undefined,
 
+	/**
+	 * The {@link Zarafa.plugins.files.FilesContextModel} which is obtained from the {@link #context}.
+	 * @property
+	 * @type Zarafa.plugins.files.FilesContextModel
+	 */
 	model: undefined,
-
-	keyMap: undefined,
 
 	constructor: function (config) {
 		config = config || {};
@@ -14,25 +20,22 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Zarafa.common.ui.Dra
 		if (!Ext.isDefined(config.model) && Ext.isDefined(config.context)) {
 			config.model = config.context.getModel();
 		}
+
 		if (!Ext.isDefined(config.store) && Ext.isDefined(config.model)) {
 			config.store = config.model.getStore();
 		}
 
 		config.store = Ext.StoreMgr.lookup(config.store);
 
-		config.plugins = Ext.value(config.plugins, []);
-		config.plugins.push('zarafa.icondragselectorplugin');
-
 		Ext.applyIf(config, {
 			xtype: 'filesplugin.filesrecordaccountview',
-
 			cls           : 'zarafa-files-accountview',
 			loadingText   : dgettext('plugin_files', 'Loading accounts') + '...',
 			deferEmptyText: false,
 			autoScroll    : true,
 			emptyText     : '<div class="emptytext">' + dgettext('plugin_files', 'There are no accounts added. Go to settings and add an account!') + '</div>',
 			overClass     : 'zarafa-files-accountview-over',
-			tpl           : this.initTemplate(),
+			tpl           : this.initTemplate(config.context),
 			multiSelect   : true,
 			selectedClass : 'zarafa-files-accountview-selected',
 			itemSelector  : 'div.zarafa-files-accountview-container'
@@ -43,26 +46,24 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Zarafa.common.ui.Dra
 		this.initEvents();
 	},
 
-	initTemplate: function () {
+	initTemplate: function (context) {
 		// Load the account store
-
-
 		return new Ext.XTemplate(
 			'<div style="height: 100%; width: 100%; overflow: auto;">',
-			'<tpl for=".">',
-			'<div class="zarafa-files-accountview-container">',
-			'<div class="zarafa-files-account-background {.:this.getAccountType}"> </div>',
-			'<div class="zarafa-files-account-info">',
-			'<span class="zarafa-files-accountview-subject">{filename:htmlEncode}</span>',
-			'<span class="zarafa-files-accountview-account">{.:this.getAccountIdentifier}</span>',
-			'</div>',
-			'</div>',
-			'</tpl>',
+				'<tpl for=".">',
+					'<div class="zarafa-files-accountview-container">',
+						'<div class="zarafa-files-account-background {.:this.getAccountType}"> </div>',
+						'<div class="zarafa-files-account-info">',
+							'<span class="zarafa-files-accountview-subject">{filename:htmlEncode}</span>',
+							'<span class="zarafa-files-accountview-account">{.:this.getAccountIdentifier}</span>',
+						'</div>',
+					'</div>',
+				'</tpl>',
 			'</div>',
 			{
 				getAccountType: function (record) {
 					// get an instance of the account store.
-					var store = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
+					var store = this.context.getAccountsStore();
 
 					// get the account id from the path string
 					var accId = Zarafa.plugins.files.data.Utils.File.getAccountId(record.id);
@@ -80,7 +81,7 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Zarafa.common.ui.Dra
 
 				getAccountIdentifier: function (record) {
 					// get an instance of the account store.
-					var store = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
+					var store = this.context.getAccountsStore();
 
 					// get the account id from the path string
 					var accId = Zarafa.plugins.files.data.Utils.File.getAccountId(record.id);
@@ -98,32 +99,38 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Zarafa.common.ui.Dra
 					}
 
 					return Zarafa.plugins.files.data.Utils.Format.truncate(identifier, 27); // 27 = length of the account field
-				}
+				},
+				context : context
 			}
 		);
-	},
-
-	getMainPanel: function () {
-		return this.ownerCt;
 	},
 
 	initEvents: function () {
 		this.on({
 			'dblclick'       : this.onIconDblClick,
-			'selectionchange': this.onSelectionChange,
 			'afterrender'    : this.onAfterRender,
 			scope            : this
 		});
 	},
 
-	onAfterRender: function () {
-		this.keyMap = new Ext.KeyMap(this.getEl(), {
+	/**
+	 * Event handler map the delete key.
+	 */
+	onAfterRender: function ()
+	{
+		new Ext.KeyMap(this.getEl(), {
 			key: Ext.EventObject.DELETE,
-			fn : this.onKeyDelete.createDelegate(this)
+			fn : this.onKeyDelete,
+			scop : this
 		});
 	},
 
-	onKeyDelete: function (key, event) {
+	/**
+	 * Event handler triggered when delete key pressed.
+	 * Function will show warning message.
+	 */
+	onKeyDelete: function ()
+	{
 		Zarafa.common.dialogs.MessageBox.show({
 			title  : dgettext('plugin_files', 'Error'),
 			msg    : dgettext('plugin_files', 'To delete an account you have to go to settings.'),
@@ -132,15 +139,17 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Zarafa.common.ui.Dra
 		});
 	},
 
-	onIconDblClick: function (dataview, index, node, event) {
-		var record = this.getStore().getAt(index);
-		Zarafa.plugins.files.data.Actions.openFilesContent([record]);
-	},
-
-	onSelectionChange: function (dataView, selections) {
-		if (this.context.getCurrentViewMode() != Zarafa.plugins.files.data.ViewModes.NO_PREVIEW) {
-			this.model.setPreviewRecord(undefined);
-		}
+	/**
+	 * Event handler which triggered when double click on data view item.
+	 *
+	 * @param {Ext.DataView} dataView The dataView item which is double clicked.
+	 * @param {Number} index The index of an item which double clicked.
+	 */
+	onIconDblClick: function (dataView, index)
+	{
+		var store = this.getStore();
+		var record = store.getAt(index);
+		store.loadPath(record.get('id'));
 	}
 });
 

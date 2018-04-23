@@ -4,7 +4,7 @@ Zarafa.plugins.files.ui.FilesRecordDetailsPanel = Ext.extend(Ext.form.FormPanel,
 
 	defaultPreviewImage: 'plugins/files/resources/icons/no-preview.jpg',
 
-	record: undefined,
+	record : undefined,
 
 	constructor: function (config) {
 		config = config || {};
@@ -16,18 +16,10 @@ Zarafa.plugins.files.ui.FilesRecordDetailsPanel = Ext.extend(Ext.form.FormPanel,
 			align: 'stretch',
 			pack : 'start'
 		};
-		switch (viewMode) {
-			case Zarafa.plugins.files.data.ViewModes.RIGHT_PREVIEW:
-				break;
-			case Zarafa.plugins.files.data.ViewModes.BOTTOM_PREVIEW:
-				layout = {
-					type : 'hbox',
-					align: 'stretch',
-					pack : 'start'
-				};
-				break;
-			default:
-				break;
+		if(viewMode === Zarafa.plugins.files.data.ViewModes.BOTTOM_PREVIEW) {
+			Ext.apply(layout, {
+				type : 'hbox'
+			});
 		}
 
 		config = Ext.applyIf(config, {
@@ -41,9 +33,11 @@ Zarafa.plugins.files.ui.FilesRecordDetailsPanel = Ext.extend(Ext.form.FormPanel,
 				this.fieldSetFilePreview()
 			]
 		});
-
+		// FixME : Listener is used when user use info button
+		// in context menu. we can avoid this code by either using
+		// initEvents function or by 'previewrecordchange' which was fire
+		// from setPreviewRecord function of Zarafa.core.ContextModel
 		if (Ext.isDefined(config.record)) {
-			this.record = config.record;
 			config = Ext.applyIf(config, {
 				listeners: {
 					afterlayout: function (cmp) {
@@ -291,25 +285,30 @@ Zarafa.plugins.files.ui.FilesRecordDetailsPanel = Ext.extend(Ext.form.FormPanel,
 		this.filepreview.doLayout();
 	},
 
-	update: function (record) {
-
-		var extension = this.getExtension(record.get('filename'));
-
+	update: function (record)
+	{
 		this.filename.setValue(record.get('filename'));
-		if (record.get('type') == Zarafa.plugins.files.data.FileTypes.FILE) {
-			this.filesize.show();
-			this.filesize.setValue(Zarafa.plugins.files.data.Utils.Format.fileSize(record.get('message_size')));
-		} else {
-			this.filesize.hide();
-		}
-		this.lastmodified.setValue(Ext.util.Format.date(new Date(record.get('lastmodified')), dgettext('plugin_files', 'd.m.Y G:i')));
-		this.type.setValue(record.get('type') == Zarafa.plugins.files.data.FileTypes.FILE ? String.format(dgettext('plugin_files', 'File ({0})'), extension) : dgettext('plugin_files', 'Folder'));
 
-		if (record.getAccount().supportsFeature(Zarafa.plugins.files.data.AccountRecordFeature.SHARING)) {
-			this.shared.show();
+		var recordType = record.get('type') == Zarafa.plugins.files.data.FileTypes.FILE;
+		this.filesize.setVisible(recordType);
+		if (recordType) {
+			this.filesize.setValue(Zarafa.plugins.files.data.Utils.Format.fileSize(record.get('message_size')));
+		}
+
+		var lastModifiedDate = Ext.util.Format.date(new Date(record.get('lastmodified')), dgettext('plugin_files', 'd.m.Y G:i'));
+		this.lastmodified.setValue(lastModifiedDate);
+
+		var type = dgettext('plugin_files', 'Folder');
+		if (recordType) {
+			var extension = this.getExtension(record.get('filename'));
+			type = String.format(dgettext('plugin_files', 'File ({0})'), extension);
+		}
+		this.type.setValue(type);
+
+		var supportSharing = record.getAccount().supportsFeature(Zarafa.plugins.files.data.AccountRecordFeature.SHARING);
+		this.shared.setVisible(supportSharing);
+		if (supportSharing) {
 			this.shared.setValue(record.get("isshared") ? dgettext('plugin_files', 'Yes') : dgettext('plugin_files', 'No'));
-		} else {
-			this.shared.hide();
 		}
 		this.setPreviewPanel(record, extension);
 	},

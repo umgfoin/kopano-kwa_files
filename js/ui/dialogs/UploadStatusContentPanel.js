@@ -28,7 +28,8 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusContentPanel = Ext.extend(Zarafa.cor
 				keepBoth : config.keepBoth,
 				callbackAllDone : config.callbackAllDone || Ext.emptyFn,
 				callbackUploadFailed : config.callbackUploadFailed || Ext.emptyFn,
-				callbackUploadAborted : config.callbackUploadAborted || Ext.emptyFn
+				callbackUploadAborted : config.callbackUploadAborted || Ext.emptyFn,
+				store : config.store
 			}]
 		});
 

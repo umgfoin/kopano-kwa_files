@@ -27,24 +27,25 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	constructor: function (config) {
 		config = config || {};
 
-		this.store = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
-
 		Ext.applyIf(config, {
-			xtype       : 'filesplugin.accountgrid',
-			ref         : 'accountgrid',
-			store       : this.store,
-			border      : false,
-			baseCls     : 'accountGrid',
+			xtype : 'filesplugin.accountgrid',
+			store : config.store,
+			border : false,
+			baseCls : 'accountGrid',
 			enableHdMenu: false,
-			loadMask    : this.initLoadMask(),
-			viewConfig  : this.initViewConfig(),
-			sm          : this.initSelectionModel(),
-			cm          : this.initColumnModel(),
-			listeners   : {
-				rowdblclick: this.onRowDblClick,
-				scope      : this
+			loadMask : this.initLoadMask(),
+			viewConfig : {
+				forceFit : true,
+				deferEmptyText : false,
+				emptyText : '<div class=\'emptytext\'>' + dgettext('plugin_files', 'No account created!') + '</div>'
 			},
-			tbar        : [{
+			sm  : this.initSelectionModel(),
+			cm : this.initColumnModel(),
+			listeners : {
+				rowdblclick : this.onRowDblClick,
+				scope : this
+			},
+			tbar : [{
 				iconCls: 'filesplugin_icon_add',
 				text   : dgettext('plugin_files', 'Add Account'),
 				ref    : '../addAccountBtn',
@@ -52,11 +53,11 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 				scope : this
 			}, {
 				iconCls : 'filesplugin_icon_delete',
-				text    : dgettext('plugin_files', 'Remove Account'),
-				ref     : '../removeAccountBtn',
+				text : dgettext('plugin_files', 'Remove Account'),
 				disabled: true,
-				scope   : this,
-				handler : this.onAccountRemove
+				ref : '../removeAccountBtn',
+				handler : this.onAccountRemove,
+				scope : this
 			}, {
 				xtype : 'spacer',
 				width : 10
@@ -91,42 +92,30 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	 * @return {Ext.LoadMask} The configuration object for {@link Ext.LoadMask}
 	 * @private
 	 */
-	initLoadMask: function () {
+	initLoadMask: function ()
+	{
 		return {
 			msg: dgettext('plugin_files', 'Loading accounts') + '...'
 		};
 	},
 
 	/**
-	 * Initialize the {@link Ext.grid.GridPanel#viewConfig} field.
-	 *
-	 * @return {Ext.grid.GridView} The configuration object for {@link Ext.grid.GridView}
+	 * Initialize event handlers
 	 * @private
 	 */
-	initViewConfig: function () {
-		/*
-		 * enableRowBody is used for enabling the rendering of
-		 * the second row in the compact view model. The actual
-		 * rendering is done in the function getRowClass.
-		 *
-		 * NOTE: Even though we default to the extended view,
-		 * enableRowBody must be enabled here. We disable it
-		 * later in onContextViewModeChange(). If we set false
-		 * here, and enable it later then the row body will never
-		 * be rendered. So disabling after initializing the data
-		 * with the rowBody works, but the opposite will not.
-		 */
+	initEvents : function ()
+	{
+		this.on('afterrender', this.onAfterRender, this);
+	},
 
-		return {
-			enableRowBody: false,
-			forceFit     : true,
-			emptyText    : '<div class=\'emptytext\'>' + dgettext('plugin_files', 'No account created!') + '</div>',
-			getRowClass: function(record) {
-				if (record.get('status') !== 'ok') {
-					return 'files-faulty-account';
-				}
-			}
-		};
+	/**
+	 * Event handler triggered after rendering account grid.
+	 * which reload the account store so we can get updated status
+	 * for all configured accounts.
+	 */
+	onAfterRender : function ()
+	{
+		this.store.reload();
 	},
 
 	/**
@@ -177,8 +166,11 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	 * @param grid
 	 * @param rowIndex
 	 */
-	onRowDblClick: function (grid, rowIndex) {
-		if (this.getSelectionModel().getSelections()[0].get("cannot_change")) {
+	onRowDblClick: function (grid, rowIndex)
+	{
+		var accountStore = this.getStore();
+		var accountRecord = accountStore.getAt(rowIndex);
+		if (accountRecord.get("cannot_change")) {
 			return;
 		}
 		Zarafa.core.data.UIFactory.openLayerComponent(Zarafa.core.data.SharedComponentType['filesplugin.accountedit'], undefined, {
@@ -205,7 +197,8 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	/**
 	 * Clickhandler for the "remove account" button.
 	 */
-	onAccountRemove: function () {
+	onAccountRemove: function ()
+	{
 		var selections = this.getSelectionModel().getSelections();
 
 		// Warn user before deleting the account!
@@ -313,8 +306,6 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 		a.set('account_sequence', bSeq);
 		b.set('account_sequence', aSeq);
 		this.store.resumeEvents();
-		a.markDirty();
-		b.markDirty();
 
 		// store both accounts in one request
 		this.store.save(this.store.getModifiedRecords());
@@ -333,11 +324,12 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	 * @param {Zarafa.plugins.files.data.AccountRecord} a The first account
 	 * @param {Zarafa.plugins.files.data.AccountRecord} b The second account
 	 */
-	onAfterSequenceChanged : function(store, record, operation, a, b) {
+	onAfterSequenceChanged : function(store, record, operation, a, b)
+	{
+		// Reapply the sorting, this will update the UI
 		store.reload();
-
 		// Update the UI when the store has been reloaded
-		store.on('load', this.onAfterSequenceReload.createDelegate(this, [a,b], true), null, {single: true});
+		store.on('load', this.onAfterSequenceReload.createDelegate(this, [a,b], true), this, {single: true});
 	},
 
 	/**
@@ -349,13 +341,12 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 	 * @param {Zarafa.plugins.files.data.AccountRecord} a The first account
 	 * @param {Zarafa.plugins.files.data.AccountRecord} b The second account
 	 */
-	onAfterSequenceReload: function(store, record, operation, a, b) {
-		var grid = this;
-
+	onAfterSequenceReload: function(store, record, operation, a, b)
+	{
 		 // Update the 'up'/'down' button
-		var sm = grid.getSelectionModel();
-		grid.upButton.setDisabled(!sm.hasPrevious());
-		grid.downButton.setDisabled(!sm.hasNext());
+		var sm = this.getSelectionModel();
+		this.upButton.setDisabled(!sm.hasPrevious());
+		this.downButton.setDisabled(!sm.hasNext());
 
 		// fire the reorder event
 		store.fireEvent('reorder', a, b);

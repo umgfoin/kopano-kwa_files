@@ -78,28 +78,6 @@ Zarafa.plugins.files.data.FilesRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	},
 
 	/**
-	 * Builds and returns inline thumbnail image URL to download show images,
-	 * it uses {@link Zarafa.core.data.IPMRecord IPMRecord} to get store and message entryids.
-	 *
-	 * @param {Integer} width Width of the thumbnail
-	 * @param {Integer} height Height of the thumbnail
-	 * @return {String} URL for downloading inline images.
-	 */
-	getThumbnailImageUrl: function (width, height) {
-		var link = "";
-
-		link += "index.php?sessionid=" + container.getUser().getSessionId() + "&load=custom&name=download_file&" + Ext.urlEncode({
-			id    : this.get('id'),
-			inline: false,
-			thumb : true,
-			width : width,
-			height: height
-		});
-
-		return link;
-	},
-
-	/**
 	 * Set the disabled flag.
 	 *
 	 * @param {Boolean} state
@@ -122,14 +100,28 @@ Zarafa.plugins.files.data.FilesRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	 *
 	 * @return {Zarafa.plugins.files.data.AccountRecord} an IPM.FilesAccount record
 	 */
-	getAccount: function () {
+	getAccount: function ()
+	{
+		// FixME : Create function called getAccountFromRecord in
+		// Files context model.
 		var accId = Zarafa.plugins.files.data.Utils.File.getAccountId(this.get('id'));
-		var store = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
+		var store = container.getCurrentContext().getAccountsStore();
 
 		// look up the account
 		var account = store.getById(accId);
 
 		return account;
+	},
+
+	/**
+	 * Check selected record is folder record or not.
+	 *
+	 * @return {boolean} return true if selected record is
+	 * folder record else false.
+	 */
+	isFolder : function ()
+	{
+		return this.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER;
 	}
 });
 

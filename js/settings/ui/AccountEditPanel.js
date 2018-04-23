@@ -26,7 +26,6 @@ Zarafa.plugins.files.settings.ui.AccountEditPanel = Ext.extend(Ext.Panel, {
 		}
 
 		Ext.applyIf(config, {
-
 			xtype: 'filesplugin.accounteditpanel',
 			layout: "anchor",
 			autoScroll: true,

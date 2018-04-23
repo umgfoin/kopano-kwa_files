@@ -1,16 +1,10 @@
 Ext.namespace('Zarafa.plugins.files.ui.snippets');
 
 Zarafa.plugins.files.ui.snippets.FilesQuotaBar = Ext.extend(Ext.Panel, {
-
 	/**
-	 * @cfg {Zarafa.core.Context} context The context to which this toolbar belongs
-	 */
-	context: undefined,
-
-	/**
-	 * The {@link Zarafa.core.ContextModel} which is obtained from the {@link #context}.
+	 * The {@link Zarafa.plugins.files.FilesContextModel} which is obtained from the {@link #context}.
 	 * @property
-	 * @type Zarafa.mail.MailContextModel
+	 * @type Zarafa.plugins.files.FilesContextModel
 	 */
 	model: undefined,
 
@@ -36,67 +30,53 @@ Zarafa.plugins.files.ui.snippets.FilesQuotaBar = Ext.extend(Ext.Panel, {
 	constructor: function (config) {
 		config = config || {};
 
-		if (!Ext.isDefined(config.model) && Ext.isDefined(config.context)) {
-			config.model = config.context.getModel();
+		if (!Ext.isDefined(config.store) && Ext.isDefined(config.model)) {
+			config.store = config.model.getStore();
 		}
 
 		Ext.applyIf(config, {
-			xtype       : 'filesplugin.quotabar',
-			cls         : 'files_quota_bar_snippet',
-			maskDisabled: false,
-			hideBorders : true,
-			border      : false,
-			items       : [{
-				xtype       : 'panel',
-				ref         : 'quotaPanel',
-				layout      : 'table',
+			xtype : 'filesplugin.quotabar',
+			cls : 'files_quota_bar_snippet',
+			border : false,
+			items : [{
+				xtype : 'panel',
+				ref : 'quotaPanel',
+				layout : 'table',
 				layoutConfig: {columns: 2},
-				cls         : 'files_quota_bar_container',
-				maskDisabled: false,
-				hideBorders : true,
-				hidden      : true,
-				border      : false,
-				defaults    : {
-					frame: false
-				},
-				items       : [{
+				cls : 'files_quota_bar_container',
+				border : false,
+				items : [{
 					xtype: 'label',
-					ref  : '../usageInfo',
+					ref : '../usageInfo',
 					autoWidth: true
 				}, {
 					xtype: 'progress',
 					width: '150',
-					ref  : '../progressBar',
+					ref : '../progressBar',
 					height: '8',
-					cls  : 'files_quota_bar',
+					cls : 'files_quota_bar',
 					style: 'margin: 0 0 0 20px'
 				}]
 			}, {
 				xtype: 'label',
-				border      : false,
-				hideBorders : true,
-				maskDisabled: false,
+				border : false,
+				hidden : true,
 				ref  : 'loadingIcon',
 				html : '<div class="img"></div>'
 			}]
 		});
 
 		Zarafa.plugins.files.ui.snippets.FilesQuotaBar.superclass.constructor.call(this, config);
-		this.initEvents();
 	},
 
 	/**
 	 * initializes the events.
 	 * @private
 	 */
-	initEvents: function () {
-		var filesStore = Zarafa.plugins.files.data.ComponentBox.getStore();
-
-		// do the initial check
-		this.onStoreLoad(filesStore);
-
-		this.mon(filesStore, {
-			'beforeload': this.onStoreLoad,
+	initEvents: function ()
+	{
+		this.mon(this.store, {
+			load : this.onStoreLoad,
 			scope : this
 		});
 	},
@@ -109,32 +89,30 @@ Zarafa.plugins.files.ui.snippets.FilesQuotaBar = Ext.extend(Ext.Panel, {
 	 * @param {Array} folders selected folders as an array of {Zarafa.hierarchy.data.MAPIFolderRecord Folder} objects.
 	 * @private
 	 */
-	onStoreLoad: function (store, records, options) {
+	onStoreLoad: function (store, records, options)
+	{
 		var nodeID = store.getPath();
 		var accID = Zarafa.plugins.files.data.Utils.File.getAccountId(nodeID);
 
-		var accStore = Zarafa.plugins.files.data.singleton.AccountStore.getStore();
-
 		// look up the account
-		var account = accStore.getById(accID);
+		var account = this.accountsStore.getById(accID);
 
 		if (Ext.isDefined(account) && account.supportsFeature(Zarafa.plugins.files.data.AccountRecordFeature.QUOTA)) {
 
 			// load the information only once or if a new account was loaded.
-			if ((!Ext.isDefined(this.loaded) || this.loaded != accID) || !this.loadOnlyOnce) {
-
-				// ui updates
-				this.show();
+			if (this.loaded != accID || !this.loadOnlyOnce) {
 				this.quotaPanel.hide();
 				this.loadingIcon.show();
-
 				this.loadQuotaInformation(accID, this.defaultDirectory);
 			}
 
+			if (!this.isVisible()) {
+				this.show();
+			}
 			// set the loaded flag to true
 			this.loaded = accID;
 		} else {
-			this.hide(); // hide the complete component
+			this.hide();
 		}
 	},
 

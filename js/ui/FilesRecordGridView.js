@@ -1,9 +1,16 @@
 Ext.namespace('Zarafa.plugins.files.ui');
 
 Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.GridPanel, {
+	/**
+	 * @cfg {Zarafa.plugins.files.FilesContext} context The context to which this context menu belongs.
+	 */
+	context : undefined,
 
-	context: undefined,
-
+	/**
+	 * The {@link Zarafa.plugins.files.FilesContextModel} which is obtained from the {@link #context}.
+	 * @property
+	 * @type Zarafa.plugins.files.FilesContextModel
+	 */
 	model: undefined,
 
 	dropTarget: undefined,
@@ -51,12 +58,14 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 		this.mon(this, 'rowdblclick', this.onRowDblClick, this);
 		this.mon(this, 'afterrender', this.initDropTarget, this);
 
-		this.mon(this.getSelectionModel(), 'beforerowselect', this.onBeforeRowSelect, this, {buffer: 1});
+		this.mon(this.getStore(), 'createFolder', this.onCreateFolder, this);
+
 		this.mon(this.getSelectionModel(), 'rowselect', this.onRowSelect, this, {buffer: 1});
 		this.mon(this.getSelectionModel(), 'selectionchange', this.onSelectionChange, this, {buffer: 1});
 
 		this.mon(this.context, 'viewmodechange', this.onContextViewModeChange, this);
 		this.onContextViewModeChange(this.context, this.context.getCurrentViewMode());
+		this.mon(this.bwrap, 'drop', this.onDropItemToUpload, this);
 	},
 
 	initLoadMask: function () {
@@ -83,43 +92,7 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 	},
 
 	initDropTarget: function () {
-		var gridDropTargetEl = this.getView().el.dom.childNodes[0].childNodes[1];
-
-		gridDropTargetEl.addEventListener("dragstart", function (e) {
-			e.dataTransfer.effectAllowed = "copy";
-			e.preventDefault();
-			e.stopPropagation();
-		}, false);
-
-		gridDropTargetEl.addEventListener("dragenter", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-		}, false);
-
-		gridDropTargetEl.addEventListener("dragover", function (e) {
-			e.dataTransfer.dropEffect = "copy";
-			e.preventDefault();
-			e.stopPropagation();
-		}, false);
-
-		gridDropTargetEl.addEventListener("dragleave", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-		}, false);
-
-		gridDropTargetEl.addEventListener("drop", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-
-			var dt = e.dataTransfer;
-			var files = dt.files;
-
-			Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, Zarafa.plugins.files.data.ComponentBox.getStore());
-
-			return false;
-		}, false);
-
-		this.dropTarget = new Ext.dd.DropTarget(gridDropTargetEl, {
+		this.dropTarget = new Ext.dd.DropTarget(this.getEl(), {
 			ddGroup   : 'dd.filesrecord',
 			copy      : false,
 			gridStore : this.getStore(),
@@ -200,99 +173,132 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 		}
 	},
 
+	/**
+	 * Event handler for the 'drop' event which happens if the user drops a file
+	 * from the desktop to the {@link #wrap} element.
+	 * @param {Ext.EventObject} event The event object
+	 * @private
+	 */
+	onDropItemToUpload : function (event)
+	{
+		event.stopPropagation();
+		event.preventDefault();
+
+		var files = event.browserEvent.target.files || event.browserEvent.dataTransfer.files;
+		Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, this.getStore());
+	},
+
 	onContextViewModeChange: function (context, newViewMode, oldViewMode) {
 		var compact = newViewMode === Zarafa.plugins.files.data.ViewModes.RIGHT_PREVIEW;
-
 		this.getColumnModel().setCompactView(compact);
 	},
 
 	onCellContextMenu: function (grid, rowIndex, cellIndex, event) {
 		var sm = this.getSelectionModel();
-		var cm = this.getColumnModel();
-
 		if (sm.hasSelection()) {
-
 			if (!sm.isSelected(rowIndex)) {
-
 				sm.clearSelections();
 				sm.selectRow(rowIndex);
 			}
 		} else {
-
 			sm.selectRow(rowIndex);
 		}
 
-		var column = {};
-
-		if (cellIndex >= 0) {
-			column = cm.getColumnById(cm.getColumnId(cellIndex));
-		}
-
 		var records = sm.getSelections();
-
-		var show = true;
-		Ext.each(records, function (record) {
-			if (record.getDisabled() === true) {
-				show = false;
-				return;
-			}
-		});
+		var show = !records.some(function(record) {
+			return record.getDisabled() === true
+		}, this);
 
 		if (show) {
 			Zarafa.core.data.UIFactory.openDefaultContextMenu(records, {
 				position: event.getXY(),
-				context : this.context,
-				grid    : this
+				context : this.context
 			});
 		}
 	},
 
-	onRowBodyContextMenu: function (grid, rowIndex, event) {
+	onRowBodyContextMenu: function (grid, rowIndex, event)
+	{
 		this.onCellContextMenu(grid, rowIndex, -1, event);
 	},
 
-	onRowDblClick: function (grid, rowIndex, e) {
-		var record = grid.store.getAt(rowIndex);
-		Zarafa.plugins.files.data.Actions.openFilesContent([record]);
-	},
-
-	onKeyDelete: function (key, event) {
-		var selections = this.getSelectionModel().getSelections();
-
-		Zarafa.plugins.files.data.Actions.deleteRecords(selections);
-	},
-
-	onBeforeRowSelect: function (sm, rowIndex, keepExisting, record) {
-		return !record.getDisabled();
-	},
-
-	onRowSelect: function (selectionModel, rowNumber, record) {
-		var viewMode = this.context.getCurrentViewMode();
-
-		var count = selectionModel.getCount();
-
-		if (viewMode != Zarafa.plugins.files.data.ViewModes.NO_PREVIEW) {
-			if (count == 0) {
-				this.model.setPreviewRecord(undefined);
-			} else if (count == 1 && selectionModel.getSelected() === record) {
-				if (record.get('id') !== (container.getSettingsModel().get('zarafa/v1/contexts/files/files_path') + "/") && record.get('filename') !== "..") {
-					this.model.setPreviewRecord(record);
-				} else {
-					this.model.setPreviewRecord(undefined);
-				}
-			}
+	/**
+	 *
+	 * @param grid
+	 * @param rowIndex
+	 */
+	onRowDblClick: function (grid, rowIndex)
+	{
+		var store = this.getStore();
+		var record = store.getAt(rowIndex);
+		if (record.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER) {
+			store.loadPath(record.get('id'));
+		} else {
+			Zarafa.plugins.files.data.Actions.downloadItem(record);
 		}
 	},
 
-	onSelectionChange: function (selectionModel) {
-		var selections = selectionModel.getSelections();
-		var viewMode = this.context.getCurrentViewMode();
+	onKeyDelete: function (key, event)
+	{
+		var selections = this.getSelectionModel().getSelections();
+		Zarafa.plugins.files.data.Actions.deleteRecords(selections);
+	},
 
-		this.model.setSelectedRecords(selections);
-		if (viewMode !== Zarafa.plugins.files.data.ViewModes.NO_PREVIEW) {
-			if (Ext.isEmpty(selections)) {
-				this.model.setPreviewRecord(undefined);
+	/**
+	 * Event handler triggered when row was selected in grid.
+	 * set single selected record in preview panel if view mode is
+	 * other then no preview.
+	 *
+	 * @param {Ext.grid.RowSelectionModel} selectionModel The selection model used by the grid.
+	 * @param {Number} rowNumber The index of selected row.
+	 * @param {Zarafa.plugins.files.data.FilesRecord} record The record which is selected.
+	 */
+	onRowSelect: function (selectionModel, rowNumber, record)
+	{
+
+		var viewMode = this.context.getCurrentViewMode();
+		var count = selectionModel.getCount();
+		if (viewMode === Zarafa.plugins.files.data.ViewModes.NO_PREVIEW || count > 1 || record.getDisabled()) {
+			return;
+		}
+		if (count === 1) {
+			var id = container.getSettingsModel().get('zarafa/v1/contexts/files/files_path') + "/";
+			if (record.get('id') !== id) {
+				this.model.setPreviewRecord(record);
 			}
+			return;
+		}
+		this.model.setPreviewRecord(undefined);
+	},
+
+	/**
+	 * Event handler triggered when selection gets changed in grid.
+	 * It will set the selected record in preview panel. If selection
+	 * is empty then clear the preview panel.
+	 *
+	 * @param {Ext.grid.RowSelectionModel} selectionModel The selection model used by the grid.
+	 * @private
+	 */
+	onSelectionChange: function (selectionModel)
+	{
+		var selections = selectionModel.getSelections();
+		this.model.setSelectedRecords(!Ext.isEmpty(selections) ? selections : undefined);
+	},
+
+	/**
+	 * Event handler triggers when folder is record is created.
+	 *
+	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store The store which fires this event.
+	 * @param {String} parentFolderId The parentFolderId under which folder was created.
+	 * @param {Object} data The data contains the information about newly created folder.
+	 */
+	onCreateFolder : function (store, parentFolderId, data)
+	{
+		if (store.getPath() === parentFolderId) {
+			var record = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_FILES, data);
+			store.add(record);
+			store.on("update", Zarafa.plugins.files.data.Actions.doRefreshIconView, Zarafa.plugins.files.data.Actions, {single: true});
+			record.commit(true);
 		}
 	}
 });

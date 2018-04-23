@@ -9,14 +9,14 @@ Ext.namespace('Zarafa.plugins.files.ui');
  */
 Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 	/**
-	 * @cfg {Zarafa.core.Context} context The context to which this toolbar belongs
+	 * @cfg {Zarafa.plugins.files.FilesContext} context The context to which this toolbar belongs
 	 */
 	context: undefined,
 
 	/**
-	 * The {@link Zarafa.core.ContextModel} which is obtained from the {@link #context}.
+	 * The {@link Zarafa.plugins.files.FilesContextModel} which is obtained from the {@link #context}.
 	 * @property
-	 * @type Zarafa.mail.MailContextModel
+	 * @type Zarafa.plugins.files.FilesContextModel
 	 */
 	model: undefined,
 
@@ -213,15 +213,13 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 
 	/**
 	 * Event handler for downloading the selected files.
-	 *
 	 * See {@link #onFileInputChange} for the handling of the selected files.
-	 * @param {Ext.Button} button the button on which click event is performed.
-	 * @param {Ext.EventObject} event The event object
 	 * @private
 	 */
-	onFileDownload: function (button, event) {
+	onFileDownload: function ()
+	{
 		var records = this.model.getSelectedRecords();
-		Zarafa.plugins.files.data.Actions.openFilesContent(records);
+		Zarafa.plugins.files.data.Actions.downloadItem(records);
 	},
 
 	/**
@@ -284,7 +282,7 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 	 * @param {Object} form the form is contains {@link Ext.form.BasicForm bacisform} info.
 	 */
 	uploadCallback: function (files, form) {
-		Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, Zarafa.plugins.files.data.ComponentBox.getStore());
+		Zarafa.plugins.files.data.Actions.uploadAsyncItems(files, this.model.getStore());
 	},
 
 	/**
@@ -308,8 +306,7 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 	 */
 	onRename: function (button, event) {
 		var records = this.model.getSelectedRecords();
-
-		Zarafa.plugins.files.data.Actions.openRenameDialog(this.model, records[0]);
+		Zarafa.plugins.files.data.Actions.openRenameDialog(records[0]);
 	},
 
 	/**
@@ -322,7 +319,6 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 	 */
 	onDelete: function (button, event) {
 		var records = this.model.getSelectedRecords();
-
 		Zarafa.plugins.files.data.Actions.deleteRecords(records);
 	}
 });

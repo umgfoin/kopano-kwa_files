@@ -3,7 +3,7 @@
 <plugin version="2">
 	<info>
 		<version>2.1</version>
-		<name>files</name>
+		<name>filessss</name>
 		<title>Files Integration</title>
 		<author>Kopano</author>
 		<authorURL>http://www.kopano.com</authorURL>
@@ -30,6 +30,7 @@
 					<clientfile load="source">js/FilesContextModel.js</clientfile>
 					<clientfile load="source">js/FilesContext.js</clientfile>
 					<clientfile load="source">js/FilesPlugin.js</clientfile>
+					<clientfile load="source">js/ui/FilesContextNavigationPanel.js</clientfile>
 					<clientfile load="source">js/ui/FilesMainContextMenu.js</clientfile>
 					<clientfile load="source">js/ui/FilesTreeContextMenu.js</clientfile>
 					<clientfile load="source">js/ui/FilesMainPanel.js</clientfile>
@@ -46,7 +47,6 @@
 					<clientfile load="source">js/ui/Tree.js</clientfile>
 					<clientfile load="source">js/ui/MultipleFileUploadField.js</clientfile>
 					<clientfile load="source">js/ui/UploadComponent.js</clientfile>
-					<clientfile load="source">js/ui/FilesContextNavigatorBuilder.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/AttachFromFilesContentPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/CreateFolderContentPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/CreateFolderPanel.js</clientfile>
@@ -93,8 +93,8 @@
 					<clientfile load="source">js/data/ResponseHandler.js</clientfile>
 					<clientfile load="source">js/data/Utils.js</clientfile>
 					<clientfile load="source">js/data/AsyncFilesTreeNode.js</clientfile>
-					<clientfile load="source">js/data/singleton/AccountStore.js</clientfile>
-					<clientfile load="source">js/data/singleton/FilesRecordStoreManager.js</clientfile>
+
+
 					<clientfile load="source">php/jsloader.php?debug=true</clientfile>
 				</client>
 				<resources>
