@@ -351,7 +351,7 @@ Zarafa.plugins.files.data.Actions = {
 	 * @private
 	 */
 	doMoveRecords: function (overwrite, value, options, files, destination) {
-		var store = store = files[0].getStore();
+		var store = files[0].getStore();
 		if(!Ext.isDefined(overwrite) || overwrite === 'yes' ) {
 			Ext.each(files, function (record) {
 				var ids = [{
