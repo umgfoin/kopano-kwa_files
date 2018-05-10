@@ -653,7 +653,7 @@ Zarafa.plugins.files.data.Actions = {
 		var url = document.URL;
 		link = url.substring(0, url.lastIndexOf('/') + 1);
 
-		link += "index.php?sessionid=" + container.getUser().getSessionId() + "&load=custom&name=download_file";
+		link += "index.php?load=custom&name=download_file";
 		Ext.each(records, function (record, index) {
 			link = Ext.urlAppend(link, "ids[" + index + "]=" + encodeURIComponent(record.get("id")));
 		});
