@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: KC-8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-09 14:17+0100\n"
-"PO-Revision-Date: 2018-02-09 10:49+0000\n"
-"Last-Translator: jengelh <jengelh@inai.de>\n"
-"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/"
-">\n"
+"PO-Revision-Date: 2018-05-17 10:51+0000\n"
+"Last-Translator: Hans-Peter <h.stradinger@kopano.com>\n"
+"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,36 +31,29 @@ msgid "Confirm deletion"
 msgstr "Löschen bestätigen"
 
 #: js/data/Actions.js:214
-#, fuzzy
 msgid "Are you sure you want to delete {0}?"
-msgstr "Wollen Sie den Account \"{0}\" wirklich entfernen?"
+msgstr "Wollen Sie \"{0}\" wirklich löschen?"
 
 #: js/data/Actions.js:218
-#, fuzzy
 msgid "Are you sure you want to delete {0} and all of its contents?"
-msgstr ""
-"Sind Sie sicher, dass Sie alle Files-Einstellungen zurücksetzen und alle "
-"Accounts löschen wollen?"
+msgstr "Sind Sie sicher dass Sie {0} und die Inhalte löschen wollen?"
 
 #: js/data/Actions.js:222
-#, fuzzy
 msgid "Are you sure you want to delete {0} files?"
-msgstr "Wollen Sie den Account \"{0}\" wirklich entfernen?"
+msgstr "Wollen Sie \"{0}\" Dateien wirklich löschen?"
 
 #: js/data/Actions.js:226
-#, fuzzy
 msgid "Are you sure want to delete {0} folders and all of their contents?"
 msgstr ""
-"Sind Sie sicher, dass Sie alle Files-Einstellungen zurücksetzen und alle "
-"Accounts löschen wollen?"
+"Sind Sie sicher, dass Sie alle {0} Ordner mit dem gesamten Inhalt löschen "
+"wollen?"
 
 #: js/data/Actions.js:230
-#, fuzzy
 msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
 msgstr ""
-"Sind Sie sicher, dass Sie alle Files-Einstellungen zurücksetzen und alle "
-"Accounts löschen wollen?"
+"Sind Sie sicher, dass Sie ausgewählten Elemente und ihren Inhalt löschen "
+"wollen?"
 
 #: js/data/Actions.js:341
 msgid "This name already exists"
@@ -112,12 +105,11 @@ msgstr ""
 
 #: js/data/Actions.js:779
 msgid "Keep both"
-msgstr ""
+msgstr "Beide behalten"
 
 #: js/data/Actions.js:782
-#, fuzzy
 msgid "Overwrite"
-msgstr "Überschreiben bestätigen"
+msgstr "Überschreiben"
 
 #: js/data/Actions.js:785 js/settings/SettingsResetWidget.js:67
 #: js/settings/ui/AccountEditPanel.js:43 js/ui/dialogs/CreateFolderPanel.js:45
@@ -388,7 +380,7 @@ msgstr "Frei"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:126
 msgid "Total"
-msgstr ""
+msgstr "Gesamt"
 
 #: js/settings/ui/FeatureVersionInfoContentPanel.js:20
 msgid "Version Information"
