@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Plugin Dutch\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 16:22+0200\n"
-"PO-Revision-Date: 2018-05-28 14:30+0000\n"
+"PO-Revision-Date: 2018-05-28 14:31+0000\n"
 "Last-Translator: martijn <m.alberts@zarafa.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
 "Language: nl_NL\n"
@@ -221,7 +221,7 @@ msgstr "WebApp zal automatisch herstarten om deze wijzigingen door te voeren"
 
 #: js/settings/SettingsResetWidget.js:64
 msgid "Reset"
-msgstr "Herstellen"
+msgstr "Herstel"
 
 #: js/settings/SettingsResetWidget.js:94
 msgid "Webapp is reloading, Please wait."
