@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Plugin Dutch\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 16:22+0200\n"
-"PO-Revision-Date: 2017-11-03 08:17+0000\n"
-"Last-Translator: Sean <s.vanderspek@zarafa.com>\n"
+"PO-Revision-Date: 2018-05-28 14:30+0000\n"
+"Last-Translator: martijn <m.alberts@zarafa.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
@@ -373,7 +373,7 @@ msgstr "Beschikbaar"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:126
 msgid "Total"
-msgstr ""
+msgstr "Totaal"
 
 #: js/settings/ui/FeatureVersionInfoContentPanel.js:20
 msgid "Version Information"
@@ -931,9 +931,8 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 #: php/Files/Backend/Webdav/class.backend.php:915
-#, fuzzy
 msgid "File-server is not reachable. Incorrect URL?"
-msgstr "File-server niet bereikbaar. Onjuist IP ingevoerd?"
+msgstr "Fileserver is niet bereikbaar. Onjuiste URL ingevoerd?"
 
 #: php/Files/Backend/Webdav/class.backend.php:942
 msgid "PHP-Curl is not available. Contact your system administrator."
