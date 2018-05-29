@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: KC-8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 16:22+0200\n"
-"PO-Revision-Date: 2018-05-17 10:51+0000\n"
-"Last-Translator: Hans-Peter <h.stradinger@kopano.com>\n"
-"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/"
-">\n"
+"PO-Revision-Date: 2018-05-29 09:16+0000\n"
+"Last-Translator: Björn <b.neumann@kopano.com>\n"
+"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -939,9 +939,8 @@ msgid "Password"
 msgstr "Passwort"
 
 #: php/Files/Backend/Webdav/class.backend.php:915
-#, fuzzy
 msgid "File-server is not reachable. Incorrect URL?"
-msgstr "Der Server ist nicht erreichbar. Falsche IP-Adresse eingetragen?"
+msgstr "Der Dateiserver ist nicht erreichbar. Falsche URL eingetragen?"
 
 #: php/Files/Backend/Webdav/class.backend.php:942
 msgid "PHP-Curl is not available. Contact your system administrator."
