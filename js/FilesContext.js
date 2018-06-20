@@ -263,7 +263,6 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 		return {
 			xtype       : 'menuitem',
 			text        : dgettext('plugin_files', 'Upload file'),
-			tooltip     : dgettext('plugin_files', 'Upload one or more files'),
 			plugins     : 'zarafa.menuitemtooltipplugin',
 			iconCls     : 'icon_files_category',
 			newMenuIndex: 6,
@@ -335,7 +334,6 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 				items: [{
 					text        : dgettext('plugin_files', 'List'),
 					overflowText: dgettext('plugin_files', 'List'),
-					tooltip     : dgettext('plugin_files', 'List'),
 					iconCls     : 'icon_contact_list',
 					valueView   : Zarafa.plugins.files.data.Views.LIST,
 					handler     : this.onSwitchView,
@@ -343,7 +341,6 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 				}, {
 					text        : dgettext('plugin_files', 'Icons'),
 					overflowText: dgettext('plugin_files', 'Icons'),
-					tooltip     : dgettext('plugin_files', 'Icons'),
 					iconCls     : 'icon_note_icon_view',
 					valueView   : Zarafa.plugins.files.data.Views.ICON,
 					handler     : this.onSwitchView,

@@ -75,10 +75,6 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 		return [{
 			xtype  : 'button',
 			text   : '&nbsp;&nbsp;&nbsp;&nbsp;' + dgettext('plugin_files', 'Add attachment'),
-			tooltip: {
-				title: dgettext('plugin_files', 'Add attachment'),
-				text : dgettext('plugin_files', 'Add selected attachment from files to email attachment.')
-			},
 			iconCls: 'icon_files_category_white',
 			handler: this.downloadSelectedFilesFromFilesToTmp,
 			scope  : this

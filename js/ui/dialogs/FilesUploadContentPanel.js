@@ -136,20 +136,12 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 			ref     : '../../mainuploadbutton',
 			disabled: true,
 			text    : '&nbsp;&nbsp;' + dgettext('plugin_files', 'Upload'),
-			tooltip : {
-				title: dgettext('plugin_files', 'Store selected file'),
-				text : dgettext('plugin_files', 'Upload file to the selected folder')
-			},
 			iconCls : 'icon_files',
 			handler : this.doUpload,
 			scope   : this
 		}, {
 			xtype  : 'button',
 			text   : dgettext('plugin_files', 'Cancel'),
-			tooltip: {
-				title: dgettext('plugin_files', 'Cancel'),
-				text : dgettext('plugin_files', 'Close this window')
-			},
 			handler: this.onClose,
 			scope  : this
 		}];

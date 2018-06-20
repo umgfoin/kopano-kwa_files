@@ -169,20 +169,12 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 		return [{
 			xtype: 'button',
 			text: dgettext('plugin_files', 'New folder'),
-			tooltip: {
-				title: dgettext('plugin_files', 'New folder'),
-				text: dgettext('plugin_files', 'Create a new folder')
-			},
 			cls: 'zarafa-normal',
 			handler: this.newFolder,
 			scope: this
 		}, {
 			xtype: 'button',
 			text: dgettext('plugin_files', 'Save'),
-			tooltip: {
-				title: dgettext('plugin_files', 'Store attachment'),
-				text: dgettext('plugin_files', 'Store attachment to the selected Files folder.')
-			},
 			cls: 'zarafa-action',
 			iconCls: 'icon_files_category_white',
 			handler: this.uploadFile,
