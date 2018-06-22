@@ -213,7 +213,8 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 					'filesbrowsermodule',
 					'checkifexists',
 					{
-						records: checkMe
+						records: checkMe,
+						destination: this.selectedFolder
 					},
 					new Zarafa.core.data.AbstractResponseHandler({
 						doCheckifexists: this.checkForDuplicateFileDone.createDelegate(this)
@@ -324,7 +325,7 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 						destdir: this.selectedFolder
 					},
 					new Zarafa.core.data.AbstractResponseHandler({
-						diUploadtobackend: this.uploadDone.createDelegate(this)
+						doUploadtobackend: this.uploadDone.createDelegate(this)
 					})
 				);
 			} catch (e) {
