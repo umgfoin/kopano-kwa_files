@@ -60,10 +60,6 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 			cls         : 'files_icon_actionbutton',
 			text        : dgettext('plugin_files', 'Upload'),
 			ref         : 'uploadButton',
-			tooltip     : {
-				title: dgettext('plugin_files', 'Upload file'),
-				text : dgettext('plugin_files', 'Upload one or more files')
-			},
 			overflowText: dgettext('plugin_files', 'Upload files'),
 			iconCls     : 'files_icon_action files_icon_action_upload',
 			handler     : this.onFileUpload,
@@ -73,10 +69,6 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 			cls         : 'files_icon_actionbutton',
 			text        : dgettext('plugin_files', 'Create folder'),
 			ref         : 'createFolderButton',
-			tooltip     : {
-				title: dgettext('plugin_files', 'Create folder'),
-				text : dgettext('plugin_files', 'Create a new folder')
-			},
 			overflowText: dgettext('plugin_files', 'Create new folder'),
 			iconCls     : 'files_icon_action files_icon_action_new_folder',
 			handler     : this.onCreateFolder,
@@ -85,10 +77,6 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 			ref                    : 'downloadBtn',
 			cls                    : 'files_icon_actionbutton',
 			text                   : dgettext('plugin_files', 'Download'),
-			tooltip                : {
-				title: dgettext('plugin_files', 'Download files'),
-				text : dgettext('plugin_files', 'Download the selected files')
-			},
 			overflowText           : dgettext('plugin_files', 'Download files'),
 			iconCls                : 'files_icon_action files_icon_action_download',
 			handler                : this.onFileDownload,
@@ -97,10 +85,6 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 			cls                    : 'files_icon_actionbutton',
 			ref                    : 'shareBtn',
 			text                   : dgettext('plugin_files', 'Share'),
-			tooltip                : {
-				title: dgettext('plugin_files', 'Share files'),
-				text : dgettext('plugin_files', 'Share the selected files')
-			},
 			overflowText           : dgettext('plugin_files', 'Share files'),
 			iconCls                : 'files_icon_action files_icon_action_share',
 			handler                : this.onFileShare,
@@ -109,10 +93,6 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 			cls                    : 'files_icon_actionbutton',
 			ref                    : 'attachToMailBtn',
 			text                   : dgettext('plugin_files', 'Attach to mail'),
-			tooltip                : {
-				title: dgettext('plugin_files', 'Attach to mail'),
-				text : dgettext('plugin_files', 'Attach the selected files to mail')
-			},
 			overflowText           : dgettext('plugin_files', 'Attach to mail'),
 			iconCls                : 'files_icon_action files_icon_action_attach_to_mail',
 			handler                : this.onFileAddToMail,

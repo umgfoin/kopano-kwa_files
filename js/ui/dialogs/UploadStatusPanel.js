@@ -139,10 +139,7 @@ Zarafa.plugins.files.ui.dialogs.UploadStatusPanel = Ext.extend(Ext.form.FormPane
 						xtype        : 'button',
 						ref          : '../../cancel',
 						custom_fileid: ref,
-						tooltip      : {
-							title: dgettext('plugin_files', 'Cancel'),
-							text : dgettext('plugin_files', 'Cancel upload')
-						},
+						tooltip      : dgettext('plugin_files', 'Cancel upload'),
 						overflowText : dgettext('plugin_files', 'Cancel upload'),
 						iconCls      : 'icon_action_cancel',
 						handler      : this.doCancelUpload.createDelegate(this)
