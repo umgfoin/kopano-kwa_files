@@ -130,7 +130,7 @@
 			<available file="${target-folder}/${plugin-folder}/js/${plugin-debugfile}" type="file" />
 			<then>
 				<echo message="Compiling: ${plugin-debugfile}" />
-				<zCompile inputFolder="${target-folder}/${plugin-folder}/js" inputFile="${plugin-debugfile}" outputFolder="${target-folder}/${plugin-folder}/js" outputFile="${plugin-file}">
+				<zCompile inputFolder="${target-folder}/${plugin-folder}/js" inputFile="${plugin-debugfile}" outputFolder="${target-folder}/${plugin-folder}/js" outputFile="${plugin-file}" createSourceMap="false">
 					<externs>
 						var Ext = {};
 						var Zarafa = {};
@@ -148,15 +148,6 @@
 						var pgettext = function(msgctxt, msgid) {};
 					</externs>
 				</zCompile>
-				<!--yui-compressor 
-					warn="false" 
-					munge="true" 
-					preserveallsemicolons="false" 
-					fromdir="${target-folder}/${plugin-folder}/js" 
-					todir="${target-folder}/${plugin-folder}/js">
-
-				  <include name="${plugin-debugfile}" />
-				</yui-compressor-->
 			</then>
 		</if>
 	</target>
