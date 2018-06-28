@@ -20,12 +20,7 @@
 			<pathelement location="${tools-folder}/lib/ant-contrib-1.0b3.jar"/>
 		</classpath>
 	</taskdef>
-	
-	<!-- os checks for xmllint... -->
-	<condition property="isWindows" value="true">
-		<os family="windows" />
-	</condition>
-	
+		
 	<!-- php checks for valitation... -->
 	<target name="check-for-php"> 
 		<exec executable="php" failonerror="true" failifexecutionfails="false" errorproperty="hasPHP">
@@ -152,7 +147,7 @@
 		</if>
 	</target>
 
-	<!-- syntax check all PHP files, only on non windows systems -->
+	<!-- syntax check all PHP files -->
 	<target name="validate" if="hasPHP" depends="check-for-php, predeploy">
 		<if>
 			<available filepath="${target-folder}/${plugin-folder}/" file="config.php" type="file" />
@@ -228,35 +223,7 @@
 			<arg value="${file}"/>
 		</exec>
 	</target>
-	
-	<!-- on windows we do not check the xml file -->
-	<target name="xml-os-sel" depends="xml-check,xml-copy">
-		<echo>Processed manifest.xml</echo>
-	</target>
-	
-	<!-- check and copy manifest.xml if we are NOT on windows... -->
-	<target name="xml-check" unless="isWindows">
-		<echo message="Checking xml: manifest.xml" />
-		<!-- Copy (and validate) manifest.xml -->
-		<exec executable="xmllint" output="${target-folder}/${plugin-folder}/manifest.xml" failonerror="true" failifexecutionfails="false">
-			<arg value="--valid"/>
-			<arg value="--path"/>
-			<arg value="${server-folder}"/>
-			<arg value="manifest.xml"/>
-		</exec>
-	</target>
-	
-	<!-- only copy manifest.xml if we are on windows... -->
-	<target name="xml-copy" if="isWindows">
-		<echo message="Copying xml: manifest.xml" />
-		<!-- Copy manifest.xml -->
-		<copy todir="${target-folder}/${plugin-folder}">
-			<fileset dir=".">
-				<include name="manifest.xml"/>
-			</fileset>
-		</copy>
-	</target>
-	
+			
 	<!-- Precopy some files and make replacements - needed for validating -->
 	<target name="predeploy" depends="clean">
 		<mkdir dir="${target-folder}/${plugin-folder}"/>
@@ -272,7 +239,30 @@
 	</target>
 	
 	<!-- Install all files into the target folder -->
-	<target name="deploy" depends="clean, compress, compresscss, validate, xml-os-sel, language">
+	<target name="deploy" depends="clean, compress, compresscss, validate, language">
+
+		<!-- Copy (and validate) manifest.xml -->
+		<if>
+			<available file="xmllint" filepath="${env.PATH}" />
+			<then>
+				<exec executable="xmllint" output="${target-folder}/${plugin-folder}/manifest.xml" failonerror="true" logError="true">
+					<arg value="--valid"/>
+					<arg value="--path"/>
+					<arg value="${server-folder}"/>
+					<arg value="manifest.xml"/>
+				</exec>
+			</then>
+			<else>
+				<echo message="WARNING: xmllint not available, not performing syntax-check on manifest.xml"/>
+				<!-- xmllint is not available, so we must copy the file manually -->
+				<copy todir="${target-folder}/${plugin-folder}">
+					<fileset dir=".">
+						<include name="manifest.xml"/>
+					</fileset>
+				</copy>
+			</else>
+		</if>
+
 		<!-- copy files -->
 		<copy todir="${target-folder}/${plugin-folder}">
 			<fileset dir=".">
