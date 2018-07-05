@@ -52,10 +52,11 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 	createAttachmentDownloadInsertionPoint: function (include, btn)
 	{
 		return {
-			text : dgettext('plugin_files', 'Add from Files'),
-			handler : this.showFilesDownloadAttachmentDialog,
-			scope : btn,
-			iconCls : 'icon_files_category'
+			text: dgettext('plugin_files', 'Add from Files'),
+			handler: this.showFilesDownloadAttachmentDialog,
+			scope: btn,
+			iconCls: 'icon_files_category',
+			disabled: !this.isAccountsConfigured()
 		};
 	},
 
@@ -81,13 +82,14 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * @param btn
 	 * @returns {Object}
 	 */
-	createAttachmentUploadInsertionPoint: function (include, btn) {
+	createAttachmentUploadInsertionPoint: function (include, btn)
+	{
 		return {
 			text   : dgettext('plugin_files', 'Add to Files'),
 			handler: this.showFilesUploadAttachmentDialog,
 			scope  : btn,
 			iconCls: 'icon_files_category',
-			beforeShow : this.onAttachmentUploadBeforeShow
+			beforeShow : this.onAttachmentUploadBeforeShow.createDelegate(this)
 		};
 	},
 
@@ -102,6 +104,8 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		item.setDisabled(record.isEmbeddedMessage());
 		// unsaved attachments can not be added to files without depending on Webapp internals (AttachmentState)
 		item.setDisabled(record.isTmpFile());
+		// If accounts not configured then disable it.
+		item.setDisabled(!this.isAccountsConfigured());
 	},
 
 	/**
@@ -157,7 +161,8 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 			text : dgettext('plugin_files', 'Add to Files'),
 			handler: this.showFilesUploadEmailDialog,
 			scope : btn,
-			iconCls: 'icon_files_category'
+			iconCls: 'icon_files_category',
+			disabled: !this.isAccountsConfigured()
 		};
 	},
 
@@ -258,6 +263,22 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		}
 
 		return component;
+	},
+
+	/**
+	 * Helper function which will return false if no account is configured, True otherwise.
+	 * @returns {boolean} True if accounts configured, false otherwise.
+	 */
+	isAccountsConfigured: function ()
+	{
+		var fileContext = container.getContextByName('filescontext');
+		var accountStore = fileContext.getAccountsStore();
+		var foundActiveStore =  accountStore.findBy(function (item) {
+			if (item.get("status") === Zarafa.plugins.files.data.AccountRecordStatus.OK) {
+				return true;
+			}
+		});
+		return foundActiveStore !== -1;
 	}
 });
 
