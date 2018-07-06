@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Files Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 16:22+0200\n"
+"POT-Creation-Date: 2018-07-06 18:15+0200\n"
 "PO-Revision-Date: 2017-03-13 13:14+0000\n"
 "Last-Translator: C <c.maltot@synairgis.com>\n"
 "Language-Team: French <http://translate.kopano.io/projects/kopano/files/fr/"
@@ -48,8 +48,8 @@ msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
 msgstr ""
 
-#: js/data/Actions.js:388 js/ui/FilesListToolbar.js:124
-#: js/ui/FilesListToolbar.js:125 js/ui/FilesMainContextMenu.js:93
+#: js/data/Actions.js:388 js/ui/FilesListToolbar.js:104
+#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:93
 #: js/ui/FilesTreeContextMenu.js:46
 #, fuzzy
 msgid "Rename"
@@ -78,7 +78,7 @@ msgid "Download started... please wait!"
 msgstr ""
 
 #: js/data/Actions.js:536 js/data/NavigatorTreeLoader.js:121
-#: js/data/ResponseHandler.js:128 js/ui/dialogs/FilesUploadContentPanel.js:191
+#: js/data/ResponseHandler.js:128 js/ui/dialogs/FilesUploadContentPanel.js:183
 #: js/ui/FilesRecordAccountView.js:135
 msgid "Error"
 msgstr "Erreur"
@@ -88,13 +88,13 @@ msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
 
 #: js/data/Actions.js:612 js/data/ResponseHandler.js:119
-#: js/ui/dialogs/SaveToFilesTreePanel.js:300
+#: js/ui/dialogs/SaveToFilesTreePanel.js:293
 #, fuzzy
 msgid "Confirm overwrite"
 msgstr "Confirmer la suppression"
 
 #: js/data/Actions.js:614 js/data/ResponseHandler.js:120
-#: js/ui/dialogs/SaveToFilesTreePanel.js:301
+#: js/ui/dialogs/SaveToFilesTreePanel.js:294
 msgid "File already exists. Do you want to overwrite it?"
 msgstr ""
 
@@ -109,15 +109,13 @@ msgstr "Confirmer la suppression"
 
 #: js/data/Actions.js:623 js/settings/SettingsResetWidget.js:67
 #: js/settings/ui/AccountEditPanel.js:42 js/ui/dialogs/CreateFolderPanel.js:52
-#: js/ui/dialogs/FilesUploadContentPanel.js:148
-#: js/ui/dialogs/FilesUploadContentPanel.js:150
-#: js/ui/dialogs/UploadStatusPanel.js:143
+#: js/ui/dialogs/FilesUploadContentPanel.js:144
 msgid "Cancel"
 msgstr "Annuler"
 
-#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:108
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:122
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:143
+#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:104
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:118
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:139
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -136,41 +134,35 @@ msgid "Never"
 msgstr "Jamais"
 
 #: js/FilesContext.js:265 js/ui/dialogs/FilesUploadContentPanel.js:30
-#: js/ui/FilesListToolbar.js:64
 #, fuzzy
 msgid "Upload file"
 msgstr "Transfert du fichier"
 
-#: js/FilesContext.js:266 js/ui/FilesListToolbar.js:65
-#, fuzzy
-msgid "Upload one or more files"
-msgstr "Transfert des fichiers"
-
-#: js/FilesContext.js:288 js/FilesContext.js:290
+#: js/FilesContext.js:287 js/FilesContext.js:289
 msgid "No preview"
 msgstr "Aucune prévisualisation"
 
-#: js/FilesContext.js:296 js/FilesContext.js:298
+#: js/FilesContext.js:295 js/FilesContext.js:297
 msgid "Right preview"
 msgstr "Affichage à droite"
 
-#: js/FilesContext.js:304 js/FilesContext.js:306
+#: js/FilesContext.js:303 js/FilesContext.js:305
 msgid "Bottom preview"
 msgstr "Affichage en bas"
 
-#: js/FilesContext.js:327
+#: js/FilesContext.js:326
 msgid "Switch view"
 msgstr "Changer de vue"
 
-#: js/FilesContext.js:336 js/FilesContext.js:337 js/FilesContext.js:338
+#: js/FilesContext.js:335 js/FilesContext.js:336
 msgid "List"
 msgstr "Liste"
 
-#: js/FilesContext.js:344 js/FilesContext.js:345 js/FilesContext.js:346
+#: js/FilesContext.js:342 js/FilesContext.js:343
 msgid "Icons"
 msgstr "Icônes"
 
-#: js/FilesContext.js:455 js/FilesContextModel.js:120
+#: js/FilesContext.js:452 js/FilesContextModel.js:120
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
 #, fuzzy
 msgid "Files"
@@ -180,20 +172,20 @@ msgstr "Fichiers"
 msgid "Add from Files"
 msgstr ""
 
-#: js/FilesPlugin.js:71 js/ui/dialogs/AttachFromFilesContentPanel.js:25
+#: js/FilesPlugin.js:72 js/ui/dialogs/AttachFromFilesContentPanel.js:25
 #, fuzzy
 msgid "Add attachment from Files"
 msgstr "Ajouter une pièce jointe depuis {0}"
 
-#: js/FilesPlugin.js:86 js/FilesPlugin.js:157
+#: js/FilesPlugin.js:88 js/FilesPlugin.js:161
 msgid "Add to Files"
 msgstr ""
 
-#: js/FilesPlugin.js:179 php/class.filesbrowsermodule.php:1277
+#: js/FilesPlugin.js:184 php/class.filesbrowsermodule.php:1277
 msgid "Untitled"
 msgstr "Sans nom"
 
-#: js/FilesPlugin.js:271
+#: js/FilesPlugin.js:292
 #, fuzzy
 msgid "Files Plugin"
 msgstr "Module d'extension"
@@ -239,7 +231,7 @@ msgid "Edit Account"
 msgstr ""
 
 #: js/settings/ui/AccountEditPanel.js:35
-#: js/ui/dialogs/SaveToFilesTreePanel.js:181
+#: js/ui/dialogs/SaveToFilesTreePanel.js:177
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -323,8 +315,7 @@ msgstr "Informations sur la version"
 msgid "Show version information"
 msgstr "Informations sur la version"
 
-#: js/settings/ui/AccountGridColumnModel.js:83 js/ui/FilesListToolbar.js:101
-#: js/ui/FilesListToolbar.js:104
+#: js/settings/ui/AccountGridColumnModel.js:83 js/ui/FilesListToolbar.js:88
 #, fuzzy
 msgid "Share files"
 msgstr "Die Datei"
@@ -397,28 +388,21 @@ msgid "Version Information"
 msgstr "Informations sur la version"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:77
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:79
 #, fuzzy
 msgid "Add attachment"
 msgstr "Ajouter une pièce jointe"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:80
-#, fuzzy
-msgid "Add selected attachment from files to email attachment."
-msgstr ""
-"Ajouter les pièces depuis files aux pièces jointes du message électronique"
-
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:109
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
 #, fuzzy
 msgid "The file {0} is too large!"
 msgstr "Le fichier {0} est trop volumineux"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:109
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
 #, fuzzy
 msgid "max"
 msgstr "Maximum"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:123
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:119
 #, fuzzy
 msgid "You have to choose at least one file!"
 msgstr "Veuillez choisir au moins un fichier"
@@ -446,12 +430,12 @@ msgid "You must specify a name."
 msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:188
-#: js/ui/dialogs/SaveToFilesTreePanel.js:285
+#: js/ui/dialogs/SaveToFilesTreePanel.js:278
 msgid "Folder already exists"
 msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:191
-#: js/ui/dialogs/SaveToFilesTreePanel.js:252
+#: js/ui/dialogs/SaveToFilesTreePanel.js:245
 #, fuzzy
 msgid "Incorrect foldername"
 msgstr "Nom de dossier incorrect"
@@ -489,22 +473,7 @@ msgstr "Sélectionner un dossier de déversement"
 msgid "Upload"
 msgstr "Charger"
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:140
-#, fuzzy
-msgid "Store selected file"
-msgstr "Stocker le fichier sélectionné"
-
-#: js/ui/dialogs/FilesUploadContentPanel.js:141
-#, fuzzy
-msgid "Upload file to the selected folder"
-msgstr "Transfert du fichier dans le dossier {0} sélectionné "
-
-#: js/ui/dialogs/FilesUploadContentPanel.js:151
-#, fuzzy
-msgid "Close this window"
-msgstr "Fermer cette fenêtre"
-
-#: js/ui/dialogs/FilesUploadContentPanel.js:192
+#: js/ui/dialogs/FilesUploadContentPanel.js:184
 msgid "File \"{0}\" is too large! Maximum allowed filesize: {1}."
 msgstr ""
 
@@ -513,65 +482,49 @@ msgid "Add item to Files"
 msgstr ""
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:171
-#: js/ui/dialogs/SaveToFilesTreePanel.js:173
 msgid "New folder"
 msgstr "Nouveau dossier"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:174 js/ui/FilesListToolbar.js:78
-#, fuzzy
-msgid "Create a new folder"
-msgstr "Créer un nouveau dossier dans"
-
-#: js/ui/dialogs/SaveToFilesTreePanel.js:183
-#, fuzzy
-msgid "Store attachment"
-msgstr "Stocker la pièce jointe"
-
-#: js/ui/dialogs/SaveToFilesTreePanel.js:184
-#, fuzzy
-msgid "Store attachment to the selected Files folder."
-msgstr "Stocker la pièce jointe dans le dossier {0} sélectionné"
-
-#: js/ui/dialogs/SaveToFilesTreePanel.js:200
-#: js/ui/dialogs/SaveToFilesTreePanel.js:235
+#: js/ui/dialogs/SaveToFilesTreePanel.js:192
+#: js/ui/dialogs/SaveToFilesTreePanel.js:228
 #, fuzzy
 msgid "You have to choose a folder!"
 msgstr "Veuillez choisir un dossier!"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:237
+#: js/ui/dialogs/SaveToFilesTreePanel.js:230
 msgid "Folder Name"
 msgstr "Nom du dossier"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:237
+#: js/ui/dialogs/SaveToFilesTreePanel.js:230
 #, fuzzy
 msgid "Please enter a foldername"
 msgstr "Merci de renseigner un nom de dossier"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:344
+#: js/ui/dialogs/SaveToFilesTreePanel.js:337
 #, fuzzy
 msgid "Uploaded"
 msgstr "Transféré"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:344
+#: js/ui/dialogs/SaveToFilesTreePanel.js:337
 #, fuzzy
 msgid "Attachment successfully stored in Files"
 msgstr "Pièce jointe stockée avec succès dans {0}"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:346
+#: js/ui/dialogs/SaveToFilesTreePanel.js:339
 #, fuzzy
 msgid "Upload Failed"
 msgstr "Transfert en erreur"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:346
+#: js/ui/dialogs/SaveToFilesTreePanel.js:339
 #, fuzzy
 msgid "Attachment could not be stored in Files! Error: "
 msgstr "Pièce jointe impossible a stocker dans {0}! Erreur:"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:384
+#: js/ui/dialogs/SaveToFilesTreePanel.js:377
 msgid "Created"
 msgstr "Créé"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:384
+#: js/ui/dialogs/SaveToFilesTreePanel.js:377
 #, fuzzy
 msgid "Directory created!"
 msgstr "Dossier créé"
@@ -590,111 +543,95 @@ msgstr "Transfert des fichiers"
 msgid "Starting upload"
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:144
-#: js/ui/dialogs/UploadStatusPanel.js:146
+#: js/ui/dialogs/UploadStatusPanel.js:142
+#: js/ui/dialogs/UploadStatusPanel.js:143
 #, fuzzy
 msgid "Cancel upload"
 msgstr "Annuler"
 
-#: js/ui/dialogs/UploadStatusPanel.js:177
-#: js/ui/dialogs/UploadStatusPanel.js:287
+#: js/ui/dialogs/UploadStatusPanel.js:174
+#: js/ui/dialogs/UploadStatusPanel.js:284
 msgid "- seconds left"
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:260
+#: js/ui/dialogs/UploadStatusPanel.js:257
 msgid " seconds left"
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:264
+#: js/ui/dialogs/UploadStatusPanel.js:261
 msgid " minutes left"
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:309
+#: js/ui/dialogs/UploadStatusPanel.js:306
 #, fuzzy
 msgid "Uploading: "
 msgstr "Transfert des fichiers"
 
-#: js/ui/dialogs/UploadStatusPanel.js:312
+#: js/ui/dialogs/UploadStatusPanel.js:309
 msgid "Upload status unavailable... please wait."
 msgstr ""
 
-#: js/ui/dialogs/UploadStatusPanel.js:330
+#: js/ui/dialogs/UploadStatusPanel.js:327
 #, fuzzy
 msgid "Upload finished!"
 msgstr "Transfert du fichier"
 
-#: js/ui/dialogs/UploadStatusPanel.js:353
+#: js/ui/dialogs/UploadStatusPanel.js:350
 #, fuzzy
 msgid "Upload aborted!"
 msgstr "Transfert en erreur"
 
-#: js/ui/dialogs/UploadStatusPanel.js:375
+#: js/ui/dialogs/UploadStatusPanel.js:372
 #, fuzzy
 msgid "Upload failed!"
 msgstr "Transfert en erreur"
 
-#: js/ui/FilesListToolbar.js:67
+#: js/ui/FilesListToolbar.js:63
 #, fuzzy
 msgid "Upload files"
 msgstr "Transfert du fichier"
 
-#: js/ui/FilesListToolbar.js:74 js/ui/FilesListToolbar.js:77
-#: js/ui/FilesTreeContextMenu.js:68
+#: js/ui/FilesListToolbar.js:70 js/ui/FilesTreeContextMenu.js:68
 #, fuzzy
 msgid "Create folder"
 msgstr "Création de dossier"
 
-#: js/ui/FilesListToolbar.js:80
+#: js/ui/FilesListToolbar.js:72
 #, fuzzy
 msgid "Create new folder"
 msgstr "Créer un nouveau dossier dans"
 
-#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:39
+#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:39
 msgid "Download"
 msgstr "Téléchargement"
 
-#: js/ui/FilesListToolbar.js:89 js/ui/FilesListToolbar.js:92
+#: js/ui/FilesListToolbar.js:80
 #, fuzzy
 msgid "Download files"
 msgstr "Transfert du fichier"
 
-#: js/ui/FilesListToolbar.js:90
-#, fuzzy
-msgid "Download the selected files"
-msgstr "Stocker le fichier sélectionné"
-
-#: js/ui/FilesListToolbar.js:99 js/ui/FilesMainContextMenu.js:50
+#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:50
 msgid "Share"
 msgstr ""
 
-#: js/ui/FilesListToolbar.js:102
-#, fuzzy
-msgid "Share the selected files"
-msgstr "Stocker le fichier sélectionné"
-
-#: js/ui/FilesListToolbar.js:111 js/ui/FilesListToolbar.js:113
-#: js/ui/FilesListToolbar.js:116 js/ui/FilesMainContextMenu.js:73
+#: js/ui/FilesListToolbar.js:95 js/ui/FilesListToolbar.js:96
+#: js/ui/FilesMainContextMenu.js:73
 #, fuzzy
 msgid "Attach to mail"
 msgstr "Ajouter au message électronique"
 
-#: js/ui/FilesListToolbar.js:114
-#, fuzzy
-msgid "Attach the selected files to mail"
-msgstr "Stocker le fichier sélectionné"
-
-#: js/ui/FilesListToolbar.js:132 js/ui/FilesListToolbar.js:133
+#: js/ui/FilesListToolbar.js:112 js/ui/FilesListToolbar.js:113
 #: js/ui/FilesMainContextMenu.js:102 js/ui/FilesTreeContextMenu.js:57
 #, fuzzy
 msgid "Delete"
 msgstr "Supprimer"
 
-#: js/ui/FilesListToolbar.js:257 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
 #, fuzzy
 msgid "Attaching"
 msgstr "Ajout"
 
-#: js/ui/FilesListToolbar.js:257 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
 #, fuzzy
 msgid "Creating email... Please wait!"
 msgstr "Création du message électronique ... Veuillez attendre!"
@@ -829,6 +766,10 @@ msgstr "Il n'y a aucun élément à afficher dans cette fenêtre"
 #, fuzzy
 msgid "files selected"
 msgstr "Stocker le fichier sélectionné"
+
+#: js/ui/snippets/FilesNavigationBar.js:176
+msgid "Home"
+msgstr ""
 
 #: js/ui/snippets/FilesQuotaBar.js:14
 msgid "{0} of {1} in use"
