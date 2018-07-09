@@ -15,6 +15,13 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 	accountFilter: null,
 
 	/**
+	 * @cfg {Object} treeSorter a {@link Ext.Ext.tree.TreeSorter} config or {@link Boolean}
+	 * to sort the {@linkZarafa.plugins.files.ui.Tree Tree}
+	 * Defaults to <code>true</code>.
+	 */
+	treeSorter : true,
+
+	/**
 	 * @constructor
 	 * @param config
 	 */
@@ -47,6 +54,10 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 			})
 		});
 		Zarafa.plugins.files.ui.Tree.superclass.constructor.call(this, config);
+
+		if(this.treeSorter && !(this.treeSorter instanceof Ext.tree.TreeSorter)) {
+			this.treeSorter = new Ext.tree.TreeSorter(this);
+		}
 	},
 
 	/**
