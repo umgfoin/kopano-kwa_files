@@ -390,7 +390,7 @@ msgstr "Criar nova pasta"
 
 #: js/ui/dialogs/CreateFolderPanel.js:45
 msgid "Ok"
-msgstr "OK"
+msgstr "Ok"
 
 #: js/ui/dialogs/CreateFolderPanel.js:87
 msgid "Select where to place the folder"
