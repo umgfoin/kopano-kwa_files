@@ -20,6 +20,13 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 	response: null,
 
 	/**
+	 * @cfg {Object} treeSorter a {@link Ext.Ext.tree.TreeSorter} config or {@link Boolean}
+	 * to sort the {@link Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel Tree}
+	 * Defaults to <code>true</code>.
+	 */
+	treeSorter : true,
+
+	/**
 	 * @constructor
 	 * @param config
 	 */
@@ -57,6 +64,10 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 			]
 		});
 		Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel.superclass.constructor.call(this, config);
+
+		if (this.treeSorter && !(this.treeSorter instanceof Ext.tree.TreeSorter)) {
+			this.treeSorter = new Ext.tree.TreeSorter(this);
+		}
 	},
 
 	/**
