@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: KC-8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-06 18:33+0200\n"
-"PO-Revision-Date: 2018-05-29 09:16+0000\n"
+"PO-Revision-Date: 2018-08-08 09:01+0000\n"
 "Last-Translator: Björn <b.neumann@kopano.com>\n"
-"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/"
-">\n"
+"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -713,7 +713,7 @@ msgstr "ausgewählte Dateien"
 
 #: js/ui/snippets/FilesNavigationBar.js:176
 msgid "Home"
-msgstr ""
+msgstr "Privat"
 
 #: js/ui/snippets/FilesQuotaBar.js:14
 msgid "{0} of {1} in use"
