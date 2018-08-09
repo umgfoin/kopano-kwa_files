@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KC-8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-06 18:33+0200\n"
+"POT-Creation-Date: 2018-08-09 17:04+0200\n"
 "PO-Revision-Date: 2018-08-08 09:01+0000\n"
 "Last-Translator: Björn <b.neumann@kopano.com>\n"
-"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/>"
-"\n"
+"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/"
+">\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,12 +93,12 @@ msgstr ""
 "Minestens einer der Dateien ist zu groß! Die Maximalgröße ist Datei ist: {0}."
 
 #: js/data/Actions.js:612 js/data/ResponseHandler.js:119
-#: js/ui/dialogs/SaveToFilesTreePanel.js:293
+#: js/ui/dialogs/SaveToFilesTreePanel.js:304
 msgid "Confirm overwrite"
 msgstr "Überschreiben bestätigen"
 
 #: js/data/Actions.js:614 js/data/ResponseHandler.js:120
-#: js/ui/dialogs/SaveToFilesTreePanel.js:294
+#: js/ui/dialogs/SaveToFilesTreePanel.js:305
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "Datei existiert bereits. Möchten Sie diese Überschreiben?"
 
@@ -231,7 +231,7 @@ msgid "Edit Account"
 msgstr "Account bearbeiten"
 
 #: js/settings/ui/AccountEditPanel.js:35
-#: js/ui/dialogs/SaveToFilesTreePanel.js:177
+#: js/ui/dialogs/SaveToFilesTreePanel.js:188
 msgid "Save"
 msgstr "Speichern"
 
@@ -414,12 +414,12 @@ msgid "You must specify a name."
 msgstr "Sie müssen einen Namen angeben."
 
 #: js/ui/dialogs/CreateFolderPanel.js:188
-#: js/ui/dialogs/SaveToFilesTreePanel.js:278
+#: js/ui/dialogs/SaveToFilesTreePanel.js:289
 msgid "Folder already exists"
 msgstr "Ordner existiert bereits"
 
 #: js/ui/dialogs/CreateFolderPanel.js:191
-#: js/ui/dialogs/SaveToFilesTreePanel.js:245
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Incorrect foldername"
 msgstr "Ordnername nicht korrekt"
 
@@ -460,44 +460,44 @@ msgstr "Datei \"{0}\" ist zu groß! Die Maximalgröße ist: {1}."
 msgid "Add item to Files"
 msgstr "Element zu Files hinzufügen"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:171
+#: js/ui/dialogs/SaveToFilesTreePanel.js:182
 msgid "New folder"
 msgstr "Neuer Ordner"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:192
-#: js/ui/dialogs/SaveToFilesTreePanel.js:228
+#: js/ui/dialogs/SaveToFilesTreePanel.js:203
+#: js/ui/dialogs/SaveToFilesTreePanel.js:239
 msgid "You have to choose a folder!"
 msgstr "Sie müssen einen Ordner auswählen!"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:230
+#: js/ui/dialogs/SaveToFilesTreePanel.js:241
 msgid "Folder Name"
 msgstr "Ordnername"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:230
+#: js/ui/dialogs/SaveToFilesTreePanel.js:241
 msgid "Please enter a foldername"
 msgstr "Bitte einen Ordnernamen eingeben"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:337
+#: js/ui/dialogs/SaveToFilesTreePanel.js:348
 msgid "Uploaded"
 msgstr "Hochgeladen"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:337
+#: js/ui/dialogs/SaveToFilesTreePanel.js:348
 msgid "Attachment successfully stored in Files"
 msgstr "Anhang wurde erfolgreich in Files gepeichert"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:339
+#: js/ui/dialogs/SaveToFilesTreePanel.js:350
 msgid "Upload Failed"
 msgstr "Hochladen fehlgeschlagen"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:339
+#: js/ui/dialogs/SaveToFilesTreePanel.js:350
 msgid "Attachment could not be stored in Files! Error: "
 msgstr "Anhang konnte nicht in Files gespeichert werden! Fehler: "
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:377
+#: js/ui/dialogs/SaveToFilesTreePanel.js:388
 msgid "Created"
 msgstr "Erstellt"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:377
+#: js/ui/dialogs/SaveToFilesTreePanel.js:388
 msgid "Directory created!"
 msgstr "Ordner erstellt!"
 

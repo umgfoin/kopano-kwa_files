@@ -64,12 +64,12 @@ msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
 
 #: js/data/Actions.js:612 js/data/ResponseHandler.js:119
-#: js/ui/dialogs/SaveToFilesTreePanel.js:293
+#: js/ui/dialogs/SaveToFilesTreePanel.js:304
 msgid "Confirm overwrite"
 msgstr ""
 
 #: js/data/Actions.js:614 js/data/ResponseHandler.js:120
-#: js/ui/dialogs/SaveToFilesTreePanel.js:294
+#: js/ui/dialogs/SaveToFilesTreePanel.js:305
 msgid "File already exists. Do you want to overwrite it?"
 msgstr ""
 
@@ -198,7 +198,7 @@ msgid "Edit Account"
 msgstr ""
 
 #: js/settings/ui/AccountEditPanel.js:35
-#: js/ui/dialogs/SaveToFilesTreePanel.js:177
+#: js/ui/dialogs/SaveToFilesTreePanel.js:188
 msgid "Save"
 msgstr ""
 
@@ -381,12 +381,12 @@ msgid "You must specify a name."
 msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:188
-#: js/ui/dialogs/SaveToFilesTreePanel.js:278
+#: js/ui/dialogs/SaveToFilesTreePanel.js:289
 msgid "Folder already exists"
 msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:191
-#: js/ui/dialogs/SaveToFilesTreePanel.js:245
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Incorrect foldername"
 msgstr ""
 
@@ -427,44 +427,44 @@ msgstr ""
 msgid "Add item to Files"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:171
+#: js/ui/dialogs/SaveToFilesTreePanel.js:182
 msgid "New folder"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:192
-#: js/ui/dialogs/SaveToFilesTreePanel.js:228
+#: js/ui/dialogs/SaveToFilesTreePanel.js:203
+#: js/ui/dialogs/SaveToFilesTreePanel.js:239
 msgid "You have to choose a folder!"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:230
+#: js/ui/dialogs/SaveToFilesTreePanel.js:241
 msgid "Folder Name"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:230
+#: js/ui/dialogs/SaveToFilesTreePanel.js:241
 msgid "Please enter a foldername"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:337
+#: js/ui/dialogs/SaveToFilesTreePanel.js:348
 msgid "Uploaded"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:337
+#: js/ui/dialogs/SaveToFilesTreePanel.js:348
 msgid "Attachment successfully stored in Files"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:339
+#: js/ui/dialogs/SaveToFilesTreePanel.js:350
 msgid "Upload Failed"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:339
+#: js/ui/dialogs/SaveToFilesTreePanel.js:350
 msgid "Attachment could not be stored in Files! Error: "
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:377
+#: js/ui/dialogs/SaveToFilesTreePanel.js:388
 msgid "Created"
 msgstr ""
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:377
+#: js/ui/dialogs/SaveToFilesTreePanel.js:388
 msgid "Directory created!"
 msgstr ""
 

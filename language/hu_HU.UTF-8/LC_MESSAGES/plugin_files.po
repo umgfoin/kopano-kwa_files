@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Hungarian\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-06 18:33+0200\n"
+"POT-Creation-Date: 2018-08-09 17:04+0200\n"
 "PO-Revision-Date: 2018-03-18 22:09+0000\n"
 "Last-Translator: Zoltan Kiss <zoltan.kiss@serverside.hu>\n"
 "Language-Team: Hungarian <http://translate.kopano.io/projects/kopano/files/"
@@ -86,12 +86,12 @@ msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr "Valamelyik fájl túl nagy! A maximális engedélyezett fájlméret: {0}."
 
 #: js/data/Actions.js:612 js/data/ResponseHandler.js:119
-#: js/ui/dialogs/SaveToFilesTreePanel.js:293
+#: js/ui/dialogs/SaveToFilesTreePanel.js:304
 msgid "Confirm overwrite"
 msgstr "Felülírás megerősítése"
 
 #: js/data/Actions.js:614 js/data/ResponseHandler.js:120
-#: js/ui/dialogs/SaveToFilesTreePanel.js:294
+#: js/ui/dialogs/SaveToFilesTreePanel.js:305
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "A fájl már létezik. Felül kívánja írni?"
 
@@ -225,7 +225,7 @@ msgid "Edit Account"
 msgstr "Fiók szerkesztése"
 
 #: js/settings/ui/AccountEditPanel.js:35
-#: js/ui/dialogs/SaveToFilesTreePanel.js:177
+#: js/ui/dialogs/SaveToFilesTreePanel.js:188
 msgid "Save"
 msgstr "Mentés"
 
@@ -409,12 +409,12 @@ msgid "You must specify a name."
 msgstr "Meg kell adnia egy nevet."
 
 #: js/ui/dialogs/CreateFolderPanel.js:188
-#: js/ui/dialogs/SaveToFilesTreePanel.js:278
+#: js/ui/dialogs/SaveToFilesTreePanel.js:289
 msgid "Folder already exists"
 msgstr "A mappa már létezik"
 
 #: js/ui/dialogs/CreateFolderPanel.js:191
-#: js/ui/dialogs/SaveToFilesTreePanel.js:245
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Incorrect foldername"
 msgstr "Hibás mappanév"
 
@@ -455,44 +455,44 @@ msgstr "A fájl \"{0}\" túl nagy! A maximálisan megengedett fájlméret: {1}."
 msgid "Add item to Files"
 msgstr "Új elem hozzáadása a Fájlokhoz"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:171
+#: js/ui/dialogs/SaveToFilesTreePanel.js:182
 msgid "New folder"
 msgstr "Új mappa"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:192
-#: js/ui/dialogs/SaveToFilesTreePanel.js:228
+#: js/ui/dialogs/SaveToFilesTreePanel.js:203
+#: js/ui/dialogs/SaveToFilesTreePanel.js:239
 msgid "You have to choose a folder!"
 msgstr "Válasszon ki egy mappát!"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:230
+#: js/ui/dialogs/SaveToFilesTreePanel.js:241
 msgid "Folder Name"
 msgstr "Mappa név"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:230
+#: js/ui/dialogs/SaveToFilesTreePanel.js:241
 msgid "Please enter a foldername"
 msgstr "Adjon meg egy mappanevet"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:337
+#: js/ui/dialogs/SaveToFilesTreePanel.js:348
 msgid "Uploaded"
 msgstr "Feltöltve"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:337
+#: js/ui/dialogs/SaveToFilesTreePanel.js:348
 msgid "Attachment successfully stored in Files"
 msgstr "Melléklet sikeresen mentve a Fájlokba"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:339
+#: js/ui/dialogs/SaveToFilesTreePanel.js:350
 msgid "Upload Failed"
 msgstr "Feltöltés sikertelen"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:339
+#: js/ui/dialogs/SaveToFilesTreePanel.js:350
 msgid "Attachment could not be stored in Files! Error: "
 msgstr "A melléklet nem menthető a Fájlokba! Hiba: "
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:377
+#: js/ui/dialogs/SaveToFilesTreePanel.js:388
 msgid "Created"
 msgstr "Létrehozva"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:377
+#: js/ui/dialogs/SaveToFilesTreePanel.js:388
 msgid "Directory created!"
 msgstr "Mappa létrehozva!"
 
