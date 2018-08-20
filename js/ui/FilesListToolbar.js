@@ -67,9 +67,9 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 			scope       : this
 		}, {
 			cls         : 'files_icon_actionbutton',
-			text        : dgettext('plugin_files', 'Create folder'),
+			text        : dgettext('plugin_files', 'New Folder'),
 			ref         : 'createFolderButton',
-			overflowText: dgettext('plugin_files', 'Create new folder'),
+			overflowText: dgettext('plugin_files', 'New Folder'),
 			iconCls     : 'files_icon_action files_icon_action_new_folder',
 			handler     : this.onCreateFolder,
 			model       : this.model

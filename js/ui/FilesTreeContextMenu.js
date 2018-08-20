@@ -65,7 +65,7 @@ Zarafa.plugins.files.ui.FilesTreeContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			scope     : this
 		}, {
 			xtype     : 'zarafa.conditionalitem',
-			text      : dgettext('plugin_files', 'Create folder'),
+			text      : dgettext('plugin_files', 'New Folder'),
 			iconCls   : 'files_icon_action files_icon_action_new_folder',
 			handler   : this.onContextItemNewFolder,
 			scope     : this
