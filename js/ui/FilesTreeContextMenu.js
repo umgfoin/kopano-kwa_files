@@ -43,6 +43,12 @@ Zarafa.plugins.files.ui.FilesTreeContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	createContextActionItems: function () {
 		return [{
 			xtype     : 'zarafa.conditionalitem',
+			text      : dgettext('plugin_files', 'New Folder'),
+			iconCls   : 'files_icon_action files_icon_action_new_folder',
+			handler   : this.onContextItemNewFolder,
+			scope     : this
+		},{
+			xtype     : 'zarafa.conditionalitem',
 			text      : dgettext('plugin_files', 'Rename'),
 			iconCls   : 'files_icon_action files_icon_action_edit',
 			handler   : this.onContextItemRename,
@@ -62,12 +68,6 @@ Zarafa.plugins.files.ui.FilesTreeContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 				var path = Zarafa.plugins.files.data.Utils.File.stripAccountId(rec.get('id'));
 				item.setVisible(path != "/");
 			},
-			scope     : this
-		}, {
-			xtype     : 'zarafa.conditionalitem',
-			text      : dgettext('plugin_files', 'New Folder'),
-			iconCls   : 'files_icon_action files_icon_action_new_folder',
-			handler   : this.onContextItemNewFolder,
 			scope     : this
 		}];
 	},

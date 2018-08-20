@@ -129,11 +129,11 @@ Zarafa.plugins.files.ui.FilesListToolbar = Ext.extend(Ext.Toolbar, {
 	onRecordSelectionChange : function(model, records)
 	{
 		var validator = Zarafa.plugins.files.data.Utils.Validator;
-		var isVisible = validator.actionSelectionVisibilityFilter(records, false, true, true);
+		var isVisible = validator.actionSelectionVisibilityFilter(records, false, true, false, true);
 		this.downloadBtn.setDisabled(!isVisible);
 		this.attachToMailBtn.setDisabled(!isVisible);
 
-		isVisible = validator.actionSelectionVisibilityFilter(records, true, false, true);
+		isVisible = validator.actionSelectionVisibilityFilter(records, true, false, false, true);
 		if (isVisible) {
 			this.shareBtn.setDisabled(!isVisible);
 			var account = records[0].getAccount();
