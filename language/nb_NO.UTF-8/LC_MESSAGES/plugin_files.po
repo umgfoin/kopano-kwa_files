@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Norwegian (Bokmål)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-09 17:04+0200\n"
-"PO-Revision-Date: 2018-02-09 20:04+0000\n"
+"PO-Revision-Date: 2018-09-02 17:52+0000\n"
 "Last-Translator: Klaus <klaus@linuxavdelingen.no>\n"
-"Language-Team: Norwegian Bokmål <http://translate.kopano.io/projects/kopano/"
-"files/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål "
+"<http://translate.kopano.io/projects/kopano/files/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,7 +343,7 @@ msgstr "Lukk"
 #: js/settings/ui/FeatureQuotaInfoPanel.js:116
 #: php/class.filesaccountmodule.php:354
 msgid "Used"
-msgstr ""
+msgstr "Brukt"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:117
 #: js/settings/ui/FeatureQuotaInfoPanel.js:122
@@ -360,7 +360,7 @@ msgstr "Ledig"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:126
 msgid "Total"
-msgstr ""
+msgstr "Totalt"
 
 #: js/settings/ui/FeatureVersionInfoContentPanel.js:20
 msgid "Version Information"
@@ -435,7 +435,7 @@ msgstr "Bla gjennom"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:89
 msgid "Select upload folder"
-msgstr ""
+msgstr "Velg mappe som skal lastes opp"
 
 #: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:61
 msgid "Upload"
@@ -468,7 +468,7 @@ msgstr "Oppgi mappenavn"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:348
 msgid "Uploaded"
-msgstr ""
+msgstr "Lastet opp"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:348
 msgid "Attachment successfully stored in Files"
@@ -898,3 +898,4 @@ msgstr ""
 #: php/Files/Core/class.downloadhandler.php:214
 msgid "This file is no longer available. Please reload the folder."
 msgstr ""
+"Denne filen er ikke lenger tilgjengelig. Vennligst last inn mappa på nytt."
