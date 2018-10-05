@@ -15,6 +15,13 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 	emailRecord: undefined,
 
 	/**
+	 * @cfg {Object} treeSorter a {@link Ext.Ext.tree.TreeSorter} config or {@link Boolean}
+	 * to sort the {@link Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel Tree}
+	 * Defaults to <code>true</code>.
+	 */
+	treeSorter : true,
+
+	/**
 	 * @constructor
 	 * @param config
 	 */
@@ -48,6 +55,10 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 			]
 		});
 		Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel.superclass.constructor.call(this, config);
+
+		if (this.treeSorter && !(this.treeSorter instanceof Ext.tree.TreeSorter)) {
+			this.treeSorter = new Zarafa.plugins.files.ui.TreeSorter(this, Ext.apply({}, this.treeSorter));
+		}
 	},
 
 	/**
