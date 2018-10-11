@@ -45,6 +45,7 @@
 					<clientfile load="source">js/ui/FilesTopToolbar.js</clientfile>
 					<clientfile load="source">js/ui/NavigatorTreePanel.js</clientfile>
 					<clientfile load="source">js/ui/Tree.js</clientfile>
+					<clientfile load="source">js/ui/TreeSorter.js</clientfile>
 					<clientfile load="source">js/ui/MultipleFileUploadField.js</clientfile>
 					<clientfile load="source">js/ui/UploadComponent.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/AttachFromFilesContentPanel.js</clientfile>
