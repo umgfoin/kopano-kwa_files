@@ -474,43 +474,35 @@ Zarafa.plugins.files.data.Utils = {
 		 * @param records
 		 * @param singleSelectOnly
 		 * @param fileOnly
+		 * @param folderOnly
 		 * @param noRoot
 		 * @returns {boolean}
 		 */
-		actionSelectionVisibilityFilter: function (records, singleSelectOnly, fileOnly, noRoot) {
-			var visible = true;
+		actionSelectionVisibilityFilter: function (records, singleSelectOnly, fileOnly, folderOnly, noRoot) {
 
 			if(!Ext.isDefined(records) || Ext.isEmpty(records)) {
 				return false;
 			}
 
 			if (singleSelectOnly) {
-				if (!Ext.isDefined(records) || (Ext.isArray(records) && records.length != 1)) {
-					visible = false;
+				if (Ext.isArray(records) && records.length != 1) {
+					return false;
 				}
 			}
 
-			if (fileOnly) {
+			if (fileOnly || folderOnly || noRoot) {
 				for (var i = 0; i < records.length; i++) {
-					var record = records[i];
-					if (record.get('type') == Zarafa.plugins.files.data.FileTypes.FOLDER) {
-						visible = false;
-						break;
+					if ( 
+						(fileOnly && records[i].get('type') == Zarafa.plugins.files.data.FileTypes.FOLDER) ||
+						(folderOnly && records[i].get('type') !== Zarafa.plugins.files.data.FileTypes.FOLDER) ||
+						(noRoot && records[i].get('filename') === '..')
+					) {
+						return false;
 					}
 				}
 			}
 
-			if (noRoot) {
-				for (var i = 0; i < records.length; i++) {
-					var record = records[i];
-					if (record.get('filename') === "..") {
-						visible = false;
-						break;
-					}
-				}
-			}
-
-			return visible;
+			return true;
 		}
 	}
 };

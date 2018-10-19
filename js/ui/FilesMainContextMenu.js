@@ -16,7 +16,7 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 
 		Ext.applyIf(config, {
 			items: [
-				this.createContextActionItems(),
+				this.createContextActionItems(config.context.model),
 				{xtype: 'menuseparator'},
 				container.populateInsertionPoint('plugin.files.contextmenu.actions', this),
 				{xtype: 'menuseparator'},
@@ -32,15 +32,17 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	 *
 	 * @return {Array} return an array which contains the configuration objects for
 	 * context menu.
+	 * 
+	 * @param model
 	 */
-	createContextActionItems: function () {
+	createContextActionItems: function (model) {
 		return [{
 			xtype     : 'zarafa.conditionalitem',
 			text      : dgettext('plugin_files', 'Download'),
 			iconCls   : 'files_icon_action files_icon_action_download',
 			handler   : this.onContextItemDownload,
 			beforeShow: function (item, records) {
-				var visible = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, true, false);
+				var visible = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, true, false, false);
 
 				item.setVisible(visible);
 			},
@@ -59,7 +61,7 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 					visible = account.supportsFeature(Zarafa.plugins.files.data.AccountRecordFeature.SHARING);
 				}
 
-				visible = visible && Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, true);
+				visible = visible && Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, false, true);
 
 				item.setVisible(visible);
 
@@ -70,11 +72,21 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			scope     : this
 		}, {
 			xtype     : 'zarafa.conditionalitem',
+			text      : dgettext('plugin_files', 'New Folder'),
+			iconCls   : 'files_icon_action files_icon_action_new_folder',
+			handler   : this.onContextItemNewFolder,
+			beforeShow: function (item, records) {
+				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, false, true, true));
+			},
+			model     : model,
+			scope     : this
+		}, {
+			xtype     : 'zarafa.conditionalitem',
 			text      : dgettext('plugin_files', 'Attach to mail'),
 			iconCls   : 'files_icon_action files_icon_action_attach_to_mail',
 			handler   : this.onContextItemAttach,
 			beforeShow: function (item, records) {
-				var visible = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, true, true);
+				var visible = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, true, false, true);
 				var max_attachment_size = container.getServerConfig().getMaxAttachmentSize();
 
 				for (var i = 0; i < records.length; i++) {
@@ -94,7 +106,7 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			iconCls   : 'files_icon_action files_icon_action_edit',
 			handler   : this.onContextItemRename,
 			beforeShow: function (item, records) {
-				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, true));
+				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, false, true));
 			},
 			scope     : this
 		}, {
@@ -112,7 +124,7 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			iconCls : 'icon_info',
 			handler : this.onContextItemInfo,
 			beforeShow: function (item, records) {
-				var visibilityFilter = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, true);
+				var visibilityFilter = Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, false, true);
 				var noPreviewPanel = this.context.getCurrentViewMode() === Zarafa.plugins.files.data.ViewModes.NO_PREVIEW;
 				item.setDisabled(!visibilityFilter || !noPreviewPanel);
 			},
@@ -142,6 +154,16 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	onContextItemShare: function ()
 	{
 		Zarafa.plugins.files.data.Actions.createShareDialog(this.records);
+	},
+
+	/**
+	 * Event handler for opening the "create new folder" dialog.
+	 *
+	 * @param button
+	 * @param event
+	 */
+	onContextItemNewFolder: function (button, event) {
+		Zarafa.plugins.files.data.Actions.createFolder(button.model);
 	},
 
 	/**
