@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Russian\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-09 17:04+0200\n"
-"PO-Revision-Date: 2018-10-24 14:14+0000\n"
+"PO-Revision-Date: 2018-10-24 14:28+0000\n"
 "Last-Translator: Sotneo <kerovsot@gmail.com>\n"
 "Language-Team: Russian <http://translate.kopano.io/projects/kopano/files/ru/>"
 "\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: js/data/Actions.js:70
 msgid "Add attachment from {0}"
-msgstr "Добавить вложение из  {0}"
+msgstr "Добавить вложение из {0}"
 
 #: js/data/Actions.js:165 js/settings/ui/AccountGrid.js:207
 msgid "Confirm deletion"
-msgstr "Подтвердить удаление"
+msgstr "Подтвердите удаление"
 
 #: js/data/Actions.js:189
 msgid "Are you sure you want to delete {0}?"
@@ -196,7 +196,7 @@ msgstr "Сброс настроек модуля Файлы к исходным"
 
 #: js/settings/SettingsResetWidget.js:52
 msgid "Your Files's settings will be restored to their default condition."
-msgstr "Ваши настройки модуля Файлы были возвращены к исходным"
+msgstr "Ваши настройки модуля Файлы будут возвращены к исходным."
 
 #: js/settings/SettingsResetWidget.js:53
 msgid ""
@@ -576,7 +576,7 @@ msgstr "Вложить в письмо"
 #: js/ui/FilesListToolbar.js:112 js/ui/FilesListToolbar.js:113
 #: js/ui/FilesMainContextMenu.js:102 js/ui/FilesTreeContextMenu.js:57
 msgid "Delete"
-msgstr "Удалить"
+msgstr "Удалять"
 
 #: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
 msgid "Attaching"
