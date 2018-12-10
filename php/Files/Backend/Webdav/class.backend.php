@@ -274,7 +274,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	public function set_ssl($ssl)
 	{
 		$this->ssl = $ssl ? true : false;
-		$this->log('SSL extention was set to ' . $this->ssl);
+		$this->log('SSL extension was set to ' . $this->ssl);
 	}
 
 	/**
@@ -302,7 +302,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	}
 
 	/**
-	 * set user name for authentification
+	 * set user name for authentication
 	 *
 	 * @param string $user username
 	 *
@@ -314,7 +314,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	}
 
 	/**
-	 * Set password for authentification
+	 * Set password for authentication
 	 *
 	 * @param string $pass password
 	 *
@@ -376,7 +376,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	}
 
 	/**
-	 * show content of a diretory
+	 * show content of a directory
 	 *
 	 * @param string $path directory path
 	 * @param boolean $hidefirst Optional parameter to hide the root entry. Default true
@@ -454,7 +454,7 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 	}
 
 	/**
-	 * create a new diretory
+	 * create a new directory
 	 *
 	 * @param string $dir directory path
 	 *

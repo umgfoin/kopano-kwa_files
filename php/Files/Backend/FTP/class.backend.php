@@ -77,7 +77,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	var $allowselfsigned = true;
 
 	/**
-	 * @var number Timout of the ftp connection in seconds.
+	 * @var number Timeout of the ftp connection in seconds.
 	 */
 	var $timeout = 3;
 
@@ -298,7 +298,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	public function set_ssl($ssl)
 	{
 		$this->ssl = $ssl ? true : false;
-		$this->log('SSL extention was set to ' . $this->ssl);
+		$this->log('SSL extension was set to ' . $this->ssl);
 	}
 
 	/**
@@ -407,7 +407,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	}
 
 	/**
-	 * show content of a diretory
+	 * show content of a directory
 	 *
 	 * @param string $dir directory path
 	 * @param boolean $hidefirst Optional parameter to hide the root entry. Default true
@@ -465,7 +465,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	}
 
 	/**
-	 * create a new diretory
+	 * create a new directory
 	 *
 	 * @param string $dir directory path
 	 *
