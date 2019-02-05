@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Files Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-09 17:04+0200\n"
+"POT-Creation-Date: 2019-02-05 15:38+0100\n"
 "PO-Revision-Date: 2017-03-13 13:14+0000\n"
 "Last-Translator: C <c.maltot@synairgis.com>\n"
 "Language-Team: French <http://translate.kopano.io/projects/kopano/files/fr/"
@@ -49,8 +49,8 @@ msgid ""
 msgstr ""
 
 #: js/data/Actions.js:388 js/ui/FilesListToolbar.js:104
-#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:93
-#: js/ui/FilesTreeContextMenu.js:46
+#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:105
+#: js/ui/FilesTreeContextMenu.js:52
 #, fuzzy
 msgid "Rename"
 msgstr "Renommage"
@@ -113,9 +113,9 @@ msgstr "Confirmer la suppression"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:104
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:118
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:139
+#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:115
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:129
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:150
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -387,22 +387,22 @@ msgstr ""
 msgid "Version Information"
 msgstr "Informations sur la version"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:77
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:88
 #, fuzzy
 msgid "Add attachment"
 msgstr "Ajouter une pièce jointe"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #, fuzzy
 msgid "The file {0} is too large!"
 msgstr "Le fichier {0} est trop volumineux"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
 #, fuzzy
 msgid "max"
 msgstr "Maximum"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:119
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 #, fuzzy
 msgid "You have to choose at least one file!"
 msgstr "Veuillez choisir au moins un fichier"
@@ -591,17 +591,13 @@ msgstr "Transfert en erreur"
 msgid "Upload files"
 msgstr "Transfert du fichier"
 
-#: js/ui/FilesListToolbar.js:70 js/ui/FilesTreeContextMenu.js:68
+#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:72
+#: js/ui/FilesMainContextMenu.js:75 js/ui/FilesTreeContextMenu.js:46
 #, fuzzy
-msgid "Create folder"
-msgstr "Création de dossier"
+msgid "New Folder"
+msgstr "Nouveau dossier"
 
-#: js/ui/FilesListToolbar.js:72
-#, fuzzy
-msgid "Create new folder"
-msgstr "Créer un nouveau dossier dans"
-
-#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:39
+#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:41
 msgid "Download"
 msgstr "Téléchargement"
 
@@ -610,37 +606,37 @@ msgstr "Téléchargement"
 msgid "Download files"
 msgstr "Transfert du fichier"
 
-#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:50
+#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:52
 msgid "Share"
 msgstr ""
 
 #: js/ui/FilesListToolbar.js:95 js/ui/FilesListToolbar.js:96
-#: js/ui/FilesMainContextMenu.js:73
+#: js/ui/FilesMainContextMenu.js:85
 #, fuzzy
 msgid "Attach to mail"
 msgstr "Ajouter au message électronique"
 
 #: js/ui/FilesListToolbar.js:112 js/ui/FilesListToolbar.js:113
-#: js/ui/FilesMainContextMenu.js:102 js/ui/FilesTreeContextMenu.js:57
+#: js/ui/FilesMainContextMenu.js:114 js/ui/FilesTreeContextMenu.js:63
 #, fuzzy
 msgid "Delete"
 msgstr "Supprimer"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 #, fuzzy
 msgid "Attaching"
 msgstr "Ajout"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 #, fuzzy
 msgid "Creating email... Please wait!"
 msgstr "Création du message électronique ... Veuillez attendre!"
 
-#: js/ui/FilesMainContextMenu.js:67
+#: js/ui/FilesMainContextMenu.js:69
 msgid "Edit share"
 msgstr ""
 
-#: js/ui/FilesMainContextMenu.js:111
+#: js/ui/FilesMainContextMenu.js:123
 msgid "Info"
 msgstr "Info"
 

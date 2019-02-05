@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Japanese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-09 17:04+0200\n"
+"POT-Creation-Date: 2019-02-05 15:38+0100\n"
 "PO-Revision-Date: 2016-09-24 23:44+0000\n"
 "Last-Translator: Nobuyoshi <nobuyoshi.kumada@actplex.com>\n"
 "Language-Team: Japanese <http://translate.kopano.io/projects/kopano/files/ja/"
@@ -50,8 +50,8 @@ msgid ""
 msgstr ""
 
 #: js/data/Actions.js:388 js/ui/FilesListToolbar.js:104
-#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:93
-#: js/ui/FilesTreeContextMenu.js:46
+#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:105
+#: js/ui/FilesTreeContextMenu.js:52
 msgid "Rename"
 msgstr "名前変更"
 
@@ -111,9 +111,9 @@ msgstr "上書き確認"
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:104
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:118
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:139
+#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:115
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:129
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:150
 msgid "Warning"
 msgstr "警告"
 
@@ -370,19 +370,19 @@ msgstr ""
 msgid "Version Information"
 msgstr "バージョン情報"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:77
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:88
 msgid "Add attachment"
 msgstr "添付ファイルを追加"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
 msgid "The file {0} is too large!"
 msgstr "ファイル {0} は大きすぎます!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
 msgid "max"
 msgstr "最大"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:119
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "You have to choose at least one file!"
 msgstr "少なくとも１つのファイルを選択してください!"
 
@@ -551,15 +551,13 @@ msgstr "アップロードが失敗しました!"
 msgid "Upload files"
 msgstr "ファイルをアップロード"
 
-#: js/ui/FilesListToolbar.js:70 js/ui/FilesTreeContextMenu.js:68
-msgid "Create folder"
-msgstr "フォルダを作成"
+#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:72
+#: js/ui/FilesMainContextMenu.js:75 js/ui/FilesTreeContextMenu.js:46
+#, fuzzy
+msgid "New Folder"
+msgstr "新しいフォルダ"
 
-#: js/ui/FilesListToolbar.js:72
-msgid "Create new folder"
-msgstr "新しいフォルダを作成"
-
-#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:39
+#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:41
 msgid "Download"
 msgstr "ダウンロード"
 
@@ -567,33 +565,33 @@ msgstr "ダウンロード"
 msgid "Download files"
 msgstr "ダウンロードファイル"
 
-#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:50
+#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:52
 msgid "Share"
 msgstr "共有"
 
 #: js/ui/FilesListToolbar.js:95 js/ui/FilesListToolbar.js:96
-#: js/ui/FilesMainContextMenu.js:73
+#: js/ui/FilesMainContextMenu.js:85
 msgid "Attach to mail"
 msgstr "メールへ添付"
 
 #: js/ui/FilesListToolbar.js:112 js/ui/FilesListToolbar.js:113
-#: js/ui/FilesMainContextMenu.js:102 js/ui/FilesTreeContextMenu.js:57
+#: js/ui/FilesMainContextMenu.js:114 js/ui/FilesTreeContextMenu.js:63
 msgid "Delete"
 msgstr "削除"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Attaching"
 msgstr "添付中"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Creating email... Please wait!"
 msgstr "メールを作成中です しばらくお待ちください!"
 
-#: js/ui/FilesMainContextMenu.js:67
+#: js/ui/FilesMainContextMenu.js:69
 msgid "Edit share"
 msgstr "共有を編集"
 
-#: js/ui/FilesMainContextMenu.js:111
+#: js/ui/FilesMainContextMenu.js:123
 msgid "Info"
 msgstr "情報"
 

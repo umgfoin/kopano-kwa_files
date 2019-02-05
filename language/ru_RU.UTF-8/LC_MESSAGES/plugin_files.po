@@ -6,17 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Russian\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-09 17:04+0200\n"
+"POT-Creation-Date: 2019-02-05 15:38+0100\n"
 "PO-Revision-Date: 2018-10-24 14:28+0000\n"
 "Last-Translator: Sotneo <kerovsot@gmail.com>\n"
-"Language-Team: Russian <http://translate.kopano.io/projects/kopano/files/ru/>"
-"\n"
+"Language-Team: Russian <http://translate.kopano.io/projects/kopano/files/ru/"
+">\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.4\n"
 
 #: js/data/Actions.js:70
@@ -49,8 +49,8 @@ msgid ""
 msgstr "Вы уверены, что хотите удалить выбранные элементы и всё их содержимое?"
 
 #: js/data/Actions.js:388 js/ui/FilesListToolbar.js:104
-#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:93
-#: js/ui/FilesTreeContextMenu.js:46
+#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:105
+#: js/ui/FilesTreeContextMenu.js:52
 msgid "Rename"
 msgstr "Переименовать"
 
@@ -110,9 +110,9 @@ msgstr "Перезаписать"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:104
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:118
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:139
+#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:115
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:129
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:150
 msgid "Warning"
 msgstr "Предупреждение"
 
@@ -369,19 +369,19 @@ msgstr "Всего"
 msgid "Version Information"
 msgstr "Информация о версии"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:77
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:88
 msgid "Add attachment"
 msgstr "Добавить вложение"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
 msgid "The file {0} is too large!"
 msgstr "Файл {0} слишком большой!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
 msgid "max"
 msgstr "макс"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:119
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "You have to choose at least one file!"
 msgstr "Вы должны выбрать хотя бы один файл!"
 
@@ -548,15 +548,13 @@ msgstr "Не удалось загрузить!"
 msgid "Upload files"
 msgstr "Загрузка файлов"
 
-#: js/ui/FilesListToolbar.js:70 js/ui/FilesTreeContextMenu.js:68
-msgid "Create folder"
-msgstr "Создать папку"
+#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:72
+#: js/ui/FilesMainContextMenu.js:75 js/ui/FilesTreeContextMenu.js:46
+#, fuzzy
+msgid "New Folder"
+msgstr "Новая папка"
 
-#: js/ui/FilesListToolbar.js:72
-msgid "Create new folder"
-msgstr "Создать новую папку"
-
-#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:39
+#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:41
 msgid "Download"
 msgstr "Загрузить"
 
@@ -564,33 +562,33 @@ msgstr "Загрузить"
 msgid "Download files"
 msgstr "Скачать файлы"
 
-#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:50
+#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:52
 msgid "Share"
 msgstr "Общий доступ"
 
 #: js/ui/FilesListToolbar.js:95 js/ui/FilesListToolbar.js:96
-#: js/ui/FilesMainContextMenu.js:73
+#: js/ui/FilesMainContextMenu.js:85
 msgid "Attach to mail"
 msgstr "Вложить в письмо"
 
 #: js/ui/FilesListToolbar.js:112 js/ui/FilesListToolbar.js:113
-#: js/ui/FilesMainContextMenu.js:102 js/ui/FilesTreeContextMenu.js:57
+#: js/ui/FilesMainContextMenu.js:114 js/ui/FilesTreeContextMenu.js:63
 msgid "Delete"
 msgstr "Удалять"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Attaching"
 msgstr "Вложение"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Creating email... Please wait!"
 msgstr "Создание письма... Пожалуйста, ждите!"
 
-#: js/ui/FilesMainContextMenu.js:67
+#: js/ui/FilesMainContextMenu.js:69
 msgid "Edit share"
 msgstr "Общий доступ"
 
-#: js/ui/FilesMainContextMenu.js:111
+#: js/ui/FilesMainContextMenu.js:123
 msgid "Info"
 msgstr "Информация"
 
@@ -866,8 +864,8 @@ msgstr "Функция не поддерживается на этом типе 
 msgid ""
 "With this backend, you can connect to any webdav server (e.g. Owncloud)."
 msgstr ""
-"С этим типом сервера, вы можете подключаться к любому webdav серверу ("
-"например Owncloud)."
+"С этим типом сервера, вы можете подключаться к любому webdav серверу "
+"(например Owncloud)."
 
 #: php/Files/Backend/Webdav/class.backend.php:159
 msgid "Webdav base path"

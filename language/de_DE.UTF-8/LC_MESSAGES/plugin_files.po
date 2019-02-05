@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KC-8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-09 17:04+0200\n"
+"POT-Creation-Date: 2019-02-05 15:38+0100\n"
 "PO-Revision-Date: 2018-08-08 09:01+0000\n"
 "Last-Translator: Björn <b.neumann@kopano.com>\n"
 "Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/"
@@ -56,8 +56,8 @@ msgstr ""
 "wollen?"
 
 #: js/data/Actions.js:388 js/ui/FilesListToolbar.js:104
-#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:93
-#: js/ui/FilesTreeContextMenu.js:46
+#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:105
+#: js/ui/FilesTreeContextMenu.js:52
 msgid "Rename"
 msgstr "Umbenennen"
 
@@ -116,9 +116,9 @@ msgstr "Überschreiben"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:104
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:118
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:139
+#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:115
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:129
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:150
 msgid "Warning"
 msgstr "Warnung"
 
@@ -377,19 +377,19 @@ msgstr "Gesamt"
 msgid "Version Information"
 msgstr "Versionsinformationen"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:77
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:88
 msgid "Add attachment"
 msgstr "Datei anhängen"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
 msgid "The file {0} is too large!"
 msgstr "Die Datei {0} ist zu groß!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:105
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
 msgid "max"
 msgstr "max"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:119
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "You have to choose at least one file!"
 msgstr "Sie müssen mindestens eine Datei auswählen!"
 
@@ -555,15 +555,13 @@ msgstr "Hochladen fehlgeschlagen!"
 msgid "Upload files"
 msgstr "Dateien hochladen"
 
-#: js/ui/FilesListToolbar.js:70 js/ui/FilesTreeContextMenu.js:68
-msgid "Create folder"
-msgstr "Ordner erstellen"
+#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:72
+#: js/ui/FilesMainContextMenu.js:75 js/ui/FilesTreeContextMenu.js:46
+#, fuzzy
+msgid "New Folder"
+msgstr "Neuer Ordner"
 
-#: js/ui/FilesListToolbar.js:72
-msgid "Create new folder"
-msgstr "Einen neuen Ordner erstellen"
-
-#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:39
+#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:41
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -571,33 +569,33 @@ msgstr "Herunterladen"
 msgid "Download files"
 msgstr "Dateien herunterladen"
 
-#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:50
+#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:52
 msgid "Share"
 msgstr "Teilen"
 
 #: js/ui/FilesListToolbar.js:95 js/ui/FilesListToolbar.js:96
-#: js/ui/FilesMainContextMenu.js:73
+#: js/ui/FilesMainContextMenu.js:85
 msgid "Attach to mail"
 msgstr "An E-Mail anhängen"
 
 #: js/ui/FilesListToolbar.js:112 js/ui/FilesListToolbar.js:113
-#: js/ui/FilesMainContextMenu.js:102 js/ui/FilesTreeContextMenu.js:57
+#: js/ui/FilesMainContextMenu.js:114 js/ui/FilesTreeContextMenu.js:63
 msgid "Delete"
 msgstr "Löschen"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Attaching"
 msgstr "Anhängen"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:189
+#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Creating email... Please wait!"
 msgstr "Erstelle Mail... Bitte warten!"
 
-#: js/ui/FilesMainContextMenu.js:67
+#: js/ui/FilesMainContextMenu.js:69
 msgid "Edit share"
 msgstr "Freigabe bearbeiten"
 
-#: js/ui/FilesMainContextMenu.js:111
+#: js/ui/FilesMainContextMenu.js:123
 msgid "Info"
 msgstr "Informationen"
 
