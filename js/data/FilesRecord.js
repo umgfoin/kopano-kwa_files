@@ -8,16 +8,18 @@ Ext.namespace('Zarafa.plugins.files.data');
  * These fields will be available in all 'IPM.Files' type messages.
  */
 Zarafa.plugins.files.data.FilesRecordFields = [
-	{name: 'id'},
+	// FIXME : try to remove this id proper.
+	{name: 'id', mapping:"entryid"},
+	{name: 'folder_id'},
 	{name: 'path'},
 	{name: 'type', type: 'int', defaultValue: Zarafa.plugins.files.data.FileTypes.FOLDER},
 	{name: 'filename'},
+	{name: 'display_name', mapping: 'filename'},
 	{name: 'isshared', type: 'boolean', defaultValue: false},
 	{name: 'sharedid'},
 	{name: 'lastmodified', type: 'int', defaultValue: null},
 	{name: 'message_size', type: 'int', defaultValue: 0},
 	{name: 'deleted', type: 'boolean', defaultValue: false},
-	{name: 'virtualRecord', type: 'boolean', defaultValue: false} // this flag will tell the backend to ignore the record
 ];
 
 /**
@@ -30,6 +32,15 @@ Zarafa.plugins.files.data.FilesRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	 * @cfg {Boolean} Record state.
 	 */
 	disabled: false,
+
+	/**
+	 * The base array of ID properties which is copied to the {@link #idProperties}
+	 * when the record is being created.
+	 * @property
+	 * @type Array
+	 * @private
+	 */
+	baseIdProperties : [ 'folder_id', 'entryid', 'store_entryid', 'parent_entryid' ],
 
 	/**
 	 * Applies all data from an {@link Zarafa.plugins.files.data.FilesRecord FilesRecord}
@@ -59,7 +70,7 @@ Zarafa.plugins.files.data.FilesRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	 */
 	getInlineImageUrl: function () {
 		return container.getBasePath() + "index.php?load=custom&name=download_file&" + Ext.urlEncode({
-			id    : this.get('id'),
+			id    : this.get('folder_id'),
 			inline: true
 		});
 	},
@@ -72,7 +83,7 @@ Zarafa.plugins.files.data.FilesRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	 */
 	getAttachmentUrl: function () {
 		return container.getBasePath() + "index.php?sessionid=" + container.getUser().getSessionId() + "&load=custom&name=download_file&" + Ext.urlEncode({
-			id    : this.get('id'),
+			id    : this.get('folder_id'),
 			inline: false
 		});
 	},
@@ -104,7 +115,7 @@ Zarafa.plugins.files.data.FilesRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	{
 		// FixME : Create function called getAccountFromRecord in
 		// Files context model.
-		var accId = Zarafa.plugins.files.data.Utils.File.getAccountId(this.get('id'));
+		var accId = Zarafa.plugins.files.data.Utils.File.getAccountId(this.get('folder_id'));
 		var store = container.getCurrentContext().getAccountsStore();
 
 		// look up the account
@@ -122,6 +133,18 @@ Zarafa.plugins.files.data.FilesRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	isFolder : function ()
 	{
 		return this.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER;
+	},
+
+	/**
+	 * Move the {@link Zarafa.plugins.files.data.FilesRecord record} to a different
+	 * {@link Zarafa.plugins.files.data.FilesFolderRecord folder}.
+	 * @param {Zarafa.plugins.files.data.FilesFolderRecord} folder The folder to copy the record to
+	 */
+	moveTo : function(folder)
+	{
+		this.addMessageAction('action_type', 'move');
+		this.addMessageAction('parent_entryid', folder.get('entryid'));
+		this.addMessageAction('destination_folder_id', folder.get('folder_id'));
 	}
 });
 

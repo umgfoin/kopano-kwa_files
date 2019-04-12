@@ -20,11 +20,6 @@ the plugin by itself in the Webapp settings. (Settings -> Plugins -> Check the f
 
 ```define('PLUGIN_FILES_ASK_BEFORE_DELETE', true);```
 
-If this flag is set to true, the files plugin will preload folders. This might decrease perfomance! If the flag is set to false,
-a user will not be able to see if a folder has content or is empty.
-
-```define('PLUGIN_FILES_PRELOAD_FOLDER', false);```
-
 If this flag is true, a confirmation dialog will be shown before a file gets deleted. Otherwise the file is deleted instantly (dangerous!).
 
 ```define('PLUGIN_FILESBROWSER_LOGLEVEL', "NONE");```

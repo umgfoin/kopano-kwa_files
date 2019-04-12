@@ -71,7 +71,7 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 
 		if (Ext.isDefined(config.model) && !Ext.isDefined(config.filesStore)) {
 			config.filesStore = config.model.getStore();
-			this.currentPath = config.filesStore.getPath();
+			this.currentPath = config.filesStore.folderId;
 		}
 
 		Ext.applyIf(config, {
@@ -95,35 +95,71 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 	 * @private
 	 */
 	initEvents: function () {
-		this.mon(this.filesStore, {
-			'beforeload': this.onStoreLoad,
-			scope       : this
-		});
-
-		this.on('afterrender', this.generateNavigationButtons.createDelegate(
-			this,
-			[
-				Zarafa.plugins.files.data.Utils.File.stripAccountId(this.currentPath),
-				Zarafa.plugins.files.data.Utils.File.getAccountId(this.currentPath)
-			]
-		), this);
+		this.on('afterrender', this.onAfterRender, this);
+		this.mon(this.model, 'folderchange', this.onFolderChange, this);
+		this.mon(this.model.getHierarchyStore(), 'updateFolder', this.onUpdateFolder, this);
+		this.mon(this.model.getHierarchyStore(), 'load', this.onHierarchyStoreLoad, this);
 	},
 
 	/**
-	 * Event handler which will be called when the {@link #store} fires the
-	 * {@link Zarafa.plugins.files.data.FilesRecordStore#beforeload} event.
-	 *
-	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store the files store.
-	 * @private
+	 * Event handler triggered when {@link Zarafa.plugins.files.data.FilesHierarchyStore FilesHierarchyStore}.
+	 * is load. It will update the navigation bar as per the default selected folder.
 	 */
-	onStoreLoad: function (store)
+	onHierarchyStoreLoad : function()
 	{
-		var currentPath = store.getPath();
-		if(this.currentPath !== currentPath) {
+		var folder = this.model.getDefaultFolder();
+		this.updateNavigationBar(folder);
+	},
+
+	/**
+	 * Event handler triggered when folder was updated in hierarchy.
+	 * It will call {@link #updateNavigationBar} function to update the navigation bar
+	 * as per the updated folder.
+	 *
+	 * @param {Zarafa.plugins.files.data.FilesHierarchyStore} store
+	 * @param {Zarafa.plugins.files.data.FilesStoreRecord} storeRecord
+	 * @param {Zarafa.hierarchy.data.IPFRecord} folder The folder which is updated in the hierarchy store.
+	 */
+	onUpdateFolder : function(store, parentFolder, folder)
+	{
+		if (folder.get('entryid') !== this.model.getDefaultFolder().get('entryid')) {
+			return;
+		}
+		this.updateNavigationBar(folder);
+	},
+
+	/**
+	 * Event handler triggered after the render navigation bar.
+	 * update the navigation bar as per the currently selected folder.
+	 */
+	onAfterRender : function()
+	{
+		this.generateNavigationButtons(this.model.getDefaultFolder());
+	},
+
+	/**
+	 * Event handler triggered when 'folderchange'. The function will
+	 * update the navigation bar as per the currently selected folder.
+	 */
+	onFolderChange: function (model)
+	{
+		var folder = model.getDefaultFolder();
+		this.updateNavigationBar(folder);
+	},
+
+	/**
+	 * Update the navigation bar as per the selected folder if
+	 * not selected it earlier.
+	 *
+	 * @param {Zarafa.hierarchy.data.IPFRecord} folder The folder which is updated in the hierarchy store.
+	 */
+	updateNavigationBar : function (folder)
+	{
+		var currentPath = folder.get('folder_id');
+
+		if (this.currentPath !== currentPath) {
 			this.currentPath = currentPath;
-			var accID = Zarafa.plugins.files.data.Utils.File.getAccountId(currentPath);
-			var backendPath = Zarafa.plugins.files.data.Utils.File.stripAccountId(currentPath);
-			this.generateNavigationButtons(backendPath, accID);
+			this.generateNavigationButtons(folder);
 		}
 	},
 
@@ -224,11 +260,13 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 	/**
 	 * Create buttons for the given folder path.
 	 *
-	 * @param path
-	 * @param accountID
+	 * @param {Zarafa.hierarchy.data.IPFRecord} folder The folder which is updated in the hierarchy store.
 	 */
-	generateNavigationButtons: function (path, accountID)
-	{
+	generateNavigationButtons: function (folder) {
+		var currentPath = Ext.isDefined(folder) ? folder.get('folder_id') : "#R#";
+		var accountID = Zarafa.plugins.files.data.Utils.File.getAccountId(currentPath);
+		var path = Zarafa.plugins.files.data.Utils.File.stripAccountId(currentPath);
+
 		// recalculate the width
 		this.recalculateMaxPath();
 
@@ -292,17 +330,25 @@ Zarafa.plugins.files.ui.snippets.FilesNavigationBar = Ext.extend(Ext.Panel, {
 	},
 
 	/**
-	 * Eventhandler that handles a navigation button click.
+	 * Event handler that handles a navigation button click.
 	 *
 	 * @param button
-	 * @param event
 	 */
-	doNavButtonClick: function(button, event)
+	doNavButtonClick: function(button)
 	{
-		if(button.path === '#R#') {
-			this.model.setPreviewRecord(undefined);
+		var model = this.model;
+		var hierarchyStore = model.getHierarchyStore();
+		var folder = hierarchyStore.getFolderByFolderId(button.path);
+
+		if (!Ext.isDefined(folder)) {
+			return;
 		}
-		this.filesStore.loadPath(button.path);
+
+		if (folder.isHomeFolder()) {
+			model.setPreviewRecord(undefined);
+		}
+
+		container.selectFolder(folder);
 	}
 });
 

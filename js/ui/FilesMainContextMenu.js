@@ -76,7 +76,7 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			iconCls   : 'files_icon_action files_icon_action_new_folder',
 			handler   : this.onContextItemNewFolder,
 			beforeShow: function (item, records) {
-				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, false, true, true));
+				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, true, false, true, true));
 			},
 			model     : model,
 			scope     : this
@@ -115,7 +115,7 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			iconCls   : 'files_icon_action files_icon_action_delete',
 			handler   : this.onContextItemDelete,
 			beforeShow: function (item, records) {
-				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, false, false, true));
+				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, false, false));
 			},
 			scope     : this
 		}, {
@@ -160,10 +160,13 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	 * Event handler for opening the "create new folder" dialog.
 	 *
 	 * @param button
-	 * @param event
 	 */
-	onContextItemNewFolder: function (button, event) {
-		Zarafa.plugins.files.data.Actions.createFolder(button.model);
+	onContextItemNewFolder: function (button)
+	{
+		var model = button.model;
+		var hierarchyStore = model.getHierarchyStore();
+		var folder = hierarchyStore.getFolder(this.records[0].get('entryid'));
+		Zarafa.plugins.files.data.Actions.createFolder(model, undefined, folder);
 	},
 
 	/**
@@ -205,7 +208,7 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 		var attachmentStore = emailRecord.getAttachmentStore();
 
 		Ext.each(this.records, function (record) {
-			idsList.push(record.get('id'));
+			idsList.push(record.get('folder_id'));
 		}, this);
 
 		container.getNotifier().notify('info.files', dgettext('plugin_files', 'Attaching'), dgettext('plugin_files', 'Creating email... Please wait!'));

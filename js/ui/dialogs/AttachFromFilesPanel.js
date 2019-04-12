@@ -2,24 +2,17 @@ Ext.namespace('Zarafa.plugins.files.ui.dialogs');
 
 /**
  * @class Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel
- * @extends Ext.tree.TreePanel
- * @xtype filesplugin.attachfromfilestreepanel
+ * @extends Ext.Panel
+ * @xtype filesplugin.attachfromfilespanel
  *
  * This dialog panel will provide the filechooser tree.
  */
-Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.TreePanel, {
+Zarafa.plugins.files.ui.dialogs.AttachFromFilesPanel = Ext.extend(Ext.Panel, {
 
 	/**
 	 * @var {Zarafa.core.data.IPMRecord} emailRecord
 	 */
 	emailRecord: undefined,
-
-	/**
-	 * @cfg {Object} treeSorter a {@link Ext.Ext.tree.TreeSorter} config or {@link Boolean}
-	 * to sort the {@link Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel Tree}
-	 * Defaults to <code>true</code>.
-	 */
-	treeSorter : true,
 
 	/**
 	 * @constructor
@@ -32,49 +25,49 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 			this.emailRecord = config.emailrecord;
 		}
 
-		Ext.applyIf(config, {
-			root        : {
-				nodeType: 'async',
-				text    : 'Files',
-				id      : '#R#',
-				expanded: true,
-				cc      : false
+		config = Ext.applyIf(config, {
+			xtype : 'filesplugin.attachfromfilespanel',
+			layout: {
+				type: 'hbox',
+				align: 'stretch'
 			},
-			rootVisible : false,
-			autoScroll  : true,
-			viewConfig  : {
-				style: {overflow: 'auto', overflowX: 'hidden'}
-			},
-			listeners   : {
-				expandnode: this.onExpandNode
-			},
-			maskDisabled: true,
-			loader      : new Zarafa.plugins.files.data.NavigatorTreeLoader({loadfiles: true}),
-			buttons     : [
-				this.createActionButtons()
-			]
+			border: false,
+			header: false,
+			items : [{
+				xtype : 'filesplugin.tree',
+				model : config.model,
+				border : true,
+				flex : 1,
+				ref : 'hierarchyTree'
+			}, {
+				xtype : 'filesplugin.attachfromfilesgridpanel',
+				ref : 'attachGrid',
+				flex : 2
+			}],
+			buttonAlign: 'right',
+			buttons: this.createActionButtons()
 		});
-		Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel.superclass.constructor.call(this, config);
 
-		if (this.treeSorter && !(this.treeSorter instanceof Ext.tree.TreeSorter)) {
-			this.treeSorter = new Zarafa.plugins.files.ui.TreeSorter(this, Ext.apply({}, this.treeSorter));
+		Zarafa.plugins.files.ui.dialogs.AttachFromFilesPanel.superclass.constructor.call(this, config);
+		if (Ext.isDefined(this.model)) {
+			this.mon(this.hierarchyTree, 'click', this.onTreeNodeClick, this);
 		}
 	},
 
 	/**
-	 * The {@link Ext.tree.TreePanel#expandnode} event handler. It will silently load the children of the node.
-	 * This is used to check if a node can be expanded or not.
-	 *
-	 * @param {Ext.tree.AsyncTreeNode} node
+	 * Called when a treeNode is click in tree. The corresponding folder is added to,
+	 * or removed from the active folder list depending on the state of the check box.
+	 * @param {Ext.tree.TreeNode} treeNode tree node.
+	 * @private
 	 */
-	onExpandNode: function (node) {
-		node.attributes["cc"] = true;
-		node.eachChild(function (child) {
-			if (child.attributes["cc"] !== true) { // only check if it was not checked before
-				child.attributes["cc"] = true;
-				child.quietLoad();
-			}
-		});
+	onTreeNodeClick : function(treeNode)
+	{
+		var folder = treeNode.getFolder();
+		this.attachGrid.store.load({
+			params: {
+				only_files : true
+			},
+			folder : folder });
 	},
 
 	/**
@@ -86,13 +79,13 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 		return [{
 			xtype  : 'button',
 			text   : dgettext('plugin_files', 'Add attachment'),
+			iconCls: 'icon_files_category_white',
 			handler: this.downloadSelectedFilesFromFilesToTmp,
 			scope  : this
 		},{
-			xtype  : 'button',
 			text   : dgettext('plugin_files', 'Cancel'),
-			handler: this.onCancel,
-			scope  : this
+			handler: this.onClickCancel,
+			scope: this
 		}];
 	},
 
@@ -101,7 +94,7 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 	 * {@link Ext.Button button}. This will close this dialog.
 	 * @private
 	 */
-	onCancel : function()
+	onClickCancel : function()
 	{
 		this.dialog.close();
 	},
@@ -110,7 +103,7 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 	 * Start to download the files to a temporary folder on the backend.
 	 */
 	downloadSelectedFilesFromFilesToTmp: function () {
-		var selectedNodes = this.getChecked();
+		var selectedNodes = this.attachGrid.getSelectionModel().getSelections();
 		var idsList = [];
 		var emailRecord = this.dialog.record;
 
@@ -124,17 +117,17 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 		var size_exceeded = false;
 
 		Ext.each(selectedNodes, function (node, index) {
-			if (node.attributes.filesize > max_attachment_size) {
+			if (node.get('message_size') > max_attachment_size) {
 				Zarafa.common.dialogs.MessageBox.show({
 					title  : dgettext('plugin_files', 'Warning'),
-					msg    : String.format(dgettext('plugin_files', 'The file {0} is too large!'), node.attributes.filename) + ' (' + dgettext('plugin_files', 'max') + ': ' + Ext.util.Format.fileSize(max_attachment_size) + ')',
+					msg    : String.format(dgettext('plugin_files', 'The file {0} is too large!'), node.get('filename')) + ' (' + dgettext('plugin_files', 'max') + ': ' + Ext.util.Format.fileSize(max_attachment_size) + ')',
 					icon   : Zarafa.common.dialogs.MessageBox.WARNING,
 					buttons: Zarafa.common.dialogs.MessageBox.OK
 				});
 				size_exceeded = true;
 				return false;
 			}
-			idsList.push(node.id);
+			idsList.push(node.get('folder_id'));
 		});
 
 		if (!size_exceeded) {
@@ -148,6 +141,7 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 			} else {
 				try {
 					this.disable();
+					// TODO: try to remove this single request call.
 					container.getRequest().singleRequest(
 						'filesbrowsermodule',
 						'downloadtotmp',
@@ -208,4 +202,4 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 	}
 });
 
-Ext.reg('filesplugin.attachfromfilestreepanel', Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel);
+Ext.reg('filesplugin.attachfromfilespanel', Zarafa.plugins.files.ui.dialogs.AttachFromFilesPanel);

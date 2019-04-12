@@ -1,4 +1,6 @@
 <?php
+require_once "plugins/files/php/modules/class.fileslistmodule.php";
+
 require_once __DIR__ . "/Files/Core/class.exception.php";
 require_once __DIR__ . "/Files/Backend/class.exception.php";
 
@@ -20,84 +22,23 @@ use \Files\Core\Util\PathUtil;
 use \Files\Core\Exception as AccountException;
 use \Files\Backend\Exception as BackendException;
 
-use phpFastCache\CacheManager;
-
 /**
  * This module handles all list and change requests for the files browser.
  *
  * @class FilesBrowserModule
  * @extends ListModule
  */
-class FilesBrowserModule extends ListModule
+class FilesBrowserModule extends FilesListModule
 {
 	const LOG_CONTEXT = "FilesBrowserModule"; // Context for the Logger
 
 	/**
-	 * @var \phpFastCache cache handler.
+	 * Creates the notifiers for this module,
+	 * and register them to the Bus.
 	 */
-	private $cache;
-
-	/**
-	 * @var String User id of the currently logged in user. Used to generate unique cache id's.
-	 */
-	private $uid;
-
-	/**
-	 * @var {Object} The account store holding all available accounts
-	 */
-	private $accountStore;
-
-	/**
-	 * @var {Object} The backend store holding all available backends
-	 */
-	private $backendStore;
-
-	/**
-	 * @constructor
-	 *
-	 * @param $id
-	 * @param $data
-	 */
-	public function __construct($id, $data)
+	function createNotifiers()
 	{
-		parent::__construct($id, $data);
-
-		// Initialize the account and backendstore
-		$this->accountStore = new \Files\Core\AccountStore();
-		$this->backendStore = \Files\Backend\BackendStore::getInstance();
-
-		// Setup the cache
-		$cacheSysPath = ( defined(PLUGIN_FILES_CACHE_DIR) ? PLUGIN_FILES_CACHE_DIR : '/var/lib/kopano-webapp/plugin_files' );
-		if (!is_writable($cacheSysPath)) {
-			Logger::error(self::LOG_CONTEXT, "Cache files directory failing back to /tmp, because " . $cacheSysPath . " is not writeable by the php process. Please adjust permissions. See KFP-161." );
-			$cacheSysPath = sys_get_temp_dir();
-		}
-		$config = array(
-			"storage" => "memcached",
-			"memcache" => array(
-				array('127.0.0.1', 11211, 1),
-			),
-			"path" => $cacheSysPath,
-			"fallback" => "files", // fallback when memcached does not work
-		);
-		CacheManager::setup($config);
-		$this->cache = CacheManager::getInstance();
-		if ($this->cache->fallback) {
-			Logger::debug(self::LOG_CONTEXT, "[cache] memcached storage could not be loaded. Using files storage.");
-			CacheManager::setup("storage", "files");
-			$this->cache = CacheManager::getInstance();
-		}
-
-		// For backward compatibility we will check if the Encryption store exists. If not,
-		// we will fall back to the old way of retrieving the password from the session.
-		if ( class_exists('EncryptionStore') ) {
-			// Get the username from the Encryption store
-			$encryptionStore = \EncryptionStore::getInstance();
-			$this->uid = $encryptionStore->get('username');
-		} else {
-			$this->uid = $_SESSION["username"];
-		}
-		Logger::debug(self::LOG_CONTEXT, "[constructor]: executing the module as uid: " . $this->uid);
+		$GLOBALS["bus"]->registerNotifier('fileshierarchynotifier', REQUEST_ENTRYID);
 	}
 
 	/**
@@ -113,9 +54,6 @@ class FilesBrowserModule extends ListModule
 			if (isset($actionType)) {
 				try {
 					switch ($actionType) {
-						case "getfilestree":
-							$result = $this->loadFilesTree($actionType, $actionData);
-							break;
 						case "checkifexists":
 							$records = $actionData["records"];
 							$destination = isset($actionData["destination"]) ? $actionData["destination"] : false;
@@ -130,7 +68,8 @@ class FilesBrowserModule extends ListModule
 							$result = $this->downloadSelectedFilesToTmp($actionType, $actionData);
 							break;
 						case "createdir":
-							$result = $this->createDirectory($actionType, $actionData);
+							$this->save($actionData);
+							$result = true;
 							break;
 						case "rename":
 							$result = $this->rename($actionType, $actionData);
@@ -173,7 +112,7 @@ class FilesBrowserModule extends ListModule
 										if (isset($actionData["entryid"])) {
 											$result = $this->rename($actionType, $actionData);
 										} else {
-											$result = $this->createDirectory($actionType, $actionData);
+											$result = $this->save($actionData);
 										}
 										break;
 								}
@@ -182,7 +121,7 @@ class FilesBrowserModule extends ListModule
 								if (isset($actionData["entryid"])) {
 									$result = $this->rename($actionType, $actionData);
 								} else {
-									$result = $this->createDirectory($actionType, $actionData);
+									$result = $this->save($actionData);
 								}
 							}
 							break;
@@ -249,7 +188,7 @@ class FilesBrowserModule extends ListModule
 	public function loadFiles($actionType, $actionData)
 	{
 		$nodeId = $actionData['id'];
-		$reload = $actionData['reload'];
+		$onlyFiles = isset($actionData['only_files']) ? $actionData['only_files'] : false;
 		$response = array();
 		$nodes = array();
 
@@ -263,22 +202,23 @@ class FilesBrowserModule extends ListModule
 				if ($account->getStatus() != \Files\Core\Account::STATUS_OK) {
 					continue;
 				}
-
-				$realNodeId = $nodeId . $account->getId() . "/"; // build the real node id for this folder
+				// build the real node id for this folder
+				$realNodeId = $nodeId . $account->getId() . "/";
 
 				$nodes[$realNodeId] = array('props' =>
 					array(
 						'id' => rawurldecode($realNodeId),
-						'path' => "/",
+						'folder_id' => rawurldecode($realNodeId),
+						'path' => $realNodeId,
 						'filename' => $account->getName(),
 						'message_size' => -1,
 						'lastmodified' => -1,
 						'message_class' => "IPM.Files",
 						'type' => 0
 					),
-					'entryid' => rawurldecode($realNodeId),
-					'store_entryid' => 'files',
-					'parent_entryid' => dirname($realNodeId) . "/"
+					'entryid' => $this->createId($realNodeId),
+					'store_entryid' => $this->createId($realNodeId),
+					'parent_entryid' => $this->createId($realNodeId)
 				);
 			}
 		} else {
@@ -288,7 +228,7 @@ class FilesBrowserModule extends ListModule
 			$initializedBackend = $this->initializeBackend($account, true);
 
 			$starttime = microtime(true);
-			$nodes = $this->getFolderContent($nodeId, $initializedBackend, true, false, $reload);
+			$nodes = $this->getFolderContent($nodeId, $initializedBackend, $onlyFiles);
 			Logger::debug(self::LOG_CONTEXT, "[loadfiles]: getFolderContent took: " . (microtime(true) - $starttime) . " seconds");
 
 			$nodes = $this->sortFolderContent($nodes, $actionData, false);
@@ -306,112 +246,17 @@ class FilesBrowserModule extends ListModule
 	}
 
 	/**
-	 * Loads all folders and files needed to display the filetree.
-	 *
-	 * Tree will have a structure like this:
-	 *
-	 *                 #R#
-	 *                  |
-	 *          ---------------------
-	 *         /        |            \
-	 *       HASH1     HASH2         HASH3          HASH = Account ID
-	 *         |        |              |
-	 *      Files      Files         Files          and folders
-	 *
-	 * @param {String} $actionType
-	 * @param {Array} $actionData
-	 */
-	public function loadFilesTree($actionType, $actionData)
-	{
-		$response = array();
-		$nodeId = $actionData['id'];
-		$reload = isset($actionData['reload']) ? $actionData['reload'] : false;
-		$loadFiles = isset($actionData['loadfiles']) ? $actionData['loadfiles'] : false;
-		$accountFilter = $actionData['accountFilter'];
-
-		$nodes = array();
-		if (!isset($nodeId) || $nodeId === "#R#") { // we have to load the root node
-			$accounts = $this->accountStore->getAllAccounts();
-
-			foreach ($accounts as $account) { // we have to load all accounts and their folders
-				// skip accounts that are not valid
-				if ($account->getStatus() != \Files\Core\Account::STATUS_OK) {
-					continue;
-				}
-
-				// skip accounts that are not listed in the filter
-				if (!empty($accountFilter)) {
-					if (!is_array($accountFilter) && $account->getId() != $accountFilter) {
-						continue;
-					} else {
-						if (is_array($accountFilter)) {
-							if (!in_array($account->getId(), $accountFilter)) {
-								continue;
-							}
-						}
-					}
-				}
-
-				$realNodeId = $nodeId . $account->getId() . "/"; // build the real node id for this folder
-
-				$nodes[$realNodeId] = array(
-					'id' => $realNodeId,
-					'path' => "/",
-					'text' => $account->getName(),
-					'expanded' => false, // TODO: should we autoload the account root?
-					'isFolder' => true, // needed to set class correctly
-					'iconCls' => "icon_16_" . $account->getBackend(),
-					'filename' => $account->getName(),
-					'account_sequence' => $account->getSequence()
-				);
-
-				// sort by account_sequence
-				$filter = array(
-					"sort" => array(
-						array(
-							"field" => "account_sequence",
-							"direction" => "ASC"
-						)
-					)
-				);
-				$nodes = $this->sortFolderContent($nodes, $filter, true);
-			}
-		} else { // load subfolder of store
-			$account = $this->accountFromNode($nodeId);
-
-			// initialize the backend
-			$initializedBackend = $this->initializeBackend($account, true);
-
-			Logger::debug(self::LOG_CONTEXT, "Loading nodes for acc: " . $account->getId() . " (" . $account->getName() . ")");
-
-			$starttime = microtime(true);
-			$nodes = $this->getFolderContent($nodeId, $initializedBackend, $loadFiles, true, $reload);
-			Logger::debug(self::LOG_CONTEXT, "[loadFilesTree]: getFolderContent took: " . (microtime(true) - $starttime) . " seconds");
-		}
-
-		$response["items"] = array_values($nodes);
-		$response['status'] = true;
-
-		$this->addActionData($actionType, $response);
-		$GLOBALS["bus"]->addData($this->getResponseData());
-
-		return true;
-	}
-
-	/**
 	 * Forms the structure needed for frontend
 	 * for the list of folders and files
 	 *
 	 * @param string $nodeId the name of the current root directory
 	 * @param Files\Backend\AbstractBackend $backendInstance
-	 * @param boolean $loadFiles if true, files will be loaded also
-	 * @param boolean $navtree parse for navtree or browser
-	 * @param boolean $reload if this is true, the cache will be reloaded
+	 * @param boolean $onlyFiles if true, get only files.
 	 *
 	 * @throws BackendException if the backend request fails
 	 * @return array of nodes for current path folder
 	 */
-	public function getFolderContent($nodeId, $backendInstance, $loadFiles = false, $navtree = false, $reload = false)
+	public function getFolderContent($nodeId, $backendInstance, $onlyFiles = false)
 	{
 		$nodes = array();
 
@@ -428,15 +273,14 @@ class FilesBrowserModule extends ListModule
 		}
 
 		$dir = $this->getCache($accountID, $cachePath);
-
-		if (is_null($dir) || $reload) {
-			Logger::debug(self::LOG_CONTEXT, "Uncached query! Loading: " . $accountID . $cachePath . " -- " . ($reload ? "y": "n"));
+		if (is_null($dir)) {
 			$dir = $backendInstance->ls($relNodeId);
 			$this->setCache($accountID, $cachePath, $dir);
 		}
 
+		// FIXME: There is something issue with getting sharing information from owncloud.
 		// check if backend supports sharing and load the information
-		if ($backendInstance->supports(\Files\Backend\BackendStore::FEATURE_SHARING) && !$navtree) {
+		if ($backendInstance->supports(\Files\Backend\BackendStore::FEATURE_SHARING)) {
 			Logger::debug(self::LOG_CONTEXT, "Checking for shared folders! ($relNodeId)");
 
 			$time_start = microtime(true);
@@ -449,15 +293,20 @@ class FilesBrowserModule extends ListModule
 		}
 
 		if ($dir) {
+			$updateCache = false;
 			foreach ($dir as $id => $node) {
-				$type = 1;
+				$type = FILES_FILE;
 
 				if (strcmp($node['resourcetype'], "collection") == 0) { // we have a folder
-					$type = 0;
+					$type = FILES_FOLDER;
+				}
+
+				if ($type === FILES_FOLDER && $onlyFiles) {
+					continue;
 				}
 
 				// Check if foldernames have a trailing slash, if not, add one!
-				if ($type == 0 && !StringUtil::endsWith($id, "/")) {
+				if ($type === FILES_FOLDER && !StringUtil::endsWith($id, "/")) {
 					$id .= "/";
 				}
 
@@ -466,68 +315,67 @@ class FilesBrowserModule extends ListModule
 				Logger::debug(self::LOG_CONTEXT, "parsing: " . $id . " in base: " . $nodeId);
 
 				$filename = stringToUTF8Encode(basename($id));
-				if ($navtree) {
-					if ($type == 0) { // we have a folder
-						$nodes[$realID] = array(
-							'id' => $realID,
-							'path' => stringToUTF8Encode(dirname($id)),
-							'text' => $filename,
-							'expanded' => false,
-							'isFolder' => true, // needed to set class correctly
-							'iconCls' => 'icon_folder_note',
-							'filename' => $filename,
-							'allowChildren' => true,
-							'leaf' => false
-						);
-					} else {
-						if ($loadFiles) { // skip files if $loadFiles == false
-							$nodes[$realID] = array(
-								'id' => $realID,
-								'path' => stringToUTF8Encode(dirname($id)),
-								'text' => $filename . '(' . StringUtil::human_filesize(intval($node['getcontentlength'])) . ')',
-								'filesize' => intval($node['getcontentlength']),
-								'isFolder' => false,
-								'filename' => $filename,
-								'expanded' => true,
-								'loaded' => true, // prevent treepanel from making another request
-								'has_children' => false,
-								'checked' => false
-							);
+
+				$size = $node['getcontentlength'] === null ? -1 : intval($node['getcontentlength']);
+				$size = $type == FILES_FOLDER ? -1 : $size; // folder's dont have a size
+
+				$shared = false;
+				$sharedid = array();
+				if (isset($sharingInfo) && count($sharingInfo[$relNodeId]) > 0) {
+					foreach ($sharingInfo[$relNodeId] as $sid => $sdetails) {
+						if ($sdetails["path"] == rtrim($id, "/")) {
+							$shared = true;
+							$sharedid[] = $sid;
 						}
 					}
-				} else {
-					$size = $node['getcontentlength'] === null ? -1 : intval($node['getcontentlength']);
-					$size = $type == 0 ? -1 : $size; // folder's dont have a size
-
-					$shared = false;
-					$sharedid = array();
-					if (isset($sharingInfo) && count($sharingInfo[$relNodeId]) > 0) {
-						foreach ($sharingInfo[$relNodeId] as $sid => $sdetails) {
-							if ($sdetails["path"] == rtrim($id, "/")) {
-								$shared = true;
-								$sharedid[] = $sid;
-							}
-						}
-					}
-					$nodeId = stringToUTF8Encode($id);
-
-					$nodes[$nodeId] = array('props' =>
-						array(
-							'id' => stringToUTF8Encode($realID),
-							'path' => dirname(stringToUTF8Encode($id)),
-							'filename' => $filename,
-							'message_size' => $size,
-							'lastmodified' => strtotime($node['getlastmodified']) * 1000,
-							'message_class' => "IPM.Files",
-							'isshared' => $shared,
-							'sharedid' => $sharedid,
-							'type' => $type
-						),
-						'entryid' => stringToUTF8Encode($realID),
-						'store_entryid' => 'files',
-						'parent_entryid' => dirname(stringToUTF8Encode($realID)) . "/"
-					);
 				}
+
+				$nodeId = stringToUTF8Encode($id);
+				$dirName = dirname($nodeId, 1);
+				if ($dirName === '/') {
+					$path = stringToUTF8Encode($nodeIdPrefix . $dirName);
+				} else {
+					$path = stringToUTF8Encode($nodeIdPrefix . $dirName . '/');
+				}
+
+				if (!isset($node['entryid']) || !isset($node['parent_entryid']) || !isset($node['store_entryid'])) {
+					$entryid = $this->createId($realID);
+					$parentEntryid = $this->createId($path);
+					$storeEntryid = $this->createId($nodeIdPrefix .'/');
+
+					$dir[$id]['entryid'] = $entryid;
+					$dir[$id]['parent_entryid'] = $parentEntryid;
+					$dir[$id]['store_entryid'] = $storeEntryid;
+
+					$updateCache = true;
+				} else {
+					$entryid = $node['entryid'];
+					$parentEntryid = $node['parent_entryid'];
+					$storeEntryid = $node['store_entryid'];
+				}
+
+				$nodes[$nodeId] = array('props' =>
+					array(
+						'folder_id' => stringToUTF8Encode($realID),
+						'path' => $path,
+						'filename' => $filename,
+						'message_size' => $size,
+						'lastmodified' => strtotime($node['getlastmodified']) * 1000,
+						'message_class' => "IPM.Files",
+						'isshared' => $shared,
+						'sharedid' => $sharedid,
+						'object_type' => $type,
+						'type' => $type
+					),
+					'entryid' => $entryid,
+					'parent_entryid' => $parentEntryid,
+					'store_entryid' => $storeEntryid
+				);
+			}
+
+			// Update the cache.
+			if ($updateCache) {
+				$this->setCache($accountID, $cachePath, $dir);
 			}
 		} else {
 			Logger::debug(self::LOG_CONTEXT, "dir was empty");
@@ -579,10 +427,11 @@ class FilesBrowserModule extends ListModule
 	 */
 	private function delete($actionType, $actionData)
 	{
+		// TODO: function is duplicate of class.hierarchylistmodule.php of delete function.
 		$result = false;
 		if (isset($actionData['records']) && is_array($actionData['records'])) {
 			foreach ($actionData['records'] as $record) {
-				$nodeId = $record['id'];
+				$nodeId = $record['folder_id'];
 				$relNodeId = substr($nodeId, strpos($nodeId, '/'));
 
 				$account = $this->accountFromNode($nodeId);
@@ -595,6 +444,13 @@ class FilesBrowserModule extends ListModule
 
 				// clear the cache
 				$this->deleteCache($account->getId(), dirname($relNodeId));
+				$GLOBALS["bus"]->notify(REQUEST_ENTRYID, OBJECT_DELETE, array(
+					"id"=> $nodeId,
+					"folder_id"=> $nodeId,
+					"entryid"=> $record['entryid'],
+					"parent_entryid"=> $record["parent_entryid"],
+					"store_entryid"=> $record["store_entryid"]
+				));
 			}
 
 			$response['status'] = true;
@@ -602,12 +458,13 @@ class FilesBrowserModule extends ListModule
 			$GLOBALS["bus"]->addData($this->getResponseData());
 
 		} else {
-			$nodeId = $actionData['entryid'];
+			$nodeId = $actionData['folder_id'];
+
 			$relNodeId = substr($nodeId, strpos($nodeId, '/'));
 			$response = array();
 
 			$account = $this->accountFromNode($nodeId);
-
+			$accountId = $account->getId();
 			// initialize the backend
 			$initializedBackend = $this->initializeBackend($account);
 
@@ -620,12 +477,30 @@ class FilesBrowserModule extends ListModule
 			}
 			Logger::debug(self::LOG_CONTEXT, "deleted: " . $nodeId . ", worked: " . $result);
 
-			// clear the cache
-			$this->deleteCache($account->getId(), dirname($relNodeId));
+			// Get old cached data.
+			$cachedDir = $this->getCache($accountId, dirname($relNodeId));
+			if (isset($cachedDir[$relNodeId]) && !empty($cachedDir[$relNodeId])) {
+				// Delete the folder from cached data.
+				unset($cachedDir[$relNodeId]);
+			}
+
+			// clear the cache of parent directory.
+			$this->deleteCache($accountId, dirname($relNodeId));
+			// clear the cache of selected directory.
+			$this->deleteCache($accountId, rtrim($relNodeId, '/'));
+
+			// Set data in cache.
+			$this->setCache($accountId, dirname($relNodeId), $cachedDir);
 
 			$response['status'] = $result ? true : false;
 			$this->addActionData($actionType, $response);
 			$GLOBALS["bus"]->addData($this->getResponseData());
+
+			$GLOBALS["bus"]->notify(REQUEST_ENTRYID, OBJECT_DELETE, array(
+				"entryid"=> $actionData["entryid"],
+				"parent_entryid"=> $actionData["parent_entryid"],
+				"store_entryid"=> $actionData["store_entryid"]
+			));
 		}
 
 		return true;
@@ -641,43 +516,26 @@ class FilesBrowserModule extends ListModule
 	 */
 	private function move($actionType, $actionData)
 	{
-		$records = $actionData["message_action"]["records"];
-		$destination = isset($actionData["message_action"]["destination_parent_entryid"]) ? $actionData["message_action"]["destination_parent_entryid"] : false;
+		$dst = rtrim($actionData['message_action']["destination_folder_id"], '/');
 
-		if ($actionData["message_action"]["overwrite"] !== "yes" && $this->checkIfExists($records, $destination)) {
-			$this->sendFeedback(false, array(
-				'type' => ERROR_GENERAL,
-				'info' => array(
-					'duplicate' => true,
-					'records' => $records,
-					'destination' => $destination
-				)
-			));
+		$overwrite = isset($actionData['message_action']["overwrite"]) ? $actionData['message_action']["overwrite"] : true;
+		$isFolder = isset($actionData['message_action']["isFolder"]) ? $actionData['message_action']["isFolder"] : false;
 
-			return true;
+		$pathPostfix = "";
+		if (substr($actionData['folder_id'], -1) == '/') {
+			$pathPostfix = "/"; // we have a folder...
 		}
 
-		$dst = rtrim($actionData['message_action']["destination_parent_entryid"], '/');
-		$overwrite = true;
-
-		$overall_status = true;
-		$message = "";
-		$errorids = array();
-		$isfolder = "";
-
-		if (substr($actionData['entryid'], -1) == '/') {
-			$isfolder = "/"; // we have a folder...
-		}
-
-		$source = rtrim($actionData['entryid'], '/');
+		$source = rtrim($actionData['folder_id'], '/');
+		$fileName = basename($source);
 		$destination = $dst . '/' . basename($source);
 
 		// get dst and source account ids
 		// currently only moving within one account is supported
-		$srcAccountID = substr($actionData['entryid'], 3, (strpos($actionData['entryid'], '/') - 3)); // parse account id from node id
-		$dstAccountID = substr($actionData['message_action']["destination_parent_entryid"], 3, (strpos($actionData['message_action']["destination_parent_entryid"], '/') - 3)); // parse account id from node id
+		$srcAccountID = substr($actionData['folder_id'], 3, (strpos($actionData['folder_id'], '/') - 3)); // parse account id from node id
+		$dstAccountID = substr($actionData['message_action']["destination_folder_id"], 3, (strpos($actionData['message_action']["destination_folder_id"], '/') - 3)); // parse account id from node id
 
-		if ($srcAccountID != $dstAccountID) {
+		if ($srcAccountID !== $dstAccountID) {
 			$this->sendFeedback(false, array(
 				'type' => ERROR_GENERAL,
 				'info' => array(
@@ -698,33 +556,57 @@ class FilesBrowserModule extends ListModule
 
 			$result = $initializedBackend->move($relSrc, $relDst, $overwrite);
 
+			$actionId = $account->getId();
 			// clear the cache
-			$this->deleteCache($account->getId(), dirname($relDst));
-			$this->deleteCache($account->getId(), dirname($relSrc));
+			$this->deleteCache($actionId, dirname($relDst));
 
-			if (!$result) {
-				$message = "Moving item " . $actionData['entryid'] . " to " . $destination . " failed! (" . $result . ")";
+			$cachedFolderName = $relSrc . $pathPostfix;
+			$this->deleteCache($actionId, $cachedFolderName);
+
+			$cached = $this->getCache($actionId, dirname($relSrc));
+			$this->deleteCache($actionId, dirname($relSrc));
+
+			if (isset($cached[$cachedFolderName]) && !empty($cached[$cachedFolderName])) {
+				unset($cached[$cachedFolderName]);
+				$this->setCache($actionId, dirname($relSrc), $cached);
 			}
 
 			$response['status'] = !$result ? false : true;
 
+
 			/* create the response object */
-			$folder = array();
-			$folder[$actionData['entryid']] = array(
+			$folder = array(
 				'props' =>
 					array(
-						'id' => ($destination . $isfolder),
-						'path' => $actionData['message_action']["destination_parent_entryid"],
+						'folder_id' => ($destination . $pathPostfix),
+						'path' => $actionData['message_action']["destination_folder_id"],
+						'filename' => $fileName,
+						'display_name' => $fileName,
+						'object_type' => $isFolder ? FILES_FOLDER : FILES_FILE,
 						'deleted' => !$result ? false : true
 					),
-				'entryid' => $actionData['entryid'],
-				'store_entryid' => 'files',
-				'parent_entryid' => $actionData['parent_entryid']
+				'entryid' => $this->createId($destination . $pathPostfix),
+				'store_entryid' => $actionData['store_entryid'],
+				'parent_entryid' => $actionData['message_action']['parent_entryid']
 			);
 
-			$response['item'] = array_values($folder);
+			$response['item'] = $folder;
+
 			$this->addActionData("update", $response);
 			$GLOBALS["bus"]->addData($this->getResponseData());
+
+			// Notify hierarchy only when folder was moved.
+			if ($isFolder) {
+				// Send notification to delete folder node in hierarchy.
+				$GLOBALS["bus"]->notify(REQUEST_ENTRYID, OBJECT_DELETE, array(
+					"entryid"=> $actionData["entryid"],
+					"parent_entryid"=> $actionData["parent_entryid"],
+					"store_entryid"=> $actionData["store_entryid"]
+				));
+
+				// Send notification to create new folder node in hierarchy.
+				$GLOBALS["bus"]->notify(REQUEST_ENTRYID, OBJECT_SAVE, $folder);
+			}
 		}
 
 		return true;
@@ -739,154 +621,14 @@ class FilesBrowserModule extends ListModule
 	 * @return bool
 	 * @throws BackendException if the backend request fails
 	 */
-	private function rename($actionType, $actionData)
+	function rename($actionType, $actionData)
 	{
-		$records = $actionData["records"];
-		$destination = isset($actionData["destination"]) ? $actionData["destination"] : false;
+		$messageProps = $this->save($actionData);
 
-		if ($this->checkIfExists($records, $destination)) {
-			$response = array();
-			$response['status'] = true;
-			$response['duplicate'] = true;
-			$this->addActionData($actionType, $response);
-			$GLOBALS["bus"]->addData($this->getResponseData());
-			return;
+		if(!empty($messageProps)) {
+			$GLOBALS["bus"]->notify(REQUEST_ENTRYID, OBJECT_SAVE, $messageProps);
+			$this->notifySubFolders($messageProps["props"]["folder_id"]);
 		}
-
-		$isfolder = "";
-		if (substr($actionData['entryid'], -1) == '/') {
-			$isfolder = "/"; // we have a folder...
-		}
-
-		$src = rtrim($actionData['entryid'], '/');
-		$dstdir = dirname($src) == "/" ? "" : dirname($src);
-		$dst = $dstdir . "/" . rtrim($actionData['props']['filename'], '/');
-
-		$relDst = substr($dst, strpos($dst, '/'));
-		$relSrc = substr($src, strpos($src, '/'));
-
-		$virtualRecord = isset($actionData['props']["virtualRecord"]) ? $actionData['props']["virtualRecord"] : false;
-
-		// only add the folder if the virtualRecord flag is false!
-		if (!$virtualRecord) {
-			$account = $this->accountFromNode($src);
-
-			// initialize the backend
-			$initializedBackend = $this->initializeBackend($account);
-
-			$result = $initializedBackend->move($relSrc, $relDst, false);
-
-			// clear the cache
-			$this->deleteCache($account->getId(), dirname($relSrc));
-		} else {
-			$result = true;
-		}
-		if ($result) {
-			/* create the response object */
-			$folder = array();
-
-			// some requests might not contain a new filename... so dont update the store
-			if (isset($actionData['props']['filename'])) {
-				$folder[dirname($src)] = array(
-					'props' =>
-						array(
-							'id' => rawurldecode($dst . $isfolder),
-							'path' => dirname(rawurldecode($relSrc)),
-							'filename' => $actionData['props']['filename']
-						),
-					'entryid' => rawurldecode($dst . $isfolder),
-					'store_entryid' => 'files',
-					'virtual' => $virtualRecord, // just for debugging
-					'parent_entryid' => dirname(dirname($src))
-				);
-			}
-			$response['item'] = array_values($folder);
-
-			$this->addActionData($actionType == "save" ? "update" : $actionType, $response);
-			$GLOBALS["bus"]->addData($this->getResponseData());
-
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
-	 * Creates a new directory.
-	 *
-	 * @access private
-	 * @param string $actionType name of the current action
-	 * @param array $actionData all parameters contained in this request
-	 * @throws BackendException if the backend request fails
-	 *
-	 */
-	private function createDirectory($actionType, $actionData)
-	{
-		$actionData = $actionData["props"];
-		$dirname = $actionData["id"];
-		$path = isset($actionData['path']) && !empty($actionData['path']) ? $actionData['path'] : "/";
-		$virtualRecord = isset($actionData["virtualRecord"]) ? $actionData["virtualRecord"] : false;
-
-		// only add the folder if the virtualRecord flag is false!
-		$relDirname = substr($dirname, strpos($dirname, '/'));
-		if (!$virtualRecord) {
-			$account = $this->accountFromNode($dirname);
-
-			// initialize the backend
-			$initializedBackend = $this->initializeBackend($account, true);
-
-			$relDirname = stringToUTF8Encode($relDirname);
-			$result = $initializedBackend->mkcol($relDirname); // create it !
-
-			$filesPath = $path;
-			if ($filesPath != "/") {
-				$filesPath = $filesPath . "/";
-			}
-
-			$dir = $initializedBackend->ls($filesPath);
-
-			// clear the cache
-			$this->deleteCache($account->getId(), dirname($relDirname));
-			$this->setCache($account->getId(), $path, $dir);
-		} else {
-			$result = true;
-		}
-
-		$parentdir = dirname($dirname);  // get parent dir
-		if ($parentdir != "/") {
-			$parentdir = $parentdir . "/";
-		}
-
-		$response = array();
-
-		if ($result) {
-			/* create the response folder object */
-			$folder = array();
-
-			$folder[$dirname] = array(
-				'props' =>
-					array(
-						'id' => rawurldecode($dirname),
-						'path' => dirname(rawurldecode($relDirname)),
-						'filename' => $actionData["filename"],
-						'message_size' => -1,
-						'lastmodified' => $actionData['lastmodified'],
-						'message_class' => "IPM.Files",
-						'type' => $actionData['type']
-					),
-				'entryid' => rawurldecode($dirname),
-				'virtual' => $virtualRecord, // just for debugging
-				'store_entryid' => 'files',
-				'parent_entryid' => $parentdir
-			);
-			$response['item'] = array_values($folder);
-			$this->addActionData($actionType == "save" ? "update" : $actionType, $response);
-			$GLOBALS["bus"]->addData($this->getResponseData());
-
-			return true;
-		}
-
-		return false;
 	}
 
 	/**
@@ -1038,23 +780,29 @@ class FilesBrowserModule extends ListModule
 			foreach ($actionData["items"] as $item) {
 				list($tmpname, $filename) = $this->prepareAttachmentForUpload($item);
 
-				$dst = substr($actionData["destdir"], strpos($actionData["destdir"], '/')) . $filename;
+				$dirName = substr($actionData["destdir"], strpos($actionData["destdir"], '/'));
+				$filePath = $dirName . $filename;
 
-				Logger::debug(self::LOG_CONTEXT, "Uploading to: " . $dst . " tmpfile: " . $tmpname);
+				Logger::debug(self::LOG_CONTEXT, "Uploading to: " . $filePath . " tmpfile: " . $tmpname);
 
-				$result = $result && $initializedBackend->put_file($dst, $tmpname);
+				$result = $result && $initializedBackend->put_file($filePath, $tmpname);
 				unlink($tmpname);
+
+				$this->updateDirCache($initializedBackend, $dirName, $filePath, $actionData);
 			}
 		} elseif ($actionData["type"] === "mail") {
 			foreach ($actionData["items"] as $item) {
 				list($tmpname, $filename) = $this->prepareEmailForUpload($item);
 
-				$dst = substr($actionData["destdir"], strpos($actionData["destdir"], '/')) . $filename;
+				$dirName = substr($actionData["destdir"], strpos($actionData["destdir"], '/'));
+				$filePath = $dirName . $filename;
 
-				Logger::debug(self::LOG_CONTEXT, "Uploading to: " . $dst . " tmpfile: " . $tmpname);
+				Logger::debug(self::LOG_CONTEXT, "Uploading to: " . $filePath . " tmpfile: " . $tmpname);
 
-				$result = $result && $initializedBackend->put_file($dst, $tmpname);
+				$result = $result && $initializedBackend->put_file($filePath, $tmpname);
 				unlink($tmpname);
+
+				$this->updateDirCache($initializedBackend, $dirName, $filePath, $actionData);
 			}
 		} else {
 			$this->sendFeedback(false, array(
@@ -1070,6 +818,29 @@ class FilesBrowserModule extends ListModule
 		$response['status'] = $result;
 		$this->addActionData($actionType, $response);
 		$GLOBALS["bus"]->addData($this->getResponseData());
+	}
+
+	/**
+	 * Update the cache of selected directory
+	 *
+	 * @param Files\Backend\AbstractBackend $backendInstance
+	 * @param string $dirName The directory name
+	 * @param $filePath The file path.
+	 * @param $actionData The action data.
+	 * @throws BackendException
+	 */
+	function updateDirCache($backendInstance, $dirName, $filePath, $actionData)
+	{
+		$cachePath = rtrim($dirName, '/');
+		if ($cachePath === "") {
+			$cachePath = "/";
+		}
+
+		$dir = $backendInstance->ls($cachePath);
+		$accountID = $this->accountIDFromNode($actionData["destdir"]);
+		$cacheDir = $this->getCache($accountID, $cachePath);
+		$cacheDir[$filePath] = $dir[$filePath];
+		$this->setCache($accountID, $cachePath, $cacheDir);
 	}
 
 	/**
@@ -1516,121 +1287,35 @@ class FilesBrowserModule extends ListModule
 	}
 
 	/**
-	 * Get the account id from a node id.
-	 * @param {String} $nodeID Id of the file or folder to operate on
-	 * @return {String} The account id extracted from $nodeId
+	 * Function will use to update the cache
+	 *
+	 * @param string $actionType name of the current action
+	 * @param array $actionData all parameters contained in this request
+	 *
+	 * @return boolean true on success or false on failure.
 	 */
-        private function accountIDFromNode($nodeID)
-        {
-		return substr($nodeID, 3, (strpos($nodeID, '/') - 3)); // parse account id from node id
-	}
+	function updateCache($actionType, $actionData)
+	{
+		$nodeId = $actionData['id'];
+		$accountID = $this->accountIDFromNode($nodeId);
+		$account = $this->accountStore->getAccount($accountID);
+		// initialize the backend
+		$initializedBackend = $this->initializeBackend($account, true);
+		$relNodeId = substr($nodeId, strpos($nodeId, '/'));
 
-	/**
-	 * Get the account from a node id.
-	 * @param {String} $nodeId ID of the file or folder to operate on
-	 * @return {String} The account for $nodeId
-	 */
-        private function accountFromNode($nodeID)
-        {
-		return $this->accountStore->getAccount($this->accountIDFromNode($nodeID));
-	}
-
-	/**
-	 * Create a key used to store data in the cache.
-	 * @param {String} $accountID Id of the account of the data to cache
-	 * @param {String} $path Path of the file or folder to create the cache element for
-	 * @return {String} The created key
-	 */
-        private function makeCacheKey($accountID, $path)
-        {
-		return $this->uid . md5($accountID . $path);
-	}
-
-	/**
-	 * Initialize the backend for the given account.
-	 * @param {Object} $account The account object the backend should be initilized for
-	 * @param {Bool} $setID Should the accountID be set in the backend object, or not. Defaults to false.
-	 * @return {Object} The initialized backend
-	 */
-        private function initializeBackend($account, $setID = false)
-        {
-		$backend = $this->backendStore->getInstanceOfBackend($account->getBackend());
-		$backend->init_backend($account->getBackendConfig());
-		if($setID) {
-			$backend->setAccountID($account->getId());
+		// remove the trailing slash for the cache key
+		$cachePath = rtrim($relNodeId, '/');
+		if ($cachePath === "") {
+			$cachePath = "/";
 		}
-		$backend->open();
-		return $backend;
+		$dir = $initializedBackend->ls($relNodeId);
+		$this->setCache($accountID, $cachePath, $dir);
+
+		$response = array();
+		$response['status'] = true;
+		$this->addActionData($actionType, $response);
+		$GLOBALS["bus"]->addData($this->getResponseData());
+
+		return true;
 	}
-
-	/**
-	 * Save directory data in the cache.
-	 * @param {String} $accountID Id of the account of the data to cache
-	 * @param {String} $path Path of the file or folder to create the cache element for
-	 * @param {String} $data Data to be cached
-	 */
-        private function setCache($accountID, $path, $data)
-        {
-		$key = $this->makeCacheKey($accountID, $path);
-		Logger::debug(self::LOG_CONTEXT, "Setting cache for node: " . $accountID . $path . " ## " . $key);
-                $this->cache->set($key, $data);
-	}
-
-	/**
-	 * Get directotry data form the cache.
-	 * @param {String} $accountID Id of the account of the data to get
-	 * @param {String} $path Path of the file or folder to retrieve the cache element for
-	 * @return {String} The diretory data or null if nothing was found
-	 */
-        private function getCache($accountID, $path)
-        {
-		$key = $this->makeCacheKey($accountID, $path);
-		Logger::debug(self::LOG_CONTEXT, "Getting cache for node: " . $accountID . $path . " ## " . $key);
-                return $this->cache->get($key);
-	}
-
-	/**
-	 * Remove data from the cache.
-	 * @param {String} $accountID Id of the account to delete the cache for
-	 * @param {String} $path Path of the file or folder to delete the cache element
-	 */
-        private function deleteCache($accountID, $path)
-        {
-		$key = $this->makeCacheKey($accountID, $path);
-		Logger::debug(self::LOG_CONTEXT, "Removing cache for node: " . $accountID .  $path . " ## " . $key);
-                $this->cache->delete($key);
-	}
-
-    /**
-     * Function will use to update the cache
-     *
-     * @param string $actionType name of the current action
-     * @param array $actionData all parameters contained in this request
-     *
-     * @return boolean true on success or false on failure.
-     */
-    public function updateCache($actionType, $actionData)
-    {
-        $nodeId = $actionData['id'];
-        $accountID = $this->accountIDFromNode($nodeId);
-        $account = $this->accountStore->getAccount($accountID);
-        // initialize the backend
-        $initializedBackend = $this->initializeBackend($account, true);
-        $relNodeId = substr($nodeId, strpos($nodeId, '/'));
-
-        // remove the trailing slash for the cache key
-        $cachePath = rtrim($relNodeId, '/');
-        if ($cachePath === "") {
-            $cachePath = "/";
-        }
-        $dir = $initializedBackend->ls($relNodeId);
-        $this->setCache($accountID, $cachePath, $dir);
-
-        $response = array();
-        $response['status'] = true;
-        $this->addActionData($actionType, $response);
-        $GLOBALS["bus"]->addData($this->getResponseData());
-
-        return true;
-    }
 }

@@ -9,6 +9,14 @@ use \Files\Core\DownloadHandler;
 use \Files\Core\UploadHandler;
 use \Files\Core\RecipientHandler;
 
+define("FILES_FOLDER", 0);
+define("FILES_FILE", 1);
+define("FILES_STORE", 2);
+
+define('ICON_HOME_FOLDER', 0x00001501);
+define('ICON_FOLDER', 0x00001502);
+define('ICON_FILES', 0x00001506);
+
 /**
  * Files Plugin
  *
@@ -16,7 +24,6 @@ use \Files\Core\RecipientHandler;
  */
 class Pluginfiles extends Plugin
 {
-
 	/**
 	 * Function initializes the Plugin and registers all hooks
 	 *
@@ -99,7 +106,6 @@ class Pluginfiles extends Plugin
 					'contexts' => Array(
 						'files' => Array(
 							'ask_before_delete' => PLUGIN_FILES_ASK_BEFORE_DELETE,
-							'preload_folder' => PLUGIN_FILES_PRELOAD_FOLDER,
 							'webapp_tmp' => TMP_PATH
 						)
 					),

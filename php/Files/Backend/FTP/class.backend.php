@@ -432,7 +432,8 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 				} else {
 					$tmpend = $out[1]{0} === 'd' ? "/" : "";
 					$fpath = rtrim($dir, '/') . "/" . $out[19] . $tmpend;
-					$fpath = '/' . trim($fpath, '/');
+					// Remove the trailing slash for the files record.
+					$fpath = '/' . $this->is_dir($fpath) ? $fpath : trim($fpath, '/');
 
 					// remove base path:
 					$fpath = $this->removeBasePath($fpath);
@@ -760,7 +761,6 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	public function gpi($path)
 	{
 		$list = $this->ls($path, false);
-
 		// be sure it is an array
 		if (is_array($list)) {
 			return reset($list);
