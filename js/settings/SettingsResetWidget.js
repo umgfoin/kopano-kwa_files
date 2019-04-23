@@ -49,16 +49,16 @@ Zarafa.plugins.files.settings.SettingsResetWidget = Ext.extend(Zarafa.settings.u
 	 * @private
 	 */
 	onResetSettings: function () {
-		var message = dgettext('plugin_files', 'Your Files\'s settings will be restored to their default condition.')
-			+ ' ' + dgettext('plugin_files', 'Are you sure you want to reset all Files settings and remove all accounts?');
+		var message = dgettext('plugin_files', 'Are you sure to remove all settings and accounts?');
+		message += '<br/>';
+		message += '<i>' + dgettext('plugin_files', 'Accounts marked by your administrator as "cannot be changed" will not be removed.') + '</i>';
 		message += '<br/><br/>';
-		message += dgettext('plugin_files', 'WebApp will automatically restart in order for these changes to take effect');
+		message += dgettext('plugin_files', 'WebApp will automatically restart in order for these changes to take effect.');
 		message += '<br/>';
 
 		Zarafa.common.dialogs.MessageBox.addCustomButtons({
 			title       : dgettext('plugin_files', 'Reset Files settings'),
 			msg         : message,
-			icon        : Ext.MessageBox.QUESTION,
 			fn          : this.resetDefaultSettings,
 			customButton: [{
 				text: dgettext('plugin_files', 'Reset'),
