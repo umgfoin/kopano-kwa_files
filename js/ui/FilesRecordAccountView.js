@@ -33,7 +33,7 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 			loadingText   : dgettext('plugin_files', 'Loading accounts') + '...',
 			deferEmptyText: false,
 			autoScroll    : true,
-			emptyText     : '<div class="emptytext">' + dgettext('plugin_files', 'There are no accounts added. Go to settings and add an account!') + '</div>',
+			emptyText     : '<div class="emptytext">' + dgettext('plugin_files', 'There are no accounts added. Go to settings, Files tab and add an account') + '</div>',
 			overClass     : 'zarafa-files-accountview-over',
 			tpl           : this.initTemplate(config.context),
 			multiSelect   : true,

@@ -37,7 +37,7 @@ Zarafa.plugins.files.settings.ui.AccountGrid = Ext.extend(Zarafa.common.ui.grid.
 			viewConfig : {
 				forceFit : true,
 				deferEmptyText : false,
-				emptyText : '<div class=\'emptytext\'>' + dgettext('plugin_files', 'No account created!') + '</div>'
+				emptyText : '<div class="emptytext">' + dgettext('plugin_files', 'No account created!') + '</div>'
 			},
 			sm  : this.initSelectionModel(),
 			cm : this.initColumnModel(),
