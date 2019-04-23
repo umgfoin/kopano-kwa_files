@@ -179,18 +179,33 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesTreePanel = Ext.extend(Ext.tree.TreeP
 	createActionButtons: function () {
 		return [{
 			xtype: 'button',
+			text: dgettext('plugin_files', 'Save'),
+			cls: 'zarafa-action',
+			handler: this.uploadFile,
+			scope: this
+		},{
+			xtype: 'button',
 			text: dgettext('plugin_files', 'New folder'),
 			cls: 'zarafa-normal',
 			handler: this.newFolder,
 			scope: this
-		}, {
+		},{
 			xtype: 'button',
-			text: dgettext('plugin_files', 'Save'),
-			cls: 'zarafa-action',
-			iconCls: 'icon_files_category_white',
-			handler: this.uploadFile,
+			text: dgettext('plugin_files', 'Cancel'),
+			cls: 'zarafa-normal',
+			handler: this.onCancel,
 			scope: this
 		}];
+	},
+
+	/**
+	 * Event handler which is triggered when the user presses the cancel
+	 * {@link Ext.Button button}. This will close this dialog.
+	 * @private
+	 */
+	onCancel : function()
+	{
+		this.dialog.close();
 	},
 
 	/**
