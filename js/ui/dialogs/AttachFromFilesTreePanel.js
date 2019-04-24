@@ -85,11 +85,25 @@ Zarafa.plugins.files.ui.dialogs.AttachFromFilesTreePanel = Ext.extend(Ext.tree.T
 	createActionButtons: function () {
 		return [{
 			xtype  : 'button',
-			text   : '&nbsp;&nbsp;&nbsp;&nbsp;' + dgettext('plugin_files', 'Add attachment'),
-			iconCls: 'icon_files_category_white',
+			text   : dgettext('plugin_files', 'Add attachment'),
 			handler: this.downloadSelectedFilesFromFilesToTmp,
 			scope  : this
+		},{
+			xtype  : 'button',
+			text   : dgettext('plugin_files', 'Cancel'),
+			handler: this.onCancel,
+			scope  : this
 		}];
+	},
+
+	/**
+	 * Event handler which is triggered when the user presses the cancel
+	 * {@link Ext.Button button}. This will close this dialog.
+	 * @private
+	 */
+	onCancel : function()
+	{
+		this.dialog.close();
 	},
 
 	/**
