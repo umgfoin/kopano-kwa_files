@@ -115,7 +115,7 @@ Zarafa.plugins.files.ui.FilesMainContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 			iconCls   : 'files_icon_action files_icon_action_delete',
 			handler   : this.onContextItemDelete,
 			beforeShow: function (item, records) {
-				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, false, true));
+				item.setVisible(Zarafa.plugins.files.data.Utils.Validator.actionSelectionVisibilityFilter(records, false, false, false, true));
 			},
 			scope     : this
 		}, {
