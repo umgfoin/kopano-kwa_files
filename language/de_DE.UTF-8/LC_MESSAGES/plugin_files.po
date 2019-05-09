@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: KC-8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-05 15:38+0100\n"
-"PO-Revision-Date: 2019-02-13 15:28+0000\n"
-"Last-Translator: Felix <f.bartels@kopano.com>\n"
+"PO-Revision-Date: 2019-05-09 08:26+0000\n"
+"Last-Translator: Mathias <m.kuemmerle@kopano.com>\n"
 "Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/>"
 "\n"
 "Language: de_DE\n"
@@ -89,8 +89,7 @@ msgstr "Fehler"
 
 #: js/data/Actions.js:537
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
-msgstr ""
-"Minestens einer der Dateien ist zu groß! Die Maximalgröße ist Datei ist: {0}."
+msgstr "Mindestens eine der Dateien ist zu groß! Die Maximalgröße ist: {0}."
 
 #: js/data/Actions.js:612 js/data/ResponseHandler.js:119
 #: js/ui/dialogs/SaveToFilesTreePanel.js:304
