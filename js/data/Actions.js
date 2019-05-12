@@ -404,6 +404,13 @@ Zarafa.plugins.files.data.Actions = {
 	 */
 	doCheckRenameDuplicate: function (button, text, options, record) {
 		if (button === "ok") {
+
+			// Check if the new name is the same as the old name
+			var oldname = record.get('filename');
+			if (text === oldname) {
+				return;
+			}
+
 			this.doRename(text, record);
 		}
 	},
@@ -452,7 +459,7 @@ Zarafa.plugins.files.data.Actions = {
 	 * @private
 	 */
 	renameDone: function (response, text, record)
-	{
+	{	
 		if (response.duplicate === true) {
 			this.msgWarning(dgettext('plugin_files', 'This name already exists'));
 		} else if (!Zarafa.plugins.files.data.Utils.File.isValidFilename(text)) {
