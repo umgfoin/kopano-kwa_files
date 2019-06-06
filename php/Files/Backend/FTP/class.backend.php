@@ -763,7 +763,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 
 		// be sure it is an array
 		if (is_array($list)) {
-			return $list[0];
+			return reset($list);
 		}
 
 		$this->log('gpi: wrong response from ls');
