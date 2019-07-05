@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Russian\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-05 15:38+0100\n"
+"POT-Creation-Date: 2019-07-05 14:38+0200\n"
 "PO-Revision-Date: 2018-10-24 14:28+0000\n"
 "Last-Translator: Sotneo <kerovsot@gmail.com>\n"
 "Language-Team: Russian <http://translate.kopano.io/projects/kopano/files/ru/"
@@ -58,61 +58,64 @@ msgstr "Переименовать"
 msgid "Please enter a new name"
 msgstr "Пожалуйста, введите новое имя"
 
-#: js/data/Actions.js:457
+#: js/data/Actions.js:464
 msgid "This name already exists"
 msgstr "Это имя уже существует"
 
-#: js/data/Actions.js:459
+#: js/data/Actions.js:466
 msgid "Incorrect name"
 msgstr "Некорректное имя"
 
-#: js/data/Actions.js:501
+#: js/data/Actions.js:508
 msgid "Downloading"
 msgstr "Скачивание"
 
-#: js/data/Actions.js:501
+#: js/data/Actions.js:508
 msgid "Download started... please wait!"
 msgstr "Скачивание началось... пожалуйста, ждите!"
 
-#: js/data/Actions.js:536 js/data/NavigatorTreeLoader.js:121
+#: js/data/Actions.js:543 js/data/NavigatorTreeLoader.js:121
 #: js/data/ResponseHandler.js:128 js/ui/dialogs/FilesUploadContentPanel.js:183
 #: js/ui/FilesRecordAccountView.js:135
 msgid "Error"
 msgstr "Ошибка"
 
-#: js/data/Actions.js:537
+#: js/data/Actions.js:544
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
 "По крайней мере один файл слишком большой! Максимально разрешенный размер "
 "файла: {0}."
 
-#: js/data/Actions.js:612 js/data/ResponseHandler.js:119
-#: js/ui/dialogs/SaveToFilesTreePanel.js:304
+#: js/data/Actions.js:619 js/data/ResponseHandler.js:119
+#: js/ui/dialogs/SaveToFilesTreePanel.js:319
 msgid "Confirm overwrite"
 msgstr "Подтвердить перезапись"
 
-#: js/data/Actions.js:614 js/data/ResponseHandler.js:120
-#: js/ui/dialogs/SaveToFilesTreePanel.js:305
+#: js/data/Actions.js:621 js/data/ResponseHandler.js:120
+#: js/ui/dialogs/SaveToFilesTreePanel.js:320
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "Файл уже существует. Вы хотите перезаписать его?"
 
-#: js/data/Actions.js:617
+#: js/data/Actions.js:624
 msgid "Keep both"
 msgstr "Сохранить оба"
 
-#: js/data/Actions.js:620
+#: js/data/Actions.js:627
 msgid "Overwrite"
 msgstr "Перезаписать"
 
-#: js/data/Actions.js:623 js/settings/SettingsResetWidget.js:67
-#: js/settings/ui/AccountEditPanel.js:42 js/ui/dialogs/CreateFolderPanel.js:52
+#: js/data/Actions.js:630 js/settings/SettingsResetWidget.js:67
+#: js/settings/ui/AccountEditPanel.js:42
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:93
+#: js/ui/dialogs/CreateFolderPanel.js:52
 #: js/ui/dialogs/FilesUploadContentPanel.js:144
+#: js/ui/dialogs/SaveToFilesTreePanel.js:194
 msgid "Cancel"
 msgstr "Отмена"
 
-#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:115
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:129
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:150
+#: js/data/Actions.js:680 js/ui/dialogs/AttachFromFilesTreePanel.js:129
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:143
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:164
 msgid "Warning"
 msgstr "Предупреждение"
 
@@ -186,7 +189,7 @@ msgid "Manage Accounts"
 msgstr "Управление аккаунтами"
 
 #: js/settings/SettingsResetWidget.js:27 js/settings/SettingsResetWidget.js:35
-#: js/settings/SettingsResetWidget.js:59
+#: js/settings/SettingsResetWidget.js:60
 msgid "Reset Files settings"
 msgstr "Сброс настроек Файлов"
 
@@ -195,19 +198,22 @@ msgid "Resets Files settings to their original defaults"
 msgstr "Сброс настроек модуля Файлы к исходным"
 
 #: js/settings/SettingsResetWidget.js:52
-msgid "Your Files's settings will be restored to their default condition."
-msgstr "Ваши настройки модуля Файлы будут возвращены к исходным."
-
-#: js/settings/SettingsResetWidget.js:53
-msgid ""
-"Are you sure you want to reset all Files settings and remove all accounts?"
+#, fuzzy
+msgid "Are you sure to remove all settings and accounts?"
 msgstr ""
 "Вы уверены что хотите сбросить все настройки модуля Файлы и удалить все "
 "аккаунты?"
 
-#: js/settings/SettingsResetWidget.js:55
+#: js/settings/SettingsResetWidget.js:54
 msgid ""
-"WebApp will automatically restart in order for these changes to take effect"
+"Accounts marked by your administrator as \"cannot be changed\" will not be "
+"removed."
+msgstr ""
+
+#: js/settings/SettingsResetWidget.js:56
+#, fuzzy
+msgid ""
+"WebApp will automatically restart in order for these changes to take effect."
 msgstr "WebApp будет автоматически перезапущено для применения изменений"
 
 #: js/settings/SettingsResetWidget.js:64
@@ -223,7 +229,7 @@ msgid "Edit Account"
 msgstr "Редактирование аккаунта"
 
 #: js/settings/ui/AccountEditPanel.js:35
-#: js/ui/dialogs/SaveToFilesTreePanel.js:188
+#: js/ui/dialogs/SaveToFilesTreePanel.js:182
 msgid "Save"
 msgstr "Сохранить"
 
@@ -373,15 +379,15 @@ msgstr "Информация о версии"
 msgid "Add attachment"
 msgstr "Добавить вложение"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "The file {0} is too large!"
 msgstr "Файл {0} слишком большой!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "max"
 msgstr "макс"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:144
 msgid "You have to choose at least one file!"
 msgstr "Вы должны выбрать хотя бы один файл!"
 
@@ -406,12 +412,12 @@ msgid "You must specify a name."
 msgstr "Вы должны указать имя."
 
 #: js/ui/dialogs/CreateFolderPanel.js:188
-#: js/ui/dialogs/SaveToFilesTreePanel.js:289
+#: js/ui/dialogs/SaveToFilesTreePanel.js:304
 msgid "Folder already exists"
 msgstr "Папка уже существует"
 
 #: js/ui/dialogs/CreateFolderPanel.js:191
-#: js/ui/dialogs/SaveToFilesTreePanel.js:256
+#: js/ui/dialogs/SaveToFilesTreePanel.js:271
 msgid "Incorrect foldername"
 msgstr "Некорректное имя папки"
 
@@ -453,44 +459,44 @@ msgstr ""
 msgid "Add item to Files"
 msgstr "Добавить элемент в Файлы"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:182
+#: js/ui/dialogs/SaveToFilesTreePanel.js:188
 msgid "New folder"
 msgstr "Новая папка"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:203
-#: js/ui/dialogs/SaveToFilesTreePanel.js:239
+#: js/ui/dialogs/SaveToFilesTreePanel.js:218
+#: js/ui/dialogs/SaveToFilesTreePanel.js:254
 msgid "You have to choose a folder!"
 msgstr "Вы должны выбрать папку!"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:241
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Folder Name"
 msgstr "Имя папки"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:241
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Please enter a foldername"
 msgstr "Пожалуйста, введите имя папки"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:348
+#: js/ui/dialogs/SaveToFilesTreePanel.js:363
 msgid "Uploaded"
 msgstr "Загружено"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:348
+#: js/ui/dialogs/SaveToFilesTreePanel.js:363
 msgid "Attachment successfully stored in Files"
 msgstr "Вложение успешно сохранено в Файлы"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:350
+#: js/ui/dialogs/SaveToFilesTreePanel.js:365
 msgid "Upload Failed"
 msgstr "Загрузка не удалась"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:350
+#: js/ui/dialogs/SaveToFilesTreePanel.js:365
 msgid "Attachment could not be stored in Files! Error: "
 msgstr "Вложение не может хранится в Файлах! Ошибка: "
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:388
+#: js/ui/dialogs/SaveToFilesTreePanel.js:403
 msgid "Created"
 msgstr "Создано"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:388
+#: js/ui/dialogs/SaveToFilesTreePanel.js:403
 msgid "Directory created!"
 msgstr "Папка создана!"
 
@@ -593,7 +599,9 @@ msgid "Info"
 msgstr "Информация"
 
 #: js/ui/FilesRecordAccountView.js:36
-msgid "There are no accounts added. Go to settings and add an account!"
+#, fuzzy
+msgid ""
+"There are no accounts added. Go to settings, Files tab and add an account"
 msgstr "Нет учетных записей. Перейдите в настройки и добавите учетную запись!"
 
 #: js/ui/FilesRecordAccountView.js:136
@@ -756,107 +764,107 @@ msgstr "Не удалось удалить общий доступ"
 msgid "With this backend, you can connect to any ftp server."
 msgstr "Вы можете подключиться к любому ftp серверу."
 
-#: php/Files/Backend/FTP/class.backend.php:192
+#: php/Files/Backend/FTP/class.backend.php:187
 #: php/Files/Backend/Webdav/class.backend.php:134
 msgid "Server address"
 msgstr "Адрес сервера"
 
-#: php/Files/Backend/FTP/class.backend.php:199
+#: php/Files/Backend/FTP/class.backend.php:194
 #: php/Files/Backend/Webdav/class.backend.php:141
 msgid "Server port"
 msgstr "Порт сервера"
 
-#: php/Files/Backend/FTP/class.backend.php:206
+#: php/Files/Backend/FTP/class.backend.php:201
 msgid "FTP user"
 msgstr "FTP пользователь"
 
-#: php/Files/Backend/FTP/class.backend.php:213
+#: php/Files/Backend/FTP/class.backend.php:208
 msgid "FTP password"
 msgstr "FTP пароль"
 
-#: php/Files/Backend/FTP/class.backend.php:221
+#: php/Files/Backend/FTP/class.backend.php:216
 msgid "Base path"
 msgstr "Путь"
 
-#: php/Files/Backend/FTP/class.backend.php:228
+#: php/Files/Backend/FTP/class.backend.php:223
 #: php/Files/Backend/Webdav/class.backend.php:149
 msgid "Use SSL"
 msgstr "Использовать SSL"
 
-#: php/Files/Backend/FTP/class.backend.php:235
+#: php/Files/Backend/FTP/class.backend.php:230
 msgid "Use passive mode"
 msgstr "Использовать пассивный режим"
 
-#: php/Files/Backend/FTP/class.backend.php:242
+#: php/Files/Backend/FTP/class.backend.php:237
 #: php/Files/Backend/Webdav/class.backend.php:180
 msgid "Use Kopano credentials"
 msgstr "Использовать учетные данные Kopano"
 
-#: php/Files/Backend/FTP/class.backend.php:432
+#: php/Files/Backend/FTP/class.backend.php:427
 msgid "Unparsable server response."
 msgstr "Некорректный ответ сервера."
 
-#: php/Files/Backend/FTP/class.backend.php:871
-#: php/Files/Backend/Webdav/class.backend.php:900
+#: php/Files/Backend/FTP/class.backend.php:866
+#: php/Files/Backend/Webdav/class.backend.php:895
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
-#: php/Files/Backend/FTP/class.backend.php:875
-#: php/Files/Backend/Webdav/class.backend.php:905
+#: php/Files/Backend/FTP/class.backend.php:870
+#: php/Files/Backend/Webdav/class.backend.php:900
 msgid "Unauthorized. Wrong username or password."
 msgstr "Доступ запрещен. Неверное имя пользователя или пароль."
 
-#: php/Files/Backend/FTP/class.backend.php:878
-#: php/Files/Backend/Webdav/class.backend.php:912
+#: php/Files/Backend/FTP/class.backend.php:873
+#: php/Files/Backend/Webdav/class.backend.php:908
 msgid "File-server is not reachable. Wrong IP entered?"
 msgstr "Файловый сервер недоступен. Возможно, введен неверный IP?"
 
-#: php/Files/Backend/FTP/class.backend.php:881
-#: php/Files/Backend/Webdav/class.backend.php:918
+#: php/Files/Backend/FTP/class.backend.php:876
+#: php/Files/Backend/Webdav/class.backend.php:914
 msgid "You don't have enough permissions for this operation."
 msgstr "У вас недостаточно прав для этой операции."
 
-#: php/Files/Backend/FTP/class.backend.php:884
-#: php/Files/Backend/Webdav/class.backend.php:921
+#: php/Files/Backend/FTP/class.backend.php:879
+#: php/Files/Backend/Webdav/class.backend.php:917
 msgid "File is not available any more."
 msgstr "Файл больше недоступен."
 
-#: php/Files/Backend/FTP/class.backend.php:887
-#: php/Files/Backend/Webdav/class.backend.php:924
+#: php/Files/Backend/FTP/class.backend.php:882
+#: php/Files/Backend/Webdav/class.backend.php:920
 msgid "Connection to server timed out. Retry later."
 msgstr "Время ожидание подключения к серверу истекло. Попробуйте позже."
 
-#: php/Files/Backend/FTP/class.backend.php:890
-#: php/Files/Backend/Webdav/class.backend.php:927
+#: php/Files/Backend/FTP/class.backend.php:885
+#: php/Files/Backend/Webdav/class.backend.php:923
 msgid "This file is locked by another user."
 msgstr "Файл заблокирован другим пользователем."
 
-#: php/Files/Backend/FTP/class.backend.php:893
-#: php/Files/Backend/Webdav/class.backend.php:930
+#: php/Files/Backend/FTP/class.backend.php:888
+#: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
 msgstr "Запрос не выполнен из-за отказа предыдущего запроса."
 
-#: php/Files/Backend/FTP/class.backend.php:896
-#: php/Files/Backend/Webdav/class.backend.php:933
+#: php/Files/Backend/FTP/class.backend.php:891
+#: php/Files/Backend/Webdav/class.backend.php:929
 msgid "File-server encountered a problem. Wrong IP entered?"
 msgstr "Проблема с файловым сервером. Введен неправильный IP?"
 
-#: php/Files/Backend/FTP/class.backend.php:899
-#: php/Files/Backend/Webdav/class.backend.php:936
+#: php/Files/Backend/FTP/class.backend.php:894
+#: php/Files/Backend/Webdav/class.backend.php:932
 msgid ""
 "Could not write to temporary directory. Contact the server administrator."
 msgstr ""
 "Не удаётся записать во временную папку. Свяжитесь с администратором сервера."
 
-#: php/Files/Backend/FTP/class.backend.php:902
-#: php/Files/Backend/Webdav/class.backend.php:939
+#: php/Files/Backend/FTP/class.backend.php:897
+#: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
 "Could not retrieve list of server features. Contact the server administrator."
 msgstr ""
 "Не удаётся получить список возможностей сервера. Свяжитесь с администратором "
 "сервера."
 
-#: php/Files/Backend/FTP/class.backend.php:905
+#: php/Files/Backend/FTP/class.backend.php:900
 msgid "Function is not implemented in this backend."
 msgstr "Функция не поддерживается на этом типе сервера."
 
@@ -879,11 +887,11 @@ msgstr "Имя пользователя"
 msgid "Password"
 msgstr "Пароль"
 
-#: php/Files/Backend/Webdav/class.backend.php:915
+#: php/Files/Backend/Webdav/class.backend.php:911
 msgid "File-server is not reachable. Incorrect URL?"
 msgstr "Файловый сервер недоступен. Некорректный URL?"
 
-#: php/Files/Backend/Webdav/class.backend.php:942
+#: php/Files/Backend/Webdav/class.backend.php:938
 msgid "PHP-Curl is not available. Contact your system administrator."
 msgstr "PHP-Curl недоступен. Свяжитесь с вашим системным администратором."
 

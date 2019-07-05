@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Japanese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-05 15:38+0100\n"
+"POT-Creation-Date: 2019-07-05 14:38+0200\n"
 "PO-Revision-Date: 2016-09-24 23:44+0000\n"
 "Last-Translator: Nobuyoshi <nobuyoshi.kumada@actplex.com>\n"
 "Language-Team: Japanese <http://translate.kopano.io/projects/kopano/files/ja/"
@@ -59,61 +59,64 @@ msgstr "名前変更"
 msgid "Please enter a new name"
 msgstr "新しい名前を入力してください"
 
-#: js/data/Actions.js:457
+#: js/data/Actions.js:464
 msgid "This name already exists"
 msgstr "この名前は既に存在しています"
 
-#: js/data/Actions.js:459
+#: js/data/Actions.js:466
 msgid "Incorrect name"
 msgstr "名前が正しくありません"
 
-#: js/data/Actions.js:501
+#: js/data/Actions.js:508
 msgid "Downloading"
 msgstr "ダウンロード中です"
 
-#: js/data/Actions.js:501
+#: js/data/Actions.js:508
 msgid "Download started... please wait!"
 msgstr "ダウンロードを開始しました...しばらくお待ちください!"
 
-#: js/data/Actions.js:536 js/data/NavigatorTreeLoader.js:121
+#: js/data/Actions.js:543 js/data/NavigatorTreeLoader.js:121
 #: js/data/ResponseHandler.js:128 js/ui/dialogs/FilesUploadContentPanel.js:183
 #: js/ui/FilesRecordAccountView.js:135
 msgid "Error"
 msgstr "エラー"
 
-#: js/data/Actions.js:537
+#: js/data/Actions.js:544
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
 "少なくとも１つのファイルサイズが大きすぎます。最大許容サイズは {0} です。"
 
-#: js/data/Actions.js:612 js/data/ResponseHandler.js:119
-#: js/ui/dialogs/SaveToFilesTreePanel.js:304
+#: js/data/Actions.js:619 js/data/ResponseHandler.js:119
+#: js/ui/dialogs/SaveToFilesTreePanel.js:319
 msgid "Confirm overwrite"
 msgstr "上書き確認"
 
-#: js/data/Actions.js:614 js/data/ResponseHandler.js:120
-#: js/ui/dialogs/SaveToFilesTreePanel.js:305
+#: js/data/Actions.js:621 js/data/ResponseHandler.js:120
+#: js/ui/dialogs/SaveToFilesTreePanel.js:320
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "ファイルが既に存在しています.上書きをしますか？"
 
-#: js/data/Actions.js:617
+#: js/data/Actions.js:624
 msgid "Keep both"
 msgstr ""
 
-#: js/data/Actions.js:620
+#: js/data/Actions.js:627
 #, fuzzy
 msgid "Overwrite"
 msgstr "上書き確認"
 
-#: js/data/Actions.js:623 js/settings/SettingsResetWidget.js:67
-#: js/settings/ui/AccountEditPanel.js:42 js/ui/dialogs/CreateFolderPanel.js:52
+#: js/data/Actions.js:630 js/settings/SettingsResetWidget.js:67
+#: js/settings/ui/AccountEditPanel.js:42
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:93
+#: js/ui/dialogs/CreateFolderPanel.js:52
 #: js/ui/dialogs/FilesUploadContentPanel.js:144
+#: js/ui/dialogs/SaveToFilesTreePanel.js:194
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:115
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:129
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:150
+#: js/data/Actions.js:680 js/ui/dialogs/AttachFromFilesTreePanel.js:129
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:143
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:164
 msgid "Warning"
 msgstr "警告"
 
@@ -187,7 +190,7 @@ msgid "Manage Accounts"
 msgstr "アカウントを管理"
 
 #: js/settings/SettingsResetWidget.js:27 js/settings/SettingsResetWidget.js:35
-#: js/settings/SettingsResetWidget.js:59
+#: js/settings/SettingsResetWidget.js:60
 msgid "Reset Files settings"
 msgstr "ファイル設定をリセット"
 
@@ -196,19 +199,19 @@ msgid "Resets Files settings to their original defaults"
 msgstr "初期設定へファイル設定を戻す"
 
 #: js/settings/SettingsResetWidget.js:52
+msgid "Are you sure to remove all settings and accounts?"
+msgstr ""
+
+#: js/settings/SettingsResetWidget.js:54
+msgid ""
+"Accounts marked by your administrator as \"cannot be changed\" will not be "
+"removed."
+msgstr ""
+
+#: js/settings/SettingsResetWidget.js:56
 #, fuzzy
-msgid "Your Files's settings will be restored to their default condition."
-msgstr ""
-"ファイル設定を初期状態へ戻します。ファイル設定をリセットしてもよろしいですか?"
-
-#: js/settings/SettingsResetWidget.js:53
 msgid ""
-"Are you sure you want to reset all Files settings and remove all accounts?"
-msgstr ""
-
-#: js/settings/SettingsResetWidget.js:55
-msgid ""
-"WebApp will automatically restart in order for these changes to take effect"
+"WebApp will automatically restart in order for these changes to take effect."
 msgstr "設定反映を行うためにWebAppは自動的に再起動します"
 
 #: js/settings/SettingsResetWidget.js:64
@@ -224,7 +227,7 @@ msgid "Edit Account"
 msgstr "アカウントを編集"
 
 #: js/settings/ui/AccountEditPanel.js:35
-#: js/ui/dialogs/SaveToFilesTreePanel.js:188
+#: js/ui/dialogs/SaveToFilesTreePanel.js:182
 msgid "Save"
 msgstr "保存"
 
@@ -374,15 +377,15 @@ msgstr "バージョン情報"
 msgid "Add attachment"
 msgstr "添付ファイルを追加"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "The file {0} is too large!"
 msgstr "ファイル {0} は大きすぎます!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "max"
 msgstr "最大"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:144
 msgid "You have to choose at least one file!"
 msgstr "少なくとも１つのファイルを選択してください!"
 
@@ -409,12 +412,12 @@ msgid "You must specify a name."
 msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:188
-#: js/ui/dialogs/SaveToFilesTreePanel.js:289
+#: js/ui/dialogs/SaveToFilesTreePanel.js:304
 msgid "Folder already exists"
 msgstr "フォルダが既に存在しています"
 
 #: js/ui/dialogs/CreateFolderPanel.js:191
-#: js/ui/dialogs/SaveToFilesTreePanel.js:256
+#: js/ui/dialogs/SaveToFilesTreePanel.js:271
 msgid "Incorrect foldername"
 msgstr "フォルダ名が正しくありません"
 
@@ -456,44 +459,44 @@ msgstr ""
 msgid "Add item to Files"
 msgstr "ファイル共有へアイテムを追加"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:182
+#: js/ui/dialogs/SaveToFilesTreePanel.js:188
 msgid "New folder"
 msgstr "新しいフォルダ"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:203
-#: js/ui/dialogs/SaveToFilesTreePanel.js:239
+#: js/ui/dialogs/SaveToFilesTreePanel.js:218
+#: js/ui/dialogs/SaveToFilesTreePanel.js:254
 msgid "You have to choose a folder!"
 msgstr "フォルダを選択する必要があります!"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:241
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Folder Name"
 msgstr "フォルダ名"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:241
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Please enter a foldername"
 msgstr "フォルダ名を入力してください"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:348
+#: js/ui/dialogs/SaveToFilesTreePanel.js:363
 msgid "Uploaded"
 msgstr "アップロード済み"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:348
+#: js/ui/dialogs/SaveToFilesTreePanel.js:363
 msgid "Attachment successfully stored in Files"
 msgstr "共有フォルダへ添付ファイルを保存しました"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:350
+#: js/ui/dialogs/SaveToFilesTreePanel.js:365
 msgid "Upload Failed"
 msgstr "アップロードに失敗しました"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:350
+#: js/ui/dialogs/SaveToFilesTreePanel.js:365
 msgid "Attachment could not be stored in Files! Error: "
 msgstr "添付ファイルがファイル共有へ保存されませんでした "
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:388
+#: js/ui/dialogs/SaveToFilesTreePanel.js:403
 msgid "Created"
 msgstr "作成済み"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:388
+#: js/ui/dialogs/SaveToFilesTreePanel.js:403
 msgid "Directory created!"
 msgstr "ディレクトリが作成されました!"
 
@@ -596,7 +599,9 @@ msgid "Info"
 msgstr "情報"
 
 #: js/ui/FilesRecordAccountView.js:36
-msgid "There are no accounts added. Go to settings and add an account!"
+#, fuzzy
+msgid ""
+"There are no accounts added. Go to settings, Files tab and add an account"
 msgstr "追加されたアカウントはありません 設定よりアカウントを追加してください!"
 
 #: js/ui/FilesRecordAccountView.js:136
@@ -763,109 +768,109 @@ msgstr "削除の共有に失敗しました"
 msgid "With this backend, you can connect to any ftp server."
 msgstr "このバックエンドでは、ご希望するFTPサーバへ接続することができます."
 
-#: php/Files/Backend/FTP/class.backend.php:192
+#: php/Files/Backend/FTP/class.backend.php:187
 #: php/Files/Backend/Webdav/class.backend.php:134
 msgid "Server address"
 msgstr "サーバアドレス"
 
-#: php/Files/Backend/FTP/class.backend.php:199
+#: php/Files/Backend/FTP/class.backend.php:194
 #: php/Files/Backend/Webdav/class.backend.php:141
 msgid "Server port"
 msgstr "サーバポート"
 
-#: php/Files/Backend/FTP/class.backend.php:206
+#: php/Files/Backend/FTP/class.backend.php:201
 msgid "FTP user"
 msgstr "FTPユーザ"
 
-#: php/Files/Backend/FTP/class.backend.php:213
+#: php/Files/Backend/FTP/class.backend.php:208
 msgid "FTP password"
 msgstr "FTPパスワード"
 
-#: php/Files/Backend/FTP/class.backend.php:221
+#: php/Files/Backend/FTP/class.backend.php:216
 msgid "Base path"
 msgstr "ベースパス"
 
-#: php/Files/Backend/FTP/class.backend.php:228
+#: php/Files/Backend/FTP/class.backend.php:223
 #: php/Files/Backend/Webdav/class.backend.php:149
 msgid "Use SSL"
 msgstr "SSLを使用する"
 
-#: php/Files/Backend/FTP/class.backend.php:235
+#: php/Files/Backend/FTP/class.backend.php:230
 msgid "Use passive mode"
 msgstr "パッシブモードを使用する"
 
-#: php/Files/Backend/FTP/class.backend.php:242
+#: php/Files/Backend/FTP/class.backend.php:237
 #: php/Files/Backend/Webdav/class.backend.php:180
 msgid "Use Kopano credentials"
 msgstr "Kopano認証を使用する"
 
-#: php/Files/Backend/FTP/class.backend.php:432
+#: php/Files/Backend/FTP/class.backend.php:427
 msgid "Unparsable server response."
 msgstr "サーバからの応答が正しくありません。"
 
-#: php/Files/Backend/FTP/class.backend.php:871
-#: php/Files/Backend/Webdav/class.backend.php:900
+#: php/Files/Backend/FTP/class.backend.php:866
+#: php/Files/Backend/Webdav/class.backend.php:895
 msgid "Unknown error"
 msgstr "不明なエラーが発生しました"
 
-#: php/Files/Backend/FTP/class.backend.php:875
-#: php/Files/Backend/Webdav/class.backend.php:905
+#: php/Files/Backend/FTP/class.backend.php:870
+#: php/Files/Backend/Webdav/class.backend.php:900
 msgid "Unauthorized. Wrong username or password."
 msgstr "認証に失敗しました.ユーザ名かパスワードが違います."
 
-#: php/Files/Backend/FTP/class.backend.php:878
-#: php/Files/Backend/Webdav/class.backend.php:912
+#: php/Files/Backend/FTP/class.backend.php:873
+#: php/Files/Backend/Webdav/class.backend.php:908
 msgid "File-server is not reachable. Wrong IP entered?"
 msgstr "ファイルサーバへ到達できません 誤ったIPアドレスが入力されていませんか?"
 
-#: php/Files/Backend/FTP/class.backend.php:881
-#: php/Files/Backend/Webdav/class.backend.php:918
+#: php/Files/Backend/FTP/class.backend.php:876
+#: php/Files/Backend/Webdav/class.backend.php:914
 msgid "You don't have enough permissions for this operation."
 msgstr "このフォルダを操作する十分な権限がありません."
 
-#: php/Files/Backend/FTP/class.backend.php:884
-#: php/Files/Backend/Webdav/class.backend.php:921
+#: php/Files/Backend/FTP/class.backend.php:879
+#: php/Files/Backend/Webdav/class.backend.php:917
 msgid "File is not available any more."
 msgstr "ファイルはこれ以上,存在していません."
 
-#: php/Files/Backend/FTP/class.backend.php:887
-#: php/Files/Backend/Webdav/class.backend.php:924
+#: php/Files/Backend/FTP/class.backend.php:882
+#: php/Files/Backend/Webdav/class.backend.php:920
 msgid "Connection to server timed out. Retry later."
 msgstr "サーバへの接続がタイムアウトしました.改めてお試しください."
 
-#: php/Files/Backend/FTP/class.backend.php:890
-#: php/Files/Backend/Webdav/class.backend.php:927
+#: php/Files/Backend/FTP/class.backend.php:885
+#: php/Files/Backend/Webdav/class.backend.php:923
 msgid "This file is locked by another user."
 msgstr "このファイルは,他のユーザによりロックされています."
 
-#: php/Files/Backend/FTP/class.backend.php:893
-#: php/Files/Backend/Webdav/class.backend.php:930
+#: php/Files/Backend/FTP/class.backend.php:888
+#: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
 msgstr "このリクエストは前回のリクエストによる失敗により,失敗しました."
 
-#: php/Files/Backend/FTP/class.backend.php:896
-#: php/Files/Backend/Webdav/class.backend.php:933
+#: php/Files/Backend/FTP/class.backend.php:891
+#: php/Files/Backend/Webdav/class.backend.php:929
 msgid "File-server encountered a problem. Wrong IP entered?"
 msgstr ""
 "ファイルサーバへの接続に問題が発生しました.IPアドレスを間違えていませんか?"
 
-#: php/Files/Backend/FTP/class.backend.php:899
-#: php/Files/Backend/Webdav/class.backend.php:936
+#: php/Files/Backend/FTP/class.backend.php:894
+#: php/Files/Backend/Webdav/class.backend.php:932
 msgid ""
 "Could not write to temporary directory. Contact the server administrator."
 msgstr ""
 "TEMPディレクトリへ書き込むことができません.システム管理者へお問い合わせくださ"
 "い."
 
-#: php/Files/Backend/FTP/class.backend.php:902
-#: php/Files/Backend/Webdav/class.backend.php:939
+#: php/Files/Backend/FTP/class.backend.php:897
+#: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
 "Could not retrieve list of server features. Contact the server administrator."
 msgstr ""
 "サーバ機能の一覧を取り込むことができませんでした.システム管理者へお問い合わせ"
 "ください."
 
-#: php/Files/Backend/FTP/class.backend.php:905
+#: php/Files/Backend/FTP/class.backend.php:900
 msgid "Function is not implemented in this backend."
 msgstr "このバックエンドへの機能は組み込まれていません."
 
@@ -888,12 +893,12 @@ msgstr "ユーザ名"
 msgid "Password"
 msgstr "パスワード"
 
-#: php/Files/Backend/Webdav/class.backend.php:915
+#: php/Files/Backend/Webdav/class.backend.php:911
 #, fuzzy
 msgid "File-server is not reachable. Incorrect URL?"
 msgstr "ファイルサーバへ到達できません 誤ったIPアドレスが入力されていませんか?"
 
-#: php/Files/Backend/Webdav/class.backend.php:942
+#: php/Files/Backend/Webdav/class.backend.php:938
 msgid "PHP-Curl is not available. Contact your system administrator."
 msgstr "PHP-Curlが有効ではありません.システム管理者へご連絡ください."
 

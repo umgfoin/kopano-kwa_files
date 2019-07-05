@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kopano Webapp Files Portuguese (Brazilian)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-05 15:38+0100\n"
+"POT-Creation-Date: 2019-07-05 14:38+0200\n"
 "PO-Revision-Date: 2016-07-21 16:28+0000\n"
 "Last-Translator: Craig <informatica-anapolis@mntb.org>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.kopano.io/projects/"
@@ -59,60 +59,63 @@ msgstr "Renomear"
 msgid "Please enter a new name"
 msgstr "Por favor insira um novo nome"
 
-#: js/data/Actions.js:457
+#: js/data/Actions.js:464
 msgid "This name already exists"
 msgstr "Este nome já existe"
 
-#: js/data/Actions.js:459
+#: js/data/Actions.js:466
 msgid "Incorrect name"
 msgstr "Nome incorreto"
 
-#: js/data/Actions.js:501
+#: js/data/Actions.js:508
 msgid "Downloading"
 msgstr "Baixando"
 
-#: js/data/Actions.js:501
+#: js/data/Actions.js:508
 msgid "Download started... please wait!"
 msgstr "Por favor aguarde!"
 
-#: js/data/Actions.js:536 js/data/NavigatorTreeLoader.js:121
+#: js/data/Actions.js:543 js/data/NavigatorTreeLoader.js:121
 #: js/data/ResponseHandler.js:128 js/ui/dialogs/FilesUploadContentPanel.js:183
 #: js/ui/FilesRecordAccountView.js:135
 msgid "Error"
 msgstr "Erro"
 
-#: js/data/Actions.js:537
+#: js/data/Actions.js:544
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr "Pelo menos um arquivo é muito grande! Tamanho máximo permitido: {0}."
 
-#: js/data/Actions.js:612 js/data/ResponseHandler.js:119
-#: js/ui/dialogs/SaveToFilesTreePanel.js:304
+#: js/data/Actions.js:619 js/data/ResponseHandler.js:119
+#: js/ui/dialogs/SaveToFilesTreePanel.js:319
 msgid "Confirm overwrite"
 msgstr "Confirmar Sobrescrever"
 
-#: js/data/Actions.js:614 js/data/ResponseHandler.js:120
-#: js/ui/dialogs/SaveToFilesTreePanel.js:305
+#: js/data/Actions.js:621 js/data/ResponseHandler.js:120
+#: js/ui/dialogs/SaveToFilesTreePanel.js:320
 msgid "File already exists. Do you want to overwrite it?"
 msgstr "O arquivo já existe. Você quer substituí-lo?"
 
-#: js/data/Actions.js:617
+#: js/data/Actions.js:624
 msgid "Keep both"
 msgstr ""
 
-#: js/data/Actions.js:620
+#: js/data/Actions.js:627
 #, fuzzy
 msgid "Overwrite"
 msgstr "Confirmar Sobrescrever"
 
-#: js/data/Actions.js:623 js/settings/SettingsResetWidget.js:67
-#: js/settings/ui/AccountEditPanel.js:42 js/ui/dialogs/CreateFolderPanel.js:52
+#: js/data/Actions.js:630 js/settings/SettingsResetWidget.js:67
+#: js/settings/ui/AccountEditPanel.js:42
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:93
+#: js/ui/dialogs/CreateFolderPanel.js:52
 #: js/ui/dialogs/FilesUploadContentPanel.js:144
+#: js/ui/dialogs/SaveToFilesTreePanel.js:194
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: js/data/Actions.js:673 js/ui/dialogs/AttachFromFilesTreePanel.js:115
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:129
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:150
+#: js/data/Actions.js:680 js/ui/dialogs/AttachFromFilesTreePanel.js:129
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:143
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:164
 msgid "Warning"
 msgstr "Aviso"
 
@@ -186,7 +189,7 @@ msgid "Manage Accounts"
 msgstr "Gerenciar Contas"
 
 #: js/settings/SettingsResetWidget.js:27 js/settings/SettingsResetWidget.js:35
-#: js/settings/SettingsResetWidget.js:59
+#: js/settings/SettingsResetWidget.js:60
 msgid "Reset Files settings"
 msgstr "Redefine as configurações de Arquivos"
 
@@ -195,20 +198,19 @@ msgid "Resets Files settings to their original defaults"
 msgstr "Redefine configurações de Arquivos para seus padrões originais"
 
 #: js/settings/SettingsResetWidget.js:52
+msgid "Are you sure to remove all settings and accounts?"
+msgstr ""
+
+#: js/settings/SettingsResetWidget.js:54
+msgid ""
+"Accounts marked by your administrator as \"cannot be changed\" will not be "
+"removed."
+msgstr ""
+
+#: js/settings/SettingsResetWidget.js:56
 #, fuzzy
-msgid "Your Files's settings will be restored to their default condition."
-msgstr ""
-"Suas configurações de Arquivos serão restaurados ao estado padrão. Tem "
-"certeza de que deseja redefinir todas as configurações de Arquivos?"
-
-#: js/settings/SettingsResetWidget.js:53
 msgid ""
-"Are you sure you want to reset all Files settings and remove all accounts?"
-msgstr ""
-
-#: js/settings/SettingsResetWidget.js:55
-msgid ""
-"WebApp will automatically restart in order for these changes to take effect"
+"WebApp will automatically restart in order for these changes to take effect."
 msgstr ""
 "O WebApp será automaticamente reiniciado para as modificações serem "
 "efetivadas"
@@ -226,7 +228,7 @@ msgid "Edit Account"
 msgstr "Editar Conta"
 
 #: js/settings/ui/AccountEditPanel.js:35
-#: js/ui/dialogs/SaveToFilesTreePanel.js:188
+#: js/ui/dialogs/SaveToFilesTreePanel.js:182
 msgid "Save"
 msgstr "Salvar"
 
@@ -376,15 +378,15 @@ msgstr "Informações da versão"
 msgid "Add attachment"
 msgstr "Adicionar anexo"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "The file {0} is too large!"
 msgstr "O arquivo {0} é muito grande!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:116
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "max"
 msgstr "max"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
+#: js/ui/dialogs/AttachFromFilesTreePanel.js:144
 msgid "You have to choose at least one file!"
 msgstr "Você tem que escolher pelo menos um arquivo!"
 
@@ -411,12 +413,12 @@ msgid "You must specify a name."
 msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:188
-#: js/ui/dialogs/SaveToFilesTreePanel.js:289
+#: js/ui/dialogs/SaveToFilesTreePanel.js:304
 msgid "Folder already exists"
 msgstr "A pasta já existe"
 
 #: js/ui/dialogs/CreateFolderPanel.js:191
-#: js/ui/dialogs/SaveToFilesTreePanel.js:256
+#: js/ui/dialogs/SaveToFilesTreePanel.js:271
 msgid "Incorrect foldername"
 msgstr "Nome da pasta incorreto"
 
@@ -459,44 +461,44 @@ msgstr ""
 msgid "Add item to Files"
 msgstr "Adicionar item à Arquivos"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:182
+#: js/ui/dialogs/SaveToFilesTreePanel.js:188
 msgid "New folder"
 msgstr "Nova pasta"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:203
-#: js/ui/dialogs/SaveToFilesTreePanel.js:239
+#: js/ui/dialogs/SaveToFilesTreePanel.js:218
+#: js/ui/dialogs/SaveToFilesTreePanel.js:254
 msgid "You have to choose a folder!"
 msgstr "Escolha uma pasta!"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:241
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Folder Name"
 msgstr "Nome da Pasta"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:241
+#: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Please enter a foldername"
 msgstr "Por favor, indique um nome de pasta"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:348
+#: js/ui/dialogs/SaveToFilesTreePanel.js:363
 msgid "Uploaded"
 msgstr "Carregado"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:348
+#: js/ui/dialogs/SaveToFilesTreePanel.js:363
 msgid "Attachment successfully stored in Files"
 msgstr "Anexo armazenado com sucesso"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:350
+#: js/ui/dialogs/SaveToFilesTreePanel.js:365
 msgid "Upload Failed"
 msgstr "Falha no Carregamento"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:350
+#: js/ui/dialogs/SaveToFilesTreePanel.js:365
 msgid "Attachment could not be stored in Files! Error: "
 msgstr "Anexo não pôde ser armazenado! Erro: "
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:388
+#: js/ui/dialogs/SaveToFilesTreePanel.js:403
 msgid "Created"
 msgstr "Criado"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:388
+#: js/ui/dialogs/SaveToFilesTreePanel.js:403
 msgid "Directory created!"
 msgstr "Diretório criado!"
 
@@ -599,7 +601,9 @@ msgid "Info"
 msgstr "Informação"
 
 #: js/ui/FilesRecordAccountView.js:36
-msgid "There are no accounts added. Go to settings and add an account!"
+#, fuzzy
+msgid ""
+"There are no accounts added. Go to settings, Files tab and add an account"
 msgstr ""
 "Não existe contas adicionadas. Vá para configurações e adicione uma conta!"
 
@@ -763,108 +767,108 @@ msgstr "Falha ao apagar compartilhamento"
 msgid "With this backend, you can connect to any ftp server."
 msgstr "Com este servidor você pode conectar qualquer servidor FTP."
 
-#: php/Files/Backend/FTP/class.backend.php:192
+#: php/Files/Backend/FTP/class.backend.php:187
 #: php/Files/Backend/Webdav/class.backend.php:134
 msgid "Server address"
 msgstr "Endereço do servidor"
 
-#: php/Files/Backend/FTP/class.backend.php:199
+#: php/Files/Backend/FTP/class.backend.php:194
 #: php/Files/Backend/Webdav/class.backend.php:141
 msgid "Server port"
 msgstr "Porta do servidor"
 
-#: php/Files/Backend/FTP/class.backend.php:206
+#: php/Files/Backend/FTP/class.backend.php:201
 msgid "FTP user"
 msgstr "Usuário FTP"
 
-#: php/Files/Backend/FTP/class.backend.php:213
+#: php/Files/Backend/FTP/class.backend.php:208
 msgid "FTP password"
 msgstr "Senha FTP"
 
-#: php/Files/Backend/FTP/class.backend.php:221
+#: php/Files/Backend/FTP/class.backend.php:216
 msgid "Base path"
 msgstr "Caminho do diretório raiz"
 
-#: php/Files/Backend/FTP/class.backend.php:228
+#: php/Files/Backend/FTP/class.backend.php:223
 #: php/Files/Backend/Webdav/class.backend.php:149
 msgid "Use SSL"
 msgstr "Use SSL"
 
-#: php/Files/Backend/FTP/class.backend.php:235
+#: php/Files/Backend/FTP/class.backend.php:230
 msgid "Use passive mode"
 msgstr "Use modo passivo"
 
-#: php/Files/Backend/FTP/class.backend.php:242
+#: php/Files/Backend/FTP/class.backend.php:237
 #: php/Files/Backend/Webdav/class.backend.php:180
 msgid "Use Kopano credentials"
 msgstr "Use credenciais Kopano"
 
-#: php/Files/Backend/FTP/class.backend.php:432
+#: php/Files/Backend/FTP/class.backend.php:427
 msgid "Unparsable server response."
 msgstr "Resposta do servidor não pode ser analisada."
 
-#: php/Files/Backend/FTP/class.backend.php:871
-#: php/Files/Backend/Webdav/class.backend.php:900
+#: php/Files/Backend/FTP/class.backend.php:866
+#: php/Files/Backend/Webdav/class.backend.php:895
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
-#: php/Files/Backend/FTP/class.backend.php:875
-#: php/Files/Backend/Webdav/class.backend.php:905
+#: php/Files/Backend/FTP/class.backend.php:870
+#: php/Files/Backend/Webdav/class.backend.php:900
 msgid "Unauthorized. Wrong username or password."
 msgstr "Não autorizado. Usuário ou senha errada."
 
-#: php/Files/Backend/FTP/class.backend.php:878
-#: php/Files/Backend/Webdav/class.backend.php:912
+#: php/Files/Backend/FTP/class.backend.php:873
+#: php/Files/Backend/Webdav/class.backend.php:908
 msgid "File-server is not reachable. Wrong IP entered?"
 msgstr "Servidor de arquivos não encontrado. Entrou IP errado?"
 
-#: php/Files/Backend/FTP/class.backend.php:881
-#: php/Files/Backend/Webdav/class.backend.php:918
+#: php/Files/Backend/FTP/class.backend.php:876
+#: php/Files/Backend/Webdav/class.backend.php:914
 msgid "You don't have enough permissions for this operation."
 msgstr "Você não tem permissões suficiente para esta operação."
 
-#: php/Files/Backend/FTP/class.backend.php:884
-#: php/Files/Backend/Webdav/class.backend.php:921
+#: php/Files/Backend/FTP/class.backend.php:879
+#: php/Files/Backend/Webdav/class.backend.php:917
 msgid "File is not available any more."
 msgstr "Arquivo não está mais disponível."
 
-#: php/Files/Backend/FTP/class.backend.php:887
-#: php/Files/Backend/Webdav/class.backend.php:924
+#: php/Files/Backend/FTP/class.backend.php:882
+#: php/Files/Backend/Webdav/class.backend.php:920
 msgid "Connection to server timed out. Retry later."
 msgstr "Conexão com servidor expirou. Tente mais tarde."
 
-#: php/Files/Backend/FTP/class.backend.php:890
-#: php/Files/Backend/Webdav/class.backend.php:927
+#: php/Files/Backend/FTP/class.backend.php:885
+#: php/Files/Backend/Webdav/class.backend.php:923
 msgid "This file is locked by another user."
 msgstr "O arquivo está bloqueado por outro usuário."
 
-#: php/Files/Backend/FTP/class.backend.php:893
-#: php/Files/Backend/Webdav/class.backend.php:930
+#: php/Files/Backend/FTP/class.backend.php:888
+#: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
 msgstr "O pedido falhou devido a uma falha de um pedido anterior."
 
-#: php/Files/Backend/FTP/class.backend.php:896
-#: php/Files/Backend/Webdav/class.backend.php:933
+#: php/Files/Backend/FTP/class.backend.php:891
+#: php/Files/Backend/Webdav/class.backend.php:929
 msgid "File-server encountered a problem. Wrong IP entered?"
 msgstr "Servidor de arquivos encontrou um problema. Entrou IP errado?"
 
-#: php/Files/Backend/FTP/class.backend.php:899
-#: php/Files/Backend/Webdav/class.backend.php:936
+#: php/Files/Backend/FTP/class.backend.php:894
+#: php/Files/Backend/Webdav/class.backend.php:932
 msgid ""
 "Could not write to temporary directory. Contact the server administrator."
 msgstr ""
 "Não foi possível gravar no diretório temporário. Entre em contato com o "
 "administrador do servidor."
 
-#: php/Files/Backend/FTP/class.backend.php:902
-#: php/Files/Backend/Webdav/class.backend.php:939
+#: php/Files/Backend/FTP/class.backend.php:897
+#: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
 "Could not retrieve list of server features. Contact the server administrator."
 msgstr ""
 "Não foi possível recuperar lista de recursos do servidor. Entre em contato "
 "com o administrador do servidor."
 
-#: php/Files/Backend/FTP/class.backend.php:905
+#: php/Files/Backend/FTP/class.backend.php:900
 msgid "Function is not implemented in this backend."
 msgstr "Função não é implementada neste servidor."
 
@@ -887,12 +891,12 @@ msgstr "Usuário"
 msgid "Password"
 msgstr "Senha"
 
-#: php/Files/Backend/Webdav/class.backend.php:915
+#: php/Files/Backend/Webdav/class.backend.php:911
 #, fuzzy
 msgid "File-server is not reachable. Incorrect URL?"
 msgstr "Servidor de arquivos não encontrado. Entrou IP errado?"
 
-#: php/Files/Backend/Webdav/class.backend.php:942
+#: php/Files/Backend/Webdav/class.backend.php:938
 msgid "PHP-Curl is not available. Contact your system administrator."
 msgstr ""
 "PHP-Curl não está disponível. Entre em contato com o administrador do "
