@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Plugin Dutch\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-05 14:38+0200\n"
-"PO-Revision-Date: 2018-10-17 14:05+0000\n"
+"PO-Revision-Date: 2019-07-05 14:10+0000\n"
 "Last-Translator: Bob <b.huisman@kopano.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
 "Language: nl_NL\n"
@@ -199,23 +199,21 @@ msgid "Resets Files settings to their original defaults"
 msgstr "Originele Files instellingen herstellen"
 
 #: js/settings/SettingsResetWidget.js:52
-#, fuzzy
 msgid "Are you sure to remove all settings and accounts?"
-msgstr ""
-"Weet je zeker dat je alle Files instellingen wilt herstellen en alle "
-"accounts wilt verwijderen?"
+msgstr "Weet je zeker dat je alle instellingen wilt verwijderen?"
 
 #: js/settings/SettingsResetWidget.js:54
 msgid ""
 "Accounts marked by your administrator as \"cannot be changed\" will not be "
 "removed."
 msgstr ""
+"Accounts door uw systeembeheerder gemarkeerd als \"kan niet gewijzigd "
+"worden\" zullen niet worden verwijderd."
 
 #: js/settings/SettingsResetWidget.js:56
-#, fuzzy
 msgid ""
 "WebApp will automatically restart in order for these changes to take effect."
-msgstr "WebApp zal automatisch herstarten om deze wijzigingen door te voeren"
+msgstr "WebApp zal automatisch herstarten om deze wijzigingen door te voeren."
 
 #: js/settings/SettingsResetWidget.js:64
 msgid "Reset"
@@ -556,7 +554,6 @@ msgstr "Bestanden uploaden"
 
 #: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:72
 #: js/ui/FilesMainContextMenu.js:75 js/ui/FilesTreeContextMenu.js:46
-#, fuzzy
 msgid "New Folder"
 msgstr "Nieuwe map"
 
@@ -599,11 +596,11 @@ msgid "Info"
 msgstr "Info"
 
 #: js/ui/FilesRecordAccountView.js:36
-#, fuzzy
 msgid ""
 "There are no accounts added. Go to settings, Files tab and add an account"
 msgstr ""
-"Er zijn geen accounts toegevoegd. Ga naar settings en voeg een account toe!"
+"Er zijn geen accounts toegevoegd. Ga naar het tabblad Files in settings en "
+"voeg een account toe"
 
 #: js/ui/FilesRecordAccountView.js:136
 msgid "To delete an account you have to go to settings."
