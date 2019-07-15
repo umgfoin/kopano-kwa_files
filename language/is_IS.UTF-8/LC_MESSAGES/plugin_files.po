@@ -1,3 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-14 20:54+0000\n"
+"PO-Revision-Date: 2019-07-15 22:05+0000\n"
+"Last-Translator: Tryggvi Björgvinsson <ME@TRICKVI.IS>\n"
+"Language-Team: Icelandic "
+"<http://translate.kopano.io/projects/kopano/files/is/>\n"
+"Language: is_IS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
+
 #: js/data/Actions.js:70
 msgid "Add attachment from {0}"
 msgstr ""
@@ -57,7 +73,7 @@ msgstr ""
 #: js/data/ResponseHandler.js:128 js/ui/dialogs/FilesUploadContentPanel.js:183
 #: js/ui/FilesRecordAccountView.js:135
 msgid "Error"
-msgstr ""
+msgstr "Villa"
 
 #: js/data/Actions.js:544
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
@@ -88,13 +104,13 @@ msgstr ""
 #: js/ui/dialogs/FilesUploadContentPanel.js:144
 #: js/ui/dialogs/SaveToFilesTreePanel.js:194
 msgid "Cancel"
-msgstr ""
+msgstr "Hætta við"
 
 #: js/data/Actions.js:680 js/ui/dialogs/AttachFromFilesTreePanel.js:129
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:143
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:164
 msgid "Warning"
-msgstr ""
+msgstr "Viðvörun"
 
 #: js/data/NavigatorTreeLoader.js:140
 msgid "Loading failed"
@@ -114,15 +130,15 @@ msgstr ""
 
 #: js/FilesContext.js:287 js/FilesContext.js:289
 msgid "No preview"
-msgstr ""
+msgstr "Engin forsýn"
 
 #: js/FilesContext.js:295 js/FilesContext.js:297
 msgid "Right preview"
-msgstr ""
+msgstr "Hægri forsýn"
 
 #: js/FilesContext.js:303 js/FilesContext.js:305
 msgid "Bottom preview"
-msgstr ""
+msgstr "Neðanverð forsýn"
 
 #: js/FilesContext.js:326
 msgid "Switch view"
@@ -130,7 +146,7 @@ msgstr ""
 
 #: js/FilesContext.js:335 js/FilesContext.js:336
 msgid "List"
-msgstr ""
+msgstr "Listi"
 
 #: js/FilesContext.js:342 js/FilesContext.js:343
 msgid "Icons"
@@ -204,7 +220,7 @@ msgstr ""
 #: js/settings/ui/AccountEditPanel.js:35
 #: js/ui/dialogs/SaveToFilesTreePanel.js:182
 msgid "Save"
-msgstr ""
+msgstr "Vista"
 
 #: js/settings/ui/AccountEditPanel.js:137
 msgid "Account Information"
@@ -250,11 +266,11 @@ msgstr ""
 #: js/settings/ui/AccountGridColumnModel.js:51
 #: js/ui/dialogs/CreateFolderPanel.js:81
 msgid "Name"
-msgstr ""
+msgstr "Nafn"
 
 #: js/settings/ui/AccountGridColumnModel.js:55
 msgid "Sort by: Name"
-msgstr ""
+msgstr "Raða eftir nafni"
 
 #: js/settings/ui/AccountGridColumnModel.js:57
 #: js/settings/ui/FeatureVersionInfoPanel.js:94
@@ -320,7 +336,7 @@ msgstr ""
 #: js/settings/ui/FeatureQuotaInfoPanel.js:36
 #: js/settings/ui/FeatureVersionInfoPanel.js:33
 msgid "Close"
-msgstr ""
+msgstr "Loka"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:116
 #: php/class.filesaccountmodule.php:354
@@ -333,7 +349,7 @@ msgstr ""
 #: js/settings/ui/FeatureVersionInfoPanel.js:95
 #: js/settings/ui/FeatureVersionInfoPanel.js:100
 msgid "Loading"
-msgstr ""
+msgstr "Hleð"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:121
 #: php/class.filesaccountmodule.php:355
@@ -350,7 +366,7 @@ msgstr ""
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:88
 msgid "Add attachment"
-msgstr ""
+msgstr "Bæta við viðhengi"
 
 #: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "The file {0} is too large!"
@@ -370,7 +386,7 @@ msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:45
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: js/ui/dialogs/CreateFolderPanel.js:87
 msgid "Select where to place the folder"
@@ -382,7 +398,7 @@ msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:133
 msgid "You must specify a name."
-msgstr ""
+msgstr "Þú verður að tilgreina nafn."
 
 #: js/ui/dialogs/CreateFolderPanel.js:188
 #: js/ui/dialogs/SaveToFilesTreePanel.js:304
@@ -551,7 +567,7 @@ msgstr ""
 #: js/ui/FilesListToolbar.js:112 js/ui/FilesListToolbar.js:113
 #: js/ui/FilesMainContextMenu.js:114 js/ui/FilesTreeContextMenu.js:63
 msgid "Delete"
-msgstr ""
+msgstr "Eyða"
 
 #: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Attaching"
@@ -626,11 +642,11 @@ msgstr ""
 
 #: js/ui/FilesRecordDetailsPanel.js:311
 msgid "Yes"
-msgstr ""
+msgstr "Já"
 
 #: js/ui/FilesRecordDetailsPanel.js:311
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: js/ui/FilesRecordGridColumnModel.js:38
 #: js/ui/FilesRecordGridColumnModel.js:99
@@ -680,7 +696,7 @@ msgstr ""
 
 #: js/ui/snippets/FilesNavigationBar.js:176
 msgid "Home"
-msgstr ""
+msgstr "Aðsetur"
 
 #: js/ui/snippets/FilesQuotaBar.js:14
 msgid "{0} of {1} in use"
