@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-14 20:54+0000\n"
-"PO-Revision-Date: 2019-07-15 22:05+0000\n"
+"PO-Revision-Date: 2019-07-30 23:37+0000\n"
 "Last-Translator: Tryggvi Björgvinsson <ME@TRICKVI.IS>\n"
 "Language-Team: Icelandic "
 "<http://translate.kopano.io/projects/kopano/files/is/>\n"
@@ -47,7 +47,7 @@ msgstr ""
 #: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:105
 #: js/ui/FilesTreeContextMenu.js:52
 msgid "Rename"
-msgstr ""
+msgstr "Endurnefna"
 
 #: js/data/Actions.js:389
 msgid "Please enter a new name"
@@ -118,7 +118,7 @@ msgstr ""
 
 #: js/data/Utils.js:232
 msgid "l d/m/Y G:i"
-msgstr ""
+msgstr "l d/m/Y G:i"
 
 #: js/data/Utils.js:232
 msgid "Never"
@@ -394,7 +394,7 @@ msgstr ""
 
 #: js/ui/dialogs/CreateFolderPanel.js:132
 msgid "Kopano WebApp"
-msgstr ""
+msgstr "Kopano vefviðmót"
 
 #: js/ui/dialogs/CreateFolderPanel.js:133
 msgid "You must specify a name."
@@ -449,7 +449,7 @@ msgstr ""
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:188
 msgid "New folder"
-msgstr ""
+msgstr "Ný mappa"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:218
 #: js/ui/dialogs/SaveToFilesTreePanel.js:254
@@ -549,7 +549,7 @@ msgstr ""
 
 #: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:41
 msgid "Download"
-msgstr ""
+msgstr "Niðurhal"
 
 #: js/ui/FilesListToolbar.js:80
 msgid "Download files"
@@ -583,7 +583,7 @@ msgstr ""
 
 #: js/ui/FilesMainContextMenu.js:123
 msgid "Info"
-msgstr ""
+msgstr "Upplýsingar"
 
 #: js/ui/FilesRecordAccountView.js:36
 msgid ""
@@ -670,12 +670,12 @@ msgstr ""
 #: js/ui/FilesRecordGridColumnModel.js:68
 #: js/ui/FilesRecordGridColumnModel.js:115
 msgid "Size"
-msgstr ""
+msgstr "Stærð"
 
 #: js/ui/FilesRecordGridColumnModel.js:72
 #: js/ui/FilesRecordGridColumnModel.js:120
 msgid "Sort by: Size"
-msgstr ""
+msgstr "Raða eftir stærð"
 
 #: js/ui/FilesRecordGridColumnModel.js:85
 #: js/ui/FilesRecordGridColumnModel.js:133
