@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-05 14:38+0200\n"
-"PO-Revision-Date: 2019-04-01 14:33+0000\n"
+"PO-Revision-Date: 2019-08-05 12:05+0000\n"
 "Last-Translator: Nuno Jerónimo <nuno.jeronimo@valsousa.pt>\n"
-"Language-Team: Portuguese (Portugal) <http://translate.kopano.io/projects/"
-"kopano/files/pt_PT/>\n"
+"Language-Team: Portuguese (Portugal) "
+"<http://translate.kopano.io/projects/kopano/files/pt_PT/>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,25 +194,23 @@ msgid "Resets Files settings to their original defaults"
 msgstr "Repor as definições originais de Ficheiros"
 
 #: js/settings/SettingsResetWidget.js:52
-#, fuzzy
 msgid "Are you sure to remove all settings and accounts?"
-msgstr ""
-"Tem a certeza que quer repor as definições de Ficheiros e remover todas as "
-"contas?"
+msgstr "Tem a certeza que quer remover todas as definições e contas?"
 
 #: js/settings/SettingsResetWidget.js:54
 msgid ""
 "Accounts marked by your administrator as \"cannot be changed\" will not be "
 "removed."
 msgstr ""
+"Contas marcadas como \"não podem ser modificadas\" pelo administrador não "
+"podem ser removidas."
 
 #: js/settings/SettingsResetWidget.js:56
-#, fuzzy
 msgid ""
 "WebApp will automatically restart in order for these changes to take effect."
 msgstr ""
 "A WebApp vai reiniciar automaticamente para que as alterações possam ser "
-"aplicadas"
+"aplicadas."
 
 #: js/settings/SettingsResetWidget.js:64
 msgid "Reset"
@@ -597,10 +595,11 @@ msgid "Info"
 msgstr "Informação"
 
 #: js/ui/FilesRecordAccountView.js:36
-#, fuzzy
 msgid ""
 "There are no accounts added. Go to settings, Files tab and add an account"
-msgstr "Não existem contas adicionadas. Vá a Definições e adicione uma conta!"
+msgstr ""
+"Não existem contas adicionadas. Vá a Definições, aba Ficheiros e adicione "
+"uma conta"
 
 #: js/ui/FilesRecordAccountView.js:136
 msgid "To delete an account you have to go to settings."
