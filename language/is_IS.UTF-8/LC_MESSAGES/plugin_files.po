@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-14 20:54+0000\n"
-"PO-Revision-Date: 2019-07-30 23:37+0000\n"
+"PO-Revision-Date: 2019-08-09 23:32+0000\n"
 "Last-Translator: Tryggvi Björgvinsson <ME@TRICKVI.IS>\n"
 "Language-Team: Icelandic "
 "<http://translate.kopano.io/projects/kopano/files/is/>\n"
@@ -142,7 +142,7 @@ msgstr "Neðanverð forsýn"
 
 #: js/FilesContext.js:326
 msgid "Switch view"
-msgstr ""
+msgstr "Breyta sýn"
 
 #: js/FilesContext.js:335 js/FilesContext.js:336
 msgid "List"
@@ -150,7 +150,7 @@ msgstr "Listi"
 
 #: js/FilesContext.js:342 js/FilesContext.js:343
 msgid "Icons"
-msgstr ""
+msgstr "Teikn"
 
 #: js/FilesContext.js:452 js/FilesContextModel.js:120
 #: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
@@ -171,7 +171,7 @@ msgstr ""
 
 #: js/FilesPlugin.js:184 php/class.filesbrowsermodule.php:1277
 msgid "Untitled"
-msgstr ""
+msgstr "Án titils"
 
 #: js/FilesPlugin.js:292
 msgid "Files Plugin"
@@ -207,7 +207,7 @@ msgstr ""
 
 #: js/settings/SettingsResetWidget.js:64
 msgid "Reset"
-msgstr ""
+msgstr "Endursetja"
 
 #: js/settings/SettingsResetWidget.js:94
 msgid "Webapp is reloading, Please wait."
@@ -257,11 +257,11 @@ msgstr ""
 
 #: js/settings/ui/AccountGridColumnModel.js:44
 msgid "Status"
-msgstr ""
+msgstr "Staða"
 
 #: js/settings/ui/AccountGridColumnModel.js:49
 msgid "Sort by: Status"
-msgstr ""
+msgstr "Raða eftir stöðu"
 
 #: js/settings/ui/AccountGridColumnModel.js:51
 #: js/ui/dialogs/CreateFolderPanel.js:81
@@ -331,7 +331,7 @@ msgstr ""
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:32
 msgid "Reload"
-msgstr ""
+msgstr "Endurhlaða"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:36
 #: js/settings/ui/FeatureVersionInfoPanel.js:33
@@ -354,7 +354,7 @@ msgstr "Hleð"
 #: js/settings/ui/FeatureQuotaInfoPanel.js:121
 #: php/class.filesaccountmodule.php:355
 msgid "Free"
-msgstr ""
+msgstr "Laust"
 
 #: js/settings/ui/FeatureQuotaInfoPanel.js:126
 msgid "Total"
@@ -382,7 +382,7 @@ msgstr ""
 
 #: js/ui/dialogs/CreateFolderContentPanel.js:23
 msgid "Create New Folder"
-msgstr ""
+msgstr "Búa til nýja möppu"
 
 #: js/ui/dialogs/CreateFolderPanel.js:45
 msgid "Ok"
@@ -390,7 +390,7 @@ msgstr "Ok"
 
 #: js/ui/dialogs/CreateFolderPanel.js:87
 msgid "Select where to place the folder"
-msgstr ""
+msgstr "Veldu hvar þú vilt staðsetja möppuna"
 
 #: js/ui/dialogs/CreateFolderPanel.js:132
 msgid "Kopano WebApp"
@@ -458,7 +458,7 @@ msgstr ""
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Folder Name"
-msgstr ""
+msgstr "Möppunafn"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:256
 msgid "Please enter a foldername"
@@ -482,7 +482,7 @@ msgstr ""
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:403
 msgid "Created"
-msgstr ""
+msgstr "Skapað"
 
 #: js/ui/dialogs/SaveToFilesTreePanel.js:403
 msgid "Directory created!"
@@ -545,7 +545,7 @@ msgstr ""
 #: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:72
 #: js/ui/FilesMainContextMenu.js:75 js/ui/FilesTreeContextMenu.js:46
 msgid "New Folder"
-msgstr ""
+msgstr "Ný mappa"
 
 #: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:41
 msgid "Download"
@@ -610,7 +610,7 @@ msgstr ""
 
 #: js/ui/FilesRecordDetailsPanel.js:91
 msgid "Type"
-msgstr ""
+msgstr "Gerð"
 
 #: js/ui/FilesRecordDetailsPanel.js:98
 msgid "Is shared"
@@ -862,11 +862,11 @@ msgstr ""
 
 #: php/Files/Backend/Webdav/class.backend.php:165
 msgid "Username"
-msgstr ""
+msgstr "Notandanafn"
 
 #: php/Files/Backend/Webdav/class.backend.php:172
 msgid "Password"
-msgstr ""
+msgstr "Lykilorð"
 
 #: php/Files/Backend/Webdav/class.backend.php:911
 msgid "File-server is not reachable. Incorrect URL?"
