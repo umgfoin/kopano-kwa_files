@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-14 20:54+0000\n"
-"PO-Revision-Date: 2019-08-09 23:32+0000\n"
+"PO-Revision-Date: 2019-09-18 20:31+0000\n"
 "Last-Translator: Tryggvi Björgvinsson <ME@TRICKVI.IS>\n"
 "Language-Team: Icelandic "
 "<http://translate.kopano.io/projects/kopano/files/is/>\n"
@@ -248,7 +248,7 @@ msgstr ""
 
 #: js/settings/ui/AccountGridColumnModel.js:37
 msgid "ID"
-msgstr ""
+msgstr "Auðkenni"
 
 #: js/settings/ui/AccountGridColumnModel.js:42
 #: js/ui/FilesRecordGridColumnModel.js:45
@@ -557,7 +557,7 @@ msgstr ""
 
 #: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:52
 msgid "Share"
-msgstr ""
+msgstr "Deila"
 
 #: js/ui/FilesListToolbar.js:95 js/ui/FilesListToolbar.js:96
 #: js/ui/FilesMainContextMenu.js:85
@@ -651,7 +651,7 @@ msgstr "Nei"
 #: js/ui/FilesRecordGridColumnModel.js:38
 #: js/ui/FilesRecordGridColumnModel.js:99
 msgid "Sort by: Type"
-msgstr ""
+msgstr "Raða eftir gerð"
 
 #: js/ui/FilesRecordGridColumnModel.js:52
 msgid "Sort by: Path"
@@ -753,12 +753,12 @@ msgstr ""
 #: php/Files/Backend/FTP/class.backend.php:187
 #: php/Files/Backend/Webdav/class.backend.php:134
 msgid "Server address"
-msgstr ""
+msgstr "Netfang netþjóns"
 
 #: php/Files/Backend/FTP/class.backend.php:194
 #: php/Files/Backend/Webdav/class.backend.php:141
 msgid "Server port"
-msgstr ""
+msgstr "Samskiptagátt netþjóns"
 
 #: php/Files/Backend/FTP/class.backend.php:201
 msgid "FTP user"
@@ -775,7 +775,7 @@ msgstr ""
 #: php/Files/Backend/FTP/class.backend.php:223
 #: php/Files/Backend/Webdav/class.backend.php:149
 msgid "Use SSL"
-msgstr ""
+msgstr "Nota SSL"
 
 #: php/Files/Backend/FTP/class.backend.php:230
 msgid "Use passive mode"
@@ -784,7 +784,7 @@ msgstr ""
 #: php/Files/Backend/FTP/class.backend.php:237
 #: php/Files/Backend/Webdav/class.backend.php:180
 msgid "Use Kopano credentials"
-msgstr ""
+msgstr "Nota Kopano innskráningu"
 
 #: php/Files/Backend/FTP/class.backend.php:427
 msgid "Unparsable server response."
@@ -793,63 +793,63 @@ msgstr ""
 #: php/Files/Backend/FTP/class.backend.php:866
 #: php/Files/Backend/Webdav/class.backend.php:895
 msgid "Unknown error"
-msgstr ""
+msgstr "Óþekkt villa"
 
 #: php/Files/Backend/FTP/class.backend.php:870
 #: php/Files/Backend/Webdav/class.backend.php:900
 msgid "Unauthorized. Wrong username or password."
-msgstr ""
+msgstr "Aðgangur óheimill. Rangt notandanafn eða lykilorð."
 
 #: php/Files/Backend/FTP/class.backend.php:873
 #: php/Files/Backend/Webdav/class.backend.php:908
 msgid "File-server is not reachable. Wrong IP entered?"
-msgstr ""
+msgstr "Skráarþjónn er ekki aðgengilegur. Röng IP-tala?"
 
 #: php/Files/Backend/FTP/class.backend.php:876
 #: php/Files/Backend/Webdav/class.backend.php:914
 msgid "You don't have enough permissions for this operation."
-msgstr ""
+msgstr "Þú hefur ekki næg réttindi fyrir þessa aðgerð."
 
 #: php/Files/Backend/FTP/class.backend.php:879
 #: php/Files/Backend/Webdav/class.backend.php:917
 msgid "File is not available any more."
-msgstr ""
+msgstr "Skrá er ekki aðgengileg lengur."
 
 #: php/Files/Backend/FTP/class.backend.php:882
 #: php/Files/Backend/Webdav/class.backend.php:920
 msgid "Connection to server timed out. Retry later."
-msgstr ""
+msgstr "Tenging við netþjón rann út. Reyndu aftur síðar."
 
 #: php/Files/Backend/FTP/class.backend.php:885
 #: php/Files/Backend/Webdav/class.backend.php:923
 msgid "This file is locked by another user."
-msgstr ""
+msgstr "Skránni er læst af öðrum notanda."
 
 #: php/Files/Backend/FTP/class.backend.php:888
 #: php/Files/Backend/Webdav/class.backend.php:926
 msgid "The request failed due to failure of a previous request."
-msgstr ""
+msgstr "Beiðnin mistókst vegna villu fyrri beiðnar."
 
 #: php/Files/Backend/FTP/class.backend.php:891
 #: php/Files/Backend/Webdav/class.backend.php:929
 msgid "File-server encountered a problem. Wrong IP entered?"
-msgstr ""
+msgstr "Skráarþjónninn lenti í vandræðum. Röng IP-tala?"
 
 #: php/Files/Backend/FTP/class.backend.php:894
 #: php/Files/Backend/Webdav/class.backend.php:932
 msgid ""
 "Could not write to temporary directory. Contact the server administrator."
-msgstr ""
+msgstr "Gat ekki skrifað í tímabundna möppu. Hafðu samband við kerfisstjórn."
 
 #: php/Files/Backend/FTP/class.backend.php:897
 #: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
 "Could not retrieve list of server features. Contact the server administrator."
-msgstr ""
+msgstr "Gat ekki sótt lista af netþjónavirkni. Hafðu samband við kerfisstjórn."
 
 #: php/Files/Backend/FTP/class.backend.php:900
 msgid "Function is not implemented in this backend."
-msgstr ""
+msgstr "Virknin er ekki útfærð í þessum bakenda."
 
 #: php/Files/Backend/Webdav/class.backend.php:107
 msgid ""
@@ -858,7 +858,7 @@ msgstr ""
 
 #: php/Files/Backend/Webdav/class.backend.php:159
 msgid "Webdav base path"
-msgstr ""
+msgstr "Grunnslóð webdav"
 
 #: php/Files/Backend/Webdav/class.backend.php:165
 msgid "Username"
@@ -874,7 +874,7 @@ msgstr ""
 
 #: php/Files/Backend/Webdav/class.backend.php:938
 msgid "PHP-Curl is not available. Contact your system administrator."
-msgstr ""
+msgstr "PHP-Curl er ekki aðgengilegt. Hafðu samband við kerfisstjórn."
 
 #: php/Files/Core/class.accountstore.php:238
 msgid "Account is ready to use."
