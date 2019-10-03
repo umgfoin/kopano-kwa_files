@@ -19,8 +19,12 @@
 		<component>
 			<files>
 				<server>
+					<serverfile type="module" module="fileslistmodule">php/modules/class.fileslistmodule.php</serverfile>
 					<serverfile type="module" module="filesaccountmodule">php/class.filesaccountmodule.php</serverfile>
 					<serverfile type="module" module="filesbrowsermodule">php/class.filesbrowsermodule.php</serverfile>
+					<serverfile type="module" module="hierarchylistmodule">php/modules/class.hierarchylistmodule.php</serverfile>
+					<serverfile type="notifier" notifier="filesbrowsernotifier">php/notifiers/class.filesbrowsernotifier.php</serverfile>
+					<serverfile type="notifier" notifier="fileshierarchynotifier">php/notifiers/class.fileshierarchynotifier.php</serverfile>
 					<serverfile>php/plugin.files.php</serverfile>
 				</server>
 				<client>
@@ -30,7 +34,6 @@
 					<clientfile load="source">js/FilesContextModel.js</clientfile>
 					<clientfile load="source">js/FilesContext.js</clientfile>
 					<clientfile load="source">js/FilesPlugin.js</clientfile>
-					<clientfile load="source">js/ui/FilesContextNavigationPanel.js</clientfile>
 					<clientfile load="source">js/ui/FilesMainContextMenu.js</clientfile>
 					<clientfile load="source">js/ui/FilesTreeContextMenu.js</clientfile>
 					<clientfile load="source">js/ui/FilesMainPanel.js</clientfile>
@@ -44,6 +47,11 @@
 					<clientfile load="source">js/ui/FilesListToolbar.js</clientfile>
 					<clientfile load="source">js/ui/FilesTopToolbar.js</clientfile>
 					<clientfile load="source">js/ui/NavigatorTreePanel.js</clientfile>
+					<clientfile load="source">js/ui/FilesHierarchyRootNode.js</clientfile>
+					<clientfile load="source">js/ui/FilesFolderNode.js</clientfile>
+					<clientfile load="source">js/ui/FilesRootFolderNode.js</clientfile>
+					<clientfile load="source">js/ui/FolderNodeUI.js</clientfile>
+
 					<clientfile load="source">js/ui/Tree.js</clientfile>
 					<clientfile load="source">js/ui/TreeSorter.js</clientfile>
 					<clientfile load="source">js/ui/MultipleFileUploadField.js</clientfile>
@@ -51,11 +59,13 @@
 					<clientfile load="source">js/ui/dialogs/AttachFromFilesContentPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/CreateFolderContentPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/CreateFolderPanel.js</clientfile>
-					<clientfile load="source">js/ui/dialogs/AttachFromFilesTreePanel.js</clientfile>
+					<clientfile load="source">js/ui/dialogs/AttachFromFilesGridPanel.js</clientfile>
+					<clientfile load="source">js/ui/dialogs/AttachFromFilesPanel.js</clientfile>
+
 					<clientfile load="source">js/ui/dialogs/FilesRecordContentPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/FilesUploadContentPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/SaveToFilesContentPanel.js</clientfile>
-					<clientfile load="source">js/ui/dialogs/SaveToFilesTreePanel.js</clientfile>
+					<clientfile load="source">js/ui/dialogs/SaveToFilesPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/ShareContentPanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/SharePanel.js</clientfile>
 					<clientfile load="source">js/ui/dialogs/UploadStatusContentPanel.js</clientfile>
@@ -77,6 +87,18 @@
 					<clientfile load="source">js/settings/ui/FeatureQuotaInfoPanel.js</clientfile>
 					<clientfile load="source">js/settings/ui/FeatureVersionInfoContentPanel.js</clientfile>
 					<clientfile load="source">js/settings/ui/FeatureVersionInfoPanel.js</clientfile>
+
+					<clientfile load="source">js/data/FilesFoldersSubStore.js</clientfile>
+					<clientfile load="source">js/data/FilesFolderResponseHandler.js</clientfile>
+					<clientfile load="source">js/data/FilesHierarchyProxy.js</clientfile>
+					<clientfile load="source">js/data/FilesHierarchyStore.js</clientfile>
+					<clientfile load="source">js/data/FilesJsonReader.js</clientfile>
+					<clientfile load="source">js/data/FilesStoreRecord.js</clientfile>
+					<clientfile load="source">js/data/FilesFolderRecord.js</clientfile>
+
+					<clientfile load="source">js/data/FilesShadowProxy.js</clientfile>
+					<clientfile load="source">js/data/FilesShadowStore.js</clientfile>
+
 					<clientfile load="source">js/data/AccountRecord.js</clientfile>
 					<clientfile load="source">js/data/AccountStore.js</clientfile>
 					<clientfile load="source">js/data/FilesBackendRecord.js</clientfile>
@@ -94,6 +116,7 @@
 					<clientfile load="source">js/data/ResponseHandler.js</clientfile>
 					<clientfile load="source">js/data/Utils.js</clientfile>
 					<clientfile load="source">js/data/AsyncFilesTreeNode.js</clientfile>
+
 
 
 					<clientfile load="source">php/jsloader.php?debug=true</clientfile>

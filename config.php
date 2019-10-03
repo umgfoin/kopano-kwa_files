@@ -10,11 +10,6 @@ define('PLUGIN_FILES_USER_DEFAULT_ENABLE', true);
 define('PLUGIN_FILES_ASK_BEFORE_DELETE', true);
 
 /**
- * Preload all subfolders. This might decrease performance!
- */
-define('PLUGIN_FILES_PRELOAD_FOLDER', false);
-
-/**
  * The directory where to save cache files for phpfastcache, if memcached is not installed  
  */
 define('PLUGIN_FILES_CACHE_DIR', "/var/lib/kopano-webapp/plugin_files");

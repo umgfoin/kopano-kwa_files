@@ -10,21 +10,37 @@ Ext.namespace('Zarafa.plugins.files.data');
 Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, {
 
 	/**
-	 * @cfg {Boolean} If this flag is true, file records will also be loaded
-	 * and visible.
+	 * When {@link #deferredLoading} is true, this property indicates if a call to
+	 * {@link #doHierarchyLoad} has been made and has been scheduled. This implies
+	 * that no events from the {@link #store} need to be handled, as a full refresh
+	 * is pending.
+	 * @property
+	 * @type Boolean
+	 * @private
 	 */
-	loadFiles: false,
+	isDeferred : false,
 
 	/**
-	 * @cfg {Boolean} True to reload the cache.
+	 * @cfg {Boolean} deferredLoading True to defer updating the Hierarchy when the panel
+	 * is currently not visible. The parent {@link Ext.Container} which contains the
+	 * {@link Ext.layout.CardLayout}, is stored in the {@link #deferredLoadingActiveParent}.
 	 */
-	reload: false,
-
+	deferredLoading : false,
 
 	/**
-	 * @cfg {array|String} array of account ids or a single account id that should be loaded.
+	 * When {@link #deferredLoading} is true, this property contains the {@link Ext.Container}
+	 * to which this loader will be listening to determine which Container is active.
+	 * This will be initialized during {@link #onTreeAfterRender}.
+	 * @property
+	 * @type Ext.Container
+	 * @private
 	 */
-	accountFilter: null,
+	deferredLoadingActiveParent : undefined,
+
+	/**
+	 * @cfg {Object} config option for {@link Zarafa.plugins.files.ui.FilesFolderNode FilesFolderNode}
+	 */
+	nodeConfig : undefined,
 
 	/**
 	 * @constructor
@@ -33,27 +49,276 @@ Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, 
 	constructor: function (config) {
 		config = config || {};
 
-		if (Ext.isDefined(config.reload)) {
-			this.reload = config.reload;
-		}
-
-		if (Ext.isDefined(config.loadfiles)) {
-			this.loadFiles = config.loadfiles;
-		}
-
-		if (Ext.isDefined(config.accountFilter)) {
-			this.accountFilter = config.accountFilter;
-		}
-
 		Ext.applyIf(config, {
-			preloadChildren: true,
-			directFn       : this.loadFolder.createDelegate(this),
-			listeners      : {
-				loadexception: this.loadException
-			}
+			directFn : this.directFn.createDelegate(this),
 		});
 
 		Zarafa.plugins.files.data.NavigatorTreeLoader.superclass.constructor.call(this, config);
+		// If the tree is already rendered, call onTreeAfterRender directly,
+		// otherwise add the event handler.
+		if (this.tree.rendered) {
+			this.onTreeAfterRender();
+		} else {
+			this.tree.on('afterrender', this.onTreeAfterRender, this, { single : true });
+		}
+	},
+
+	onTreeAfterRender : function()
+	{
+		this.bindStore(this.store, true);
+
+		// If deferred loading is enabled, then we are going to need the parent
+		// container which will have to be activated before we will load it.
+		// If we can't find the parent, then don't defer loading.
+		if (this.deferredLoading === true) {
+			// Search for the desired container which can be activated.
+			if (this.isParentCardLayout(this.tree)) {
+				this.deferredLoadingActiveParent = this.tree;
+			} else {
+				this.deferredLoadingActiveParent = this.tree.findParentBy(this.isParentCardLayout, this);
+				if (!this.deferredLoadingActiveParent) {
+					this.deferredLoading = false;
+				}
+			}
+		}
+	},
+
+	/**
+	 * Returned true if the {@link Ext.Component#ownerCt owner} of the given {@link Ext.Container}
+	 * contains the {@link Ext.layout.CardLayout}. This function is given in
+	 * {@link #onTreeAfterRender} to determine the {@link #deferredLoadingActiveParent}.
+	 * @param {Ext.Container} ct The container to check
+	 * @return {Boolean} True if the parent of the given container has the CardLayout
+	 * @private
+	 */
+	isParentCardLayout : function(ct)
+	{
+		return ct.ownerCt && ct.ownerCt.layout && ct.ownerCt.layout.type === 'card';
+	},
+
+	/**
+	 * Bind a store to this loader. This will initialize all required event handlers.
+	 * @param {Zarafa.plugins.files.data.FilesHierarchyStore} store The store to bind
+	 * @param {Boolean} init True when this is called during initialization.
+	 * @private
+	 */
+	bindStore : function(store, init)
+	{
+		if (init !== true && this.store === store) {
+			return;
+		}
+
+		if (this.store) {
+			this.store.un('load', this.onHierarchyLoad, this);
+			this.store.un('remove', this.onHierarchyStoreRemove, this);
+			this.store.un('addFolder', this.onHierarchyAddFolder, this);
+			this.store.un('updateFolder', this.onHierarchyUpdateFolder, this);
+			this.store.un('removeFolder', this.onHierarchyRemoveFolder, this);
+		}
+
+		this.store = store;
+		if (this.store) {
+			this.store.on({
+				'load' : this.onHierarchyLoad,
+				'remove' : this.onHierarchyStoreRemove,
+				'addFolder' : this.onHierarchyAddFolder,
+				'updateFolder' : this.onHierarchyUpdateFolder,
+				'removeFolder' : this.onHierarchyRemoveFolder,
+				'scope' : this
+			});
+		}
+	},
+
+	onHierarchyLoad: function(){
+		var parentCt = this.deferredLoadingActiveParent;
+
+		if (parentCt === parentCt.ownerCt.layout.activeItem) {
+			this.doHierarchyLoad();
+		} else {
+			// We are going to defer to doHierarchyLoad() action,
+			// set isDeferred to true, so we don't need to perform
+			// update event handlers.
+			this.isDeferred = true;
+			this.deferredLoadingActiveParent.on('activate', this.doHierarchyLoad, this, { single : true });
+		}
+	},
+
+	/**
+	 * Called by {@link #onHierarchyLoad} to start (re)loading the hierarchy.
+	 * @private
+	 */
+	doHierarchyLoad : function()
+	{
+		var rootNode = this.tree.getRootNode();
+
+		if (this.fireEvent('beforeload', this, rootNode, this.directFn) !== false) {
+			this.directFn(rootNode.id, this.doHierarchyLoadCallback.createDelegate(this));
+		}
+
+		// The deferred action has been completed,
+		// we can now listen to update events again.
+		this.isDeferred = false;
+	},
+
+	/**
+	 * Callback function for {@link #directFn} as used by {@link #doHierarchyLoad}.
+	 * @param {Object} data The data as returned by the server
+	 * @param {Object} response The response as returned by the server
+	 * @private
+	 */
+	doHierarchyLoadCallback : function(data, response)
+	{
+		var rootNode = this.tree.getRootNode();
+
+		for (var i = 0, len = data.length; i < len; i++) {
+			var item = data[i];
+			var folder = item.folder;
+			// Check if the node already exists or not.
+			var treeNode = rootNode.findChildByEntryId(folder.get('id'));
+			if (!treeNode) {
+				var node = this.createNode(item);
+				rootNode.appendChild(node);
+			} else if (treeNode.attributes.folder !== folder) {
+				treeNode.attributes.folder = folder;
+				treeNode.reload();
+			}
+		}
+		// when we close the shared store suggested contact folder
+		// of shared store was removed but node was not removed from
+		// contact context tree panel because we don't refresh/reload the tree panel
+		// nodes when we switch the context so here we just reload the root node.
+		if(rootNode.childNodes.length !== data.length) {
+			rootNode.reload();
+		}
+
+		this.fireEvent('load', this, rootNode, response);
+	},
+
+	/**
+	 *
+	 */
+	onHierarchyStoreRemove : function(){
+		// TODO: Currently we reload the hierarchy store to remove the backend account from hierarchy
+		//  rather to do so we can simple remove the backend account from hierarchy.
+		console.log(" onHierarchyStoreRemove called");
+	},
+
+	/**
+	 *
+	 * @param store
+	 * @param mapiStore
+	 * @param record
+	 */
+	onHierarchyAddFolder : function(store, mapiStore, record) {
+		// A call to doHierarchyLoad is pending,
+		// no need to execute this event handler.
+		if (this.isDeferred === true) {
+			return;
+		}
+
+		if (Array.isArray(record)) {
+			for (var i = 0, len = record.length; i < len; i++) {
+				this.onHierarchyAddFolder(store, mapiStore, record[i]);
+			}
+			return;
+		}
+
+		if (record.phantom !== true) {
+			if (this.tree.nodeFilter(record)) {
+				var treeNode = this.tree.getNodeById(record.get('id'));
+
+				if (!treeNode) {
+					var parentNode = this.getFilteredParentNode(record);
+					var nodeType = 'filesfolder';
+
+					if (!parentNode) {
+						parentNode = this.tree.getRootNode();
+						nodeType = 'filesrootfolder';
+					}
+
+					var newNode = this.createNode(Ext.apply({ nodeType : nodeType, folder: record }, this.nodeConfig));
+					parentNode.appendChild(newNode);
+					parentNode.expand();
+				}
+			}
+		}
+	},
+
+	/**
+	 *
+	 * @param store
+	 * @param mapiStore
+	 * @param record
+	 */
+	onHierarchyUpdateFolder : function(store, mapiStore, record) {
+		// A call to doHierarchyLoad is pending,
+		// no need to execute this event handler.
+		if (this.isDeferred === true) {
+			return;
+		}
+
+		var treeNode = this.tree.getNodeById(record.get('entryid'));
+		if (!treeNode) {
+			// Don't add new node in hierarchy if its parent node is
+			// not expanded yet. As Extjs follow the lazy rendering so when we expand the
+			// parent node, tree automatically creates respective child nodes
+			var parentNode = this.getFilteredParentNode(record);
+			if (Ext.isDefined(parentNode) && (!parentNode || !parentNode.isExpanded())) {
+				return;
+			}
+			// treeNode not found, so apparently the folder change might
+			// have made this folder visible in the current hierarchy.
+			// Let the 'addFolder' event handler handle this case.
+			this.onHierarchyAddFolder(store, mapiStore, record);
+		} else if(!record.isHomeFolder()) {
+			treeNode.updateUI(record);
+		}
+	},
+
+	/**
+	 *
+	 * @param store
+	 * @param mapiStore
+	 * @param record
+	 */
+	onHierarchyRemoveFolder : function(store, mapiStore, record) {
+		// A call to doHierarchyLoad is pending,
+		// no need to execute this event handler.
+		if (this.isDeferred === true) {
+			return;
+		}
+
+		var treeNode = this.tree.getNodeById(record.get('id'));
+		if (treeNode) {
+			treeNode.remove(true);
+		}
+	},
+
+	/**
+	 * 
+	 * @param folder
+	 * @param base
+	 * @return {boolean}
+	 */
+	getFilteredParentNode : function(folder, base)
+	{
+		var parentfolder = folder.getParentFolder();
+
+		var node = false;
+
+		if (parentfolder) {
+			if (parentfolder === base) {
+				node = base;
+			} else if (this.tree.nodeFilter(parentfolder)) {
+				node = this.tree.getNodeById(parentfolder.get('id'));
+			}
+
+			if (!node) {
+				node = this.getFilteredParentNode(parentfolder);
+			}
+		}
+
+		return node;
 	},
 
 	/**
@@ -63,85 +328,72 @@ Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, 
 	 * @param {Number} nodeId The id of node which content need to be loaded
 	 * @param {Function} callback The function which need to be called after response received
 	 */
-	loadFolder: function (nodeId, callback) {
-		var responseHandler = new Zarafa.core.data.AbstractResponseHandler({
-			doGetfilestree : this.doGetfilestree.createDelegate(this, [callback], true),
-			nodeId         : nodeId
-		});
+	directFn: function (node, fn) {
+		var treeNode = this.tree.getNodeById(node);
+		var data = [];
 
-		container.getRequest().singleRequest(
-			'filesbrowsermodule',
-			'getfilestree',
-			{
-				id           : nodeId,
-				loadfiles    : this.loadFiles,
-				reload       : this.reload,
-				accountFilter: this.accountFilter
-			},
-			responseHandler
-		);
-	},
-
-	/**
-	 * This method gets called when response arrives from the server.
-	 *
-	 * @param {Object} response Object contained the response data.
-	 * @param {Function} callback The function which need to be called after response received
-	 */
-	doGetfilestree : function(response, callback){
-		if (response.status) {
-			this.loadSuccess(response.items, response, callback);
+		if (treeNode.isRoot) {
+			var stores = this.store.getRange();
+			for (var i = 0, len = stores.length; i < len; i++) {
+				var store = stores[i];
+				var folder = store.getSubtreeFolder();
+				if (folder) {
+					if (this.tree.nodeFilter(folder)) {
+						data.push(Ext.apply({ nodeType : 'filesrootfolder', folder: folder }, this.nodeConfig));
+					}
+				}
+			}
+			fn(data, {status: true});
 		} else {
-			this.loadFailure(response.items, response, callback);
+			data = this.getFilteredChildNodes(treeNode.getFolder(), 'filesfolder');
+			fn(data, {status: true});
 		}
 	},
 
 	/**
-	 * Helper function to handle successful response from the server.
-	 * It will then call the callback method.
+	 * Obtain the list of nodes which are positioned below the given {@link Zarafa.plugins.files.data.FilesFolderRecord folder}
+	 * also subfolder will be used for a recursive call to {@link #getFilteredChildNodes} to see if the sub-subfolders
+	 * do match the filter.
 	 *
-	 * @param {array} items which received from server.
-	 * @param {Object} response Object contained the response data.
-	 * @param {Function} callback The function which need to be called after response received
+	 * @param {Zarafa.plugins.files.data.FilesFolderRecord} folder The folder which is clicked
+	 * @param {String} nodeType The nodeType which must be applied to each node
+	 * @return {Object[]} The array of nodes which must be created as subfolders
+	 * @private
 	 */
-	loadSuccess: function (items, response, callback) {
-		callback(items, response);
+	getFilteredChildNodes : function(folder, nodeType)
+	{
+		var subfolders = folder.getChildren();
+		var nodes = [];
+
+		for (var i = 0, len = subfolders.length; i < len; i++) {
+			var subfolder = subfolders[i];
+			if (this.tree.nodeFilter(subfolder)) {
+				nodes.push(Ext.apply({ nodeType : nodeType, folder: subfolder }, this.nodeConfig));
+			}
+		}
+
+		return nodes;
 	},
 
 	/**
-	 * Helper function to handle failure response from the server.
-	 * It will display a messagebox and then call the callback method.
-	 *
-	 * @param {array} items which received from server.
-	 * @param {Object} response Object contained the response data.
-	 * @param {Function} callback The function which need to be called after response received
+	 * Add extra attributes for a new {@link Zarafa.hierarchy.ui.FolderNode folderNode} which is about
+	 * to be created. This will check the {@link Zarafa.hierarchy.ui.FolderNode#folder folder} to
+	 * see what properties must be set.
+	 * @param {Object} attr The attributes which will be used to create the node
+	 * @return {Zarafa.hierarchy.ui.FolderNode} The created node
 	 */
-	loadFailure: function (items, response, callback) {
-		Zarafa.common.dialogs.MessageBox.show({
-			title  : dgettext('plugin_files', 'Error'),
-			msg    : response.error,
-			icon   : Zarafa.common.dialogs.MessageBox.ERROR,
-			buttons: Zarafa.common.dialogs.MessageBox.OK
-		});
+	createNode : function(attr)
+	{
+		var folder = attr.folder;
 
-		callback(undefined, {status: true, items: undefined});
-	},
+		if (folder) {
+			attr.extendedDisplayName = attr.nodeType === 'filesrootfolder';
+		}
 
-	/**
-	 * This method gets called if a loading exception occurs.
-	 * It will diplay a warning message to the user.
-	 *
-	 * @param tl
-	 * @param node
-	 * @param response
-	 */
-	loadException: function (tl, node, response) {
-		Zarafa.common.dialogs.MessageBox.show({
-			title  : dgettext('plugin_files', 'Loading failed'),
-			msg    : response.error,
-			icon   : Zarafa.common.dialogs.MessageBox.ERROR,
-			buttons: Zarafa.common.dialogs.MessageBox.OK
-		});
+		attr.uiProvider = Zarafa.plugins.files.ui.FolderNodeUI;
+		attr.leaf = !folder.get('has_subfolder');
+
+		return Zarafa.plugins.files.data.NavigatorTreeLoader.superclass.createNode.apply(this, arguments);
 	},
 
 	/**
@@ -151,5 +403,14 @@ Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, 
 	 */
 	setReload: function (reload) {
 		this.reload = reload;
+	},
+
+	/**
+	 * Destroys the TreeLoader
+	 */
+	destroy : function()
+	{
+		this.bindStore(null);
+		Zarafa.plugins.files.data.NavigatorTreeLoader.superclass.destroy.apply(this, arguments);
 	}
 });

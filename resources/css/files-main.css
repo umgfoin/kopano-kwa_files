@@ -49,11 +49,6 @@ span.error_files {
 	color: #CC3333 !important;
 }
 
-/** tree panel */
-.x-treenode-load-silent .x-tree-node-icon {
-    background-image: url(../../../client/resources/images/icons/folder.png)!important;
-}
-
 /** top toolbar */
 .files_top_toolbar .x-toolbar-left table{
     width: 100%;
@@ -186,12 +181,8 @@ span.error_files {
 }
 
 /* icon view */
-.zarafa-files-iconview {
-	 background-color: white;
-}
-.zarafa-files-iconview-container {
+.zarafa-files-iconview-thumb {
 	float:left;
-	word-wrap: break-word;
 	height: 95px;
 	margin:5px;
 	overflow:hidden;
@@ -203,12 +194,16 @@ span.error_files {
 	border:2px solid #fff;
 	text-overflow:ellipsis;
 }
-.zarafa-files-iconview-thumb {
-	background-position:50% 10%;
-	background-repeat:no-repeat;
-	height:62px;
-	width:62px;
-	border:2px solid #fff;
+
+.zarafa-files-iconview-icon {
+	height: 56px;
+	margin-top: 6px;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+}
+
+.zarafa-files-iconview {
+	 background-color: white;
 }
 
 .zarafa-files-iconview-over {
@@ -239,29 +234,6 @@ span.error_files {
 /* account view */
 .zarafa-files-accountview {
 	background-color: white;
-}
-
-.zarafa-files-iconview-over {
-	background-color:#EFEFFF;
-	border:2px solid #DDDDDD;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	color:#0E62BB;
-}
-.zarafa-files-iconview-selected	{
-	background-color:#CEE3F6;
-	border:2px solid #7EACD6;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	color:#0E62BB;
-}
-
-.zarafa-files-iconview-thumb {
-	background-position:50% 10%;
-	background-repeat:no-repeat;
-	height:62px;
-	width:62px;
-	border:2px solid #fff;
 }
 
 .zarafa-files-accountview-container {
@@ -591,263 +563,263 @@ span.error_files {
 
 /* file type icons 16px */
 .files16icon_folder {
-	background-image: url(../resources/icons/iconview/16px/folder.png);
+	background-image: url(../resources/icons/iconview/16px/folder.png) !important;
 }
 
 .files16icon_blank {
-	background-image: url(../resources/icons/iconview/16px/_blank.png);
+	background-image: url(../resources/icons/iconview/16px/_blank.png)!important;
 }
 
 .files16icon_aac {
-	background-image: url(../resources/icons/iconview/16px/aac.png);
+	background-image: url(../resources/icons/iconview/16px/aac.png)!important;
 }
 
 .files16icon_ai {
-	background-image: url(../resources/icons/iconview/16px/ai.png);
+	background-image: url(../resources/icons/iconview/16px/ai.png)!important;
 }
 
 .files16icon_aiff {
-	background-image: url(../resources/icons/iconview/16px/aiff.png);
+	background-image: url(../resources/icons/iconview/16px/aiff.png)!important;
 }
 
 .files16icon_apk {
-	background-image: url(../resources/icons/iconview/16px/apk.png);
+	background-image: url(../resources/icons/iconview/16px/apk.png)!important;
 }
 
 .files16icon_avi {
-	background-image: url(../resources/icons/iconview/16px/avi.png);
+	background-image: url(../resources/icons/iconview/16px/avi.png)!important;
 }
 
 .files16icon_bmp {
-	background-image: url(../resources/icons/iconview/16px/bmp.png);
+	background-image: url(../resources/icons/iconview/16px/bmp.png)!important;
 }
 
 .files16icon_c {
-	background-image: url(../resources/icons/iconview/16px/c.png);
+	background-image: url(../resources/icons/iconview/16px/c.png)!important;
 }
 
 .files16icon_cpp, .files16icon_cc {
-	background-image: url(../resources/icons/iconview/16px/cpp.png);
+	background-image: url(../resources/icons/iconview/16px/cpp.png)!important;
 }
 
 .files16icon_css {
-	background-image: url(../resources/icons/iconview/16px/css.png);
+	background-image: url(../resources/icons/iconview/16px/css.png)!important;
 }
 
 .files16icon_csv {
-	background-image: url(../resources/icons/iconview/16px/csv.png);
+	background-image: url(../resources/icons/iconview/16px/csv.png)!important;
 }
 
 .files16icon_dat {
-	background-image: url(../resources/icons/iconview/16px/dat.png);
+	background-image: url(../resources/icons/iconview/16px/dat.png)!important;
 }
 
 .files16icon_dmg {
-	background-image: url(../resources/icons/iconview/16px/dmg.png);
+	background-image: url(../resources/icons/iconview/16px/dmg.png)!important;
 }
 
 .files16icon_doc, .files16icon_docx {
-	background-image: url(../resources/icons/iconview/16px/doc.png);
+	background-image: url(../resources/icons/iconview/16px/doc.png)!important;
 }
 
 .files16icon_dotx {
-	background-image: url(../resources/icons/iconview/16px/dotx.png);
+	background-image: url(../resources/icons/iconview/16px/dotx.png)!important;
 }
 
 .files16icon_dwg {
-	background-image: url(../resources/icons/iconview/16px/dwg.png);
+	background-image: url(../resources/icons/iconview/16px/dwg.png)!important;
 }
 
 .files16icon_dxf {
-	background-image: url(../resources/icons/iconview/16px/dxf.png);
+	background-image: url(../resources/icons/iconview/16px/dxf.png)!important;
 }
 
 .files16icon_eps {
-	background-image: url(../resources/icons/iconview/16px/eps.png);
+	background-image: url(../resources/icons/iconview/16px/eps.png)!important;
 }
 
 .files16icon_exe {
-	background-image: url(../resources/icons/iconview/16px/exe.png);
+	background-image: url(../resources/icons/iconview/16px/exe.png)!important;
 }
 
 .files16icon_flv {
-	background-image: url(../resources/icons/iconview/16px/flv.png);
+	background-image: url(../resources/icons/iconview/16px/flv.png)!important;
 }
 
 .files16icon_gif {
-	background-image: url(../resources/icons/iconview/16px/gif.png);
+	background-image: url(../resources/icons/iconview/16px/gif.png)!important;
 }
 
 .files16icon_h {
-	background-image: url(../resources/icons/iconview/16px/h.png);
+	background-image: url(../resources/icons/iconview/16px/h.png)!important;
 }
 
 .files16icon_hpp {
-	background-image: url(../resources/icons/iconview/16px/hpp.png);
+	background-image: url(../resources/icons/iconview/16px/hpp.png)!important;
 }
 
 .files16icon_html{
-	background-image: url(../resources/icons/iconview/16px/html.png);
+	background-image: url(../resources/icons/iconview/16px/html.png)!important;
 }
 
 .files16icon_ics {
-	background-image: url(../resources/icons/iconview/16px/ics.png);
+	background-image: url(../resources/icons/iconview/16px/ics.png)!important;
 }
 
 .files16icon_iso {
-	background-image: url(../resources/icons/iconview/16px/iso.png);
+	background-image: url(../resources/icons/iconview/16px/iso.png)!important;
 }
 
 .files16icon_java {
-	background-image: url(../resources/icons/iconview/16px/java.png);
+	background-image: url(../resources/icons/iconview/16px/java.png)!important;
 }
 
 .files16icon_jpg {
-	background-image: url(../resources/icons/iconview/16px/jpg.png);
+	background-image: url(../resources/icons/iconview/16px/jpg.png)!important;
 }
 
 .files16icon_js {
-	background-image: url(../resources/icons/iconview/16px/js.png);
+	background-image: url(../resources/icons/iconview/16px/js.png)!important;
 }
 
 .files16icon_key {
-	background-image: url(../resources/icons/iconview/16px/key.png);
+	background-image: url(../resources/icons/iconview/16px/key.png)!important;
 }
 
 .files16icon_less {
-	background-image: url(../resources/icons/iconview/16px/less.png);
+	background-image: url(../resources/icons/iconview/16px/less.png)!important;
 }
 
 .files16icon_mid {
-	background-image: url(../resources/icons/iconview/16px/mid.png);
+	background-image: url(../resources/icons/iconview/16px/mid.png)!important;
 }
 
 .files16icon_mp3 {
-	background-image: url(../resources/icons/iconview/16px/mp3.png);
+	background-image: url(../resources/icons/iconview/16px/mp3.png)!important;
 }
 
 .files16icon_mp4 {
-	background-image: url(../resources/icons/iconview/16px/mp4.png);
+	background-image: url(../resources/icons/iconview/16px/mp4.png)!important;
 }
 
 .files16icon_mpg {
-	background-image: url(../resources/icons/iconview/16px/mpg.png);
+	background-image: url(../resources/icons/iconview/16px/mpg.png)!important;
 }
 
 .files16icon_odf {
-	background-image: url(../resources/icons/iconview/16px/odf.png);
+	background-image: url(../resources/icons/iconview/16px/odf.png)!important;
 }
 
 .files16icon_ods {
-	background-image: url(../resources/icons/iconview/16px/ods.png);
+	background-image: url(../resources/icons/iconview/16px/ods.png)!important;
 }
 
 .files16icon_odt {
-	background-image: url(../resources/icons/iconview/16px/odt.png);
+	background-image: url(../resources/icons/iconview/16px/odt.png)!important;
 }
 
 .files16icon_otp {
-	background-image: url(../resources/icons/iconview/16px/otp.png);
+	background-image: url(../resources/icons/iconview/16px/otp.png)!important;
 }
 
 .files16icon_ots {
-	background-image: url(../resources/icons/iconview/16px/ots.png);
+	background-image: url(../resources/icons/iconview/16px/ots.png)!important;
 }
 
 .files16icon_ott {
-	background-image: url(../resources/icons/iconview/16px/ott.png);
+	background-image: url(../resources/icons/iconview/16px/ott.png)!important;
 }
 
 .files16icon_pdf {
-	background-image: url(../resources/icons/iconview/16px/pdf.png);
+	background-image: url(../resources/icons/iconview/16px/pdf.png)!important;
 }
 
 .files16icon_php {
-	background-image: url(../resources/icons/iconview/16px/php.png);
+	background-image: url(../resources/icons/iconview/16px/php.png)!important;
 }
 
 .files16icon_png {
-	background-image: url(../resources/icons/iconview/16px/png.png);
+	background-image: url(../resources/icons/iconview/16px/png.png)!important;
 }
 
 .files16icon_ppt, .files16icon_pptx {
-	background-image: url(../resources/icons/iconview/16px/ppt.png);
+	background-image: url(../resources/icons/iconview/16px/ppt.png)!important;
 }
 
 .files16icon_psd {
-	background-image: url(../resources/icons/iconview/16px/psd.png);
+	background-image: url(../resources/icons/iconview/16px/psd.png)!important;
 }
 
 .files16icon_py {
-	background-image: url(../resources/icons/iconview/16px/py.png);
+	background-image: url(../resources/icons/iconview/16px/py.png)!important;
 }
 
 .files16icon_qt {
-	background-image: url(../resources/icons/iconview/16px/qt.png);
+	background-image: url(../resources/icons/iconview/16px/qt.png)!important;
 }
 
 .files16icon_rar {
-	background-image: url(../resources/icons/iconview/16px/rar.png);
+	background-image: url(../resources/icons/iconview/16px/rar.png)!important;
 }
 
 .files16icon_rb {
-	background-image: url(../resources/icons/iconview/16px/rb.png);
+	background-image: url(../resources/icons/iconview/16px/rb.png)!important;
 }
 
 .files16icon_rtf {
-	background-image: url(../resources/icons/iconview/16px/rtf.png);
+	background-image: url(../resources/icons/iconview/16px/rtf.png)!important;
 }
 
 .files16icon_sass {
-	background-image: url(../resources/icons/iconview/16px/sass.png);
+	background-image: url(../resources/icons/iconview/16px/sass.png)!important;
 }
 
 .files16icon_scss {
-	background-image: url(../resources/icons/iconview/16px/scss.png);
+	background-image: url(../resources/icons/iconview/16px/scss.png)!important;
 }
 
 .files16icon_sql {
-	background-image: url(../resources/icons/iconview/16px/sql.png);
+	background-image: url(../resources/icons/iconview/16px/sql.png)!important;
 }
 
 .files16icon_tga {
-	background-image: url(../resources/icons/iconview/16px/tga.png);
+	background-image: url(../resources/icons/iconview/16px/tga.png)!important;
 }
 
 .files16icon_tgz, .files16icon_gz {
-	background-image: url(../resources/icons/iconview/16px/tgz.png);
+	background-image: url(../resources/icons/iconview/16px/tgz.png)!important;
 }
 
 .files16icon_tiff {
-	background-image: url(../resources/icons/iconview/16px/tiff.png);
+	background-image: url(../resources/icons/iconview/16px/tiff.png)!important;
 }
 
 .files16icon_txt {
-	background-image: url(../resources/icons/iconview/16px/txt.png);
+	background-image: url(../resources/icons/iconview/16px/txt.png)!important;
 }
 
 .files16icon_wav {
-	background-image: url(../resources/icons/iconview/16px/wav.png);
+	background-image: url(../resources/icons/iconview/16px/wav.png)!important;
 }
 
 .files16icon_xls {
-	background-image: url(../resources/icons/iconview/16px/xls.png);
+	background-image: url(../resources/icons/iconview/16px/xls.png)!important;
 }
 
 .files16icon_xlsx {
-	background-image: url(../resources/icons/iconview/16px/xlsx.png);
+	background-image: url(../resources/icons/iconview/16px/xlsx.png)!important;
 }
 
 .files16icon_xml {
-	background-image: url(../resources/icons/iconview/16px/xml.png);
+	background-image: url(../resources/icons/iconview/16px/xml.png)!important;
 }
 
 .files16icon_yml {
-	background-image: url(../resources/icons/iconview/16px/yml.png);
+	background-image: url(../resources/icons/iconview/16px/yml.png)!important;
 }
 
 .files16icon_zip {
-	background-image: url(../resources/icons/iconview/16px/zip.png);
+	background-image: url(../resources/icons/iconview/16px/zip.png)!important;
 }
 
 .files-context-navigation-node {
@@ -875,4 +847,8 @@ span.error_files {
 
 .files-faulty-account .x-action-col-icon {
 	cursor: default;
+}
+
+.x-grid3-row {
+	border-left: none;
 }

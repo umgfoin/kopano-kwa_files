@@ -22,11 +22,10 @@ Zarafa.plugins.files.ui.dialogs.SaveToFilesContentPanel = Ext.extend(Zarafa.core
 			closeOnSave: true,
 			width      : 400,
 			height     : 300,
-
 			items: [{
-				xtype   : 'filesplugin.savetofilestreepanel',
-				ref     : 'treePanel',
-				response: config.record
+				xtype   : 'filesplugin.savetofilespanel',
+				response: config.response,
+				model : config.model
 			}]
 		});
 

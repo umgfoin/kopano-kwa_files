@@ -10,7 +10,9 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 		Ext.applyIf(config, {
 			xtype : 'filesplugin.filesmainpanel',
 			layout: 'zarafa.switchborder',
-
+			header : false,
+			border : false,
+			iconCls : 'icon_files',
 			items: [
 				this.initMainItems(config),
 				this.initPreviewPanel(config.context)
@@ -35,6 +37,7 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 			minHeight  : 200,
 			region     : 'center',
 			collapsible: false,
+			border: false,
 			split      : true,
 			items      : [{
 				xtype    : 'zarafa.switchviewcontentcontainer',
@@ -106,6 +109,7 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 	},
 
 	onViewChange: function (context, newView, oldView) {
+
 		switch (newView) {
 			case Zarafa.plugins.files.data.Views.LIST:
 				this.viewPanel.switchView('files-gridview');
