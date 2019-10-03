@@ -176,7 +176,6 @@ Zarafa.plugins.files.ui.dialogs.CreateFolderPanel = Ext.extend(Ext.Panel, {
 	 */
 	onHierarchyNodeSelect : function(model, node)
 	{
-		var node = model.getSelectedNode();
 		if (node) {
 			this.parentFolder = node.getFolder();
 		}
