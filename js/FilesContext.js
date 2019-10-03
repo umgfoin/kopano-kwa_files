@@ -55,9 +55,18 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 		this.registerInsertionPoint('main.maintabbar.left', this.createMainTab, this);
 		this.registerInsertionPoint('main.maintoolbar.new.item', this.createNewFilesButton, this);
 		this.registerInsertionPoint('main.toolbar.actions.last', this.createMainToolbarButtons, this);
-		this.registerInsertionPoint('navigation.center', this.createNavigatorTreePanel, this);
+		this.registerInsertionPoint('navigation.center', this.createFilesNavigationPanel, this);
+
+		this.registerInsertionPoint('main.attachment.method', this.createAttachmentDownloadInsertionPoint, this);
+		this.registerInsertionPoint('common.contextmenu.attachment.actions', this.createAttachmentUploadInsertionPoint, this);
+		this.registerInsertionPoint('context.mail.contextmenu.actions', this.createEmailUploadInsertionPoint, this);
 
 		Zarafa.plugins.files.FilesContext.superclass.constructor.call(this, config);
+
+		var notificationResolver = container.getNotificationResolver();
+		if (Ext.isFunction(notificationResolver.addIPFNotificationModule)) {
+			notificationResolver.addIPFNotificationModule("fileshierarchynotifier");
+		}
 
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.attachdialog');
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.createfolderdialog');
@@ -65,6 +74,7 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.sharedialog');
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.uploadstatusdialog');
 		Zarafa.core.data.SharedComponentType.addProperty('zarafa.plugins.files.treecontextmenu');
+		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.attachments.files');
 	},
 
 	/**
@@ -78,6 +88,181 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			tabOrderIndex: 7,
 			context      : this.getName()
 		};
+	},
+
+	/**
+	 * This method hooks to the attachments chooser button and allows users to add files from
+	 * the Files plugin to their emails.
+	 *
+	 * @param include
+	 * @param btn
+	 * @returns {Object}
+	 */
+	createAttachmentDownloadInsertionPoint: function (include, btn)
+	{
+		return {
+			text : dgettext('plugin_files', 'Add from Files'),
+			handler : this.showFilesDownloadAttachmentDialog,
+			scope : btn,
+			context : this,
+			iconCls : 'icon_files_category',
+			disabled : !this.isAccountsConfigured()
+		};
+	},
+
+	/**
+	 * This method will open the {@link Zarafa.plugins.files.ui.dialogs.AttachFromFilesContentPanel file chooser panel}.
+	 *
+	 * @param btn
+	 */
+	showFilesDownloadAttachmentDialog: function (btn)
+	{
+		// TODO: Move this function to action.js
+
+		var activeMenuItem = this.menu.activeItem;
+		var component = Zarafa.core.data.SharedComponentType['common.dialog.attachments.files'];
+		Zarafa.core.data.UIFactory.openLayerComponent(component, this.record, {
+			title  : dgettext('plugin_files', 'Add attachment from Files'),
+			modal  : true,
+			model : activeMenuItem.context.getModel()
+		});
+	},
+
+	/**
+	 * Helper function which will return false if no account is configured, True otherwise.
+	 * @returns {boolean} True if accounts configured, false otherwise.
+	 */
+	isAccountsConfigured: function ()
+	{
+		var accountStore = this.getAccountsStore();
+		var foundActiveStore =  accountStore.findBy(function (item) {
+			if (item.get("status") === Zarafa.plugins.files.data.AccountRecordStatus.OK) {
+				return true;
+			}
+		});
+		return foundActiveStore !== -1;
+	},
+
+	/**
+	 * This method hooks to the attachment context menu and allows users to store files from
+	 * their emails to the  Files plugin.
+	 *
+	 * @param include
+	 * @param btn
+	 * @returns {Object}
+	 */
+	createAttachmentUploadInsertionPoint: function (include, btn)
+	{
+		return {
+			text   : dgettext('plugin_files', 'Add to Files'),
+			handler: this.showFilesUploadAttachmentDialog,
+			scope  : btn,
+			iconCls: 'icon_files_category',
+			beforeShow : this.onAttachmentUploadBeforeShow.createDelegate(this)
+		};
+	},
+
+	/**
+	 * Function will be called before {@link Zarafa.common.attachment.ui.AttachmentContextMenu AttachmentContextMenu} is shown
+	 * so we can decide which item should be disabled.
+	 * @param {Zarafa.core.ui.menu.ConditionalItem} item context menu item
+	 * @param {Zarafa.core.data.IPMAttachmentRecord} record attachment record on which context menu is shown
+	 */
+	onAttachmentUploadBeforeShow : function(item, record) {
+		// embedded messages can not be downloaded to files
+		item.setDisabled(record.isEmbeddedMessage());
+		// unsaved attachments can not be added to files without depending on Webapp internals (AttachmentState)
+		item.setDisabled(record.isTmpFile());
+		// If accounts not configured then disable it.
+		item.setDisabled(!this.isAccountsConfigured());
+	},
+
+	/**
+	 * This method will open the {@link Zarafa.plugins.files.ui.dialogs.SaveToFilesContentPanel folder chooser panel}.
+	 */
+	showFilesUploadAttachmentDialog: function(button)
+	{
+		// TODO: Move this function to action.js
+		var attachmentRecord = this.records;
+		var attachmentStore = attachmentRecord.store;
+
+		var store = attachmentStore.getParentRecord().get('store_entryid');
+		var entryid = attachmentStore.getAttachmentParentRecordEntryId();
+		var attachNum = [];
+		if (attachmentRecord.isUploaded()) {
+			attachNum[0] = attachmentRecord.get('attach_num');
+		} else {
+			attachNum[0] = attachmentRecord.get('tmpname');
+		}
+		var dialog_attachments = attachmentStore.getId();
+		var filename = attachmentRecord.get('name');
+
+		var jsonRecords = [{
+			entryid           : entryid,
+			store             : store,
+			attachNum         : attachNum,
+			dialog_attachments: dialog_attachments,
+			filename          : filename
+		}];
+
+		var configRecord = {
+			items: jsonRecords,
+			type : "attachment",
+			count: jsonRecords.length
+		};
+
+		var model = this.activeItem.plugin.getModel();
+		Zarafa.plugins.files.data.Actions.openSaveToFilesDialog(model, {response : configRecord});
+	},
+
+	/**
+	 * This method hooks to the email context menu and allows users to store emails from
+	 * to the  Files plugin.
+	 *
+	 * @param include
+	 * @param btn
+	 * @returns {Object}
+	 */
+	createEmailUploadInsertionPoint: function (include, btn)
+	{
+		return {
+			text : dgettext('plugin_files', 'Add to Files'),
+			handler: this.showFilesUploadEmailDialog,
+			scope : btn,
+			iconCls: 'icon_files_category',
+			disabled: !this.isAccountsConfigured()
+		};
+	},
+
+	/**
+	 * This method will open the {@link Zarafa.plugins.files.ui.dialogs.SaveToFilesContentPanel folder chooser panel}.
+	 */
+	showFilesUploadEmailDialog: function ()
+	{
+		// TODO: Move this function to action.js
+		var records = this.records;
+		if (!Array.isArray(records)) {
+			records = [records];
+		}
+
+		var jsonRecords = [];
+		for (var i = 0, len = records.length; i < len; i++) {
+			var fileName = Ext.isEmpty(records[i].get('subject')) ? dgettext('plugin_files', 'Untitled') : records[i].get('subject');
+			jsonRecords[i] = {
+				store   : records[i].get('store_entryid'),
+				entryid : records[i].get('entryid'),
+				filename: fileName + ".eml"
+			};
+		}
+
+		var configRecord = {
+			items: jsonRecords,
+			type : "mail",
+			count: jsonRecords.length
+		};
+
+		var model = this.activeItem.plugin.getModel();
+		Zarafa.plugins.files.data.Actions.openSaveToFilesDialog(model, {response : configRecord});
 	},
 
 	/**
@@ -104,7 +289,9 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 	getModel: function ()
 	{
 		if (!Ext.isDefined(this.model)) {
-			this.model = new Zarafa.plugins.files.FilesContextModel();
+			this.model = new Zarafa.plugins.files.FilesContextModel({
+				accountStore : this.getAccountsStore()
+			});
 		}
 		return this.model;
 	},
@@ -132,7 +319,7 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 	 */
 	bid: function (folder) {
 
-		if (folder.isContainerClass('IPF.Files', true)) {
+		if (folder instanceof Zarafa.plugins.files.data.FilesFolderRecord) {
 			return 1;
 		}
 
@@ -160,6 +347,7 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.uploadstatusdialog']:
 			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.treecontextmenu']:
 			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.createfolderdialog']:
+			case Zarafa.core.data.SharedComponentType['common.dialog.attachments.savetofiles']:
 				bid = 1;
 				break;
 			case Zarafa.core.data.SharedComponentType['common.create']:
@@ -167,6 +355,13 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['common.preview']:
 				if (record instanceof Zarafa.core.data.IPMRecord && record.isMessageClass('IPM.Files', true)) {
 					bid = 1;
+				}
+				break;
+			case Zarafa.core.data.SharedComponentType['common.dialog.attachments.files']:
+				if (record instanceof Zarafa.core.data.IPMRecord) {
+					if (record.supportsAttachments()) {
+						bid = 1;
+					}
 				}
 				break;
 			case Zarafa.core.data.SharedComponentType['common.contextmenu']:
@@ -216,6 +411,12 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['zarafa.plugins.files.treecontextmenu']:
 				component = Zarafa.plugins.files.ui.FilesTreeContextMenu;
 				break;
+			case Zarafa.core.data.SharedComponentType['common.dialog.attachments.files']:
+				component = Zarafa.plugins.files.ui.dialogs.AttachFromFilesContentPanel;
+				break;
+			case Zarafa.core.data.SharedComponentType['common.dialog.attachments.savetofiles']:
+				component = Zarafa.plugins.files.ui.dialogs.SaveToFilesContentPanel;
+				break;
 			default :
 				break;
 		}
@@ -224,17 +425,33 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 
 	/**
 	 * Creates the files tree that is shown when the user selects the files context from the
-	 * button panel. It shows a tree of available accoutns and folders.
-	 *
-	 * @return {Object}
+	 * button panel. It shows a tree of available files folders
+	 * @private
 	 */
-	createNavigatorTreePanel: function ()
+	createFilesNavigationPanel : function()
 	{
 		return {
-			xtype : 'filesplugin.filescontextnavigationpanel',
-			bodyCssClass : "files_navbar_panel",
+			xtype : 'zarafa.contextnavigation',
 			context : this,
-			store : this.getAccountsStore()
+			store : this.getAccountsStore(),
+			restrictToShowAllFolderList : true,
+			items : [{
+				xtype : 'panel',
+				id: 'zarafa-navigationpanel-file-navigation',
+				cls: 'zarafa-context-navigation-block',
+				ref: 'filesnavigation',
+				layout: 'fit',
+				items : [{
+					xtype : 'filesplugin.navigatortreepanel',
+					id: 'zarafa-navigationpanel-files-navigation-tree',
+					model: this.getModel(),
+					FilesFilter: Zarafa.plugins.files.data.FileTypes.FOLDER,
+					hideDeletedFolders : false,
+					enableDD : true,
+					enableItemDrop : true,
+					deferredLoading : true
+				}]
+			}]
 		};
 	},
 
@@ -247,6 +464,7 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 	createContentPanel: function () {
 		return {
 			xtype  : 'filesplugin.filesmainpanel',
+			title : this.getDisplayName(),
 			context: this
 		};
 	},
@@ -399,6 +617,8 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 		activeContext = activeContext || container.getCurrentContext();
 		if (activeContext === this) {
 			btn.show();
+			var accountStore = this.getAccountsStore();
+			btn.setDisabled(Ext.isEmpty(accountStore.getRange()));
 		} else {
 			btn.hide();
 		}
@@ -445,7 +665,6 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
  * It hooks the context to the WebApp.
  */
 Zarafa.onReady(function () {
-
 	if (container.getSettingsModel().get('zarafa/v1/plugins/files/enable') === true) {
 		container.registerContext(new Zarafa.core.ContextMetaData({
 			name             : 'filescontext',

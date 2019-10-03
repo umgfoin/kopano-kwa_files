@@ -91,8 +91,7 @@ Zarafa.plugins.files.ui.snippets.FilesQuotaBar = Ext.extend(Ext.Panel, {
 	 */
 	onStoreLoad: function (store, records, options)
 	{
-		var nodeID = store.getPath();
-		var accID = Zarafa.plugins.files.data.Utils.File.getAccountId(nodeID);
+		var accID = Zarafa.plugins.files.data.Utils.File.getAccountId(store.folderId);
 
 		// look up the account
 		var account = this.accountsStore.getById(accID);

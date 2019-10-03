@@ -57,9 +57,9 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 		return new Ext.XTemplate(
 			'<div style="height: 100%; width: 100%; overflow: auto;">',
 				'<tpl for=".">',
-					'<div class="zarafa-files-iconview-container {.:this.getHidden}">',
-						'<div class="zarafa-files-iconview-thumb {.:this.getTheme} {.:this.getHidden}"></div>',
-						'<span class="zarafa-files-iconview-subject">{filename:htmlEncode}</span>',
+					'<div class="zarafa-files-iconview-thumb">',
+						'<div class="zarafa-files-iconview-icon {.:this.getTheme} {.:this.getHidden}"></div>',
+						'<div class="zarafa-files-iconview-subject">{filename:htmlEncode}</div>',
 					'</div>',
 				'</tpl>',
 			'</div>',
@@ -148,6 +148,7 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 			ddGroup    : 'dd.filesrecord',
 			copy       : false,
 			fileStore  : this.getStore(),
+			model: this.model,
 			notifyDrop : function (ddSource, e, data) {
 
 				if (this.notifyOver(ddSource, e, data) !== this.dropAllowed) {
@@ -164,8 +165,7 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 						Ext.each(data.selections, function (record) {
 							record.setDisabled(true);
 						});
-
-						return Zarafa.plugins.files.data.Actions.moveRecords(data.selections, dropTarget);
+						return Zarafa.plugins.files.data.Actions.moveRecords(data.selections, dropTarget, {hierarchyStore: this.model.getHierarchyStore()});
 					}
 				}
 
@@ -274,25 +274,36 @@ Zarafa.plugins.files.ui.FilesRecordIconView = Ext.extend(Zarafa.common.ui.Dragga
 		var store = this.getStore();
 		var record = store.getAt(index);
 		if (record.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER) {
-			store.loadPath(record.get('id'));
+			Zarafa.plugins.files.data.Actions.openFolder(this.model, record.get('entryid'));
 		} else {
 			Zarafa.plugins.files.data.Actions.downloadItem(record);
 		}
 	},
 
 	onSelectionChange: function (dataView, selections) {
-		this.model.setSelectedRecords(dataView.getSelectedRecords());
+		var records = dataView.getSelectedRecords();
+
+		// FIXME: In Webapp context who contains the dataViews are not statefulRecordSelection but in files context
+		//  we have preview panel and because of that we need to make file context model statefulRecordSelection to true.
+		//  here we face an issue when we delete more than one record from icon views because onSelectionChange function
+		//  also called to deselect the record. when record was deleted at that time dataView.getSelectedRecords returns
+		//  an array whose first element value is undefined because getSelectedRecords gets the record by using viewIndex
+		//  from store and at this time length of records was changed due to first deletion and because of that it will give
+		//  undefined as first element of an array.
+		records = records.filter(function(record) {
+			return Ext.isDefined(record);
+		}, this);
+
+		this.model.setSelectedRecords(records, false);
 
 		var viewMode = this.context.getCurrentViewMode();
-
-		var records = dataView.getSelectedRecords();
 		var count = records.length;
 
-		if (viewMode != Zarafa.plugins.files.data.ViewModes.NO_PREVIEW) {
-			if (count != 1) {
+		if (viewMode !== Zarafa.plugins.files.data.ViewModes.NO_PREVIEW) {
+			if (count !== 1) {
 				this.model.setPreviewRecord(undefined);
 			} else if (count == 1) {
-				if (records[0].get('id') !== (container.getSettingsModel().get('zarafa/v1/contexts/files/files_path') + "/") && records[0].get('filename') !== "..") {
+				if (records[0].get('folder_id') !== (container.getSettingsModel().get('zarafa/v1/contexts/files/files_path') + "/") && records[0].get('filename') !== "..") {
 					this.model.setPreviewRecord(records[0]);
 				} else {
 					this.model.setPreviewRecord(undefined);

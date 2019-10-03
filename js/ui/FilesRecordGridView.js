@@ -111,7 +111,7 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 						record.setDisabled(true);
 					});
 
-					return Zarafa.plugins.files.data.Actions.moveRecords(data.selections, dropTarget);
+					return Zarafa.plugins.files.data.Actions.moveRecords(data.selections, dropTarget, {hierarchyStore: this.gridStore.hierarchyStore});
 				} else {
 					return false;
 				}
@@ -128,8 +128,8 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 					}
 
 					Ext.each(data.selections, function (record) {
-						var srcId = record.get("id");
-						var trgId = dropTarget.get("id");
+						var srcId = record.get("folder_id");
+						var trgId = dropTarget.get("folder_id");
 						if (srcId === trgId || record.get("filename") === ".." || trgId.slice(0, srcId.length) === srcId) {
 							ret = this.dropNotAllowed;
 							return false;
@@ -232,7 +232,7 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 		var store = this.getStore();
 		var record = store.getAt(rowIndex);
 		if (record.get('type') === Zarafa.plugins.files.data.FileTypes.FOLDER) {
-			store.loadPath(record.get('id'));
+			Zarafa.plugins.files.data.Actions.openFolder(this.model, record.get('entryid'));
 		} else {
 			Zarafa.plugins.files.data.Actions.downloadItem(record);
 		}
@@ -255,7 +255,6 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 	 */
 	onRowSelect: function (selectionModel, rowNumber, record)
 	{
-
 		var viewMode = this.context.getCurrentViewMode();
 		var count = selectionModel.getCount();
 		if (viewMode === Zarafa.plugins.files.data.ViewModes.NO_PREVIEW || count > 1 || record.getDisabled()) {
@@ -263,7 +262,7 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 		}
 		if (count === 1) {
 			var id = container.getSettingsModel().get('zarafa/v1/contexts/files/files_path') + "/";
-			if (record.get('id') !== id) {
+			if (record.get('folder_id') !== id) {
 				this.model.setPreviewRecord(record);
 			}
 			return;

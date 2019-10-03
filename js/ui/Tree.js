@@ -10,9 +10,19 @@ Ext.namespace('Zarafa.plugins.files.ui');
 Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 
 	/**
-	 * @cfg {array|String} array of account ids or a single account id that should be loaded.
+	 * @cfg {String} account id that should be loaded.
 	 */
-	accountFilter: null,
+	accountFilter: undefined,
+
+	/**
+	 * @cfg {Object} config option for {@link Zarafa.hierarchy.ui.FolderNode foldernode}
+	 */
+	nodeConfig : undefined,
+
+	/**
+	 * @cfg {String} IPMFilter The IPM String on which the hierarchy must be filtered
+	 */
+	FilesFilter : undefined,
 
 	/**
 	 * @cfg {Object} treeSorter a {@link Ext.Ext.tree.TreeSorter} config or {@link Boolean}
@@ -32,26 +42,30 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 			this.accountFilter = config.accountFilter;
 		}
 
+		if (!config.store) {
+			config.store = config.model.getHierarchyStore();
+		}
+
 		Ext.applyIf(config, {
 			xtype : 'filesplugin.tree',
 			enableDD : true,
+			border : false,
 			ddGroup : 'dd.filesrecord',
 			ddAppendOnly : true,
 			pathSeparator: '&',
-			root : {
-				nodeType: 'async',
+			root : new Zarafa.plugins.files.ui.FilesHierarchyRootNode({
 				text : 'Files',
 				id : '#R#',
-				expanded: true,
-				cc : false
-			},
+				// TODO: Find why we need this
+				cc : false,
+				leaf : false,
+				expanded : true,
+				uiProvider : Ext.tree.RootTreeNodeUI
+			}),
+			expanded : true,
 			rootVisible : false,
 			autoScroll : true,
-			maskDisabled : true,
-			loader : new Zarafa.plugins.files.data.NavigatorTreeLoader({
-				loadfiles : false,
-				accountFilter: this.accountFilter
-			})
+			maskDisabled : true
 		});
 		Zarafa.plugins.files.ui.Tree.superclass.constructor.call(this, config);
 
@@ -61,50 +75,137 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 	},
 
 	/**
-	 * Function which is create the {@link Zarafa.plugins.files.data.FilesRecord record} from
-	 * give tree node.
-	 *
-	 * @param {Ext.tree.AsyncTreeNode} node asynchronous tree node.
-	 * @return {Zarafa.plugins.files.data.FilesRecord} returns folder record.
+	 * Function will initialize {@link Zarafa.plugins.files.ui.Tree Tree}.
+	 * @protected
 	 */
-	convertNodeToRecord : function (node)
+	initComponent : function()
 	{
-		var fileRecord = Zarafa.core.data.RecordFactory.createRecordObjectByObjectType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_FILES, {
-			'id' : node.attributes.id,
-			'filename' : node.attributes.filename,
-			'path' : node.attributes.path,
-			'type' : node.attributes.isFolder ? Zarafa.plugins.files.data.FileTypes.FOLDER : Zarafa.plugins.files.data.FileTypes.FILE,
-			'entryid' : node.attributes.id,
-			'message_class' : 'IPM.Files'
-		},node.attributes.id);
-		fileRecord.store = this.filesStore;
-		return fileRecord;
+		// Intialize the loader
+		if (!this.loader) {
+			this.loader = new Zarafa.plugins.files.data.NavigatorTreeLoader({
+				tree : this,
+				store : this.store,
+				nodeConfig : this.nodeConfig,
+				deferredLoading : this.deferredLoading
+			});
+		}
+
+		Zarafa.plugins.files.ui.Tree.superclass.initComponent.apply(this, arguments);
+
+		// create load mask
+		if(this.loadMask) {
+			this.on('render', this.createLoadMask, this);
+		}
+
+	},
+
+
+	/**
+	 * Function will create {@link Zarafa.common.ui.LoadMask} which will be shown
+	 * when loading the {@link Zarafa.plugins.files.ui.Tree Tree}.
+	 * @private
+	 */
+	createLoadMask : function()
+	{
+		this.loadMask = new Zarafa.common.ui.LoadMask(this.getEl(), Ext.apply({store: this.store}, this.loadMask));
 	},
 
 	/**
-	 * Recursive function to select a node. The whole path to the node will be expanded.
-	 *
-	 * @param {Ext.tree.AsyncTreeNode} node asynchronous tree node.
-	 * @param {Ext.tree.AsyncTreeNode} childnode asynchronous tree child node.
+	 * Manual selection of the treeNode to which the folder is attached in the tree.
+	 * This will first ensure the given folder {@link #ensureFolderVisible is visible}
+	 * and will then {@link Ext.tree.DefaultSelectionModel#select select the given node} in the tree.
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to select
+	 * @param {Boolean} ensureVisibility True to make given folder visible in screen moving scroll bar.
+	 * @return {Boolean} True when the TreeNode for the given folder existed, and could be selected.
 	 */
-	selectNode: function (node, childnode) {
-		if (!Ext.isDefined(childnode)) {
-			this.nodeToSelect = node.id;
+	selectFolderInTree : function(folder, ensureVisibility)
+	{
+		var treeNode;
+
+		if (ensureVisibility !== false) {
+			treeNode = this.ensureFolderVisible(folder);
+		} else {
+			treeNode = this.getNodeById(folder.id);
 		}
 
-		if (Ext.isDefined(childnode) && childnode.rendered) {
-			childnode.select();
-			childnode.expand();
-		} else if (Ext.isDefined(node) && node.rendered) {
-			node.select();
-			node.expand();
-		} else {
-			var parentNode = node.id.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, '') + "/";
-			var nToSelectParent = this.getNodeById(parentNode);
-			if (Ext.isDefined(nToSelectParent)) {
-				nToSelectParent.on("expand", this.selectNode.createDelegate(this, [node], true), this, {single: true});
-			}
+		if (treeNode) {
+			this.getSelectionModel().select(treeNode, undefined, ensureVisibility);
+			return true;
 		}
+		return false;
+	},
+	/**
+	 * This will call {@link Ext.tree.TreeNode#ensureVisible} in the node
+	 * to which the given folder is attached. This will first make sure
+	 * that the actual folder has been loaded by the parent folder.
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder which must
+	 * be made visible.
+	 * @return {Zarafa.hierarchy.ui.FolderNode} The node which was made visible,
+	 * false if the folder was not found in the hierarchy.
+	 */
+	ensureFolderVisible : function(folder)
+	{
+		var treeNode = this.getNodeById(folder.id);
+
+		// If the tree has not been found, take the parent folder.
+		if (!treeNode) {
+			var parentfolder = folder.getParentFolder();
+			if (!parentfolder) {
+				return false;
+			}
+
+			// With the parent folder we can ensure that folder is visible,
+			// and expand it to ensure the subfolders will be rendered.
+			var parentNode = this.ensureFolderVisible(parentfolder);
+			if (!parentNode) {
+				return false;
+			}
+
+			parentNode.expand();
+
+			// With luck, the node has now been created.
+			treeNode = this.getNodeById(folder.id);
+		}
+
+		if (treeNode) {
+			// Ensure that the given node is visible.
+			// WARNING: After this call, treeNode is destroyed
+			// as the TreeLoader will have reloaded the parent!
+			treeNode.ensureVisible();
+
+			// Obtain the new treeNode reference, update the UI and return it.
+			treeNode = this.getNodeById(folder.id);
+			treeNode.update(true);
+			return treeNode;
+		}
+
+		return false;
+	},
+
+	/**
+	 * The filter which is applied for filtering nodes from the
+	 * {@link Zarafa.plugins.files.ui.Tree Tree}.
+	 *
+	 * @param {Object} folder the folder to filter
+	 * @return {Boolean} true to accept the folder
+	 */
+	nodeFilter : function (folder)
+	{
+		var hide = false;
+
+		if (Ext.isDefined(this.accountFilter)) {
+			hide = folder.getFilesStore().get('entryid') !== this.accountFilter;
+		}
+
+		if (!hide && Ext.isDefined(this.FilesFilter)) {
+			hide = folder.get('object_type') !== Zarafa.plugins.files.data.FileTypes.FOLDER;
+		}
+
+		if( !hide && folder.isHomeFolder()) {
+			hide = true;
+		}
+
+		return !hide;
 	}
 });
 

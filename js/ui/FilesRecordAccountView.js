@@ -35,7 +35,7 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 			autoScroll    : true,
 			emptyText     : '<div class="emptytext">' + dgettext('plugin_files', 'There are no accounts added. Go to settings, Files tab and add an account') + '</div>',
 			overClass     : 'zarafa-files-accountview-over',
-			tpl           : this.initTemplate(config.context),
+			tpl           : this.initTemplate(config.model),
 			multiSelect   : true,
 			selectedClass : 'zarafa-files-accountview-selected',
 			itemSelector  : 'div.zarafa-files-accountview-container'
@@ -46,7 +46,7 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 		this.initEvents();
 	},
 
-	initTemplate: function (context) {
+	initTemplate: function (model) {
 		// Load the account store
 		return new Ext.XTemplate(
 			'<div style="height: 100%; width: 100%; overflow: auto;">',
@@ -63,13 +63,10 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 			{
 				getAccountType: function (record) {
 					// get an instance of the account store.
-					var store = this.context.getAccountsStore();
-
-					// get the account id from the path string
-					var accId = Zarafa.plugins.files.data.Utils.File.getAccountId(record.id);
+					var store = this.model.getHierarchyStore();
 
 					// look up the account
-					var account = store.getById(accId);
+					var account = store.getById(record.id);
 
 					var backend = "Webdav"; // Default is webdav...
 					if (Ext.isDefined(account)) {
@@ -81,13 +78,10 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 
 				getAccountIdentifier: function (record) {
 					// get an instance of the account store.
-					var store = this.context.getAccountsStore();
-
-					// get the account id from the path string
-					var accId = Zarafa.plugins.files.data.Utils.File.getAccountId(record.id);
+					var store = this.model.getHierarchyStore();
 
 					// look up the account
-					var account = store.getById(accId);
+					var account = store.getById(record.id);
 
 					var identifier = ""; // Default is empty...
 					// TODO: this is not dynamic because the backend_config variable names might change in other backends
@@ -100,7 +94,7 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 
 					return Zarafa.plugins.files.data.Utils.Format.truncate(identifier, 27); // 27 = length of the account field
 				},
-				context : context
+				model : model
 			}
 		);
 	},
@@ -147,9 +141,10 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 	 */
 	onIconDblClick: function (dataView, index)
 	{
-		var store = this.getStore();
-		var record = store.getAt(index);
-		store.loadPath(record.get('id'));
+		 var store = this.getStore();
+		 var record = store.getAt(index);
+		 var folder = this.model.getHierarchyStore().getFolder(record.get('entryid'));
+		container.selectFolder(folder);
 	}
 });
 

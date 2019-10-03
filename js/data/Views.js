@@ -24,5 +24,13 @@ Zarafa.plugins.files.data.Views = Zarafa.core.Enum.create({
 	 * @property
 	 * @type Number
 	 */
-	ICON: 1
+	ICON: 1,
+
+	/**
+	 * View all store items in the 'account' view.
+	 *
+	 * @property
+	 * @type Number
+	 */
+	ACCOUNT : 2
 });

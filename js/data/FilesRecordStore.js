@@ -15,19 +15,35 @@ Ext.namespace('Zarafa.plugins.files.data');
 Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 
 	/**
-	 * The root path which is loaded.
-	 *
-	 * @property
-	 * @type String
-	 * @private
+	 * @cfg folderId The folderId of selected folder.
 	 */
-	rootID: undefined,
+	folderId : undefined,
 
 	/**
 	 * @constructor
 	 */
-	constructor: function () {
-		this.rootID = "#R#";
+	constructor: function (config) {
+
+		Ext.applyIf(config || {}, {
+			remoteGroup : true,
+			preferredMessageClass: 'IPM.Files',
+			defaultSortInfo : {
+				field    : 'filename',
+				direction: 'asc'
+			},
+			entryId:'#R#',
+			// FIXME: try to remove folderId and id props from FilesFolderRecord.js
+			folderId: "#R#",
+			listeners : {
+				load: this.onLoad,
+				exception: this.onLoadException
+			},
+			proxy : new Zarafa.plugins.files.data.FilesProxy({
+				listModuleName : 'filesbrowsermodule',
+				itemModuleName : 'filesbrowsermodule'
+			})
+		});
+
 
 		this.addEvents(
 			/**
@@ -40,40 +56,44 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 			'createfolder'
 		);
 
-		Zarafa.plugins.files.data.FilesRecordStore.superclass.constructor.call(this, {
-			preferredMessageClass: 'IPM.Files',
-			autoSave : true,
-			defaultSortInfo : {
-				field    : 'filename',
-				direction: 'asc'
-			},
-			baseParams : {
-				id: this.rootID,
-				reload: false
-			},
-			listeners : {
-				load: this.onLoad,
-				exception: this.onLoadException
-			},
-			proxy : new Zarafa.plugins.files.data.FilesProxy({
-				listModuleName : 'filesbrowsermodule',
-				itemModuleName : 'filesbrowsermodule'
-			})
-		});
+		Zarafa.plugins.files.data.FilesRecordStore.superclass.constructor.call(this, config);
 	},
 
 	/**
-	 * Triggers the loading of the specified path.
-	 *
-	 * @param {String} path to load
+	 * Initialize events which {@link Zarafa.plugins.files.data.FilesHierarchyStore FilesHierarchyStore} will listen to.
+	 * @protected
 	 */
-	loadPath: function (path) {
-		this.rootID = path;
+	initEvents : function () {
+		Zarafa.plugins.files.data.FilesRecordStore.superclass.initEvents.apply(this, arguments);
 
-		var params = {
-			id: this.rootID
-		};
-		this.load({params: params});
+		if (Ext.isDefined(this.hierarchyStore)) {
+			this.hierarchyStore.on('addFolder', this.onHierarchyAddFolder, this);
+		}
+	},
+
+	/**
+	 * Event handler triggers when folder was added in hierarchy. function was
+	 * responsible to save the search criteria in settings.
+	 *
+	 * @param {Zarafa.plugins.files.data.FilesHierarchyStore} store The store which fired the event
+	 * @param {Zarafa.plugins.files.data.FilesStoreRecord} mapiStore mapi store in which new folders are added.
+	 * @param {Zarafa.plugins.files.data.FilesFolderRecord/Zarafa.plugins.files.data.FilesFolderRecord[]} record folder record(s) which are added in hierarchy.
+	 * @private
+	 */
+	onHierarchyAddFolder : function(store, mapiStore, records)
+	{
+		var reloadStore = false;
+
+		Ext.each(records, function(item, index, obj) {
+			if (item.get('parent_entryid') === this.entryId) {
+				reloadStore = true;
+				return false;
+			}
+		}, this);
+
+		if(reloadStore) {
+			this.reload();
+		}
 	},
 
 	/**
@@ -117,34 +137,23 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 			options.params = {};
 		}
 
-		// By default 'load' must cancel the previous request.
-		if (!Ext.isDefined(options.cancelPreviousRequest)) {
-			options.cancelPreviousRequest = true;
-		}
+		if(!Ext.isEmpty(options.folder)) {
+			// If a folder was provided in the options, we apply the folder
+			this.setFolder(options.folder);
+		} else if(Ext.isDefined(options.params.entryid) && Ext.isDefined(options.params.store_entryid)){
+			// If the entryid was provided in the parameters we apply the params
+			this.setEntryId(options.params.entryid, false);
+			this.setStoreEntryId(options.params.store_entryid, false);
 
-		// If we are searching, don't update the active entryid
-		if (!this.hasSearch) {
-			if(!Ext.isEmpty(options.folder)) {
-				// If a folder was provided in the options, we apply the folder
-				this.setFolder(options.folder);
-			} else if(Ext.isDefined(options.params.entryid) && Ext.isDefined(options.params.store_entryid)){
-				// If the entryid was provided in the parameters we apply the params
-				this.setEntryId(options.params.entryid, false);
-				this.setStoreEntryId(options.params.store_entryid, false);
+			if(Ext.isDefined(options.params.folderid)) {
+				this.setFolderId(options.params.folderid, false);
 			}
 		}
 
-		if(!Ext.isEmpty(options.folder)) {
-			Ext.applyIf(options.params, {
-				id: options.folder[0].get('entryid')
-			});
-		}
-
-		this.rootID = options.params.id;
-
 		// Override the given entryid and store entryid.
 		Ext.apply(options.params, {
-			entryid : this.hasSearch ? this.searchFolderEntryId : this.entryId,
+			entryid : this.entryId,
+			id: this.folderId,
 			store_entryid : this.storeEntryId
 		});
 
@@ -160,35 +169,40 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 			actionType : this.actionType
 		});
 
-		Ext.applyIf(options.params, {
-			restriction : this.restriction
-		});
+		return Zarafa.plugins.files.data.FilesRecordStore.superclass.load.call(this, options);
+	},
 
-		if(this.restriction.search) {
-			options.params.restriction = Ext.apply(options.params.restriction || {}, {
-				search : this.restriction.search
-			});
+
+	/**
+	 * Function will set folder entryid and store entryid.
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord[]} mapiFolder mapi folder that should be used to load data.
+	 */
+	setFolder : function(mapiFolder)
+	{
+		Ext.each(mapiFolder, function(folder, index) {
+			this.setEntryId(folder.get('entryid'), index !== 0);
+			this.setStoreEntryId(folder.get('store_entryid'), index !== 0);
+			this.setFolderId(folder.get('folder_id'), index !== 0);
+		}, this);
+	},
+
+	setFolderId : function(folderId, add)
+	{
+		if(!Ext.isEmpty(add) && add) {
+			// multiple entryids
+			if(Ext.isEmpty(this.folderId)) {
+				this.folderId = [];
+			}
+
+			if(!Ext.isEmpty(this.folderId) && !Array.isArray(this.folderId)) {
+				this.folderId = [ this.folderId ];
+			}
+
+			this.folderId.push(folderId);
+		} else {
+			// single entryid
+			this.folderId = folderId;
 		}
-
-		// search specific parameters
-		if (options.actionType == Zarafa.core.Actions['search']) {
-			/*
-			 * below parameters are required for search so if its not passed in arguments
-			 * then we have to add its default values
-			 */
-			Ext.applyIf(options.params, {
-				use_searchfolder : this.useSearchFolder,
-				subfolders : this.subfolders
-			});
-		}
-
-		// remove options that are not needed, although sending it doesn't hurt
-		if (options.actionType == Zarafa.core.Actions['updatesearch'] ||
-			options.actionType == Zarafa.core.Actions['stopsearch']) {
-			delete options.params.restriction;
-		}
-
-		return Zarafa.core.data.ListModuleStore.superclass.load.call(this, options);
 	},
 
 	/**
@@ -201,6 +215,7 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 	 */
 	onLoad: function (store, records, options)
 	{
+		// TODO: Move to files main panel.
 		var path = options.params.id;
 		var componentBox = Zarafa.plugins.files.data.ComponentBox;
 		var viewPanel = componentBox.getViewPanel();
@@ -282,6 +297,7 @@ Zarafa.plugins.files.data.FilesRecordStore = Ext.extend(Zarafa.core.data.ListMod
 	 * @return {String} The current root directory.
 	 */
 	getPath: function () {
-		return this.rootID;
+		return this.entryId;
 	}
 });
+Ext.reg('filesplugin.filesrecordstore', Zarafa.plugins.files.data.FilesRecordStore);

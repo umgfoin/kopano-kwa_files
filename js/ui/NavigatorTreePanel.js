@@ -30,10 +30,31 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 
 		Ext.applyIf(config, {
 			xtype : 'filesplugin.navigatortreepanel',
-			bodyCssClass : 'files-context-navigation-node',
-			accountFilter: config.accountFilter
+			loadMask : true
+
 		});
+
 		Zarafa.plugins.files.ui.NavigatorTreePanel.superclass.constructor.call(this, config);
+
+		this.mon(this.store, 'removeFolder', this.onFolderRemove, this);
+	},
+
+	/**
+	 * Event handler which is fired when the {@link #store} fires the
+	 * {@link Zarafa.hierarchy.data.HierarchyStore#removeFolder} event handlerr. This will check
+	 * if the folder is currently opened, and will deselect that folder.
+	 *
+	 * @param {Zarafa.plugins.files.data.FilesHierarchyStore} store The store which fired the event
+	 * @param {Zarafa.plugins.files.data.FilesStoreRecord} storeRecord The store from where the folder is
+	 * removed
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder which was removed from the store
+	 * @private
+	 */
+	onFolderRemove : function(store, storeRecord, folder)
+	{
+		if (this.model) {
+			this.model.removeFolder(folder);
+		}
 	},
 
 	/**
@@ -47,34 +68,15 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 
 		this.on({
 			"click" : this.onNodeClick,
-			"load" : this.treeNodeLoaded,
 			"beforenodedrop" : this.onBeforeNodeDrop,
-			"expandnode" : this.onExpandNode,
 			"nodedragover" : this.onNodeDragOver,
 			"afterrender" : this.onAfterRender,
 			"contextmenu" : this.onContextMenu,
 			scope : this
 		});
-	},
 
-	/**
-	 * The {@link Ext.tree.TreePanel#expandnode} event handler. It will silently load the children of the node.
-	 * This is used to check if a node can be expanded or not.
-	 *
-	 * @param {Ext.tree.AsyncTreeNode} node
-	 */
-	onExpandNode: function (node)
-	{
-		node.attributes["cc"] = true;
-		// check if a folder should be preloaded
-		if(container.getSettingsModel().get('zarafa/v1/contexts/files/preload_folder')) {
-			node.eachChild(function (child) {
-				if (child.attributes["cc"] !== true) { // only check if it was not checked before
-					child.attributes["cc"] = true;
-					child.quietLoad();
-				}
-			});
-		}
+		this.mon(container, 'folderselect', this.onFolderSelect, this);
+		this.mon(this.store, 'load', this.onHierarchyStoreLoad, this);
 	},
 
 	/**
@@ -88,11 +90,12 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 	{
 		if (Ext.isArray(event.data.selections)) {
 			event.cancel = false;
+
 			Ext.each(event.data.selections, function (record) {
 				record.setDisabled(true);
 			});
 
-			return Zarafa.plugins.files.data.Actions.moveRecords(event.data.selections, event.target);
+			return Zarafa.plugins.files.data.Actions.moveRecords(event.data.selections, event.target.getFolder(), {hierarchyStore : this.store});
 		}
 	},
 
@@ -106,22 +109,26 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 	onNodeDragOver: function (event)
 	{
 		var ret = true;
+		var targetFolder = event.target.getFolder();
+		var filesStore = targetFolder.getFilesStore();
+		var targetedAccountID = filesStore.get('backend_config').current_account_id;
 
 		Ext.each(event.data.selections, function (record) {
-			var srcId = record.get("id");
-			var srcParentId = srcId.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, '') + "/";
-			var trgId = event.target.id;
+			var parentFolder = this.store.getFolder(record.get('parent_entryid'));
 
-			// check if user wants to drop file to different account (not implemented yet)
-			var srcAcc = Zarafa.plugins.files.data.Utils.File.getAccountId(srcId);
-			var dstAcc = Zarafa.plugins.files.data.Utils.File.getAccountId(trgId);
-			if (srcAcc != dstAcc) {
+			if (!Ext.isDefined(parentFolder)) {
 				ret = false;
 				return false;
 			}
 
-			// check if we have a valid target
-			if (srcId === trgId || trgId.slice(0, srcId.length) === srcId || srcParentId === trgId) {
+			var accountID = parentFolder.getFilesStore().get('backend_config').current_account_id;
+
+			if (targetedAccountID !== accountID) {
+				ret = false;
+				return false;
+			}
+
+			if (targetFolder.get('entryid') === record.get('entryid')  || parentFolder.get("entryid") === targetFolder.get('entryid')) {
 				ret = false;
 				return false;
 			}
@@ -137,13 +144,53 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 	 */
 	onNodeClick: function (node)
 	{
-		this.nodeToSelect = node.attributes.id;
-		this.filesStore.loadPath(this.nodeToSelect);
+		container.selectFolder(node.getFolder());
+	},
 
-		var n = this.getNodeById(this.nodeToSelect);
-		if (Ext.isDefined(n)) {
-			n.expand();
+	/**
+	 * Fires when the {@link Zarafa.core.Container} fires the
+	 * {@link Zarafa.core.Container#folderselect} event. This
+	 * will search for the corresponding node in the tree,
+	 * and will mark the given folder as {@link #selectFolderInTree selected}.
+	 *
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord|Array} folder The folder which
+	 * is currently selected.
+	 * @private
+	 */
+	onFolderSelect : function(folder)
+	{
+		if (Array.isArray(folder)) {
+
+			// If we have multi selected folder then select previously selected node in tree.
+			if (folder.length > 1 && this.model) {
+				folder = this.model.getDefaultFolder();
+			} else {
+				folder = folder[0];
+			}
 		}
+
+		// Select the node of selected folder.
+		if (folder) {
+			if (Ext.isFunction(folder.isHomeFolder) && folder.isHomeFolder()) {
+				this.selModel.clearSelections();
+			} else {
+				this.selectFolderInTree(folder);
+			}
+		}
+	},
+
+	/**
+	 * Event handler triggered when {@link Zarafa.plugins.files.data.FilesHierarchyStore FilesHierarchyStore}.
+	 * @param {Object} loader TreeLoader object.
+	 * @param {Object} node The {@link Ext.tree.TreeNode} object being loaded.
+	 * @param {Object} response The response object containing the data from the server.
+	 * @private
+	 */
+	onHierarchyStoreLoad : function()
+	{
+		// TODO: Need to find proper way to refresh the hierarchy.
+		this.root.reload();
+		this.onFolderSelect(this.model.getDefaultFolder());
 	},
 
 	/**
@@ -154,53 +201,18 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 	 */
 	onAfterRender: function (treepanel)
 	{
+		// TODO: Create HierarchyItemDropZone, HierarchyFolderDropZone and HierarchyTreeDropZone
+		// instead of Ext.tree.TreeDropZone. it will help in future to support drag and drop folder/file
+		// inter files account.
 		this.dragZone.lock();
 		this.dropZone = new Ext.tree.TreeDropZone(this, {
-			ddGroup: this.ddGroup, appendOnly: this.ddAppendOnly === true
-		});
-	},
-
-	/**
-	 * The {@link Ext.tree.TreePanel#load} event handler. After a node was loaded - select it.
-	 *
-	 * @param node
-	 */
-	treeNodeLoaded: function (node)
-	{
-		this.getLoader().setReload(false);
-		node.setLeaf(false); // we do always have folders!
-
-		var nToSelect = null;
-		if (!Ext.isEmpty(this.nodeToSelect)) {
-			nToSelect = this.getNodeById(this.nodeToSelect);
-		} else {
-			nToSelect = this.getNodeById("#R#");
-		}
-
-		this.selectNode(nToSelect);
-	},
-
-	/**
-	 * This method will reload the given node.
-	 *
-	 * @param nodeId
-	 * @param child
-	 */
-	refreshNode: function (nodeId, child)
-	{
-		var node = this.getNodeById(nodeId);
-		if (!Ext.isDefined(child)) {
-			this.nodeToSelect = nodeId;
-		}
-
-		if (!Ext.isEmpty(node)) {
-			this.getLoader().setReload(true);
-			node.reload();
-
-			if (node.hasChildNodes()) {
-				node.expand();
+			ddGroup: this.ddGroup,
+			appendOnly: this.ddAppendOnly === true,
+			getDropPoint : function(e, n, dd)
+			{
+				return 'append';
 			}
-		}
+		});
 	},
 
 	/**
@@ -212,9 +224,9 @@ Zarafa.plugins.files.ui.NavigatorTreePanel = Ext.extend(Zarafa.plugins.files.ui.
 	onContextMenu: function (node, event)
 	{
 		var component = Zarafa.core.data.SharedComponentType['zarafa.plugins.files.treecontextmenu'];
-		Zarafa.core.data.UIFactory.openContextMenu(component, [this.convertNodeToRecord(node)], {
+		Zarafa.core.data.UIFactory.openContextMenu(component, node.getFolder(), {
 			position: event.getXY(),
-			context : Zarafa.plugins.files.data.ComponentBox.getContext()
+			model : this.model
 		});
 	}
 });

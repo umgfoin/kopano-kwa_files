@@ -23,9 +23,7 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 		config = config || {};
 
 		Ext.applyIf(config, {
-
 			xtype: 'filesplugin.filesuploadcontentpanel',
-
 			layout: 'fit',
 			title : dgettext('plugin_files', 'Upload file'),
 			items : [{
@@ -82,47 +80,19 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 	 * @private
 	 */
 	createFolderSelector: function () {
+		var filesContext = container.getContextByName("filescontext");
+		var model = filesContext.getModel();
 		return {
-			xtype       : 'treepanel',
-			anchor      : '0, 0',
-			flex        : 1,
-			title       : dgettext('plugin_files', 'Select upload folder') + ':',
-			root        : {
-				nodeType: 'async',
-				text    : 'Files',
-				id      : '#R#',
-				expanded: true,
-				cc      : false
-			},
-			rootVisible : false,
-			autoScroll  : true,
-			viewConfig  : {
-				style: {overflow: 'auto', overflowX: 'hidden'}
-			},
-			maskDisabled: true,
-			listeners   : {
-				click     : this.onFolderSelected,
-				expandnode: this.onExpandNode,
-				scope     : this
-			},
-			loader      : new Zarafa.plugins.files.data.NavigatorTreeLoader({loadfiles: false})
-		};
-	},
-
-	/**
-	 * The {@link Ext.tree.TreePanel#expandnode} event handler. It will silently load the children of the node.
-	 * This is used to check if a node can be expanded or not.
-	 *
-	 * @param {Ext.tree.AsyncTreeNode} node
-	 */
-	onExpandNode: function (node) {
-		node.attributes["cc"] = true;
-		node.eachChild(function (child) {
-			if (child.attributes["cc"] !== true) { // only check if it was not checked before
-				child.attributes["cc"] = true;
-				child.quietLoad();
+			xtype : 'filesplugin.tree',
+			title : dgettext('plugin_files', 'Select upload folder') + ':',
+			FilesFilter: Zarafa.plugins.files.data.FileTypes.FOLDER,
+			flex:1,
+			store : model.getHierarchyStore(),
+			listeners : {
+				click : this.onFolderSelected,
+				scope : this
 			}
-		});
+		};
 	},
 
 	/**
@@ -148,14 +118,16 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 	},
 
 	/**
-	 * Eventhandler for the onClick event of the treepanel.
-	 * The selected folderpath will be stored to this.targetFolder.
+	 * Event handler triggered when {@link Zarafa.plugins.files.ui.FilesFolderNode FilesFolderNode}
+	 * has been selected in {@link Zarafa.plugins.files.ui.Tree TreePanel}. The selected folder id
+	 * will be stored to {@link #targetFolder}.
 	 *
-	 * @param folder
+	 * @param {Zarafa.plugins.files.ui.FilesFolderNode} node The node which selected in {@link Zarafa.plugins.files.ui.Tree TreePanel}
 	 */
-	onFolderSelected: function (folder) {
-		this.targetFolder = folder.attributes.id;
-		folder.ownerTree.dialog.mainuploadfield.enable();
+	onFolderSelected: function (node) {
+		var folder = node.getFolder();
+		this.targetFolder = folder.get('folder_id');
+		this.dialog.mainuploadfield.enable();
 	},
 
 	/**
@@ -202,7 +174,7 @@ Zarafa.plugins.files.ui.dialogs.FilesUploadContentPanel = Ext.extend(Zarafa.core
 	},
 
 	/**
-	 * Eventhandler that will start the upload process.
+	 * Event handler that will start the upload process.
 	 */
 	doUpload: function () {
 		var files = this.mainuploadfield.fileInput.dom.files;

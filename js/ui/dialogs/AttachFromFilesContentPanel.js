@@ -10,27 +10,21 @@ Ext.namespace('Zarafa.plugins.files.ui.dialogs');
 Zarafa.plugins.files.ui.dialogs.AttachFromFilesContentPanel = Ext.extend(Zarafa.core.ui.ContentPanel, {
 
 	/**
-	 * @var object
-	 */
-	record: null,
-
-	/**
 	 * @constructor
 	 * @param config
 	 */
 	constructor: function (config) {
 		config = config || {};
 		Ext.applyIf(config, {
-			layout     : 'fit',
-			title      : dgettext('plugin_files', 'Add attachment from Files'),
+			layout : 'fit',
+			title : dgettext('plugin_files', 'Add attachment from Files'),
 			closeOnSave: true,
-			width      : 400,
-			height     : 300,
-
+			width : 400,
+			height : 300,
 			items: [{
-				xtype      : 'filesplugin.attachfromfilestreepanel',
-				emailrecord: config.emailrecord,
-				ref        : 'treePanel'
+				xtype :'filesplugin.attachfromfilespanel',
+				model : config.model,
+				emailrecord: config.record,
 			}]
 		});
 

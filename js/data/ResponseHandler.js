@@ -106,31 +106,12 @@ Zarafa.plugins.files.data.ResponseHandler = Ext.extend(Zarafa.core.data.IPMRespo
 	 * @param {Object} response Object contained the response data.
 	 */
 	doError: function (response) {
-		if (Ext.isDefined(response.info.duplicate)) {
-			if (response.info.duplicate === true) {
-
-				var destination = Zarafa.core.data.RecordFactory.createRecordObjectByObjectType(Zarafa.core.mapi.ObjectType.ZARAFA_FILES, {
-					id            : response.info.destination,
-					entryid       : response.info.destination,
-				}, response.info.destination);
-
-
-				Ext.MessageBox.confirm(
-					dgettext('plugin_files', 'Confirm overwrite'),
-					dgettext('plugin_files', 'File already exists. Do you want to overwrite it?'),
-					//Zarafa.plugins.files.data.Actions.doMoveRecords.createDelegate(this, ['yes', null, null, this.sendRecords, destination], false),
-					Zarafa.plugins.files.data.Actions.doMoveRecords.createDelegate(this, [null, null, this.sendRecords, destination], 1),
-					this
-				);
-			}
-		} else {
-			Zarafa.common.dialogs.MessageBox.show({
-				title  : dgettext('plugin_files', 'Error'),
-				msg    : response.info.original_message,
-				icon   : Zarafa.common.dialogs.MessageBox.ERROR,
-				buttons: Zarafa.common.dialogs.MessageBox.OK
-			});
-		}
+		Zarafa.common.dialogs.MessageBox.show({
+			title  : dgettext('plugin_files', 'Error'),
+			msg    : response.info.original_message,
+			icon   : Zarafa.common.dialogs.MessageBox.ERROR,
+			buttons: Zarafa.common.dialogs.MessageBox.OK
+		});
 	}
 });
 
