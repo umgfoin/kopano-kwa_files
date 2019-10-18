@@ -849,6 +849,6 @@ span.error_files {
 	cursor: default;
 }
 
-.x-grid3-row {
+#files-gridview .x-grid3-row {
 	border-left: none;
 }
