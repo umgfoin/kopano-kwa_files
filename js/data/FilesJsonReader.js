@@ -17,14 +17,12 @@ Zarafa.plugins.files.data.FilesJsonReader = Ext.extend(Zarafa.core.data.JsonRead
 	 * @param {Object} meta Metadata configuration options.
 	 * @param {Object} recordType (optional) Optional Record type matches the type
 	 * which must be read from response. If no type is given, it will use the
-	 * record type for the {@link Zarafa.core.data.RecordCustomObjectType#ZARAFA_DISTLIST_MEMBER}.
+	 * record type for the {@link Zarafa.core.data.RecordCustomObjectType#FILES_FOLDER_STORE}.
 	 */
 	constructor : function(meta, recordType)
 	{
 		meta = Ext.applyIf(meta || {}, {
 			dynamicRecord : false,
-			// id : 'id',
-			// idProperty : 'id',
 			id : 'store_entryid',
 			idProperty : 'store_entryid',
 			customObjectType : meta.customObjectType || Zarafa.core.data.RecordCustomObjectType.FILES_FOLDER_STORE

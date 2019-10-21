@@ -237,8 +237,9 @@ Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, 
 					}
 
 					var newNode = this.createNode(Ext.apply({ nodeType : nodeType, folder: record }, this.nodeConfig));
+					parentNode.loading = false;
 					parentNode.appendChild(newNode);
-					parentNode.expand();
+					parentNode.expand(false, true);
 				}
 			}
 		}
@@ -322,11 +323,15 @@ Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, 
 	},
 
 	/**
-	 * Will do single request to files module with provided nodeId and
-	 * in case of success will load the content of this node.
+	 * This is called when a node in the HierarchyTree is being expanded, this will read
+	 * the {@link Zarafa.plugins.files.data.FilesFolderRecord FilesFolderRecord} to find the child nodes which
+	 * are positioned below the expanded node. But if folder is not expanded already then trigger the
+	 * {@link Zarafa.core.Actions#updatelist update list} request to fetch the child folder to selected folder.
 	 *
-	 * @param {Number} nodeId The id of node which content need to be loaded
-	 * @param {Function} callback The function which need to be called after response received
+	 * @param {String} node The ID of the node which is being expanded
+	 * @param {Function} fn The function which must be called with the JSON data of
+	 * the nodes below the provided node.
+	 * @private
 	 */
 	directFn: function (node, fn) {
 		var treeNode = this.tree.getNodeById(node);
@@ -343,11 +348,21 @@ Zarafa.plugins.files.data.NavigatorTreeLoader = Ext.extend(Ext.tree.TreeLoader, 
 					}
 				}
 			}
-			fn(data, {status: true});
 		} else {
 			data = this.getFilteredChildNodes(treeNode.getFolder(), 'filesfolder');
-			fn(data, {status: true});
+			if (Ext.isEmpty(data) && treeNode.isExpandable() && !treeNode.isExpanded()) {
+				var folder = treeNode.getFolder();
+				var store = folder.getStore();
+				store.load({
+					folder : folder,
+					actionType : Zarafa.core.Actions['updatelist'],
+					cancelPreviousRequest : false,
+					add:true
+				});
+				return;
+			}
 		}
+		fn(data, {status: true});
 	},
 
 	/**

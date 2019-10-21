@@ -191,12 +191,19 @@ Zarafa.plugins.files.data.FilesFoldersSubStore = Ext.extend(Zarafa.core.data.IPF
 	},
 
 	/**
+	 * Notification handler called by {@link #onNotify} when
+	 * a {@link Zarafa.core.data.Notifications#objectCreated objectCreated}
+	 * notification has been recieved.
 	 *
-	 * @param action
-	 * @param records
-	 * @param data
-	 * @param timestamp
-	 * @param success
+	 * This will add the folder to the store.
+	 *
+	 * @param {Zarafa.core.data.Notifications} action The notification action
+	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
+	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * to the given records.
+	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
+	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @private
 	 */
 	onNotifyObjectcreated : function(action, records, data, timestamp, success)
 	{
@@ -209,5 +216,57 @@ Zarafa.plugins.files.data.FilesFoldersSubStore = Ext.extend(Zarafa.core.data.IPF
 		} else {
 			this.loadData({ item : data }, true);
 		}
+	},
+
+	/**
+	 * <p>Loads the Record cache from the configured <tt>{@link #proxy}</tt> using the configured <tt>{@link #reader}</tt>.</p>
+	 * <br> Function just adds 'list' as actionType in options and calls parent {@link Zarafa.core.data.IPFStore#load} method.
+	 * <br> Check documentation of {@link Ext.data.Store#load} for more information.
+	 *
+	 * @param {Object} options An object containing properties which control loading.
+	 * @return {Boolean} true if super class load method will call successfully, false otherwise.
+	 */
+	load : function(options)
+	{
+		// FIXME: In Webapp sub store are not allow to send request to server but files is
+		// a special case where we dont load all the folder of hierarchy in advance so here
+		// we have to give privilege to substore so it can able to send a request to server
+		// to load the child folders
+		if (!Ext.isObject(options)) {
+			options = {};
+		}
+
+		if (!Ext.isObject(options.params)) {
+			options.params = {};
+		}
+
+		// Load should always cancel the previous actions.
+		if (!Ext.isDefined(options.cancelPreviousRequest)) {
+			options.cancelPreviousRequest = true;
+		}
+
+		// Reload the files hierarchy panel.
+		if (options.reload) {
+			options.params = {
+				reload : options.reload
+			};
+		}
+
+		if (options.folder) {
+			var folder = options.folder;
+
+			Ext.applyIf(options.params||{}, {
+				entryid : folder.get('entryid'),
+				store_entryid : folder.get('store_entryid'),
+				parent_entryid : folder.get('parent_entryid'),
+				folder_id: folder.get('folder_id')
+			});
+		}
+
+		Ext.applyIf(options, {
+			actionType : Zarafa.core.Actions['list']
+		});
+
+		return Zarafa.plugins.files.data.FilesFoldersSubStore.superclass.load.call(this, options);
 	}
 });
