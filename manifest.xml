@@ -4,7 +4,7 @@
 	<info>
 		<version>3.0</version>
 		<name>files</name>
-		<title>Files Integration</title>
+		<title>Files</title>
 		<author>Kopano</author>
 		<authorURL>http://www.kopano.com</authorURL>
 		<description>Integrate Files into Kopano Webapp</description>
