@@ -2,8 +2,8 @@
 <!DOCTYPE plugin SYSTEM "manifest.dtd">
 <plugin version="2">
 	<info>
-		<version>2.1</version>
-		<name>filessss</name>
+		<version>3.0</version>
+		<name>files</name>
 		<title>Files Integration</title>
 		<author>Kopano</author>
 		<authorURL>http://www.kopano.com</authorURL>
