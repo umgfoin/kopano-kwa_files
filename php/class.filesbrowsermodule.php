@@ -93,7 +93,7 @@ class FilesBrowserModule extends FilesListModule
 								$this->addActionData("update", $response);
 								$GLOBALS["bus"]->addData($this->getResponseData());
 
-								continue;
+								break;
 							}
 
 							/*
