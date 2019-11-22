@@ -58,8 +58,6 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 		this.mon(this, 'rowdblclick', this.onRowDblClick, this);
 		this.mon(this, 'afterrender', this.initDropTarget, this);
 
-		this.mon(this.getStore(), 'createFolder', this.onCreateFolder, this);
-
 		this.mon(this.getSelectionModel(), 'rowselect', this.onRowSelect, this, {buffer: 1});
 		this.mon(this.getSelectionModel(), 'selectionchange', this.onSelectionChange, this, {buffer: 1});
 
@@ -282,23 +280,6 @@ Zarafa.plugins.files.ui.FilesRecordGridView = Ext.extend(Zarafa.common.ui.grid.G
 	{
 		var selections = selectionModel.getSelections();
 		this.model.setSelectedRecords(!Ext.isEmpty(selections) ? selections : undefined);
-	},
-
-	/**
-	 * Event handler triggers when folder is record is created.
-	 *
-	 * @param {Zarafa.plugins.files.data.FilesRecordStore} store The store which fires this event.
-	 * @param {String} parentFolderId The parentFolderId under which folder was created.
-	 * @param {Object} data The data contains the information about newly created folder.
-	 */
-	onCreateFolder : function (store, parentFolderId, data)
-	{
-		if (store.getPath() === parentFolderId) {
-			var record = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_FILES, data);
-			store.add(record);
-			store.on("update", Zarafa.plugins.files.data.Actions.doRefreshIconView, Zarafa.plugins.files.data.Actions, {single: true});
-			record.commit(true);
-		}
 	}
 });
 

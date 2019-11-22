@@ -138,7 +138,13 @@ class FilesListModule extends ListModule
 			);
 
 			$initializedBackend = $this->initializeBackend($account, true);
-			$subFolders = $this->getSubFolders($realNodeId, $initializedBackend, $isReload);
+
+			if ($isReload) {
+				$this->clearCache();
+			}
+
+			// Get sub folder of root folder.
+			$subFolders = $this->getSubFolders($realNodeId, $initializedBackend);
 
 			array_push($subFolders, array(
 				'id' => $realNodeId,
@@ -186,13 +192,13 @@ class FilesListModule extends ListModule
 	/**
 	 * Function used to get the sub folders of the given folder id.
 	 *
-	 * @param String $nodeId
-	 * @param Object $backend
-	 * @param Boolean $isReload
-	 * @param array $nodes
-	 * @return array
+	 * @param String $nodeId The folder id which used to get sub folders.
+	 * @param array $backend The backend which used to retrieve the folders
+	 * @param bool $recursive The recursive true which get the sub folder recursively.
+	 * @param array $nodes The nodes contains the array of nodes.
+	 * @return array return the array folders.
 	 */
-	function getSubFolders($nodeId, $backend, $isReload = false, $nodes = array())
+	function getSubFolders($nodeId, $backend, $recursive = false, $nodes = array())
 	{
 		// relative node ID. We need to trim off the #R# and account ID
 		$relNodeId = substr($nodeId, strpos($nodeId, '/'));
@@ -206,10 +212,7 @@ class FilesListModule extends ListModule
 			$cachePath = "/";
 		}
 
-		$dir = null;
-		if ($isReload !== true) {
-			$dir = $this->getCache($accountID, $cachePath);
-		}
+		$dir = $this->getCache($accountID, $cachePath);
 		if (is_null($dir)) {
 			$dir = $backend->ls($relNodeId);
 			$this->setCache($accountID, $cachePath, $dir);
@@ -238,8 +241,10 @@ class FilesListModule extends ListModule
 				$filename = stringToUTF8Encode(basename($id));
 
 				if (!isset($node['entryid']) || !isset($node['parent_entryid']) || !isset($node['store_entryid'])) {
+					$parentNode = $this->getParentNode($cachePath, $accountID);
+
 					$entryid = $this->createId($realID);
-					$parentEntryid = $this->createId($nodeId);
+					$parentEntryid = $parentNode !== false && isset($parentNode['entryid']) ? $parentNode['entryid'] : $this->createId($nodeId);
 					$storeEntryid = $this->createId($nodeIdPrefix .'/');
 
 					$dir[$id]['entryid'] = $entryid;
@@ -271,8 +276,12 @@ class FilesListModule extends ListModule
 						'has_subfolder' => $this->hasSubFolder($id, $accountID, $backend)
 					)
 				));
-				if ($objectType === FILES_FOLDER) {
-					$nodes = $this->getSubFolders($realID, $backend, $isReload, $nodes);
+
+				// We need to call this function recursively when user rename the folder.
+				// we have to send all sub folder as server side notification so webapp
+				// can update the sub folder as per it's parent folder is renamed.
+				if ($objectType === FILES_FOLDER && $recursive) {
+					$nodes = $this->getSubFolders($realID, $backend, true, $nodes);
 				}
 			}
 			if ($updateCache) {
@@ -280,6 +289,31 @@ class FilesListModule extends ListModule
 			}
 		}
 		return $nodes;
+	}
+
+	/**
+	 * Function which used to get the parent folder of selected folder.
+	 *
+	 * @param string $cachePath The cache path of selected folder.
+	 * @param string $accountID The account ID in which folder is belongs.
+	 *
+	 * @return array | bool return the parent folder data else false.
+	 */
+	function getParentNode($cachePath, $accountID)
+	{
+		$parentNode = dirname($cachePath, 1);
+
+		// remove the trailing slash for the cache key
+		$parentNode = rtrim($parentNode, '/');
+		if ($parentNode === "") {
+			$parentNode = "/";
+		}
+		$dir = $this->getCache($accountID, $parentNode);
+
+		if (!is_null($dir) && isset($dir[$cachePath . '/'])) {
+			return $dir[$cachePath . '/'];
+		}
+		return false;
 	}
 
 	/**
@@ -321,7 +355,6 @@ class FilesListModule extends ListModule
 					return true;
 				}
 			}
-			return false;
 		}
 		return false;
 	}
@@ -520,7 +553,8 @@ class FilesListModule extends ListModule
 	{
 		$account = $this->accountFromNode($folderID);
 		$initializedBackend = $this->initializeBackend($account, true);
-		$folderData = $this->getSubFolders($folderID, $initializedBackend);
+		$folderData = $this->getSubFolders($folderID, $initializedBackend, true);
+
 		if (!empty($folderData)) {
 			$GLOBALS["bus"]->notify(REQUEST_ENTRYID, OBJECT_SAVE, $folderData);
 		}
@@ -610,6 +644,14 @@ class FilesListModule extends ListModule
 		$key = $this->makeCacheKey($accountID, $path);
 		Logger::debug(self::LOG_CONTEXT, "Removing cache for node: " . $accountID .  $path . " ## " . $key);
 		$this->cache->delete($key);
+	}
+
+	/**
+	 * Function clear the cache.
+	 */
+	function clearCache()
+	{
+		$this->cache->clean();
 	}
 
 	/**

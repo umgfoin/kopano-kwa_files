@@ -33,6 +33,9 @@ class HierarchyListModule extends FilesListModule
 						case "list":
 							$this->hierarchyList($actionData);
 							break;
+						case "updatelist":
+							$this->updateHierarchy($actionData);
+							break;
 						case "save":
 							$this->save($actionData);
 							break;
@@ -62,6 +65,15 @@ class HierarchyListModule extends FilesListModule
 							'code' => $e->getCode()
 						)
 					));
+				} catch (Exception $e) {
+					$this->sendFeedback(false, array(
+						'type' => ERROR_GENERAL,
+						'info' => array(
+							'original_message' => $e->getMessage(),
+							'display_message' => $e->getMessage(),
+							'code' => $e->getCode()
+						)
+					));
 				}
 			}
 		}
@@ -77,6 +89,22 @@ class HierarchyListModule extends FilesListModule
 		$isReload = isset($action['reload']) ? $action['reload'] : false;
 		$data = $this->getHierarchyList($isReload);
 		$this->addActionData("list", $data);
+		$GLOBALS["bus"]->addData($this->getResponseData());
+	}
+
+	/**
+	 * Function used to retrieve the child folders of given folder id.
+	 *
+	 * @param {Array} $action The action data which passed in request.
+	 */
+	function updateHierarchy($action)
+	{
+		$nodeId = $action["folder_id"];
+		$account = $this->accountFromNode($nodeId);
+		$backend = $this->initializeBackend($account,true);
+		$subFolders = $this->getSubFolders($nodeId, $backend);
+
+		$this->addActionData("updatelist", array("item"=>$subFolders));
 		$GLOBALS["bus"]->addData($this->getResponseData());
 	}
 

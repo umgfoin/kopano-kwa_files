@@ -283,7 +283,7 @@ Zarafa.plugins.files.data.FilesHierarchyStore = Ext.extend(Zarafa.core.data.IPFS
 			};
 		}
 
-		Ext.apply(options, {
+		Ext.applyIf(options, {
 			actionType : Zarafa.core.Actions['list']
 		});
 

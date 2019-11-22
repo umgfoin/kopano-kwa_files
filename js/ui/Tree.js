@@ -75,6 +75,15 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 	},
 
 	/**
+	 * Init the events.
+	 */
+	initEvents : function()
+	{
+		Zarafa.plugins.files.ui.Tree.superclass.initEvents.apply(this, arguments);
+		this.on('afterrender', this.onAfterRenderTree, this);
+	},
+
+	/**
 	 * Function will initialize {@link Zarafa.plugins.files.ui.Tree Tree}.
 	 * @protected
 	 */
@@ -96,9 +105,7 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 		if(this.loadMask) {
 			this.on('render', this.createLoadMask, this);
 		}
-
 	},
-
 
 	/**
 	 * Function will create {@link Zarafa.common.ui.LoadMask} which will be shown
@@ -108,6 +115,34 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 	createLoadMask : function()
 	{
 		this.loadMask = new Zarafa.common.ui.LoadMask(this.getEl(), Ext.apply({store: this.store}, this.loadMask));
+	},
+	/**
+	 * Event handler triggered when tree panel rendered.
+	 * It will also listen for the {@link Ext.tree.DefaultSelectionModel#selectionchange selection change} event.
+	 * @private
+	 */
+	onAfterRenderTree : function()
+	{
+		this.mon(this.selModel, 'selectionchange', this.onSelectionChange, this);
+	},
+
+	/**
+	 * Event handler triggered when folder is changed in hierarchy.
+	 * It will check that selected node(folder) is Expandable and currently not Expanded then
+	 * expand the selected node.
+	 *
+	 * @param {Ext.tree.DefaultSelectionModel} selModel The {@link Ext.tree.DefaultSelectionModel DefaultSelectionModel}.
+	 * @param {TreeNode} node The node to select
+	 */
+	onSelectionChange : function(selModel, selectedNode)
+	{
+		if (Ext.isEmpty(selectedNode)) {
+			return;
+		}
+
+		if(selectedNode.isExpandable() && !selectedNode.isExpanded()){
+			selectedNode.expand(false, true);
+		}
 	},
 
 	/**
