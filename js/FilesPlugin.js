@@ -38,6 +38,13 @@ Zarafa.plugins.files.FilesPlugin = Ext.extend(Zarafa.core.Plugin, {
 		Zarafa.core.data.SharedComponentType.addProperty('filesplugin.featurequotainfo');
 		Zarafa.core.data.SharedComponentType.addProperty('filesplugin.featureversioninfo');
 		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.attachments.savetofiles');
+
+		container.registerContext(new Zarafa.core.ContextMetaData({
+			name             : 'filescontext',
+			displayName      : dgettext('plugin_files', 'Files'),
+			allowUserVisible : false,
+			pluginConstructor: Zarafa.plugins.files.FilesContext
+		}));
 	},
 
 	/**

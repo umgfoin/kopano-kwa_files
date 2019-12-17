@@ -659,18 +659,3 @@ Zarafa.plugins.files.FilesContext = Ext.extend(Zarafa.core.Context, {
 		this.getModel().setPreviewRecord(undefined, true);
 	}
 });
-
-/**
- * This code gets executed after the WebApp has loaded.
- * It hooks the context to the WebApp.
- */
-Zarafa.onReady(function () {
-	if (container.getSettingsModel().get('zarafa/v1/plugins/files/enable') === true) {
-		container.registerContext(new Zarafa.core.ContextMetaData({
-			name             : 'filescontext',
-			displayName      : dgettext('plugin_files', 'Files'),
-			allowUserVisible : false,
-			pluginConstructor: Zarafa.plugins.files.FilesContext
-		}));
-	}
-});
