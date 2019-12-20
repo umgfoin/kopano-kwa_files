@@ -82,6 +82,7 @@ class phpFastCache
       'extensions' => array(),
       "cache_method"    =>  1, // 1 = normal, 2 = phpfastcache, 3 = memory
       "limited_memory_each_object"  =>  4000, // maximum size (bytes) of object store in memory
+      "compress_data" => false // compress stored data, if the backend supports it
     );
 
     /**
@@ -155,7 +156,7 @@ class phpFastCache
      */
     public static function getPath($skip_create_path = false, $config)
     {
-        $tmp_dir = ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir();
+        $tmp_dir = rtrim(ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir(), '\\/') . DIRECTORY_SEPARATOR . 'phpfastcache';
 
         if (!isset($config[ 'path' ]) || $config[ 'path' ] == '') {
             if (self::isPHPModule()) {
@@ -181,7 +182,7 @@ class phpFastCache
             $securityKey = self::$config[ 'securityKey' ];
             if ($securityKey == 'auto' || $securityKey == '') {
                 $securityKey = isset($_SERVER[ 'HTTP_HOST' ]) ? preg_replace('/^www./',
-                  '', strtolower($_SERVER[ 'HTTP_HOST' ])) : "default";
+                  '', strtolower(str_replace(':', '_', $_SERVER[ 'HTTP_HOST' ]))) : "default";
             }
         }
         if ($securityKey != '') {
@@ -190,7 +191,7 @@ class phpFastCache
 
         $securityKey = self::cleanFileName($securityKey);
 
-        $full_path = rtrim($path,'/') . '/' . $securityKey;
+        $full_path = rtrim($path, '\\/') . DIRECTORY_SEPARATOR . $securityKey;
         $full_pathx = md5($full_path);
 
 
@@ -198,7 +199,7 @@ class phpFastCache
 
             if (!@file_exists($full_path) || !@is_writable($full_path)) {
                 if (!@file_exists($full_path)) {
-                    @mkdir($full_path, self::__setChmodAuto($config));
+                    @mkdir($full_path, self::__setChmodAuto($config), true);
                 }
                 if (!@is_writable($full_path)) {
                     @chmod($full_path, self::__setChmodAuto($config));
@@ -207,7 +208,7 @@ class phpFastCache
                     // switch back to tmp dir again if the path is not writeable
                     $full_path = rtrim($tmp_dir,'/') . '/' . $securityKey;
                     if (!@file_exists($full_path)) {
-                        @mkdir($full_path, self::__setChmodAuto($config));
+                        @mkdir($full_path, self::__setChmodAuto($config), true);
                     }
                     if (!@is_writable($full_path)) {
                         @chmod($full_path, self::__setChmodAuto($config));
