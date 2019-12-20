@@ -86,6 +86,7 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 		return {
 			xtype  : 'filesplugin.filespreviewpanel',
 			ref    : 'filesPreview',
+			border : false,
 			region : 'south',
 			split  : true,
 			context: context
@@ -109,10 +110,10 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 	},
 
 	onViewChange: function (context, newView, oldView) {
-
+		var store = context.getModel().getStore();
 		switch (newView) {
 			case Zarafa.plugins.files.data.Views.LIST:
-				this.viewPanel.switchView('files-gridview');
+				this.viewPanel.switchView(store.getPath() === "#R#" ? 'files-accountview' : 'files-gridview');
 				break;
 			case Zarafa.plugins.files.data.Views.ICON:
 				this.viewPanel.switchView('files-iconview');

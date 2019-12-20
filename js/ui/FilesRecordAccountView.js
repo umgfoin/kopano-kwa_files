@@ -1,6 +1,6 @@
 Ext.namespace('Zarafa.plugins.files.ui');
 
-Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
+Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.Panel, {
 
 	/**
 	 * @cfg {Zarafa.plugins.files.FilesContext} context The context to which this context menu belongs.
@@ -14,6 +14,10 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 	 */
 	model: undefined,
 
+	/**
+	 * @constructor
+	 * @param {Object} config Configuration structure
+	 */
 	constructor: function (config) {
 		config = config || {};
 
@@ -25,25 +29,29 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 			config.store = config.model.getStore();
 		}
 
-		config.store = Ext.StoreMgr.lookup(config.store);
-
 		Ext.applyIf(config, {
 			xtype: 'filesplugin.filesrecordaccountview',
-			cls           : 'zarafa-files-accountview',
+			layout:'fit',
+			cls : 'zarafa-files-accountview',
+			loadMask : true,
+			header : false,
+			border : false,
+			height : 400,
 			loadingText   : dgettext('plugin_files', 'Loading accounts') + '...',
-			deferEmptyText: false,
-			autoScroll    : true,
-			emptyText     : '<div class="emptytext">' + dgettext('plugin_files', 'There are no accounts added. Go to settings, Files tab and add an account') + '</div>',
-			overClass     : 'zarafa-files-accountview-over',
-			tpl           : this.initTemplate(config.model),
-			multiSelect   : true,
-			selectedClass : 'zarafa-files-accountview-selected',
-			itemSelector  : 'div.zarafa-files-accountview-container'
+			items :[{
+				xtype: 'dataview',
+				ref:'accountView',
+				store : config.store,
+				autoScroll    : true,
+				emptyText     : '<div class="emptytext">' + dgettext('plugin_files', 'There are no accounts added. Go to settings, Files tab and add an account') + '</div>',
+				overClass     : 'zarafa-files-accountview-over',
+				tpl           : this.initTemplate(config.model),
+				selectedClass : 'zarafa-files-accountview-selected',
+				itemSelector  : 'div.zarafa-files-accountview-container'
+			}]
 		});
 
 		Zarafa.plugins.files.ui.FilesRecordAccountView.superclass.constructor.call(this, config);
-
-		this.initEvents();
 	},
 
 	initTemplate: function (model) {
@@ -99,12 +107,56 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 		);
 	},
 
-	initEvents: function () {
-		this.on({
+	/**
+	 * Called during rendering of the panel, this will initialize all events.
+	 * @private
+	 */
+	initEvents: function ()
+	{
+		this.accountView.on({
 			'dblclick'       : this.onIconDblClick,
 			'afterrender'    : this.onAfterRender,
 			scope            : this
 		});
+	},
+
+	/**
+	 * Initialize the component.
+	 * It will register afterrender event with given handler which create loading mask.
+	 * @private
+	 */
+	initComponent: function ()
+	{
+		Zarafa.plugins.files.ui.FilesRecordAccountView.superclass.initComponent.apply(this, arguments);
+
+		// create load mask
+		if (this.loadMask) {
+			this.on('afterrender', this.createLoadMask, this);
+		}
+	},
+
+	/**
+	 * Function will create {@link Zarafa.common.ui.LoadMask} which will be shown
+	 * when loading the {@link Zarafa.plugins.files.ui.FilesRecordAccountView FilesRecordAccountView}.
+	 * @private
+	 */
+	createLoadMask: function ()
+	{
+		var hierarchyStore = this.model.getHierarchyStore();
+		if (hierarchyStore.isLoading()) {
+			this.loadMask = new Zarafa.common.ui.LoadMask(this.getEl(), { msg: this.loadingText, store: this.store});
+			this.loadMask.show();
+		}
+	},
+
+	/**
+	 * Destroy all elements which were created by this panel.
+	 * @override
+	 */
+	destroy: function ()
+	{
+		Ext.destroy(this.loadMask);
+		Zarafa.plugins.files.ui.FilesRecordAccountView.superclass.destroy.apply(this, arguments);
 	},
 
 	/**
@@ -141,7 +193,7 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.DataView, {
 	 */
 	onIconDblClick: function (dataView, index)
 	{
-		 var store = this.getStore();
+		 var store = this.accountView.getStore();
 		 var record = store.getAt(index);
 		 var folder = this.model.getHierarchyStore().getFolder(record.get('entryid'));
 		container.selectFolder(folder);

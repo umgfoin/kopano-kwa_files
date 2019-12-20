@@ -32,7 +32,7 @@ Zarafa.plugins.files.ui.FilesPreviewPanel = Ext.extend(Ext.Panel, {
 			xtype   : 'filesplugin.filespreviewpanel',
 			layout  : 'fit',
 			stateful: true,
-			cls     : 'zarafa-previewpanel zarafa-context-mainpanel',
+			cls     : 'zarafa-previewpanel',
 			width   : 300,
 			height  : 300,
 			tbar    : toolbar
