@@ -36,18 +36,21 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.Panel, {
 			loadMask : true,
 			header : false,
 			border : false,
+			maskDisabled : false,
 			height : 400,
 			loadingText   : dgettext('plugin_files', 'Loading accounts') + '...',
 			items :[{
 				xtype: 'dataview',
 				ref:'accountView',
 				store : config.store,
-				autoScroll    : true,
-				emptyText     : '<div class="emptytext">' + dgettext('plugin_files', 'There are no accounts added. Go to settings, Files tab and add an account') + '</div>',
-				overClass     : 'zarafa-files-accountview-over',
-				tpl           : this.initTemplate(config.model),
+				emptyText : '<div class="emptytext">' + dgettext('plugin_files', 'There are no accounts added. Go to settings, Files tab and add an account') + '</div>',
+				autoScroll : true,
+				singleSelect : true,
+				deferEmptyText: false,
+				overClass : 'zarafa-files-accountview-over',
+				tpl : this.initTemplate(config.model),
 				selectedClass : 'zarafa-files-accountview-selected',
-				itemSelector  : 'div.zarafa-files-accountview-container'
+				itemSelector : 'div.zarafa-files-accountview-container'
 			}]
 		});
 
@@ -115,7 +118,6 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.Panel, {
 	{
 		this.accountView.on({
 			'dblclick'       : this.onIconDblClick,
-			'afterrender'    : this.onAfterRender,
 			scope            : this
 		});
 	},
@@ -157,32 +159,6 @@ Zarafa.plugins.files.ui.FilesRecordAccountView = Ext.extend(Ext.Panel, {
 	{
 		Ext.destroy(this.loadMask);
 		Zarafa.plugins.files.ui.FilesRecordAccountView.superclass.destroy.apply(this, arguments);
-	},
-
-	/**
-	 * Event handler map the delete key.
-	 */
-	onAfterRender: function ()
-	{
-		new Ext.KeyMap(this.getEl(), {
-			key: Ext.EventObject.DELETE,
-			fn : this.onKeyDelete,
-			scop : this
-		});
-	},
-
-	/**
-	 * Event handler triggered when delete key pressed.
-	 * Function will show warning message.
-	 */
-	onKeyDelete: function ()
-	{
-		Zarafa.common.dialogs.MessageBox.show({
-			title  : dgettext('plugin_files', 'Error'),
-			msg    : dgettext('plugin_files', 'To delete an account you have to go to settings.'),
-			icon   : Zarafa.common.dialogs.MessageBox.ERROR,
-			buttons: Zarafa.common.dialogs.MessageBox.OK
-		});
 	},
 
 	/**
