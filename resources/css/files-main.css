@@ -231,6 +231,14 @@ span.error_files {
 	background-position: center;
 }
 
+.zarafa-context-mainpanel {
+	border-right: 1px solid #e6e6e6;
+}
+
+.zarafa-previewpanel {
+	border-left: 1px solid #e6e6e6;
+}
+
 /* account view */
 .zarafa-files-accountview {
 	background-color: white;

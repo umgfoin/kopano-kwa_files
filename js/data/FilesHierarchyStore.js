@@ -28,6 +28,14 @@ Zarafa.plugins.files.data.FilesHierarchyStore = Ext.extend(Zarafa.core.data.IPFS
 	state : undefined,
 
 	/**
+	 * True to indicate the {@link Zarafa.plugins.files.data.FilesHierarchyStore store} is currently loading.
+	 * else false
+	 * @property
+	 * @type Boolean
+	 */
+	loading: false,
+
+	/**
 	 * @cfg {Zarafa.core.data.RecordCustomObjectType} customObjectType The custom object type
 	 * which represents the {@link Ext.data.Record records} which should be created using
 	 * {@link Zarafa.core.data.RecordFactory#createRecordObjectByCustomType}.
@@ -87,6 +95,7 @@ Zarafa.plugins.files.data.FilesHierarchyStore = Ext.extend(Zarafa.core.data.IPFS
 		// Register store with the store manager
 		this.on({
 			'add' : this.onAdd,
+			'beforeload': this.onBeforeLoad,
 			'load' : this.onAfterLoad,
 			'remove' : this.onRemove,
 			scope : this
@@ -106,6 +115,24 @@ Zarafa.plugins.files.data.FilesHierarchyStore = Ext.extend(Zarafa.core.data.IPFS
 	onAfterLoad : function(store, records, options)
 	{
 		this.hookStoreRecord(records);
+		this.loading = false;
+	},
+
+	/**
+	 * Event handler triggered when {@link Ext.data.Store#beforeload} event fire.
+	 * It will make the {@link #loading} to true.
+	 */
+	onBeforeLoad: function ()
+	{
+		this.loading = true;
+	},
+
+	/**
+	 * @return {Boolean} true if store is loading else false.
+	 */
+	isLoading: function ()
+	{
+		return this.loading;
 	},
 
 	/**

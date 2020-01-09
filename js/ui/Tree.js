@@ -114,8 +114,12 @@ Zarafa.plugins.files.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 	 */
 	createLoadMask : function()
 	{
-		this.loadMask = new Zarafa.common.ui.LoadMask(this.getEl(), Ext.apply({store: this.store}, this.loadMask));
+		this.loadMask = new Zarafa.common.ui.LoadMask(this.ownerCt.getEl(), Ext.apply({ store: this.store }, this.loadMask));
+		if (this.store.isLoading()) {
+			this.loadMask.show();
+		}
 	},
+
 	/**
 	 * Event handler triggered when tree panel rendered.
 	 * It will also listen for the {@link Ext.tree.DefaultSelectionModel#selectionchange selection change} event.

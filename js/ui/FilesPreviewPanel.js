@@ -16,10 +16,6 @@ Zarafa.plugins.files.ui.FilesPreviewPanel = Ext.extend(Ext.Panel, {
 	constructor: function (config) {
 		config = config || {};
 
-		if (!Ext.isDefined(config.model) && Ext.isDefined(config.context)) {
-			config.model = config.context.getModel();
-		}
-
 		var toolbar = Ext.applyIf(config.tbar || {}, {
 			cls   : 'zarafa-previewpanel-toolbar',
 			xtype : 'zarafa.toolbar',
@@ -32,7 +28,7 @@ Zarafa.plugins.files.ui.FilesPreviewPanel = Ext.extend(Ext.Panel, {
 			xtype   : 'filesplugin.filespreviewpanel',
 			layout  : 'fit',
 			stateful: true,
-			cls     : 'zarafa-previewpanel zarafa-context-mainpanel',
+			cls     : 'zarafa-previewpanel',
 			width   : 300,
 			height  : 300,
 			tbar    : toolbar

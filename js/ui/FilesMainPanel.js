@@ -1,9 +1,16 @@
 Ext.namespace('Zarafa.plugins.files.ui');
 
+/**
+ * @class Zarafa.plugins.files.ui.FilesMainPanel
+ * @extends Zarafa.common.ui.ContextMainPanel
+ * @xtype filesplugin.filesmainpanel
+ */
 Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMainPanel, {
 
-	viewPanel: undefined,
-
+	/**
+	 * @constructor
+	 * @param {Object} config
+	 */
 	constructor: function (config) {
 		config = config || {};
 
@@ -11,11 +18,10 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 			xtype : 'filesplugin.filesmainpanel',
 			layout: 'zarafa.switchborder',
 			header : false,
-			border : false,
 			iconCls : 'icon_files',
 			items: [
 				this.initMainItems(config),
-				this.initPreviewPanel(config.context)
+				this.initPreviewPanel()
 			],
 			tbar       : {
 				xtype: 'filesplugin.filestoptoolbar',
@@ -27,25 +33,31 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 		Zarafa.plugins.files.ui.FilesMainPanel.superclass.constructor.call(this, config);
 	},
 
-	initMainItems: function (config) {
+	/**
+	 * Initializes the different views for the files plugin.
+	 *
+	 * @param {Object} config Configuration object
+	 * @return {Zarafa.mail.ui.MailGrid}
+	 * @private
+	 */
+	initMainItems: function (config)
+	{
 		return {
-			xtype      : 'panel',
-			ref        : 'filesViewPanel',
-			layout     : 'zarafa.collapsible',
-			cls        : 'zarafa-context-mainpanel',
-			minWidth   : 200,
-			minHeight  : 200,
-			region     : 'center',
-			collapsible: false,
+			xtype : 'panel',
+			layout : 'zarafa.collapsible',
+			cls : 'zarafa-context-mainpanel',
+			minWidth : 200,
+			minHeight : 200,
+			region : 'center',
 			border: false,
-			split      : true,
-			items      : [{
-				xtype    : 'zarafa.switchviewcontentcontainer',
-				ref      : '../viewPanel',
+			split : true,
+			items : [{
+				xtype : 'zarafa.switchviewcontentcontainer',
+				ref : '../viewPanel',
 				layout   : 'card',
 				lazyItems: this.initViews(config.context)
 			}],
-			tbar       : {
+			tbar : {
 				xtype       : 'filesplugin.fileslisttoolbar',
 				defaultTitle: dgettext('plugin_files', 'Files'),
 				height      : 33,
@@ -54,8 +66,15 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 		};
 	},
 
-	initViews: function (context) {
-
+	/**
+	 * Function will initialize all views associated with files context
+	 * it will also get views added through 3rd party plugins and add it here
+	 * @param {Zarafa.plugins.files.FilesContext} context The Files Context
+	 * @return {Array} array of config objects of different views
+	 * @private
+	 */
+	initViews: function (context)
+	{
 		var allViews = [{
 			xtype  : 'filesplugin.filesrecordaccountview',
 			flex   : 1,
@@ -82,13 +101,19 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 		return allViews;
 	},
 
-	initPreviewPanel: function (context) {
+	/**
+	 * Initializes the {@link Zarafa.plugins.files.ui.FilesPreviewPanel PreviewPanel}
+	 *
+	 * @return {Zarafa.plugins.files.ui.FilesPreviewPanel}
+	 * @private
+	 */
+	initPreviewPanel: function() {
 		return {
 			xtype  : 'filesplugin.filespreviewpanel',
 			ref    : 'filesPreview',
+			border : false,
 			region : 'south',
-			split  : true,
-			context: context
+			split  : true
 		};
 	},
 
@@ -108,11 +133,22 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 		Zarafa.plugins.files.ui.FilesMainPanel.superclass.initEvents.apply(this, arguments);
 	},
 
-	onViewChange: function (context, newView, oldView) {
-
+	/**
+	 * Event handler which is fired when the currently active view inside the {@link #context}
+	 * has been updated. This will update the call
+	 * {@link #viewPanel}#{@link Zarafa.core.ui.SwitchViewContentContainer#switchView}
+	 * to make the requested view active.
+	 *
+	 * @param {Zarafa.core.Context} context The context which fired the event.
+	 * @param {Zarafa.common.data.Views} newView The ID of the selected view.
+	 * @param {Zarafa.common.data.Views} oldView The ID of the previously selected view.
+	 */
+	onViewChange: function (context, newView, oldView)
+	{
+		var store = context.getModel().getStore();
 		switch (newView) {
 			case Zarafa.plugins.files.data.Views.LIST:
-				this.viewPanel.switchView('files-gridview');
+				this.viewPanel.switchView(store.getPath() === "#R#" ? 'files-accountview' : 'files-gridview');
 				break;
 			case Zarafa.plugins.files.data.Views.ICON:
 				this.viewPanel.switchView('files-iconview');
@@ -120,7 +156,21 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 		}
 	},
 
-	onViewModeChange: function (context, newViewMode, oldViewMode) {
+	/**
+	 * Event handler which is fired when the {@link Zarafa.core.Context} fires the
+	 * {@link Zarafa.core.Context#viewmodechange viewmodechange} event. This will
+	 * convert the configured {@link Zarafa.common.data.ViewModes mode} to a
+	 * {@link Zarafa.common.ui.layout.SwitchBorderLayout.Orientation orientation}
+	 * to be {@link Zarafa.common.ui.layout.SwitchBorderLayout.setOrientation applied}
+	 * to the {@link #layout}.
+	 *
+	 * @param {Zarafa.core.Context} context The context which fired the event
+	 * @param {Zarafa.common.data.ViewModes} newViewMode The new active mode
+	 * @param {Zarafa.common.data.ViewModes} oldViewMode The previous mode
+	 * @private
+	 */
+	onViewModeChange: function (context, newViewMode, oldViewMode)
+	{
 		var orientation;
 
 		switch (newViewMode) {
