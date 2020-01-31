@@ -231,11 +231,11 @@ span.error_files {
 	background-position: center;
 }
 
-.zarafa-context-mainpanel {
+.zarafa-files-context-mainpanel {
 	border-right: 1px solid #e6e6e6;
 }
 
-.zarafa-previewpanel {
+.zarafa-files-previewpanel {
 	border-left: 1px solid #e6e6e6;
 }
 

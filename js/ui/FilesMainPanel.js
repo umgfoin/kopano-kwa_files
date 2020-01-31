@@ -45,7 +45,7 @@ Zarafa.plugins.files.ui.FilesMainPanel = Ext.extend(Zarafa.common.ui.ContextMain
 		return {
 			xtype : 'panel',
 			layout : 'zarafa.collapsible',
-			cls : 'zarafa-context-mainpanel',
+			cls : 'zarafa-files-context-mainpanel',
 			minWidth : 200,
 			minHeight : 200,
 			region : 'center',
