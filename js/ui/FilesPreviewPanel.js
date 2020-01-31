@@ -17,7 +17,6 @@ Zarafa.plugins.files.ui.FilesPreviewPanel = Ext.extend(Ext.Panel, {
 		config = config || {};
 
 		var toolbar = Ext.applyIf(config.tbar || {}, {
-			cls   : 'zarafa-previewpanel-toolbar',
 			xtype : 'zarafa.toolbar',
 			height: 33,
 			hidden: false,
@@ -28,7 +27,7 @@ Zarafa.plugins.files.ui.FilesPreviewPanel = Ext.extend(Ext.Panel, {
 			xtype   : 'filesplugin.filespreviewpanel',
 			layout  : 'fit',
 			stateful: true,
-			cls     : 'zarafa-previewpanel',
+			cls     : 'zarafa-files-previewpanel',
 			width   : 300,
 			height  : 300,
 			tbar    : toolbar
