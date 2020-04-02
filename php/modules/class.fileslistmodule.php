@@ -27,6 +27,13 @@ class FilesListModule extends ListModule
 {
 	const LOG_CONTEXT = "FilesListModule"; // Context for the Logger
 
+	// Unauthorized errors of different backends.
+	const SMB_ERR_UNAUTHORIZED = 13;
+	const SMB_ERR_FORBIDDEN = 1;
+	const FTP_WD_OWNCLOUD_ERR_UNAUTHORIZED = 401;
+	const FTP_WD_OWNCLOUD_ERR_FORBIDDEN = 403;
+	const ALL_BACKEND_ERR_NOTFOUND = 404;
+	
 	/**
 	 * @var \phpFastCache cache handler.
 	 */
@@ -107,6 +114,15 @@ class FilesListModule extends ListModule
 	{
 		$data = array();
 		$data["item"] = array();
+		$versions =  $GLOBALS['PluginManager']->getPluginsVersion();
+		$filesVersion = $versions['files'];
+
+		// Clear cache when version gets changed and update 'files' version in chache.
+		if ($isReload ||  version_compare($this->getVersionFromCache('files'), $filesVersion) !== 0) {
+			$this->clearCache();
+			$this->setVersionInCache('files', $filesVersion);
+		}
+
 		$accounts = $this->accountStore->getAllAccounts();
 		foreach ($accounts as $account) {
 			// we have to load all accounts and their folders
@@ -138,10 +154,6 @@ class FilesListModule extends ListModule
 			);
 
 			$initializedBackend = $this->initializeBackend($account, true);
-
-			if ($isReload) {
-				$this->clearCache();
-			}
 
 			// Get sub folder of root folder.
 			$subFolders = $this->getSubFolders($realNodeId, $initializedBackend);
@@ -212,10 +224,15 @@ class FilesListModule extends ListModule
 			$cachePath = "/";
 		}
 
+		$backendDisplayName = $backend->backendDisplayName;
+		$backendVersion = $backend->backendVersion;
+		$cacheVersion  = $this->getVersionFromCache($backendDisplayName, $accountID);
 		$dir = $this->getCache($accountID, $cachePath);
-		if (is_null($dir)) {
+		
+		// Get new data from backend when cache is empty or the version of backend got changed.
+		if (is_null($dir) || version_compare($backendVersion,$cacheVersion) !== 0) {
+			$this->setVersionInCache($backendDisplayName, $backendVersion, $accountID);
 			$dir = $backend->ls($relNodeId);
-			$this->setCache($accountID, $cachePath, $dir);
 		}
 
 		if ($dir) {
@@ -230,7 +247,9 @@ class FilesListModule extends ListModule
 
 				// Check if foldernames have a trailing slash, if not, add one!
 				if (!StringUtil::endsWith($id, "/")) {
+					unset($dir[$id]);
 					$id .= "/";
+					$dir[$id] = $node;
 				}
 
 				$size = $node['getcontentlength'] === null ? -1 : intval($node['getcontentlength']);
@@ -258,25 +277,33 @@ class FilesListModule extends ListModule
 					$storeEntryid = $node['store_entryid'];
 				}
 
-				array_push($nodes, array(
-					'id' => $realID,
-					'folder_id' => $realID,
-					'entryid' => $entryid,
-					'parent_entryid' => $parentEntryid,
-					'store_entryid' => $storeEntryid,
-					'props' => array(
-						'path' => $nodeId,
-						'message_size' => $size,
-						'text' => $filename,
-						'object_type' => $objectType,
-						'icon_index' => ICON_FOLDER,
-						'filename' => $filename,
-						'display_name' => $filename,
-						'lastmodified' => strtotime($node['getlastmodified']) * 1000,
-						'has_subfolder' => $this->hasSubFolder($id, $accountID, $backend)
-					)
-				));
-
+				$nodeHasSubFolder = $this->hasSubFolder($id, $accountID, $backend);
+				// Skip displaying folder whose data is unaccesable.
+				// Also update the cache. 
+				if (is_null($nodeHasSubFolder)) {
+					unset($dir[$id]);
+					$updateCache = true;
+				} else {
+					array_push($nodes, array(
+						'id' => $realID,
+						'folder_id' => $realID,
+						'entryid' => $entryid,
+						'parent_entryid' => $parentEntryid,
+						'store_entryid' => $storeEntryid,
+						'props' => array(
+							'path' => $nodeId,
+							'message_size' => $size,
+							'text' => $filename,
+							'object_type' => $objectType,
+							'icon_index' => ICON_FOLDER,
+							'filename' => $filename,
+							'display_name' => $filename,
+							'lastmodified' => strtotime($node['getlastmodified']) * 1000,
+							'has_subfolder' => $nodeHasSubFolder
+						)
+					));	
+				}
+				
 				// We need to call this function recursively when user rename the folder.
 				// we have to send all sub folder as server side notification so webapp
 				// can update the sub folder as per it's parent folder is renamed.
@@ -284,6 +311,7 @@ class FilesListModule extends ListModule
 					$nodes = $this->getSubFolders($realID, $backend, true, $nodes);
 				}
 			}
+
 			if ($updateCache) {
 				$this->setCache($accountID, $cachePath, $dir);
 			}
@@ -329,11 +357,12 @@ class FilesListModule extends ListModule
 
 	/**
 	 * Function will check that given folder has sub folder or not.
+	 * This will retrurn null when there's an exception retriving folder data. 
 	 *
 	 * @param {String} $id The $id is id of selected folder.
 	 * @param $accountID
 	 * @param $backend
-	 * @return bool
+	 * @return bool or null when unable to access folder data.
 	 */
 	function hasSubFolder($id, $accountID, $backend)
 	{
@@ -344,8 +373,29 @@ class FilesListModule extends ListModule
 
 		$dir = $this->getCache($accountID, $cachePath);
 		if (is_null($dir)) {
-			$dir = $backend->ls($id);
-			$this->setCache($accountID, $cachePath, $dir);
+			try {
+				$dir = $backend->ls($id);
+				$this->setCache($accountID, $cachePath, $dir);
+			} catch (Exception $e) {
+				$errorCode = $e->getCode();
+
+				// If folder not found or folder doesn't have enough access then don't display that folder.
+				if ($errorCode === self::SMB_ERR_UNAUTHORIZED || 
+				$errorCode === self::SMB_ERR_FORBIDDEN ||
+				$errorCode === self::FTP_WD_OWNCLOUD_ERR_UNAUTHORIZED ||
+				$errorCode === self::FTP_WD_OWNCLOUD_ERR_FORBIDDEN||
+				$errorCode === self::ALL_BACKEND_ERR_NOTFOUND) {
+					
+					if ($errorCode === self::ALL_BACKEND_ERR_NOTFOUND) {
+						Logger::error(self::LOG_CONTEXT, '[hasSubFolder]: folder '. $id .' not found');
+					} else {
+						Logger::error(self::LOG_CONTEXT, '[hasSubFolder]: Access denied for folder '. $id);
+					}
+					return null;
+				}
+				// rethrow exception if its not related to access permission.
+				throw $e;
+			}
 		}
 
 		if ($dir) {
@@ -589,6 +639,38 @@ class FilesListModule extends ListModule
 	function makeCacheKey($accountID, $path)
 	{
 		return $this->uid . md5($accountID . $path);
+	}
+
+	/**
+	 * Get version data form the cache.
+	 * 
+	 * @param {String} $displayName display name of the backend or file plugin
+	 * @param {String} $accountID Id of the account of the data to cache
+	 * @return {String} version data or null if nothing was found
+	 */
+	function getVersionFromCache($displayName, $accountID = '')
+	{
+		$key =  $this->uid . $accountID . $displayName;
+		return $this->cache->get($key);
+	}
+
+	/**
+	 * Set version data in the cache only when version data has been changed.
+	 * 
+	 * @param {String} $displayName display name of the backend or file plugin
+	 * @param {String} $version version info of backend or file plugin which needs to be cached
+	 * @param {String} $accountID Id of the account of the data to cache
+	 */
+	function setVersionInCache($displayName, $version, $accountID = '') 
+	{
+		$olderVersionFromCache = $this->getVersionFromCache($displayName, $accountID);
+		// If version of files/backend is same then return.
+		if (version_compare($olderVersionFromCache,$version) === 0) {
+			return;
+		}
+		
+		$key = $this->uid . $accountID . $displayName;
+		$this->cache->set($key, $version);
 	}
 
 	/**
