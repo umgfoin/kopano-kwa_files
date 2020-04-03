@@ -52,6 +52,7 @@ class HierarchyListModule extends FilesListModule
 					$this->sendFeedback(false, array(
 						'type' => ERROR_GENERAL,
 						'info' => array(
+							'title' => $e->getTitle(),
 							'original_message' => $e->getMessage(),
 							'display_message' => $e->getMessage()
 						)
@@ -60,6 +61,7 @@ class HierarchyListModule extends FilesListModule
 					$this->sendFeedback(false, array(
 						'type' => ERROR_GENERAL,
 						'info' => array(
+							'title' => $e->getTitle(),
 							'original_message' => $e->getMessage(),
 							'display_message' => $e->getMessage(),
 							'code' => $e->getCode()
@@ -69,6 +71,7 @@ class HierarchyListModule extends FilesListModule
 					$this->sendFeedback(false, array(
 						'type' => ERROR_GENERAL,
 						'info' => array(
+							'title' => $e->getTitle(),
 							'original_message' => $e->getMessage(),
 							'display_message' => $e->getMessage(),
 							'code' => $e->getCode()
