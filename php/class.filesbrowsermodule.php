@@ -156,6 +156,7 @@ class FilesBrowserModule extends FilesListModule
 					$this->sendFeedback(false, array(
 						'type' => ERROR_GENERAL,
 						'info' => array(
+							'title' => $e->getTitle(),
 							'original_message' => $e->getMessage(),
 							'display_message' => $e->getMessage()
 						)
@@ -164,6 +165,7 @@ class FilesBrowserModule extends FilesListModule
 					$this->sendFeedback(false, array(
 						'type' => ERROR_GENERAL,
 						'info' => array(
+							'title' => $e->getTitle(),
 							'original_message' => $e->getMessage(),
 							'display_message' => $e->getMessage(),
 							'code' => $e->getCode()
@@ -539,8 +541,9 @@ class FilesBrowserModule extends FilesListModule
 			$this->sendFeedback(false, array(
 				'type' => ERROR_GENERAL,
 				'info' => array(
-					'original_message' => "Moving between accounts is not implemented",
-					'display_message' => "Moving between accounts is not implemented"
+					'title' => dgettext('plugin_files', "Files Plugin"),
+					'original_message' => dgettext('plugin_files', "Moving between accounts is not implemented"),
+					'display_message' => dgettext('plugin_files', "Moving between accounts is not implemented")
 				)
 			));
 
@@ -808,6 +811,7 @@ class FilesBrowserModule extends FilesListModule
 			$this->sendFeedback(false, array(
 				'type' => ERROR_GENERAL,
 				'info' => array(
+					'title' => dgettext('plugin_files', "Files plugin"),
 					'original_message' => dgettext('plugin_files', "Unknown type - cannot save this file to the Files backend!"),
 					'display_message' => dgettext('plugin_files', "Unknown type - cannot save this file to the Files backend!")
 				)
@@ -1085,6 +1089,7 @@ class FilesBrowserModule extends FilesListModule
 			$this->sendFeedback(false, array(
 				'type' => ERROR_GENERAL,
 				'info' => array(
+					'title' => dgettext('plugin_files', "Files Plugin");
 					'original_message' => dgettext('plugin_files', "No record given!"),
 					'display_message' => dgettext('plugin_files', "No record given!")
 				)
@@ -1143,6 +1148,7 @@ class FilesBrowserModule extends FilesListModule
 			$this->sendFeedback(false, array(
 				'type' => ERROR_GENERAL,
 				'info' => array(
+					'title' => dgettext('plugin_files', "Files Plugin"),
 					'original_message' => dgettext('plugin_files', "No record given!"),
 					'display_message' => dgettext('plugin_files', "No record given!")
 				)
@@ -1203,6 +1209,7 @@ class FilesBrowserModule extends FilesListModule
 			$this->sendFeedback(false, array(
 				'type' => ERROR_GENERAL,
 				'info' => array(
+					'title' => dgettext('plugin_files', "Files Plugin"),
 					'original_message' => dgettext('plugin_files', "No record given!"),
 					'display_message' => dgettext('plugin_files', "No record given!")
 				)
@@ -1255,6 +1262,7 @@ class FilesBrowserModule extends FilesListModule
 			$this->sendFeedback(false, array(
 				'type' => ERROR_GENERAL,
 				'info' => array(
+					'title' => dgettext('plugin_files', "Files Plugin"),
 					'original_message' => dgettext('plugin_files', "No record given!"),
 					'display_message' => dgettext('plugin_files', "No record given!")
 				)

@@ -80,6 +80,7 @@ class FilesAccountModule extends ListModule
 					$this->sendFeedback(false, array(
 						'type' => ERROR_GENERAL,
 						'info' => array(
+							'title' => $e->getTitle(),
 							'original_message' => $e->getMessage(),
 							'display_message' => $e->getMessage()
 						)
@@ -88,6 +89,7 @@ class FilesAccountModule extends ListModule
 					$this->sendFeedback(false, array(
 						'type' => ERROR_GENERAL,
 						'info' => array(
+							'title' => $e->getTitle(),
 							'original_message' => $e->getMessage(),
 							'display_message' => $e->getMessage()
 						)

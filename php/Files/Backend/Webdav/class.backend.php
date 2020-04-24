@@ -104,14 +104,14 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 		$this->init_form();
 
 		// set backend description
-		$this->backendDescription = dgettext('plugin_files', "With this backend, you can connect to any webdav server (e.g. Owncloud).");
+		$this->backendDescription = dgettext('plugin_files', "With this backend, you can connect to any WebDAV server.");
 
 		// set backend display name
 		$this->backendDisplayName = "Webdav";
 
 		// set backend version
 		// TODO: this should be changed on every release
-		$this->backendVersion = "1.0";
+		$this->backendVersion = "3.0";
 	}
 
 	/**
@@ -345,7 +345,9 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 		// check if curl is available
 		$serverHasCurl = function_exists('curl_version');
 		if (!$serverHasCurl) {
-			throw new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_NO_CURL), 500);
+			$e = new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_NO_CURL), 500);
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: PHP-CURL is not installed'));
+			throw $e;
 		}
 
 		$davsettings = array(
@@ -363,9 +365,13 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 		} catch (Exception $e) {
 			$this->log('Failed to open: ' . $e->getMessage());
 			if (intval($e->getHTTPCode()) == 401) {
-				throw new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_UNAUTHORIZED), $e->getHTTPCode());
+				$e = new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_UNAUTHORIZED), $e->getHTTPCode());
+				$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Access denied'));
+				throw $e;
 			} else {
-				throw new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_UNREACHABLE), $e->getHTTPCode());
+				$e = new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_UNREACHABLE), $e->getHTTPCode());
+				$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Connection failed'));
+				throw $e;
 			}
 		}
 	}
@@ -430,10 +436,12 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 			return $lsdata;
 
 		} catch (ClientException $e) {
-			$this->log('ls sabre error: ' . $e->getMessage());
-			throw new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$this->log('ls sabre ClientException: ' . $e->getMessage());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e->setTitle(_("Files WebDAV Backend: Sabre error"));
+			throw $e;
 		} catch (Exception $e) {
-			$this->log('ls fatal: ' . $e->getMessage() . " [" . $e->getHTTPCode() .  "]");
+			$this->log('ls general exception: ' . $e->getMessage() . " [" . $e->getHTTPCode() .  "]");
 			// THIS IS A FIX FOR OWNCLOUD - It does return 500 instead of 401...
 			$err_code = $e->getHTTPCode();
 			// check if code is 500 - then we should try to parse the error message
@@ -444,7 +452,9 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 					$err_code = $found[0];
 				}
 			}
-			throw new BackendException($this->parseErrorCodeToMessage($err_code), $err_code);
+			$e = new BackendException($this->parseErrorCodeToMessage($err_code), $err_code);
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Connection failed'));
+			throw $e;
 		}
 	}
 
@@ -470,10 +480,14 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 
 			return true;
 		} catch (ClientException $e) {
-			throw new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Sabre error'));
+			throw $e;
 		} catch (Exception $e) {
 			$this->log('[MKCOL] fatal: ' . $e->getMessage());
-			throw new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Directory creation failed'));
+			throw $e;
 		}
 	}
 
@@ -499,10 +513,14 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 
 			return true;
 		} catch (ClientException $e) {
-			throw new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Sabre error'));
+			throw $e;
 		} catch (Exception $e) {
-			$this->log('delete fatal: ' . $e->getMessage());
-			throw new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$this->log('[DELETE] fatal: ' . $e->getMessage());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Deletion failed'));
+			throw $e;
 		}
 	}
 
@@ -538,10 +556,14 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 
 			return true;
 		} catch (ClientException $e) {
-			throw new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Sabre error'));
+			throw $e;
 		} catch (Exception $e) {
-			$this->log('move fatal: ' . $e->getMessage());
-			throw new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$this->log('[MOVE] fatal: ' . $e->getMessage());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Moving failed'));
+			throw $e;
 		}
 	}
 
@@ -568,10 +590,14 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 
 			return true;
 		} catch (ClientException $e) {
-			throw new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Sabre error'));
+			throw $e;
 		} catch (Exception $e) {
-			$this->log('[PUT] put fatal: ' . $e->getMessage());
-			throw new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$this->log('[PUT] fatal: ' . $e->getMessage());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Connection failed'));
+			throw $e;
 		}
 	}
 
@@ -592,7 +618,9 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 		if ($buffer !== false) {
 			return $this->put($path, $buffer);
 		} else {
-			throw new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_TMP), self::WD_ERR_TMP);
+			$e = new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_TMP), self::WD_ERR_TMP);
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Temporary directory problems'));
+			throw $e;
 		}
 	}
 
@@ -639,10 +667,14 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 			$time = $time_end - $time_start;
 			$this->log("[GET_FILE] done in $time seconds: " . $response['statusCode']);
 		} catch (ClientException $e) {
-			throw new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Sabre error'));
+			throw $e;
 		} catch (Exception $e) {
-			$this->log('[GET_FILE] fatal: ' . $e->getMessage());
-			throw new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$this->log('[GET_FILE] - FATAL -' . $e->getMessage());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: File or folder not found'));
+			throw $e;
 		}
 	}
 
@@ -743,8 +775,10 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 			return $features;
 		}
 
-		$this->log('options: error getting server features');
-		throw new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_FEATURES), self::WD_ERR_FEATURES);
+		$this->log('[OPTIONS] - ERROR - Error getting server features');
+		$e = new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_FEATURES), self::WD_ERR_FEATURES);
+		$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Not implemented'));
+		throw $e;
 	}
 
 	/**
@@ -829,10 +863,14 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 
 			return true;
 		} catch (ClientException $e) {
-			throw new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getCode()), $e->getCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Sabre error'));
+			throw $e;
 		} catch (Exception $e) {
-			$this->log('[COPY] fatal: ' . $e->getMessage());
-			throw new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$this->log('[COPY] - FATAL - ' . $e->getMessage());
+			$e = new BackendException($this->parseErrorCodeToMessage($e->getHTTPCode()), $e->getHTTPCode());
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: Copying failed'));
+			throw $e;
 		}
 	}
 
@@ -904,38 +942,38 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 			case CURLE_COULDNT_CONNECT:
 			case CURLE_OPERATION_TIMEOUTED:
 			case self::WD_ERR_UNREACHABLE:
-			case self::WD_ERR_NOTALLOWED:
-				$msg = dgettext('plugin_files', 'File-server is not reachable. Wrong IP entered?');
+				$msg = dgettext('plugin_files', 'File server is not reachable. Please verify the connection.');
 				break;
 			case self::WD_ERR_NOTALLOWED:
-				$msg = dgettext('plugin_files', 'File-server is not reachable. Incorrect URL?');
+				$msg = dgettext('plugin_files', 'File server is not reachable. Please verify the file server URL.');
 				break;
 			case self::WD_ERR_FORBIDDEN:
-				$msg = dgettext('plugin_files', 'You don\'t have enough permissions for this operation.');
+				$msg = dgettext('plugin_files', 'You don\'t have enough permissions to view this file or folder.');
 				break;
 			case self::WD_ERR_NOTFOUND:
-				$msg = dgettext('plugin_files', 'File is not available any more.');
+				$msg = dgettext('plugin_files', 'The file or folder is not available anymore.');
 				break;
 			case self::WD_ERR_TIMEOUT:
-				$msg = dgettext('plugin_files', 'Connection to server timed out. Retry later.');
+				$msg = dgettext('plugin_files', 'Connection to the file server timed out. Please check again later.');
 				break;
 			case self::WD_ERR_LOCKED:
-				$msg = dgettext('plugin_files', 'This file is locked by another user.');
+				$msg = dgettext('plugin_files', 'This file is locked by another user. Please try again later.');
 				break;
 			case self::WD_ERR_FAILED_DEPENDENCY:
-				$msg = dgettext('plugin_files', 'The request failed due to failure of a previous request.');
+				$msg = dgettext('plugin_files', 'The request failed due to failure of a previous request. Please contact your system administrator.');
 				break;
 			case self::WD_ERR_INTERNAL:
-				$msg = dgettext('plugin_files', 'File-server encountered a problem. Wrong IP entered?');
-				break; // this comes most likely from a wrong ip
+				// This is a general error, might be thrown due to a wrong IP, but we don't know.
+				$msg = dgettext('plugin_files', 'The file server encountered an internal problem. Please contact your system administrator?');
+				break;
 			case self::WD_ERR_TMP:
-				$msg = dgettext('plugin_files', 'Could not write to temporary directory. Contact the server administrator.');
+				$msg = dgettext('plugin_files', 'We could not write to temporary directory. Please contact your system administrator.');
 				break;
 			case self::WD_ERR_FEATURES:
-				$msg = dgettext('plugin_files', 'Could not retrieve list of server features. Contact the server administrator.');
+				$msg = dgettext('plugin_files', 'We could not retrieve list of server features. Please contact the server administrator.');
 				break;
 			case self::WD_ERR_NO_CURL:
-				$msg = dgettext('plugin_files', 'PHP-Curl is not available. Contact your system administrator.');
+				$msg = dgettext('plugin_files', 'PHP-Curl is not available. Please contact your system administrator.');
 				break;
 		}
 
@@ -1024,7 +1062,9 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 		// check if curl is available
 		$serverHasCurl = function_exists('curl_version');
 		if (!$serverHasCurl) {
-			throw new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_NO_CURL), 500);
+			$e = new BackendException($this->parseErrorCodeToMessage(self::WD_ERR_NO_CURL), 500);
+			$e->setTitle(dgettext('plugin_files', 'Files WebDAV Backend: PHP-CURL not installed'));
+			throw $e;
 		}
 
 		$webdavurl = $this->webdavUrl();
