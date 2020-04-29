@@ -1089,7 +1089,7 @@ class FilesBrowserModule extends FilesListModule
 			$this->sendFeedback(false, array(
 				'type' => ERROR_GENERAL,
 				'info' => array(
-					'title' => dgettext('plugin_files', "Files Plugin");
+					'title' => dgettext('plugin_files', "Files Plugin"),
 					'original_message' => dgettext('plugin_files', "No record given!"),
 					'display_message' => dgettext('plugin_files', "No record given!")
 				)
