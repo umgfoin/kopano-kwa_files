@@ -611,7 +611,7 @@ msgstr ""
 
 msgid ""
 "The file server encountered an internal problem. Please contact your system "
-"administrator?"
+"administrator."
 msgstr ""
 
 msgid ""
