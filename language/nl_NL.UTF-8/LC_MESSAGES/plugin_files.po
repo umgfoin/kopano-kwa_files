@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Plugin Dutch\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-05 14:38+0200\n"
-"PO-Revision-Date: 2020-05-06 10:24+0000\n"
+"PO-Revision-Date: 2020-05-06 10:39+0000\n"
 "Last-Translator: martijn <m.alberts@zarafa.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
 "Language: nl_NL\n"
@@ -57,16 +57,16 @@ msgid "Please enter a new name"
 msgstr "Geef een nieuwe naam op"
 
 msgid "Rename record"
-msgstr "Hernoem item"
+msgstr "Hernoem bestand"
 
 msgid "A file name should not be empty."
 msgstr "Een bestand- of foldernaam kan niet leeg zijn."
 
 msgid "Rename item"
-msgstr ""
+msgstr "Hernoem bestand"
 
 msgid "A file named \"{0}\" already exists. Please enter a different name."
-msgstr ""
+msgstr "Een bestand genaamd \"{0}\" bestaat al. Kies een andere naam."
 
 msgid "Downloading"
 msgstr "Downloaden"
@@ -275,7 +275,7 @@ msgid "Version Information"
 msgstr "Versie informatie"
 
 msgid "All Day"
-msgstr ""
+msgstr "Hele dag"
 
 msgid "Sort by: Type"
 msgstr "Sorteer op: Type"
@@ -350,7 +350,7 @@ msgid "Add item to Files"
 msgstr "Voeg item toe aan Files"
 
 msgid "There are no items to show in this list"
-msgstr ""
+msgstr "Er zijn geen bestanden te zien in deze lijst"
 
 msgid "New folder"
 msgstr "Nieuwe map"
@@ -494,7 +494,7 @@ msgid "There are no items to show in this view"
 msgstr "Er zijn geen items te tonen in deze weergave"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Opnieuw laden"
 
 msgid "files selected"
 msgstr "bestanden geselecteerd"
@@ -518,10 +518,10 @@ msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr "Functie \"OAUTH\" niet ondersteund door deze backend!"
 
 msgid "Moving between accounts is not implemented"
-msgstr ""
+msgstr "Verplaatsen tussen accounts is nog niet supported"
 
 msgid "Files plugin"
-msgstr ""
+msgstr "Files plugin"
 
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr "Onbekend type - kan niet worden opgeslagen op het Files backend!"
@@ -569,19 +569,19 @@ msgid "Use Kopano credentials"
 msgstr "Gebruik Kopano logingegevens"
 
 msgid "Files FTP Backend: Authentication failed"
-msgstr ""
+msgstr "Files FTP Backend: Authenticatie gefaald"
 
 msgid "Files FTP Backend: Connection failed"
-msgstr ""
+msgstr "Files FTP Backend: Connectie gefaald"
 
 msgid "Unparsable server response."
 msgstr "Server reactie onleesbaar."
 
 msgid "Files FTP Backend: Temporary directory problems"
-msgstr ""
+msgstr "Files FTP Backend: TMP folder problemen"
 
 msgid "Files FTP Backend: Not implemented"
-msgstr ""
+msgstr "Files FTP Backend: Niet supported"
 
 msgid "Unknown error"
 msgstr "Onbekende fout"
@@ -596,7 +596,7 @@ msgid "You don't have enough permissions to view this file or folder."
 msgstr "Je hebt onvoldoende rechten om deze file of folder te bekijken."
 
 msgid "This file or folder is not available anymore."
-msgstr ""
+msgstr "Het bestand of folder is niet meer beschikbaar."
 
 msgid "Connection to the file server timed out. Please check again later."
 msgstr ""
@@ -604,6 +604,7 @@ msgstr ""
 
 msgid "This file is locked by another user. Please check again later."
 msgstr ""
+"Het bestand is gelockt door een andere gebruiker. Probeer het later opnieuw."
 
 msgid ""
 "The request failed due to failure of a previous request. Please contact your "
@@ -638,6 +639,7 @@ msgstr "Deze optie is nog niet geïmplementeerd."
 
 msgid "With this backend, you can connect to any WebDAV server."
 msgstr ""
+"Met deze backend kan er een connectie worden gemaakt met elke WebDAV server."
 
 msgid "Webdav base path"
 msgstr "WebDAV basispad"
@@ -649,37 +651,37 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 msgid "Files WebDAV Backend: PHP-CURL is not installed"
-msgstr ""
+msgstr "Files WebDAV Backend: PHP-CURL is niet geïnstaleerd"
 
 msgid "Files WebDAV Backend: Access denied"
-msgstr ""
+msgstr "Files WebDAV Backend: Verboden toegang"
 
 msgid "Files WebDAV Backend: Connection failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Connectie gefaald"
 
 msgid "Files WebDAV Backend: Sabre error"
-msgstr ""
+msgstr "Files WebDAV Backend: Sabre fout"
 
 msgid "Files WebDAV Backend: Directory creation failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Maken van folder gefaald"
 
 msgid "Files WebDAV Backend: Deletion failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Verwijderen gefaald"
 
 msgid "Files WebDAV Backend: Moving failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Verplaatsen gefaald"
 
 msgid "Files WebDAV Backend: Temporary directory problems"
-msgstr ""
+msgstr "Files WebDAV Backend: TMP folder problemen"
 
 msgid "Files WebDAV Backend: File or folder not found"
-msgstr ""
+msgstr "Files WebDAV Backend: Bestand of folder niet gevonden"
 
 msgid "Files WebDAV Backend: Not implemented"
-msgstr ""
+msgstr "Files WebDAV Backend: Niet supported"
 
 msgid "Files WebDAV Backend: Copying failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Kopiëren gefaald"
 
 msgid "File server is not reachable. Please verify the file server URL."
 msgstr "De file server is niet beschikbaar. Controleer de server URL."
@@ -696,7 +698,7 @@ msgstr ""
 "PHP-CURL is niet beschikbaar. Neem contact op met de systeemadministrator."
 
 msgid "Files WebDAV Backend: PHP-CURL not installed"
-msgstr ""
+msgstr "Files WebDAV Backend: PHP-CURL niet geïnstaleerd"
 
 msgid "Account is ready to use."
 msgstr "Account klaar voor gebruik."
