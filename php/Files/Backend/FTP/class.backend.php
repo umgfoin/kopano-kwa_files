@@ -923,7 +923,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 				break;
 			case self::FTP_ERR_INTERNAL:
 				// This is a general error, might be thrown due to a wrong IP, but we don't know.
-				$msg = dgettext('plugin_files', 'The file server encountered an internal problem. Please contact your system administrator?');
+				$msg = dgettext('plugin_files', 'The file server encountered an internal problem. Please contact your system administrator.');
 				break;
 			case self::FTP_ERR_TMP:
 				$msg = dgettext('plugin_files', 'We could not write to temporary directory. Please contact your system administrator.');
