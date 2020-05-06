@@ -18,39 +18,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.4\n"
 
-#: js/data/Actions.js:70
 msgid "Add attachment from {0}"
 msgstr "Aggiungi allegato da {0}"
 
-#: js/data/Actions.js:165 js/settings/ui/AccountGrid.js:207
 msgid "Confirm deletion"
 msgstr "Conferma eliminazione"
 
-#: js/data/Actions.js:189
 #, fuzzy
 msgid "Are you sure you want to delete {0}?"
 msgstr "Sei sicuro di voler eliminare l'account \"{0}\"?"
 
-#: js/data/Actions.js:193
 #, fuzzy
 msgid "Are you sure you want to delete {0} and all of its contents?"
 msgstr ""
 "Le impostazioni di Files verranno reinizializzate ai loro valori di default. "
 "Continuare?"
 
-#: js/data/Actions.js:197
 #, fuzzy
 msgid "Are you sure you want to delete {0} files?"
 msgstr "Sei sicuro di voler eliminare l'account \"{0}\"?"
 
-#: js/data/Actions.js:201
 #, fuzzy
 msgid "Are you sure want to delete {0} folders and all of their contents?"
 msgstr ""
 "Le impostazioni di Files verranno reinizializzate ai loro valori di default. "
 "Continuare?"
 
-#: js/data/Actions.js:205
 #, fuzzy
 msgid ""
 "Are you sure want to delete the selected items and all of their contents?"
@@ -58,878 +51,664 @@ msgstr ""
 "Le impostazioni di Files verranno reinizializzate ai loro valori di default. "
 "Continuare?"
 
-#: js/data/Actions.js:388 js/ui/FilesListToolbar.js:104
-#: js/ui/FilesListToolbar.js:105 js/ui/FilesMainContextMenu.js:105
-#: js/ui/FilesTreeContextMenu.js:52
+msgid "Confirm overwrite"
+msgstr "Conferma sovrascrittura"
+
+msgid "File already exists. Do you want to overwrite it?"
+msgstr "Il file esiste già. Vuoi sovrascriverlo?"
+
 msgid "Rename"
 msgstr "Rinomina"
 
-#: js/data/Actions.js:389
 msgid "Please enter a new name"
 msgstr "Inserisci il nuovo nome"
 
-#: js/data/Actions.js:464
-msgid "This name already exists"
-msgstr "Questo nome esiste già"
+msgid "Rename record"
+msgstr ""
 
-#: js/data/Actions.js:466
-msgid "Incorrect name"
-msgstr "Nome non valido"
+msgid "A file name should not be empty."
+msgstr ""
 
-#: js/data/Actions.js:508
+msgid "Rename item"
+msgstr ""
+
+msgid "A file named \"{0}\" already exists. Please enter a different name."
+msgstr ""
+
 msgid "Downloading"
 msgstr "Download in corso"
 
-#: js/data/Actions.js:508
 msgid "Download started... please wait!"
 msgstr "Download avviato... attendere prego!"
 
-#: js/data/Actions.js:543 js/data/NavigatorTreeLoader.js:121
-#: js/data/ResponseHandler.js:128 js/ui/dialogs/FilesUploadContentPanel.js:183
-#: js/ui/FilesRecordAccountView.js:135
-msgid "Error"
-msgstr "Errore"
+msgid "Upload"
+msgstr "Carica"
 
-#: js/data/Actions.js:544
 msgid "At least one file is too large! Maximum allowed filesize: {0}."
 msgstr ""
 "Uno o più files sono troppo grandi! La dimensione massima permessa è: {0}."
 
-#: js/data/Actions.js:619 js/data/ResponseHandler.js:119
-#: js/ui/dialogs/SaveToFilesTreePanel.js:319
-msgid "Confirm overwrite"
-msgstr "Conferma sovrascrittura"
-
-#: js/data/Actions.js:621 js/data/ResponseHandler.js:120
-#: js/ui/dialogs/SaveToFilesTreePanel.js:320
-msgid "File already exists. Do you want to overwrite it?"
-msgstr "Il file esiste già. Vuoi sovrascriverlo?"
-
-#: js/data/Actions.js:624
 msgid "Keep both"
 msgstr ""
 
-#: js/data/Actions.js:627
 #, fuzzy
 msgid "Overwrite"
 msgstr "Conferma sovrascrittura"
 
-#: js/data/Actions.js:630 js/settings/SettingsResetWidget.js:67
-#: js/settings/ui/AccountEditPanel.js:42
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:93
-#: js/ui/dialogs/CreateFolderPanel.js:52
-#: js/ui/dialogs/FilesUploadContentPanel.js:144
-#: js/ui/dialogs/SaveToFilesTreePanel.js:194
 msgid "Cancel"
 msgstr "Annulla"
 
-#: js/data/Actions.js:680 js/ui/dialogs/AttachFromFilesTreePanel.js:129
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:143
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:164
 msgid "Warning"
 msgstr "Attenzione"
 
-#: js/data/NavigatorTreeLoader.js:140
-msgid "Loading failed"
-msgstr "Caricamento fallito"
+msgid "Error"
+msgstr "Errore"
 
-#: js/data/Utils.js:232
 msgid "l d/m/Y G:i"
 msgstr "l d/m/Y G:i"
 
-#: js/data/Utils.js:232
 msgid "Never"
 msgstr "Mai"
 
-#: js/FilesContext.js:265 js/ui/dialogs/FilesUploadContentPanel.js:30
-msgid "Upload file"
-msgstr "Carica file"
-
-#: js/FilesContext.js:287 js/FilesContext.js:289
-msgid "No preview"
-msgstr "Nessuna anteprima"
-
-#: js/FilesContext.js:295 js/FilesContext.js:297
-msgid "Right preview"
-msgstr "Anteprima a destra"
-
-#: js/FilesContext.js:303 js/FilesContext.js:305
-msgid "Bottom preview"
-msgstr "Anteprima in basso"
-
-#: js/FilesContext.js:326
-msgid "Switch view"
-msgstr "Scambia viste"
-
-#: js/FilesContext.js:335 js/FilesContext.js:336
-msgid "List"
-msgstr "Lista"
-
-#: js/FilesContext.js:342 js/FilesContext.js:343
-msgid "Icons"
-msgstr "Icone"
-
-#: js/FilesContext.js:452 js/FilesContextModel.js:120
-#: js/settings/SettingsMainCategory.js:21 js/ui/FilesMainPanel.js:47
-msgid "Files"
-msgstr "Files"
-
-#: js/FilesPlugin.js:55
 msgid "Add from Files"
 msgstr "Aggiungi da Files"
 
-#: js/FilesPlugin.js:72 js/ui/dialogs/AttachFromFilesContentPanel.js:25
 msgid "Add attachment from Files"
 msgstr "Aggiungi allegato da Files"
 
-#: js/FilesPlugin.js:88 js/FilesPlugin.js:161
 msgid "Add to Files"
 msgstr "Aggiungi a Files"
 
-#: js/FilesPlugin.js:184 php/class.filesbrowsermodule.php:1277
 msgid "Untitled"
 msgstr "Senza titolo"
 
-#: js/FilesPlugin.js:292
+msgid "Upload file"
+msgstr "Carica file"
+
+msgid "No preview"
+msgstr "Nessuna anteprima"
+
+msgid "Right preview"
+msgstr "Anteprima a destra"
+
+msgid "Bottom preview"
+msgstr "Anteprima in basso"
+
+msgid "Switch view"
+msgstr "Scambia viste"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Icons"
+msgstr "Icone"
+
+msgid "Files"
+msgstr "Files"
+
 msgid "Files Plugin"
 msgstr "Files Plugin"
 
-#: js/settings/SettingsAccountWidget.js:21
 msgid "Manage Accounts"
 msgstr "Gestisci account"
 
-#: js/settings/SettingsResetWidget.js:27 js/settings/SettingsResetWidget.js:35
-#: js/settings/SettingsResetWidget.js:60
 msgid "Reset Files settings"
 msgstr "Reinizializza impostazioni Files"
 
-#: js/settings/SettingsResetWidget.js:32
 msgid "Resets Files settings to their original defaults"
 msgstr "Reinizializza le impostazioni di Files ai valori di default"
 
-#: js/settings/SettingsResetWidget.js:52
 #, fuzzy
 msgid "Are you sure to remove all settings and accounts?"
 msgstr ""
 "Le impostazioni di Files verranno reinizializzate ai loro valori di default. "
 "Continuare?"
 
-#: js/settings/SettingsResetWidget.js:54
 msgid ""
 "Accounts marked by your administrator as \"cannot be changed\" will not be "
 "removed."
 msgstr ""
 
-#: js/settings/SettingsResetWidget.js:56
 #, fuzzy
 msgid ""
 "WebApp will automatically restart in order for these changes to take effect."
 msgstr "La WebApp verrà riavviata per applicare le modifiche,"
 
-#: js/settings/SettingsResetWidget.js:64
 msgid "Reset"
 msgstr "Reinizializza"
 
-#: js/settings/SettingsResetWidget.js:94
 msgid "Webapp is reloading, Please wait."
 msgstr "La WebApp si sta ricaricando, attendere prego."
 
-#: js/settings/ui/AccountEditContentPanel.js:26
 msgid "Edit Account"
 msgstr "Modifica account"
 
-#: js/settings/ui/AccountEditPanel.js:35
-#: js/ui/dialogs/SaveToFilesTreePanel.js:182
 msgid "Save"
 msgstr "Salva"
 
-#: js/settings/ui/AccountEditPanel.js:137
 msgid "Account Information"
 msgstr "Informazioni account"
 
-#: js/settings/ui/AccountEditPanel.js:152
 msgid "Account name"
 msgstr "Nome account"
 
-#: js/settings/ui/AccountEditPanel.js:159
 msgid "Account type"
 msgstr "Tipo account"
 
-#: js/settings/ui/AccountEditPanel.js:170
 msgid "Select backend..."
 msgstr "Seleziona backend..."
 
-#: js/settings/ui/AccountEditPanel.js:184
 msgid "Account Configuration"
 msgstr "Configurazione account"
 
-#: js/settings/ui/AccountEditPanel.js:240
 msgid "Update"
 msgstr "Aggiorna"
 
-#: js/settings/ui/AccountGridColumnModel.js:37
 msgid "ID"
 msgstr "ID"
 
-#: js/settings/ui/AccountGridColumnModel.js:42
-#: js/ui/FilesRecordGridColumnModel.js:45
 msgid "Sort by: ID"
 msgstr "Ordina per: ID"
 
-#: js/settings/ui/AccountGridColumnModel.js:44
 msgid "Status"
 msgstr "Stato"
 
-#: js/settings/ui/AccountGridColumnModel.js:49
 msgid "Sort by: Status"
 msgstr "Ordina per: Stato"
 
-#: js/settings/ui/AccountGridColumnModel.js:51
-#: js/ui/dialogs/CreateFolderPanel.js:81
 msgid "Name"
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:55
 msgid "Sort by: Name"
 msgstr ""
 
-#: js/settings/ui/AccountGridColumnModel.js:57
-#: js/settings/ui/FeatureVersionInfoPanel.js:94
 msgid "Backend"
 msgstr "Backend"
 
-#: js/settings/ui/AccountGridColumnModel.js:62
 msgid "Sort by: Backend"
 msgstr "Ordina per: Backend"
 
-#: js/settings/ui/AccountGridColumnModel.js:65
 msgid "Features"
 msgstr "Caratteristiche"
 
-#: js/settings/ui/AccountGridColumnModel.js:69
 msgid "Shows all available features of the backend."
 msgstr "Mostra tutte le caratteristiche disponibili del backend."
 
-#: js/settings/ui/AccountGridColumnModel.js:73
 msgid "Show quota information"
 msgstr "Mostra informazioni sui limiti di archiviazione"
 
-#: js/settings/ui/AccountGridColumnModel.js:78
 msgid "Show version information"
 msgstr "Mostra informazioni sulla versione"
 
-#: js/settings/ui/AccountGridColumnModel.js:83 js/ui/FilesListToolbar.js:88
 msgid "Share files"
 msgstr "Condividi files"
 
-#: js/settings/ui/AccountGridColumnModel.js:87
 msgid "Fast Down/Upload"
 msgstr "Download/Upload veloci"
 
-#: js/settings/ui/AccountGrid.js:40
 msgid "No account created!"
 msgstr "Nessun account creato!"
 
-#: js/settings/ui/AccountGrid.js:50
 msgid "Add Account"
 msgstr "Aggiungi account"
 
-#: js/settings/ui/AccountGrid.js:56
 msgid "Remove Account"
 msgstr "Rimuovi account"
 
-#: js/settings/ui/AccountGrid.js:98 js/ui/FilesRecordAccountView.js:33
 msgid "Loading accounts"
 msgstr "Caricamento accounts"
 
-#: js/settings/ui/AccountGrid.js:208
 msgid "Do you really want to delete the account \"{0}\"?"
 msgstr "Sei sicuro di voler eliminare l'account \"{0}\"?"
 
-#: js/settings/ui/FeatureQuotaInfoContentPanel.js:20
 msgid "Quota Information"
 msgstr "Informazioni limiti di archiviazione"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:32
 msgid "Reload"
 msgstr "Ricarica"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:36
-#: js/settings/ui/FeatureVersionInfoPanel.js:33
 msgid "Close"
 msgstr "Chiudi"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:116
-#: php/class.filesaccountmodule.php:354
 msgid "Used"
 msgstr "Utilizzato"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:117
-#: js/settings/ui/FeatureQuotaInfoPanel.js:122
-#: js/settings/ui/FeatureQuotaInfoPanel.js:127
-#: js/settings/ui/FeatureVersionInfoPanel.js:95
-#: js/settings/ui/FeatureVersionInfoPanel.js:100
 msgid "Loading"
 msgstr "Caricamento"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:121
-#: php/class.filesaccountmodule.php:355
 msgid "Free"
 msgstr "Disponibile"
 
-#: js/settings/ui/FeatureQuotaInfoPanel.js:126
 msgid "Total"
 msgstr ""
 
-#: js/settings/ui/FeatureVersionInfoContentPanel.js:20
 msgid "Version Information"
 msgstr "Versione"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:88
+msgid "All Day"
+msgstr ""
+
+msgid "Sort by: Type"
+msgstr "Ordina per: Tipo"
+
+msgid "Filename"
+msgstr "Nome file"
+
+msgid "Sort by: Filename"
+msgstr "Ordina per: Nome file"
+
+msgid "Size"
+msgstr "Dimensione"
+
+msgid "Sort by: Size"
+msgstr "Ordina per: Dimensione"
+
+msgid "Loading files"
+msgstr "Caricamento files in corso"
+
 msgid "Add attachment"
 msgstr "Aggiungi allegato"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "The file {0} is too large!"
 msgstr "Il file {0} è troppo grande!"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:130
 msgid "max"
 msgstr "max"
 
-#: js/ui/dialogs/AttachFromFilesTreePanel.js:144
 msgid "You have to choose at least one file!"
 msgstr "Devi selezionare almeno un file!"
 
-#: js/ui/dialogs/CreateFolderContentPanel.js:23
 #, fuzzy
 msgid "Create New Folder"
 msgstr "Crea una nuova cartella"
 
-#: js/ui/dialogs/CreateFolderPanel.js:45
 msgid "Ok"
 msgstr ""
 
-#: js/ui/dialogs/CreateFolderPanel.js:87
 #, fuzzy
 msgid "Select where to place the folder"
 msgstr "Seleziona cartella di caricamento"
 
-#: js/ui/dialogs/CreateFolderPanel.js:132
 msgid "Kopano WebApp"
 msgstr ""
 
-#: js/ui/dialogs/CreateFolderPanel.js:133
 msgid "You must specify a name."
 msgstr ""
 
-#: js/ui/dialogs/CreateFolderPanel.js:188
-#: js/ui/dialogs/SaveToFilesTreePanel.js:304
 msgid "Folder already exists"
 msgstr "La cartella esiste già"
 
-#: js/ui/dialogs/CreateFolderPanel.js:191
-#: js/ui/dialogs/SaveToFilesTreePanel.js:271
 msgid "Incorrect foldername"
 msgstr "Nome cartella non valido"
 
-#: js/ui/dialogs/CreateFolderPanel.js:241
-msgid "Folder could not be created!"
-msgstr "La cartella non può essere creata!"
-
-#: js/ui/dialogs/FilesRecordContentPanel.js:24
-#: js/ui/FilesRecordDetailsPanel.js:62
 msgid "File information"
 msgstr "Informazioni file"
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:61
 msgid "Select a file"
 msgstr "Seleziona un file"
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:61
 msgid "Maximum upload size"
 msgstr "Dimensione massima upload"
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:66
 msgid "Browse"
 msgstr "Sfoglia"
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:89
 msgid "Select upload folder"
 msgstr "Seleziona cartella di caricamento"
 
-#: js/ui/dialogs/FilesUploadContentPanel.js:138 js/ui/FilesListToolbar.js:61
-msgid "Upload"
-msgstr "Carica"
-
-#: js/ui/dialogs/FilesUploadContentPanel.js:184
 msgid "File \"{0}\" is too large! Maximum allowed filesize: {1}."
 msgstr "Il file \"{0}\" è troppo grande! Dimensione massima permessa: {1}."
 
-#: js/ui/dialogs/SaveToFilesContentPanel.js:21
 msgid "Add item to Files"
 msgstr "Aggiungi a Files"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:188
+msgid "There are no items to show in this list"
+msgstr ""
+
 msgid "New folder"
 msgstr "Nuova cartella"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:218
-#: js/ui/dialogs/SaveToFilesTreePanel.js:254
 msgid "You have to choose a folder!"
 msgstr "Devi selezionare una cartella!"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:256
-msgid "Folder Name"
-msgstr "Nome cartella"
-
-#: js/ui/dialogs/SaveToFilesTreePanel.js:256
-msgid "Please enter a foldername"
-msgstr "Inserisci il nome della cartella"
-
-#: js/ui/dialogs/SaveToFilesTreePanel.js:363
 msgid "Uploaded"
 msgstr "Caricato"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:363
 msgid "Attachment successfully stored in Files"
 msgstr "Allegato salvato con successo su Files"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:365
 msgid "Upload Failed"
 msgstr "Caricamento fallito"
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:365
 msgid "Attachment could not be stored in Files! Error: "
 msgstr "Non è stato possibile salvare l'allegato su Files! Errrore: "
 
-#: js/ui/dialogs/SaveToFilesTreePanel.js:403
-msgid "Created"
-msgstr "Creato"
-
-#: js/ui/dialogs/SaveToFilesTreePanel.js:403
-msgid "Directory created!"
-msgstr "Cartella creata!"
-
-#: js/ui/dialogs/ShareContentPanel.js:25
 msgid "Share Files"
 msgstr "Condividi files"
 
-#: js/ui/dialogs/UploadStatusContentPanel.js:20
 msgid "Uploading files to "
 msgstr "Carica files su "
 
-#: js/ui/dialogs/UploadStatusPanel.js:133
 msgid "Starting upload"
 msgstr "Avvio caricamento"
 
-#: js/ui/dialogs/UploadStatusPanel.js:142
-#: js/ui/dialogs/UploadStatusPanel.js:143
 msgid "Cancel upload"
 msgstr "Annulla caricamento"
 
-#: js/ui/dialogs/UploadStatusPanel.js:174
-#: js/ui/dialogs/UploadStatusPanel.js:284
 msgid "- seconds left"
 msgstr "- secondi rimanenti"
 
-#: js/ui/dialogs/UploadStatusPanel.js:257
 msgid " seconds left"
 msgstr " secondi rimanenti"
 
-#: js/ui/dialogs/UploadStatusPanel.js:261
 msgid " minutes left"
 msgstr " minuti rimanenti"
 
-#: js/ui/dialogs/UploadStatusPanel.js:306
 msgid "Uploading: "
 msgstr "Sto caricando: "
 
-#: js/ui/dialogs/UploadStatusPanel.js:309
 msgid "Upload status unavailable... please wait."
 msgstr "Stato caricamento non disponibile... attendere prego."
 
-#: js/ui/dialogs/UploadStatusPanel.js:327
 msgid "Upload finished!"
 msgstr "Caricamento completato!"
 
-#: js/ui/dialogs/UploadStatusPanel.js:350
 msgid "Upload aborted!"
 msgstr "Caricamento annullato!"
 
-#: js/ui/dialogs/UploadStatusPanel.js:372
 msgid "Upload failed!"
 msgstr "Caricamento fallito!"
 
-#: js/ui/FilesListToolbar.js:63
 msgid "Upload files"
 msgstr "Carica files"
 
-#: js/ui/FilesListToolbar.js:70 js/ui/FilesListToolbar.js:72
-#: js/ui/FilesMainContextMenu.js:75 js/ui/FilesTreeContextMenu.js:46
 #, fuzzy
 msgid "New Folder"
 msgstr "Nuova cartella"
 
-#: js/ui/FilesListToolbar.js:79 js/ui/FilesMainContextMenu.js:41
 msgid "Download"
 msgstr "Scarica"
 
-#: js/ui/FilesListToolbar.js:80
 msgid "Download files"
 msgstr "Scarica files"
 
-#: js/ui/FilesListToolbar.js:87 js/ui/FilesMainContextMenu.js:52
 msgid "Share"
 msgstr "Condividi"
 
-#: js/ui/FilesListToolbar.js:95 js/ui/FilesListToolbar.js:96
-#: js/ui/FilesMainContextMenu.js:85
 msgid "Attach to mail"
 msgstr "Allega all'email"
 
-#: js/ui/FilesListToolbar.js:112 js/ui/FilesListToolbar.js:113
-#: js/ui/FilesMainContextMenu.js:114 js/ui/FilesTreeContextMenu.js:63
 msgid "Delete"
 msgstr "Elimina"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Attaching"
 msgstr "Sto allegando"
 
-#: js/ui/FilesListToolbar.js:237 js/ui/FilesMainContextMenu.js:211
 msgid "Creating email... Please wait!"
 msgstr "Creazione email in corso... Attendere prego!"
 
-#: js/ui/FilesMainContextMenu.js:69
 msgid "Edit share"
 msgstr "Modifica condivisione"
 
-#: js/ui/FilesMainContextMenu.js:123
 msgid "Info"
 msgstr "Informazioni"
 
-#: js/ui/FilesRecordAccountView.js:36
 #, fuzzy
 msgid ""
 "There are no accounts added. Go to settings, Files tab and add an account"
 msgstr "Non sono presenti account. Aggiungine uno dalle impostazioni!"
 
-#: js/ui/FilesRecordAccountView.js:136
-msgid "To delete an account you have to go to settings."
-msgstr "Per eliminare un account devi accedere alle impostazioni."
-
-#: js/ui/FilesRecordDetailsPanel.js:70 js/ui/FilesRecordGridColumnModel.js:55
-#: js/ui/FilesRecordGridColumnModel.js:102
-msgid "Filename"
-msgstr "Nome file"
-
-#: js/ui/FilesRecordDetailsPanel.js:77
 msgid "Filesize"
 msgstr "Dimensione file"
 
-#: js/ui/FilesRecordDetailsPanel.js:84 js/ui/FilesRecordGridColumnModel.js:61
-#: js/ui/FilesRecordGridColumnModel.js:108
 msgid "Last modified"
 msgstr "Ultima modifica"
 
-#: js/ui/FilesRecordDetailsPanel.js:91
 msgid "Type"
 msgstr ""
 
-#: js/ui/FilesRecordDetailsPanel.js:98
 msgid "Is shared"
 msgstr "È condiviso"
 
-#: js/ui/FilesRecordDetailsPanel.js:125
 msgid "File preview"
 msgstr "Anteprima file"
 
-#: js/ui/FilesRecordDetailsPanel.js:235
 msgid "Your browser does not support previewing of audio files!"
 msgstr "Il tuo browser non supporta l'anteprima dei file audio!"
 
-#: js/ui/FilesRecordDetailsPanel.js:266
 msgid "Your browser does not support previewing of video files!"
 msgstr "Il tuo browser non supporta l'anteprima dei file video!"
 
-#: js/ui/FilesRecordDetailsPanel.js:298
 msgid "d.m.Y G:i"
 msgstr "d.m.Y G:i"
 
-#: js/ui/FilesRecordDetailsPanel.js:301
 msgid "Folder"
 msgstr "Cartella"
 
-#: js/ui/FilesRecordDetailsPanel.js:304
 msgid "File ({0})"
 msgstr "File ({0})"
 
-#: js/ui/FilesRecordDetailsPanel.js:311
 msgid "Yes"
 msgstr "Si"
 
-#: js/ui/FilesRecordDetailsPanel.js:311
 msgid "No"
 msgstr "No"
 
-#: js/ui/FilesRecordGridColumnModel.js:38
-#: js/ui/FilesRecordGridColumnModel.js:99
-msgid "Sort by: Type"
-msgstr "Ordina per: Tipo"
-
-#: js/ui/FilesRecordGridColumnModel.js:52
 msgid "Sort by: Path"
 msgstr "Ordina per: Percorso"
 
-#: js/ui/FilesRecordGridColumnModel.js:58
-#: js/ui/FilesRecordGridColumnModel.js:105
-msgid "Sort by: Filename"
-msgstr "Ordina per: Nome file"
-
-#: js/ui/FilesRecordGridColumnModel.js:65
-#: js/ui/FilesRecordGridColumnModel.js:112
 msgid "Sort by: Last modified"
 msgstr "Ordina per: Ultima modifica"
 
-#: js/ui/FilesRecordGridColumnModel.js:68
-#: js/ui/FilesRecordGridColumnModel.js:115
-msgid "Size"
-msgstr "Dimensione"
-
-#: js/ui/FilesRecordGridColumnModel.js:72
-#: js/ui/FilesRecordGridColumnModel.js:120
-msgid "Sort by: Size"
-msgstr "Ordina per: Dimensione"
-
-#: js/ui/FilesRecordGridColumnModel.js:85
-#: js/ui/FilesRecordGridColumnModel.js:133
 msgid "Sort by: Shared"
 msgstr "Ordina per: Condivisione"
 
-#: js/ui/FilesRecordGridView.js:73 js/ui/FilesRecordIconView.js:38
-msgid "Loading files"
-msgstr "Caricamento files in corso"
-
-#: js/ui/FilesRecordIconView.js:41
 msgid "There are no items to show in this view"
 msgstr "Non ci sono elementi da mostrare"
 
-#: js/ui/MultipleFileUploadField.js:45
+msgid "Refresh"
+msgstr ""
+
 msgid "files selected"
 msgstr "files selezionati"
 
-#: js/ui/snippets/FilesNavigationBar.js:176
 msgid "Home"
 msgstr ""
 
-#: js/ui/snippets/FilesQuotaBar.js:14
 msgid "{0} of {1} in use"
 msgstr "{0} di {1} in uso"
 
-#: php/class.filesaccountmodule.php:333 php/class.filesaccountmodule.php:382
-#: php/class.filesaccountmodule.php:431
 msgid "Unknown account ID"
 msgstr "ID account sconosciuto"
 
-#: php/class.filesaccountmodule.php:341
 msgid "Feature \"Quota Information\" is not supported by this backend!"
 msgstr "Questo backend non supporta limiti di archiviazione!"
 
-#: php/class.filesaccountmodule.php:390
 msgid "Feature \"Version Information\" is not supported by this backend!"
 msgstr "Questo backend non supporta informazioni di versione!"
 
-#: php/class.filesaccountmodule.php:439
 msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr "Questo backend non supporta OAUTH!"
 
-#: php/class.filesbrowsermodule.php:1063 php/class.filesbrowsermodule.php:1064
+msgid "Moving between accounts is not implemented"
+msgstr ""
+
+msgid "Files plugin"
+msgstr ""
+
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr ""
 "Tipo sconosciuto - impossibile salvare questo oggetto sul backend di Files!"
 
-#: php/class.filesbrowsermodule.php:1317 php/class.filesbrowsermodule.php:1318
-#: php/class.filesbrowsermodule.php:1375 php/class.filesbrowsermodule.php:1376
-#: php/class.filesbrowsermodule.php:1435 php/class.filesbrowsermodule.php:1436
-#: php/class.filesbrowsermodule.php:1487 php/class.filesbrowsermodule.php:1488
 msgid "No record given!"
 msgstr "Nessun record fornito!"
 
-#: php/class.filesbrowsermodule.php:1337
 msgid "Fetching sharing information failed"
 msgstr "Recupero informazioni di condivisione fallito"
 
-#: php/class.filesbrowsermodule.php:1396
 msgid "Sharing failed"
 msgstr "Condivisione fallita"
 
-#: php/class.filesbrowsermodule.php:1455
 msgid "Updating share failed"
 msgstr "Aggiornamento condivisione fallito"
 
-#: php/class.filesbrowsermodule.php:1502
 msgid "Deleting share failed"
 msgstr "Eliminazione condivisione fallita"
 
-#: php/Files/Backend/FTP/class.backend.php:115
 msgid "With this backend, you can connect to any ftp server."
 msgstr "Tramite questo backend puoi connetterti a qualsiasi server FTP."
 
-#: php/Files/Backend/FTP/class.backend.php:187
-#: php/Files/Backend/Webdav/class.backend.php:134
 msgid "Server address"
 msgstr "Indirizzo server"
 
-#: php/Files/Backend/FTP/class.backend.php:194
-#: php/Files/Backend/Webdav/class.backend.php:141
 msgid "Server port"
 msgstr "Porta server"
 
-#: php/Files/Backend/FTP/class.backend.php:201
 msgid "FTP user"
 msgstr "Utente FTP"
 
-#: php/Files/Backend/FTP/class.backend.php:208
 msgid "FTP password"
 msgstr "Password FTP"
 
-#: php/Files/Backend/FTP/class.backend.php:216
 msgid "Base path"
 msgstr "Percorso base"
 
-#: php/Files/Backend/FTP/class.backend.php:223
-#: php/Files/Backend/Webdav/class.backend.php:149
 msgid "Use SSL"
 msgstr "Utilizza SSL"
 
-#: php/Files/Backend/FTP/class.backend.php:230
 msgid "Use passive mode"
 msgstr "Utilizza modalità passiva"
 
-#: php/Files/Backend/FTP/class.backend.php:237
-#: php/Files/Backend/Webdav/class.backend.php:180
 msgid "Use Kopano credentials"
 msgstr "Utilizza credenziali Kopano"
 
-#: php/Files/Backend/FTP/class.backend.php:427
+msgid "Files FTP Backend: Authentication failed"
+msgstr ""
+
+msgid "Files FTP Backend: Connection failed"
+msgstr ""
+
 msgid "Unparsable server response."
 msgstr "Risposta del server non interpretabile."
 
-#: php/Files/Backend/FTP/class.backend.php:866
-#: php/Files/Backend/Webdav/class.backend.php:895
+msgid "Files FTP Backend: Temporary directory problems"
+msgstr ""
+
+msgid "Files FTP Backend: Not implemented"
+msgstr ""
+
 msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
-#: php/Files/Backend/FTP/class.backend.php:870
-#: php/Files/Backend/Webdav/class.backend.php:900
 msgid "Unauthorized. Wrong username or password."
 msgstr "Non autorizzato. Nome utente o password non validi."
 
-#: php/Files/Backend/FTP/class.backend.php:873
-#: php/Files/Backend/Webdav/class.backend.php:908
-msgid "File-server is not reachable. Wrong IP entered?"
+msgid "File server is not reachable. Please verify the connection."
 msgstr ""
-"Il file server non è raggiungibile. Forse hai inserito un indirizzo errato?"
 
-#: php/Files/Backend/FTP/class.backend.php:876
-#: php/Files/Backend/Webdav/class.backend.php:914
-msgid "You don't have enough permissions for this operation."
-msgstr "Non hai permessi sufficienti per effettuare questa operazione."
-
-#: php/Files/Backend/FTP/class.backend.php:879
-#: php/Files/Backend/Webdav/class.backend.php:917
-msgid "File is not available any more."
-msgstr "Il file non è più disponibile."
-
-#: php/Files/Backend/FTP/class.backend.php:882
-#: php/Files/Backend/Webdav/class.backend.php:920
-msgid "Connection to server timed out. Retry later."
-msgstr "Timeout durante la connessione al server. Riprova più tardi."
-
-#: php/Files/Backend/FTP/class.backend.php:885
-#: php/Files/Backend/Webdav/class.backend.php:923
-msgid "This file is locked by another user."
-msgstr "Il file è bloccato da un altro utente."
-
-#: php/Files/Backend/FTP/class.backend.php:888
-#: php/Files/Backend/Webdav/class.backend.php:926
-msgid "The request failed due to failure of a previous request."
+msgid "You don't have enough permissions to view this file or folder."
 msgstr ""
-"La richiesta è fallita a causa del fallimento di una richiesta precedente."
 
-#: php/Files/Backend/FTP/class.backend.php:891
-#: php/Files/Backend/Webdav/class.backend.php:929
-msgid "File-server encountered a problem. Wrong IP entered?"
+msgid "This file or folder is not available anymore."
 msgstr ""
-"Il file server ha riscontrato un problema. Forse hai inserito un indirizzo "
-"errato?"
 
-#: php/Files/Backend/FTP/class.backend.php:894
-#: php/Files/Backend/Webdav/class.backend.php:932
+msgid "Connection to the file server timed out. Please check again later."
+msgstr ""
+
+msgid "This file is locked by another user. Please check again later."
+msgstr ""
+
 msgid ""
-"Could not write to temporary directory. Contact the server administrator."
+"The request failed due to failure of a previous request. Please contact your "
+"system administrator."
 msgstr ""
-"Impossibile scrivere nella directory temporanea. Contattare l'amministratore "
-"di sistema."
 
-#: php/Files/Backend/FTP/class.backend.php:897
-#: php/Files/Backend/Webdav/class.backend.php:935
 msgid ""
-"Could not retrieve list of server features. Contact the server administrator."
+"The file server encountered an internal problem. Please contact your system "
+"administrator?"
 msgstr ""
-"Impossibile recuperare la lista delle caratteristiche del server. Contattare "
-"l' amministratore di sistema."
 
-#: php/Files/Backend/FTP/class.backend.php:900
-msgid "Function is not implemented in this backend."
-msgstr "Questa funzione non è disponibile in questo backend."
-
-#: php/Files/Backend/Webdav/class.backend.php:107
 msgid ""
-"With this backend, you can connect to any webdav server (e.g. Owncloud)."
+"We could not write to temporary directory. Please contact your system "
+"administrator."
 msgstr ""
-"Tramite questo backend puoi connetterti a qualsiasi server WebDAV (es. "
-"ownCloud)."
 
-#: php/Files/Backend/Webdav/class.backend.php:159
+msgid ""
+"We could not retrieve list of server features. Please contact the server "
+"administrator."
+msgstr ""
+
+msgid "This function is not yet implemented."
+msgstr ""
+
+msgid "With this backend, you can connect to any WebDAV server."
+msgstr ""
+
 msgid "Webdav base path"
 msgstr "Percorso base WebDAV"
 
-#: php/Files/Backend/Webdav/class.backend.php:165
 msgid "Username"
 msgstr "Nome utente"
 
-#: php/Files/Backend/Webdav/class.backend.php:172
 msgid "Password"
 msgstr "Password"
 
-#: php/Files/Backend/Webdav/class.backend.php:911
-#, fuzzy
-msgid "File-server is not reachable. Incorrect URL?"
+msgid "Files WebDAV Backend: PHP-CURL is not installed"
 msgstr ""
-"Il file server non è raggiungibile. Forse hai inserito un indirizzo errato?"
 
-#: php/Files/Backend/Webdav/class.backend.php:938
-msgid "PHP-Curl is not available. Contact your system administrator."
+msgid "Files WebDAV Backend: Access denied"
 msgstr ""
-"Estensione php-curl non disponibile. Contattare l'amministratore di sistema."
 
-#: php/Files/Core/class.accountstore.php:238
+msgid "Files WebDAV Backend: Connection failed"
+msgstr ""
+
+msgid "Files WebDAV Backend: Sabre error"
+msgstr ""
+
+msgid "Files WebDAV Backend: Directory creation failed"
+msgstr ""
+
+msgid "Files WebDAV Backend: Deletion failed"
+msgstr ""
+
+msgid "Files WebDAV Backend: Moving failed"
+msgstr ""
+
+msgid "Files WebDAV Backend: Temporary directory problems"
+msgstr ""
+
+msgid "Files WebDAV Backend: File or folder not found"
+msgstr ""
+
+msgid "Files WebDAV Backend: Not implemented"
+msgstr ""
+
+msgid "Files WebDAV Backend: Copying failed"
+msgstr ""
+
+msgid "File server is not reachable. Please verify the file server URL."
+msgstr ""
+
+msgid "The file or folder is not available anymore."
+msgstr ""
+
+msgid "This file is locked by another user. Please try again later."
+msgstr ""
+
+msgid "PHP-Curl is not available. Please contact your system administrator."
+msgstr ""
+
+msgid "Files WebDAV Backend: PHP-CURL not installed"
+msgstr ""
+
 msgid "Account is ready to use."
 msgstr "L'account è pronto per l'utilizzo."
 
-#: php/Files/Core/class.downloadhandler.php:82
-#: php/Files/Core/class.downloadhandler.php:85
 msgid "File backend not responding. Please try again later."
 msgstr "Il backend non risponde. Riprova più tardi."
 
-#: php/Files/Core/class.downloadhandler.php:98
-#: php/Files/Core/class.downloadhandler.php:115
 msgid "Zip file generation failed. Please inform the administrator."
 msgstr "Generazione file ZIP fallita. Contattare l'amministratore di sistema."
 
-#: php/Files/Core/class.downloadhandler.php:211
-#: php/Files/Core/class.downloadhandler.php:214
 msgid "This file is no longer available. Please reload the folder."
 msgstr "Questo file non è più disponibile. Provare a ricaricare la cartella."
