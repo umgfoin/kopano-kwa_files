@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: KC-8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-05 14:38+0200\n"
-"PO-Revision-Date: 2020-03-17 16:08+0000\n"
-"Last-Translator: martijn <m.alberts@zarafa.com>\n"
-"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/"
-">\n"
+"PO-Revision-Date: 2020-05-06 10:24+0000\n"
+"Last-Translator: Björn <b.neumann@kopano.com>\n"
+"Language-Team: German <http://translate.kopano.io/projects/kopano/files/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,16 +61,18 @@ msgid "Please enter a new name"
 msgstr "Bitte einen neuen Namen eingeben"
 
 msgid "Rename record"
-msgstr ""
+msgstr "Datensatz umbennen"
 
 msgid "A file name should not be empty."
-msgstr ""
+msgstr "Ein Dateiname sollte nicht leer sein."
 
 msgid "Rename item"
-msgstr ""
+msgstr "Element umbenennen"
 
 msgid "A file named \"{0}\" already exists. Please enter a different name."
 msgstr ""
+"Eine Datei mit dem Namen \"{0}\" ist bereits vorhanden. Bitte geben Sie "
+"einen anderen Namen ein."
 
 msgid "Downloading"
 msgstr "Lade herunter"
@@ -162,11 +164,12 @@ msgid ""
 "Accounts marked by your administrator as \"cannot be changed\" will not be "
 "removed."
 msgstr ""
+"Von Ihrem Administrator als \"nicht änderbar\" gekennzeichnete Konten werden "
+"nicht entfernt."
 
-#, fuzzy
 msgid ""
 "WebApp will automatically restart in order for these changes to take effect."
-msgstr "WebApp wird automatisch neu starten, um die Änderungen zu übernehmen"
+msgstr "WebApp wird automatisch neu starten, um die Änderungen zu übernehmen."
 
 msgid "Reset"
 msgstr "Zurücksetzen"
@@ -280,7 +283,7 @@ msgid "Version Information"
 msgstr "Versionsinformationen"
 
 msgid "All Day"
-msgstr ""
+msgstr "Ganztägig"
 
 msgid "Sort by: Type"
 msgstr "Sortieren nach: Typ"
@@ -355,7 +358,7 @@ msgid "Add item to Files"
 msgstr "Element zu Files hinzufügen"
 
 msgid "There are no items to show in this list"
-msgstr ""
+msgstr "In dieser Liste gibt es keine Elemente anzuzeigen"
 
 msgid "New folder"
 msgstr "Neuer Ordner"
@@ -444,12 +447,11 @@ msgstr "Freigabe bearbeiten"
 msgid "Info"
 msgstr "Informationen"
 
-#, fuzzy
 msgid ""
 "There are no accounts added. Go to settings, Files tab and add an account"
 msgstr ""
 "Es wurden noch keine Account's hinzugefügt. Bitte in den Einstellungen einen "
-"Account hinzufügen!"
+"Account hinzufügen"
 
 msgid "Filesize"
 msgstr "Dateigröße"
@@ -500,7 +502,7 @@ msgid "There are no items to show in this view"
 msgstr "Es gibt keine Elemente in dieser Ansicht"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Neu Laden"
 
 msgid "files selected"
 msgstr "ausgewählte Dateien"
@@ -525,10 +527,10 @@ msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr "OAUTH wird von diesem Backend nicht unterstützt!"
 
 msgid "Moving between accounts is not implemented"
-msgstr ""
+msgstr "Verschieben zwischen Konten ist nicht implementiert"
 
 msgid "Files plugin"
-msgstr ""
+msgstr "Files plugin"
 
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr "Diese Datei kann nicht im Files-Backend gespeichert werden!"
@@ -576,19 +578,19 @@ msgid "Use Kopano credentials"
 msgstr "Kopano Zugangsdaten verwenden"
 
 msgid "Files FTP Backend: Authentication failed"
-msgstr ""
+msgstr "Files FTP Backend: Anmeldung fehlgeschlagen"
 
 msgid "Files FTP Backend: Connection failed"
-msgstr ""
+msgstr "Files FTP Backend: Verbindung fehlgeschlagen"
 
 msgid "Unparsable server response."
 msgstr "Unbekannte Antwort vom Server."
 
 msgid "Files FTP Backend: Temporary directory problems"
-msgstr ""
+msgstr "Files FTP Backend: Probleme mit dem temporären Verzeichnis"
 
 msgid "Files FTP Backend: Not implemented"
-msgstr ""
+msgstr "Files FTP Backend: Nicht implementiert"
 
 msgid "Unknown error"
 msgstr "Unbekannter Fehler"
@@ -597,45 +599,59 @@ msgid "Unauthorized. Wrong username or password."
 msgstr "Nicht angemeldet. Benutzername oder Passwort falsch."
 
 msgid "File server is not reachable. Please verify the connection."
-msgstr ""
+msgstr "Dateiserver ist nicht erreichbar. Bitte überprüfen Sie die Verbindung."
 
 msgid "You don't have enough permissions to view this file or folder."
 msgstr ""
+"Sie haben nicht genügend Berechtigungen, um diese Datei oder diesen Ordner "
+"anzuzeigen."
 
 msgid "This file or folder is not available anymore."
-msgstr ""
+msgstr "Diese Datei oder dieser Ordner ist nicht mehr verfügbar."
 
 msgid "Connection to the file server timed out. Please check again later."
 msgstr ""
+"Zeitüberschreitung bei der Verbindung zum Dateiserver. Bitte versuchen Sie "
+"es später noch einmal."
 
 msgid "This file is locked by another user. Please check again later."
 msgstr ""
+"Diese Datei ist von einem anderen Benutzer gesperrt. Bitte versuchen Sie es "
+"später noch einmal."
 
 msgid ""
 "The request failed due to failure of a previous request. Please contact your "
 "system administrator."
 msgstr ""
+"Die Abfrage ist aufgrund eines Fehlers einer vorherigen Abfrage "
+"fehlgeschlagen. Bitte kontaktieren Sie Ihren Systemadministrator."
 
 msgid ""
 "The file server encountered an internal problem. Please contact your system "
 "administrator?"
 msgstr ""
+"Der Dateiserver hat ein internes Problem festgestellt. Bitte kontaktieren "
+"Sie Ihren Systemadministrator?"
 
 msgid ""
 "We could not write to temporary directory. Please contact your system "
 "administrator."
 msgstr ""
+"Schreiben in das temporäre Verzeichnis ist fehlgeschlagen. Bitte "
+"kontaktieren Sie Ihren Systemadministrator."
 
 msgid ""
 "We could not retrieve list of server features. Please contact the server "
 "administrator."
 msgstr ""
+"Die Liste der Serverfunktionen konnte nicht abgerufen werden. Bitte wenden "
+"Sie sich an den Serveradministrator."
 
 msgid "This function is not yet implemented."
-msgstr ""
+msgstr "Diese Funktion ist noch nicht implementiert."
 
 msgid "With this backend, you can connect to any WebDAV server."
-msgstr ""
+msgstr "Mit diesem Backend können Sie zu jedem WebDAV Server verbinden."
 
 msgid "Webdav base path"
 msgstr "WebDAV Basispfad"
@@ -647,52 +663,57 @@ msgid "Password"
 msgstr "Passwort"
 
 msgid "Files WebDAV Backend: PHP-CURL is not installed"
-msgstr ""
+msgstr "Files WebDAV Backend: PHP-CURL ist nicht installiert"
 
 msgid "Files WebDAV Backend: Access denied"
-msgstr ""
+msgstr "Files WebDAV Backend: Zugriff verweigert"
 
 msgid "Files WebDAV Backend: Connection failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Verbindung fehlgeschlagen"
 
 msgid "Files WebDAV Backend: Sabre error"
-msgstr ""
+msgstr "Files WebDAV Backend: Sabre Fehler"
 
 msgid "Files WebDAV Backend: Directory creation failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Erstellen des Verzeichnisses fehlgeschlagen"
 
 msgid "Files WebDAV Backend: Deletion failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Löschen fehlgeschlagen"
 
 msgid "Files WebDAV Backend: Moving failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Verschieben fehlgeschlagen"
 
 msgid "Files WebDAV Backend: Temporary directory problems"
-msgstr ""
+msgstr "Files WebDAV Backend: Probleme mit dem temporären Verzeichnis"
 
 msgid "Files WebDAV Backend: File or folder not found"
-msgstr ""
+msgstr "Files WebDAV Backend: Datei oder Ordner nicht gefunden"
 
 msgid "Files WebDAV Backend: Not implemented"
-msgstr ""
+msgstr "Files WebDAV Backend: Nicht implementiert"
 
 msgid "Files WebDAV Backend: Copying failed"
-msgstr ""
+msgstr "Files WebDAV Backend: Kopieren fehlgeschlagen"
 
 msgid "File server is not reachable. Please verify the file server URL."
 msgstr ""
+"Dateiserver ist nicht erreichbar. Bitte überprüfen Sie die Dateiserver-URL."
 
 msgid "The file or folder is not available anymore."
-msgstr ""
+msgstr "Die Datei oder der Ordner ist nicht mehr verfügbar."
 
 msgid "This file is locked by another user. Please try again later."
 msgstr ""
+"Diese Datei ist durch einem anderen Benutzer gesperrt. Bitte versuchen Sie "
+"es später noch einmal."
 
 msgid "PHP-Curl is not available. Please contact your system administrator."
 msgstr ""
+"PHP-Curl ist nicht verfügbar. Bitte kontaktieren Sie Ihren "
+"Systemadministrator."
 
 msgid "Files WebDAV Backend: PHP-CURL not installed"
-msgstr ""
+msgstr "Files WebDAV Backend: PHP-CURL ist nicht installiert"
 
 msgid "Account is ready to use."
 msgstr "Account ist einsatzbereit."
