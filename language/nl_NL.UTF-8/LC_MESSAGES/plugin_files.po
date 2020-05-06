@@ -615,10 +615,8 @@ msgstr ""
 
 msgid ""
 "The file server encountered an internal problem. Please contact your system "
-"administrator?"
+"administrator."
 msgstr ""
-"De file server heeft een intern probleem. Neem contact op met de "
-"systeemadministrator."
 
 msgid ""
 "We could not write to temporary directory. Please contact your system "
