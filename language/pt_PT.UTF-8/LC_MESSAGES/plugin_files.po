@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-05 14:38+0200\n"
-"PO-Revision-Date: 2019-08-05 12:05+0000\n"
+"PO-Revision-Date: 2020-05-27 11:02+0000\n"
 "Last-Translator: Nuno Jerónimo <nuno.jeronimo@valsousa.pt>\n"
-"Language-Team: Portuguese (Portugal) <http://translate.kopano.io/projects/"
-"kopano/files/pt_PT/>\n"
+"Language-Team: Portuguese (Portugal) "
+"<http://translate.kopano.io/projects/kopano/files/pt_PT/>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,16 +50,17 @@ msgid "Please enter a new name"
 msgstr "Por favor introduza o novo nome"
 
 msgid "Rename record"
-msgstr ""
+msgstr "Alterar nome do registo"
 
 msgid "A file name should not be empty."
-msgstr ""
+msgstr "O nome de um ficheiro não deve ser vazio."
 
 msgid "Rename item"
-msgstr ""
+msgstr "Alterar nome do item"
 
 msgid "A file named \"{0}\" already exists. Please enter a different name."
 msgstr ""
+"Já existe um ficheiro com o nome \"{0}\". Por favor introduza outro nome."
 
 msgid "Downloading"
 msgstr "A transferir"
@@ -272,7 +273,7 @@ msgid "Version Information"
 msgstr "Informação sobre versão"
 
 msgid "All Day"
-msgstr ""
+msgstr "Todo o dia"
 
 msgid "Sort by: Type"
 msgstr "Ordenar por: Tipo"
@@ -349,7 +350,7 @@ msgid "Add item to Files"
 msgstr "Adicionar item a Ficheiros"
 
 msgid "There are no items to show in this list"
-msgstr ""
+msgstr "Não existem itens para mostrar na lista"
 
 msgid "New folder"
 msgstr "Nova pasta"
@@ -493,7 +494,7 @@ msgid "There are no items to show in this view"
 msgstr "Não existem itens para exibir nesta vista"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Atualizar"
 
 msgid "files selected"
 msgstr "ficheiros selecionados"
@@ -519,10 +520,10 @@ msgid "Feature \"OAUTH\" is not supported by this backend!"
 msgstr "A funcionalidade \"OAUTH\" não é suportada por este backend!"
 
 msgid "Moving between accounts is not implemented"
-msgstr ""
+msgstr "Mover entre contas não está implementado"
 
 msgid "Files plugin"
-msgstr ""
+msgstr "Plugin Ficheiros"
 
 msgid "Unknown type - cannot save this file to the Files backend!"
 msgstr ""
@@ -572,19 +573,19 @@ msgid "Use Kopano credentials"
 msgstr "Usar credenciais Kopano"
 
 msgid "Files FTP Backend: Authentication failed"
-msgstr ""
+msgstr "Backend de ficheiros FTP: Autenticação falhou"
 
 msgid "Files FTP Backend: Connection failed"
-msgstr ""
+msgstr "Backend de ficheiros FTP: Ligação falhou"
 
 msgid "Unparsable server response."
 msgstr "Resposta do servidor não processável."
 
 msgid "Files FTP Backend: Temporary directory problems"
-msgstr ""
+msgstr "Backend de ficheiros FTP: Problemas de pasta temporária"
 
 msgid "Files FTP Backend: Not implemented"
-msgstr ""
+msgstr "Backend de ficheiros FTP: Não implementado"
 
 msgid "Unknown error"
 msgstr "Erro desconhecido"
@@ -594,44 +595,55 @@ msgstr "Não autorizado. Utilizador ou palavra-passe errada."
 
 msgid "File server is not reachable. Please verify the connection."
 msgstr ""
+"O servidor de ficheiros não está disponível. Por favor verifique a ligação."
 
 msgid "You don't have enough permissions to view this file or folder."
-msgstr ""
+msgstr "Não tem permissões suficientes para ver este ficheiro ou pasta."
 
 msgid "This file or folder is not available anymore."
-msgstr ""
+msgstr "O ficheiro ou pasta já não se encontra disponível."
 
 msgid "Connection to the file server timed out. Please check again later."
-msgstr ""
+msgstr "A ligação ao servidor expirou. Por favor volte a tentar."
 
 msgid "This file is locked by another user. Please check again later."
 msgstr ""
+"Este ficheiro está bloqueado por outro utilizador. Por favor volte a tentar "
+"mais tarde."
 
 msgid ""
 "The request failed due to failure of a previous request. Please contact your "
 "system administrator."
 msgstr ""
+"O pedido falhou devido a uma falha num pedido anterior. Por favor contacte o "
+"seu administrador de sistemas."
 
 msgid ""
 "The file server encountered an internal problem. Please contact your system "
 "administrator."
 msgstr ""
+"O servidor de ficheiros encontrou um erro interno. Por favor contacte o seu "
+"administrador de sistemas."
 
 msgid ""
 "We could not write to temporary directory. Please contact your system "
 "administrator."
 msgstr ""
+"Não foi possível escrever para a pasta temporária. Por favor contacte o seu "
+"administrador de sistemas."
 
 msgid ""
 "We could not retrieve list of server features. Please contact the server "
 "administrator."
 msgstr ""
+"Não foi possível consultar a lista de funcionalidades do servidor. Por favor "
+"contacte o seu administrador de sistemas."
 
 msgid "This function is not yet implemented."
-msgstr ""
+msgstr "Esta função ainda não foi implementada."
 
 msgid "With this backend, you can connect to any WebDAV server."
-msgstr ""
+msgstr "Com este backend pode ligar a qualquer servidor WEBDAV."
 
 msgid "Webdav base path"
 msgstr "Caminho webdav base"
@@ -643,52 +655,58 @@ msgid "Password"
 msgstr "Palavra-passe"
 
 msgid "Files WebDAV Backend: PHP-CURL is not installed"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: PHP-CURL não está instalado"
 
 msgid "Files WebDAV Backend: Access denied"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Acesso negado"
 
 msgid "Files WebDAV Backend: Connection failed"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Ligação falhou"
 
 msgid "Files WebDAV Backend: Sabre error"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Erro Sabre"
 
 msgid "Files WebDAV Backend: Directory creation failed"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Falhou ao criar pasta"
 
 msgid "Files WebDAV Backend: Deletion failed"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Falhou a apagar"
 
 msgid "Files WebDAV Backend: Moving failed"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Falhou a mover"
 
 msgid "Files WebDAV Backend: Temporary directory problems"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Problemas de pasta temporária"
 
 msgid "Files WebDAV Backend: File or folder not found"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Ficheiro ou pasta não encontrado"
 
 msgid "Files WebDAV Backend: Not implemented"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Não implementado"
 
 msgid "Files WebDAV Backend: Copying failed"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: Falhou a copiar"
 
 msgid "File server is not reachable. Please verify the file server URL."
 msgstr ""
+"Servidor de ficheiros não disponível. Por favor verifique o URL do servidor "
+"de ficheiros."
 
 msgid "The file or folder is not available anymore."
-msgstr ""
+msgstr "O ficheiro ou pasta já não se encontra disponível."
 
 msgid "This file is locked by another user. Please try again later."
 msgstr ""
+"Este ficheiro está bloqueado por outro utilizador. Por favor volte a tentar "
+"mais tarde."
 
 msgid "PHP-Curl is not available. Please contact your system administrator."
 msgstr ""
+"PHP-Curl não está disponível. Por favor contacte o seu administrador de "
+"sistemas."
 
 msgid "Files WebDAV Backend: PHP-CURL not installed"
-msgstr ""
+msgstr "Backend ficheiros WebDAV: PHP-CURL não instalado"
 
 msgid "Account is ready to use."
 msgstr "Conta está pronta a usar."
