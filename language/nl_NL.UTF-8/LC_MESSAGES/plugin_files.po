@@ -544,6 +544,9 @@ msgstr "Verwijderen delen mislukt"
 msgid "With this backend, you can connect to any ftp server."
 msgstr "Met deze backend kun je verbinden met iedere ftp server."
 
+msgid "Files FTP Backend: "
+msgstr ""
+
 msgid "Server address"
 msgstr "Serveradres"
 
@@ -568,23 +571,26 @@ msgstr "Gebruik 'passive mode'"
 msgid "Use Kopano credentials"
 msgstr "Gebruik Kopano logingegevens"
 
-msgid "Files FTP Backend: Authentication failed"
-msgstr "Files FTP Backend: Authenticatie gefaald"
+msgid "Authentication failed"
+msgstr ""
 
-msgid "Files FTP Backend: Connection failed"
-msgstr "Files FTP Backend: Connectie gefaald"
+msgid "Connection failed"
+msgstr ""
 
 msgid "Unparsable server response."
 msgstr "Server reactie onleesbaar."
 
-msgid "Files FTP Backend: Temporary directory problems"
-msgstr "Files FTP Backend: TMP folder problemen"
+msgid "Temporary directory problems"
+msgstr ""
 
-msgid "Files FTP Backend: Not implemented"
-msgstr "Files FTP Backend: Niet supported"
+msgid "Not implemented"
+msgstr ""
 
 msgid "Unknown error"
 msgstr "Onbekende fout"
+
+msgid "Please contact your system administrator"
+msgstr ""
 
 msgid "Unauthorized. Wrong username or password."
 msgstr "Niet geauthoriseerd. Onjuiste gebruikersnaam of wachtwoord."
@@ -606,33 +612,17 @@ msgid "This file is locked by another user. Please check again later."
 msgstr ""
 "Het bestand is gelockt door een andere gebruiker. Probeer het later opnieuw."
 
-msgid ""
-"The request failed due to failure of a previous request. Please contact your "
-"system administrator."
+msgid "The request failed."
 msgstr ""
-"De request is gefaald door een andere request. Neem contact op met de "
-"systeemadministrator."
 
-msgid ""
-"The file server encountered an internal problem. Please contact your system "
-"administrator."
+msgid "The file server encountered an internal problem."
 msgstr ""
-"De file server heeft een intern probleem. Neem contact op met de "
-"systeemadministrator."
 
-msgid ""
-"We could not write to temporary directory. Please contact your system "
-"administrator."
+msgid "We could not write to temporary directory."
 msgstr ""
-"We konden niet schrijven naar de TMP folder. Neem contact op met de "
-"systeemadministrator."
 
-msgid ""
-"We could not retrieve list of server features. Please contact the server "
-"administrator."
+msgid "We could not retrieve list of server features."
 msgstr ""
-"We konden geen lijst ophalen met features. Neem contact op met de "
-"systeemadministrator."
 
 msgid "This function is not yet implemented."
 msgstr "Deze optie is nog niet geïmplementeerd."
@@ -640,6 +630,9 @@ msgstr "Deze optie is nog niet geïmplementeerd."
 msgid "With this backend, you can connect to any WebDAV server."
 msgstr ""
 "Met deze backend kan er een connectie worden gemaakt met elke WebDAV server."
+
+msgid "Files WebDAV Backend: "
+msgstr ""
 
 msgid "Webdav base path"
 msgstr "WebDAV basispad"
@@ -650,38 +643,29 @@ msgstr "Gebruikersnaam"
 msgid "Password"
 msgstr "Wachtwoord"
 
-msgid "Files WebDAV Backend: PHP-CURL is not installed"
-msgstr "Files WebDAV Backend: PHP-CURL is niet geïnstaleerd"
+msgid "PHP-CURL is not installed"
+msgstr ""
 
-msgid "Files WebDAV Backend: Access denied"
-msgstr "Files WebDAV Backend: Verboden toegang"
+msgid "Access denied"
+msgstr ""
 
-msgid "Files WebDAV Backend: Connection failed"
-msgstr "Files WebDAV Backend: Connectie gefaald"
+msgid "Sabre error"
+msgstr ""
 
-msgid "Files WebDAV Backend: Sabre error"
-msgstr "Files WebDAV Backend: Sabre fout"
+msgid "Directory creation failed"
+msgstr ""
 
-msgid "Files WebDAV Backend: Directory creation failed"
-msgstr "Files WebDAV Backend: Maken van folder gefaald"
+msgid "Deletion failed"
+msgstr ""
 
-msgid "Files WebDAV Backend: Deletion failed"
-msgstr "Files WebDAV Backend: Verwijderen gefaald"
+msgid "Moving failed"
+msgstr ""
 
-msgid "Files WebDAV Backend: Moving failed"
-msgstr "Files WebDAV Backend: Verplaatsen gefaald"
+msgid "File or folder not found"
+msgstr ""
 
-msgid "Files WebDAV Backend: Temporary directory problems"
-msgstr "Files WebDAV Backend: TMP folder problemen"
-
-msgid "Files WebDAV Backend: File or folder not found"
-msgstr "Files WebDAV Backend: Bestand of folder niet gevonden"
-
-msgid "Files WebDAV Backend: Not implemented"
-msgstr "Files WebDAV Backend: Niet supported"
-
-msgid "Files WebDAV Backend: Copying failed"
-msgstr "Files WebDAV Backend: Kopiëren gefaald"
+msgid "Copying failed"
+msgstr ""
 
 msgid "File server is not reachable. Please verify the file server URL."
 msgstr "De file server is niet beschikbaar. Controleer de server URL."
@@ -693,12 +677,11 @@ msgid "This file is locked by another user. Please try again later."
 msgstr ""
 "Het bestand is gelockt door een andere gebruiker. Probeer het later opnieuw."
 
-msgid "PHP-Curl is not available. Please contact your system administrator."
+msgid "PHP-Curl is not available."
 msgstr ""
-"PHP-CURL is niet beschikbaar. Neem contact op met de systeemadministrator."
 
-msgid "Files WebDAV Backend: PHP-CURL not installed"
-msgstr "Files WebDAV Backend: PHP-CURL niet geïnstaleerd"
+msgid "PHP-CURL not installed"
+msgstr ""
 
 msgid "Account is ready to use."
 msgstr "Account klaar voor gebruik."
