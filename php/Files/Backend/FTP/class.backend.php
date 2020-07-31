@@ -120,6 +120,9 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 		// set backend version
 		// TODO: this should be changed on every release
 		$this->backendVersion = "3.0";
+
+		// Backend name used in translations	
+		$this->backendTransName = dgettext('plugin_files', 'Files FTP Backend: ');
 	}
 
 	/**
@@ -393,14 +396,14 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 				$err = error_get_last();
 				$this->log('[OPEN] auth failed: ' . $this->user . ' (err: ' . $err["message"] . ')');
 				$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_UNAUTHORIZED), self::FTP_ERR_UNAUTHORIZED);
-				$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Authentication failed'));
+				$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Authentication failed'));
 				throw $e;
 			}
 		} else {
 			$err = error_get_last();
 			$this->log('[OPEN] could not connect to server: ' . $this->server . ' (err: ' . $err["message"] . ')');
 			$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_UNREACHABLE), self::FTP_ERR_UNREACHABLE);
-			$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Connection failed'));
+			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
 			throw $e;
 		}
 	}
@@ -429,7 +432,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 
 				if ($result === FALSE || $result === 0) {
 					$e = new BackendException(dgettext('plugin_files', 'Unparsable server response.'), 500);
-					$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Connection failed'));
+					$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
 					throw $e;
 				}
 
@@ -492,7 +495,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$err = error_get_last();
 			$this->log('[MKCOL] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
-			$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Connection failed'));
+			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
 			throw $e;
 		}
 	}
@@ -530,7 +533,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$err = error_get_last();
 			$this->log('[DELETE] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
-			$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Connection failed'));
+			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
 			throw $e;
 		}
 	}
@@ -599,7 +602,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$err = error_get_last();
 			$this->log('[MOVE] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
-			$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Connection failed'));
+			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
 			throw $e;
 		}
 	}
@@ -624,7 +627,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			return $result;
 		} else {
 			$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_TMP), self::FTP_ERR_TMP);
-			$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Temporary directory problems'));
+			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Temporary directory problems'));
 			throw $e;
 		}
 	}
@@ -660,7 +663,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$err = error_get_last();
 			$this->log('[PUTFILE] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
-			$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Connection failed'));
+			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
 			throw $e;
 		}
 	}
@@ -687,7 +690,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 				return $result;
 			} else {
 				$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_TMP), self::FTP_ERR_TMP);
-				$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Temporary directory problems'));
+				$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Temporary directory problems'));
 				throw $e;
 			}
 		} else {
@@ -722,7 +725,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$err = error_get_last();
 			$this->log('[GETFILE] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
-			$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Connection failed'));
+			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
 			throw $e;
 		}
 	}
@@ -747,7 +750,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	{
 		// TODO Fix or remove me
 		$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_UNIMPLEMENTED), self::FTP_ERR_UNIMPLEMENTED);
-		$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Not implemented'));
+		$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Not implemented'));
 		throw $e;
 	}
 
@@ -771,7 +774,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	{
 		// TODO Fix or remove me
 		$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_UNIMPLEMENTED), self::FTP_ERR_UNIMPLEMENTED);
-		$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Not implemented'));
+		$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Not implemented'));
 		throw $e;
 	}
 
@@ -794,7 +797,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 
 		$this->log('gpi: wrong response from ls');
 		$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_INTERNAL), self::FTP_ERR_INTERNAL);
-		$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Connection failed'));
+		$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
 		throw $e;
 	}
 
@@ -808,7 +811,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	{
 		// TODO Fix or remove me
 		$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_UNIMPLEMENTED), self::FTP_ERR_UNIMPLEMENTED);
-		$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Not implemented'));
+		$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Not implemented'));
 		throw $e;
 	}
 
@@ -882,7 +885,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	{
 		// TODO Fix or remove me
 		$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_UNIMPLEMENTED), self::FTP_ERR_UNIMPLEMENTED);
-		$e->setTitle(dgettext('plugin_files', 'Files FTP Backend: Not implemented'));
+		$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Not implemented'));
 		throw $e;
 	}
 
@@ -898,6 +901,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 		$error = intval($error_code);
 
 		$msg = dgettext('plugin_files', 'Unknown error');
+		$contactAdmin = dgettext('plugin_files', 'Please contact your system administrator');
 
 		switch ($error) {
 			case self::FTP_ERR_UNAUTHORIZED:
@@ -919,17 +923,17 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 				$msg = dgettext('plugin_files', 'This file is locked by another user. Please check again later.');
 				break;
 			case self::FTP_ERR_FAILED_DEPENDENCY:
-				$msg = dgettext('plugin_files', 'The request failed due to failure of a previous request. Please contact your system administrator.');
+				$msg = dgettext('plugin_files', 'The request failed.') . ' ' . $contactAdmin;
 				break;
 			case self::FTP_ERR_INTERNAL:
 				// This is a general error, might be thrown due to a wrong IP, but we don't know.
-				$msg = dgettext('plugin_files', 'The file server encountered an internal problem. Please contact your system administrator.');
+				$msg = dgettext('plugin_files', 'The file server encountered an internal problem.') . ' ' . $contactAdmin;
 				break;
 			case self::FTP_ERR_TMP:
-				$msg = dgettext('plugin_files', 'We could not write to temporary directory. Please contact your system administrator.');
+				$msg = dgettext('plugin_files', 'We could not write to temporary directory.') . ' ' . $contactAdmin;
 				break;
 			case self::FTP_ERR_FEATURES:
-				$msg = dgettext('plugin_files', 'We could not retrieve list of server features. Please contact the server administrator.');
+				$msg = dgettext('plugin_files', 'We could not retrieve list of server features.') . ' ' . $contactAdmin;
 				break;
 			case self::FTP_ERR_UNIMPLEMENTED:
 				$msg = dgettext('plugin_files', 'This function is not yet implemented.');
