@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Files Plugin Dutch\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-05 14:38+0200\n"
-"PO-Revision-Date: 2020-05-06 10:45+0000\n"
+"PO-Revision-Date: 2020-07-31 13:27+0000\n"
 "Last-Translator: martijn <m.alberts@zarafa.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/files/nl/>\n"
 "Language: nl_NL\n"
@@ -545,7 +545,7 @@ msgid "With this backend, you can connect to any ftp server."
 msgstr "Met deze backend kun je verbinden met iedere ftp server."
 
 msgid "Files FTP Backend: "
-msgstr ""
+msgstr "Files FTP Backend: "
 
 msgid "Server address"
 msgstr "Serveradres"
@@ -572,25 +572,25 @@ msgid "Use Kopano credentials"
 msgstr "Gebruik Kopano logingegevens"
 
 msgid "Authentication failed"
-msgstr ""
+msgstr "Authenticatie mislukt"
 
 msgid "Connection failed"
-msgstr ""
+msgstr "Connectie gefaald"
 
 msgid "Unparsable server response."
 msgstr "Server reactie onleesbaar."
 
 msgid "Temporary directory problems"
-msgstr ""
+msgstr "Probleem met de tijdelijke map"
 
 msgid "Not implemented"
-msgstr ""
+msgstr "Niet geïmplementeerd"
 
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
 msgid "Please contact your system administrator"
-msgstr ""
+msgstr "Neem contact op met de systeembeheerder"
 
 msgid "Unauthorized. Wrong username or password."
 msgstr "Niet geauthoriseerd. Onjuiste gebruikersnaam of wachtwoord."
@@ -613,16 +613,16 @@ msgstr ""
 "Het bestand is gelockt door een andere gebruiker. Probeer het later opnieuw."
 
 msgid "The request failed."
-msgstr ""
+msgstr "De request heeft gefaald."
 
 msgid "The file server encountered an internal problem."
-msgstr ""
+msgstr "De fileserver heeft een intern probleem."
 
 msgid "We could not write to temporary directory."
-msgstr ""
+msgstr "We kunnen niks wegschrijven in de tijdelijke folder."
 
 msgid "We could not retrieve list of server features."
-msgstr ""
+msgstr "We kunnen geen lijst met features vinden."
 
 msgid "This function is not yet implemented."
 msgstr "Deze optie is nog niet geïmplementeerd."
@@ -644,28 +644,28 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 msgid "PHP-CURL is not installed"
-msgstr ""
+msgstr "PHP-CURL is niet geïnstalleerd"
 
 msgid "Access denied"
-msgstr ""
+msgstr "Verboden toegang"
 
 msgid "Sabre error"
-msgstr ""
+msgstr "Sabre fout"
 
 msgid "Directory creation failed"
-msgstr ""
+msgstr "Folder aanmaken gefaald"
 
 msgid "Deletion failed"
-msgstr ""
+msgstr "Verwijderen gefaald"
 
 msgid "Moving failed"
-msgstr ""
+msgstr "Verplaatsen gefaald"
 
 msgid "File or folder not found"
-msgstr ""
+msgstr "Bestand of folder niet gevonden"
 
 msgid "Copying failed"
-msgstr ""
+msgstr "Kopiëren gefaald"
 
 msgid "File server is not reachable. Please verify the file server URL."
 msgstr "De file server is niet beschikbaar. Controleer de server URL."
@@ -678,10 +678,10 @@ msgstr ""
 "Het bestand is gelockt door een andere gebruiker. Probeer het later opnieuw."
 
 msgid "PHP-Curl is not available."
-msgstr ""
+msgstr "PHP-Curl is niet beschikbaar."
 
 msgid "PHP-CURL not installed"
-msgstr ""
+msgstr "PHP-CURL is niet geïnstalleerd"
 
 msgid "Account is ready to use."
 msgstr "Account klaar voor gebruik."
