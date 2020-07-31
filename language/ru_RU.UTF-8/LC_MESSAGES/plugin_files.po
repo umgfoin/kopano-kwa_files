@@ -546,6 +546,9 @@ msgstr "Не удалось удалить общий доступ"
 msgid "With this backend, you can connect to any ftp server."
 msgstr "Вы можете подключиться к любому ftp серверу."
 
+msgid "Files FTP Backend: "
+msgstr ""
+
 msgid "Server address"
 msgstr "Адрес сервера"
 
@@ -570,23 +573,26 @@ msgstr "Использовать пассивный режим"
 msgid "Use Kopano credentials"
 msgstr "Использовать учетные данные Kopano"
 
-msgid "Files FTP Backend: Authentication failed"
+msgid "Authentication failed"
 msgstr ""
 
-msgid "Files FTP Backend: Connection failed"
+msgid "Connection failed"
 msgstr ""
 
 msgid "Unparsable server response."
 msgstr "Некорректный ответ сервера."
 
-msgid "Files FTP Backend: Temporary directory problems"
+msgid "Temporary directory problems"
 msgstr ""
 
-msgid "Files FTP Backend: Not implemented"
+msgid "Not implemented"
 msgstr ""
 
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
+
+msgid "Please contact your system administrator"
+msgstr ""
 
 msgid "Unauthorized. Wrong username or password."
 msgstr "Доступ запрещен. Неверное имя пользователя или пароль."
@@ -606,30 +612,25 @@ msgstr ""
 msgid "This file is locked by another user. Please check again later."
 msgstr ""
 
-msgid ""
-"The request failed due to failure of a previous request. Please contact your "
-"system administrator."
+msgid "The request failed."
 msgstr ""
 
-msgid ""
-"The file server encountered an internal problem. Please contact your system "
-"administrator."
+msgid "The file server encountered an internal problem."
 msgstr ""
 
-msgid ""
-"We could not write to temporary directory. Please contact your system "
-"administrator."
+msgid "We could not write to temporary directory."
 msgstr ""
 
-msgid ""
-"We could not retrieve list of server features. Please contact the server "
-"administrator."
+msgid "We could not retrieve list of server features."
 msgstr ""
 
 msgid "This function is not yet implemented."
 msgstr ""
 
 msgid "With this backend, you can connect to any WebDAV server."
+msgstr ""
+
+msgid "Files WebDAV Backend: "
 msgstr ""
 
 msgid "Webdav base path"
@@ -641,37 +642,28 @@ msgstr "Имя пользователя"
 msgid "Password"
 msgstr "Пароль"
 
-msgid "Files WebDAV Backend: PHP-CURL is not installed"
+msgid "PHP-CURL is not installed"
 msgstr ""
 
-msgid "Files WebDAV Backend: Access denied"
+msgid "Access denied"
 msgstr ""
 
-msgid "Files WebDAV Backend: Connection failed"
+msgid "Sabre error"
 msgstr ""
 
-msgid "Files WebDAV Backend: Sabre error"
+msgid "Directory creation failed"
 msgstr ""
 
-msgid "Files WebDAV Backend: Directory creation failed"
+msgid "Deletion failed"
 msgstr ""
 
-msgid "Files WebDAV Backend: Deletion failed"
+msgid "Moving failed"
 msgstr ""
 
-msgid "Files WebDAV Backend: Moving failed"
+msgid "File or folder not found"
 msgstr ""
 
-msgid "Files WebDAV Backend: Temporary directory problems"
-msgstr ""
-
-msgid "Files WebDAV Backend: File or folder not found"
-msgstr ""
-
-msgid "Files WebDAV Backend: Not implemented"
-msgstr ""
-
-msgid "Files WebDAV Backend: Copying failed"
+msgid "Copying failed"
 msgstr ""
 
 msgid "File server is not reachable. Please verify the file server URL."
@@ -683,10 +675,10 @@ msgstr ""
 msgid "This file is locked by another user. Please try again later."
 msgstr ""
 
-msgid "PHP-Curl is not available. Please contact your system administrator."
+msgid "PHP-Curl is not available."
 msgstr ""
 
-msgid "Files WebDAV Backend: PHP-CURL not installed"
+msgid "PHP-CURL not installed"
 msgstr ""
 
 msgid "Account is ready to use."
