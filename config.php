@@ -21,7 +21,7 @@ define('PLUGIN_FILES_CACHE_DIR', "/var/lib/kopano-webapp/plugin_files");
  *
  * This setting is not editable within webapp!!
  */
-define('PLUGIN_FILESBROWSER_LOGLEVEL', "DEBUG");
+define('PLUGIN_FILESBROWSER_LOGLEVEL', "ERROR");
 
 /**
  * Standard password key for account data encryption. We recommend to change the default value for security reasons
