@@ -13,16 +13,16 @@ This plugin requires the following dependencies:
 
 # Configuration
 The plugin configuration can be found in the **'config.php'** file.
-```define('PLUGIN_FILES_USER_DEFAULT_ENABLE', true);```
+```define('PLUGIN_FILES_USER_DEFAULT_ENABLE', false);```
 
-This configuration flag will enable the plugin by default for all users. If this is set to false, each user has to enable 
+This configuration flag will enable/disable the plugin by default for all users. If this is set to false, each user has to enable 
 the plugin by itself in the Webapp settings. (Settings -> Plugins -> Check the files plugin)
 
 ```define('PLUGIN_FILES_ASK_BEFORE_DELETE', true);```
 
 If this flag is true, a confirmation dialog will be shown before a file gets deleted. Otherwise the file is deleted instantly (dangerous!).
 
-```define('PLUGIN_FILESBROWSER_LOGLEVEL', "NONE");```
+```define('PLUGIN_FILESBROWSER_LOGLEVEL', "ERROR");```
 
 If you experience any problems with the plugin, set this flag to **'DEBUG'** and send your apache/php error log to the Kopano developers.
 
