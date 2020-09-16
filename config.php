@@ -24,9 +24,7 @@ define('PLUGIN_FILES_CACHE_DIR', "/var/lib/kopano-webapp/plugin_files");
 define('PLUGIN_FILESBROWSER_LOGLEVEL', "ERROR");
 
 /**
- * Standard password key for account data encryption. We recommend to change the default value for security reasons
- * and a length of 16 characters. Data is only encrypted when the openssl module is installed
- * IV vector should be 8 bits long
+ * The secret key for encryption the acocunt passwords when "Use Kopano Credentials" is not used.
+ * A random secret can be generated with: openssl rand -hex 32
  */
-define('FILES_PASSWORD_KEY', 'c745626b0d5a31b9');
-define('FILES_PASSWORD_IV', '5621abb6');
+define('FILES_ACCOUNTSTORE_V1_SECRET_KEY', '');
