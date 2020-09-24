@@ -21,35 +21,6 @@ class DownloadHandler
 {
 	const LOG_CONTEXT = "DownloadHandler"; // Context for the Logger
 
-	private static function imageCreateFromAny($filepath)
-	{
-		$type = exif_imagetype($filepath); // [] if you don't have exif you could use getImageSize()
-		$allowedTypes = array(
-			1,  // [] gif
-			2,  // [] jpg
-			3,  // [] png
-			6   // [] bmp
-		);
-		if (!in_array($type, $allowedTypes)) {
-			return false;
-		}
-		switch ($type) {
-			case 1 :
-				$im = imagecreatefromgif($filepath);
-				break;
-			case 2 :
-				$im = imagecreatefromjpeg($filepath);
-				break;
-			case 3 :
-				$im = imagecreatefrompng($filepath);
-				break;
-			case 6 :
-				$im = imagecreatefromwbmp($filepath);
-				break;
-		}
-		return $im;
-	}
-
 	public static function doDownload()
 	{
 		// parse account id.
@@ -137,7 +108,7 @@ class DownloadHandler
 				$stream = false;
 
 				$tmpfile = tempnam(TMP_PATH, stripslashes(base64_encode($relNodeId)));
-				if (!$initializedBackend->supports(\Files\Backend\BackendStore::FEATURE_STREAMING) || (isset($_GET["thumb"]) && $_GET["thumb"] == "true")) {
+				if (!$initializedBackend->supports(\Files\Backend\BackendStore::FEATURE_STREAMING)) {
 					$initializedBackend->get_file($relNodeId, $tmpfile);
 					$filesize = filesize($tmpfile);
 				} else {
@@ -147,31 +118,6 @@ class DownloadHandler
 				}
 
 				$mime = PathUtil::get_mime($relNodeId);
-
-				// needs GD2 library
-				if (isset($_GET["thumb"]) && $_GET["thumb"] == "true" && function_exists("ImageCreateFromJPEG")) {
-					$height = 50;
-					$width = 40;
-
-					if (isset($_GET["width"])) {
-						$width = $_GET["width"];
-					}
-					if (isset($_GET["height"])) {
-						$height = $_GET["height"];
-					}
-
-					$images_orig = self::imageCreateFromAny($tmpfile);
-					$photoX = ImagesX($images_orig);
-					$photoY = ImagesY($images_orig);
-					$images_fin = ImageCreateTrueColor($width, $height);
-					ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
-					unlink($tmpfile); // remove original image
-					ImageJPEG($images_fin, $tmpfile); // $tmpfile must not exist before!
-					ImageDestroy($images_orig);
-					ImageDestroy($images_fin);
-
-					$mime = "image/jpeg";
-				}
 
 				// set headers here
 				if ((isset($_GET["inline"]) && $_GET["inline"] == "false") || (isset($_GET["contentDispositionType"]) && $_GET["contentDispositionType"] == "attachment")) {
