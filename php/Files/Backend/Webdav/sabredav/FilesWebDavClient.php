@@ -100,16 +100,4 @@ class FilesWebDavClient extends \Sabre\DAV\Client {
 	public function uploadChunkedFile($destination, $resource) {
 		return $this->request("PUT", $destination, $resource);
 	}
-
-	/**
-	 * COMPATIBILITY FUNCTIONS FOR SABREDAV 1.8
-	 */
-	public function addCurlSetting($id, $value) {
-		switch($id) {
-			case CURLOPT_SSL_VERIFYPEER:
-				$this->setVerifyPeer($value);
-				break;
-			default: break;
-		}
-	}
 }
