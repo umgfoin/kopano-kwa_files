@@ -8,6 +8,7 @@ require_once __DIR__ . "/Files/Backend/class.backendstore.php";
 use \Files\Core\DownloadHandler;
 use \Files\Core\UploadHandler;
 use \Files\Core\RecipientHandler;
+use \Files\Core\Util\Logger;
 
 define("FILES_FOLDER", 0);
 define("FILES_FILE", 1);

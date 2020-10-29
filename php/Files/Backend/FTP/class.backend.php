@@ -436,10 +436,10 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 					throw $e;
 				}
 
-				if ($hidefirst && ($out[1]{0} === 'd' && ($out[18] == "." || $out[18] == ".."))) {
+				if ($hidefirst && ($out[1][0] === 'd' && ($out[18] == "." || $out[18] == ".."))) {
 					// do nothing
 				} else {
-					$tmpend = $out[1]{0} === 'd' ? "/" : "";
+					$tmpend = $out[1][0] === 'd' ? "/" : "";
 					$fpath = rtrim($dir, '/') . "/" . $out[19] . $tmpend;
 					// Remove the trailing slash for the files record.
 					$fpath = '/' . $this->is_dir($fpath) ? $fpath : trim($fpath, '/');
@@ -447,7 +447,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 					// remove base path:
 					$fpath = $this->removeBasePath($fpath);
 
-					$files[$fpath]['resourcetype'] = $out[1]{0} === 'd' ? "collection" : "file";
+					$files[$fpath]['resourcetype'] = $out[1][0] === 'd' ? "collection" : "file";
 					$files[$fpath]['getcontentlength'] = $out[9];
 					if ($out[15] === "" || $out[16] === "") {
 						$files[$fpath]['getlastmodified'] = $out[11] . " " . $out[13] . " " . $out[17];
