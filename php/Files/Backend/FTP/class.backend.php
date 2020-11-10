@@ -789,10 +789,11 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 	 */
 	public function gpi($path)
 	{
-		$list = $this->ls($path, false);
+		$list = $this->ls(dirname($path), false); // get contents of the parent dir
+		
 		// be sure it is an array
 		if (is_array($list)) {
-			return reset($list);
+			return $list[$path];
 		}
 
 		$this->log('gpi: wrong response from ls');
