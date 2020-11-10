@@ -441,6 +441,7 @@ Zarafa.plugins.files.data.Actions = {
 	{
 		var path = record.get('path');
 		record.addMessageAction("source_folder_id", record.get('folder_id'));
+		record.addMessageAction("isFolder", record.isFolder());
 		record.beginEdit();
 		record.set("display_name", text);
 		record.set("filename", text);

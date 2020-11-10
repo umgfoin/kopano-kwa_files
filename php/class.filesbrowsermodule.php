@@ -627,10 +627,12 @@ class FilesBrowserModule extends FilesListModule
 	function rename($actionType, $actionData)
 	{
 		$messageProps = $this->save($actionData);
-
+		$notifySubFolders = isset($actionData['message_action']['isFolder']) ? $actionData['message_action']['isFolder'] : true;
 		if(!empty($messageProps)) {
 			$GLOBALS["bus"]->notify(REQUEST_ENTRYID, OBJECT_SAVE, $messageProps);
-			$this->notifySubFolders($messageProps["props"]["folder_id"]);
+			if ($notifySubFolders) {
+				$this->notifySubFolders($messageProps["props"]["folder_id"]);
+			}
 		}
 	}
 
