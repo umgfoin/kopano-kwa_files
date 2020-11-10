@@ -107,8 +107,9 @@ class DownloadHandler
 				$relNodeId = substr($_GET["id"], strpos($_GET["id"], '/'));
 				$stream = false;
 
-				$tmpfile = tempnam(TMP_PATH, stripslashes(base64_encode($relNodeId)));
+				$tmpfile;
 				if (!$initializedBackend->supports(\Files\Backend\BackendStore::FEATURE_STREAMING)) {
+					$tmpfile = tempnam(TMP_PATH, stripslashes(base64_encode($relNodeId)));
 					$initializedBackend->get_file($relNodeId, $tmpfile);
 					$filesize = filesize($tmpfile);
 				} else {
