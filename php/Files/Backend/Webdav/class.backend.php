@@ -416,11 +416,13 @@ class Backend extends AbstractBackend implements iFeatureQuota, iFeatureVersionI
 				$name = substr($name, strlen($this->path)); // skip the webdav path
 				$name = urldecode($name);
 
-				$type = $fields["{DAV:}resourcetype"]->resourceType;
-				if (is_array($type) && !empty($type)) {
-					$type = $type[0] == "{DAV:}collection" ? "collection" : "file";
-				} else {
-					$type = "file"; // fall back to file if detection fails... less harmful
+				// Always fallback to a file resourceType
+				$type = "file";
+				if (isset($fields['{DAV:}resourcetype'])) {
+					$value = $fields['{DAV:}resourcetype']->getValue();
+					if (!empty($value) && $value[0] === "{DAV:}collection") {
+						$type = "collection";
+					}
 				}
 
 				$lsdata[$name] = array(
