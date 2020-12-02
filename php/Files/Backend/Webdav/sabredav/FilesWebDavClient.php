@@ -10,6 +10,15 @@ namespace Files\Backend\Webdav\sabredav;
 include(__DIR__ . "/vendor/autoload.php");
 
 class FilesWebDavClient extends \Sabre\DAV\Client {
+	public function __construct(array $settings) {
+		if (isset($settings['userName'])) {
+			$this->userName = $settings['userName'];
+		}
+		if (isset($settings['password'])) {
+			$this->password = $settings['password'];
+		}
+		parent::__construct($settings);
+	}
 	/**
 	 * Performs an actual HTTP request, and returns the result.
 	 *
@@ -99,17 +108,5 @@ class FilesWebDavClient extends \Sabre\DAV\Client {
 
 	public function uploadChunkedFile($destination, $resource) {
 		return $this->request("PUT", $destination, $resource);
-	}
-
-	/**
-	 * COMPATIBILITY FUNCTIONS FOR SABREDAV 1.8
-	 */
-	public function addCurlSetting($id, $value) {
-		switch($id) {
-			case CURLOPT_SSL_VERIFYPEER:
-				$this->setVerifyPeer($value);
-				break;
-			default: break;
-		}
 	}
 }
