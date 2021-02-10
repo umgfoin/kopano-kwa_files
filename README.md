@@ -10,12 +10,15 @@ This plugin requires the following dependencies:
 
 * PHP Curl
 * Memcached (optional)
+* php-sodium
 
 # Configuration
+
 The plugin configuration can be found in the **'config.php'** file.
+
 ```define('PLUGIN_FILES_USER_DEFAULT_ENABLE', false);```
 
-This configuration flag will enable/disable the plugin by default for all users. If this is set to false, each user has to enable 
+This configuration flag will enable/disable the plugin by default for all users. If this is set to false, each user has to enable
 the plugin by itself in the Webapp settings. (Settings -> Plugins -> Check the files plugin)
 
 ```define('PLUGIN_FILES_ASK_BEFORE_DELETE', true);```
@@ -25,6 +28,22 @@ If this flag is true, a confirmation dialog will be shown before a file gets del
 ```define('PLUGIN_FILESBROWSER_LOGLEVEL', "ERROR");```
 
 If you experience any problems with the plugin, set this flag to **'DEBUG'** and send your apache/php error log to the Kopano developers.
+
+```define('FILES_ACCOUNTSTORE_V1_SECRET_KEY', '');```
+
+Your secret key to encrypt files
+
+# Upgrading from files v3 to v4
+
+Files version 4 has with better security and the following changes have been introduced:
+
+**Changes**
+- Files plugin requires [sodium](https://www.php.net/manual/en/book.sodium.php) and distributions that ship php <7.2 out of the box are no longer build.
+- A new config option `FILES_ACCOUNTSTORE_V1_SECRET_KEY` is introduced. Default: empty.
+- The Files plugin will not work when this option is empty.
+
+Old configs: `FILES_PASSWORD_KEY` and  `FILES_PASSWORD_IV` will still work for older accounts if configured, but note if the old options are removed, we cannot decrypt older accounts. Therefor make sure you've made a backup of those keys.
+
 
 # Documentation
 In-depth documentation, such as administration and user manuals about our
