@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  * This enables/disables the WHOLE plugin.
  */
 define('PLUGIN_FILES_USER_DEFAULT_ENABLE', false);
@@ -10,7 +10,7 @@ define('PLUGIN_FILES_USER_DEFAULT_ENABLE', false);
 define('PLUGIN_FILES_ASK_BEFORE_DELETE', true);
 
 /**
- * The directory where to save cache files for phpfastcache, if memcached is not installed  
+ * The directory where to save cache files for phpfastcache, if memcached is not installed
  */
 define('PLUGIN_FILES_CACHE_DIR', "/var/lib/kopano-webapp/plugin_files");
 
