@@ -297,20 +297,20 @@ class FilesBrowserModule extends FilesListModule
 		if ($dir) {
 			$updateCache = false;
 			foreach ($dir as $id => $node) {
+				if(!$node)
+					continue;
+				
 				$type = FILES_FILE;
 
-				if (strcmp($node['resourcetype'], "collection") == 0) { // we have a folder
-					$type = FILES_FOLDER;
-				}
+				if (isset($node['resourcetype']) && strcmp($node['resourcetype'], "collection") == 0) // we have a folder
+						$type = FILES_FOLDER;
 
-				if ($type === FILES_FOLDER && $onlyFiles) {
+				if ($type === FILES_FOLDER && $onlyFiles)
 					continue;
-				}
 
 				// Check if foldernames have a trailing slash, if not, add one!
-				if ($type === FILES_FOLDER && !StringUtil::endsWith($id, "/")) {
+				if ($type === FILES_FOLDER && !StringUtil::endsWith($id, "/"))
 					$id .= "/";
-				}
 
 				$realID = $nodeIdPrefix . $id;
 
@@ -318,7 +318,11 @@ class FilesBrowserModule extends FilesListModule
 
 				$filename = stringToUTF8Encode(basename($id));
 
-				$size = $node['getcontentlength'] === null ? -1 : intval($node['getcontentlength']);
+				if(isset($node['getcontentlength']) )
+					$size = $node['getcontentlength'] === null ? -1 : intval($node['getcontentlength']);
+				else
+					$size = -1;
+				
 				$size = $type == FILES_FOLDER ? -1 : $size; // folder's dont have a size
 
 				$shared = false;
@@ -362,7 +366,7 @@ class FilesBrowserModule extends FilesListModule
 						'path' => $path,
 						'filename' => $filename,
 						'message_size' => $size,
-						'lastmodified' => strtotime($node['getlastmodified']) * 1000,
+						'lastmodified' => array_key_exists('getlastmodified', $node) ? strtotime($node['getlastmodified']) * 1000 : "",
 						'message_class' => "IPM.Files",
 						'isshared' => $shared,
 						'sharedid' => $sharedid,

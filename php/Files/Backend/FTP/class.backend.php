@@ -393,14 +393,14 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 				$pas_res = @ftp_pasv($this->ftp_client, $this->pasv);
 				return $pas_res;
 			} else {
-				$err = error_get_last();
+				$err = $this->err_array_get_last();
 				$this->log('[OPEN] auth failed: ' . $this->user . ' (err: ' . $err["message"] . ')');
 				$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_UNAUTHORIZED), self::FTP_ERR_UNAUTHORIZED);
 				$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Authentication failed'));
 				throw $e;
 			}
 		} else {
-			$err = error_get_last();
+			$err = $this->err_array_get_last();
 			$this->log('[OPEN] could not connect to server: ' . $this->server . ' (err: ' . $err["message"] . ')');
 			$e = new BackendException($this->parseErrorCodeToMessage(self::FTP_ERR_UNREACHABLE), self::FTP_ERR_UNREACHABLE);
 			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
@@ -460,7 +460,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 				}
 			}
 		} else {
-			$err = error_get_last();
+			$err = $this->err_array_get_last();
 			$this->log('[LS] failed: ' . $err["message"]);
 		}
 		$time_end = microtime(true);
@@ -492,7 +492,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$this->log("[MKCOL] done in $time seconds");
 			return true;
 		} else {
-			$err = error_get_last();
+			$err = $this->err_array_get_last();
 			$this->log('[MKCOL] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
 			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
@@ -530,7 +530,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$this->log("[DELETE] done in $time seconds: " . $result);
 			return true;
 		} else {
-			$err = error_get_last();
+			$err = $this->err_array_get_last();
 			$this->log('[DELETE] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
 			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
@@ -599,7 +599,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$this->log("[MOVE] done in $time seconds: $src_dir -> $dst_dir");
 			return true;
 		} else {
-			$err = error_get_last();
+			$err = $this->err_array_get_last();
 			$this->log('[MOVE] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
 			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
@@ -660,7 +660,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$this->log("[PUTFILE] done in $time seconds: $filename -> $path");
 			return true;
 		} else {
-			$err = error_get_last();
+			$err = $this->err_array_get_last();
 			$this->log('[PUTFILE] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
 			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
@@ -722,7 +722,7 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			$this->log("[GETFILE] done in $time seconds: $srcpath -> $localpath");
 			return true;
 		} else {
-			$err = error_get_last();
+			$err = $this->err_array_get_last();
 			$this->log('[GETFILE] failed: ' . $err["message"]);
 			$e = new BackendException($err["message"], self::FTP_ERR_INTERNAL);
 			$e->setTitle($this->backendTransName . dgettext('plugin_files', 'Connection failed'));
@@ -1092,4 +1092,20 @@ class Backend extends AbstractBackend implements iFeatureStreaming
 			return false;
 		}
 	}
+	
+	/**
+	 * return a "last error"-array and ensure a valid "message"-offset
+	 *
+	 * @return a valid err_array
+	 */
+	private function err_array_get_last() : array
+	{
+		$err = error_get_last();
+		if(!$err)
+			$err = array();
+		if(!in_array("message",$err))
+			$err["message"] = "<no message>";
+		return $err;
+	}
 }
+

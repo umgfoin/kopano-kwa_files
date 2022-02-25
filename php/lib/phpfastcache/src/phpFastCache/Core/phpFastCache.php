@@ -154,7 +154,7 @@ class phpFastCache
      * @return string
      * @throws \Exception
      */
-    public static function getPath($skip_create_path = false, $config)
+    public static function getPath($skip_create_path = false, $config = array())
     {
         $tmp_dir = rtrim(ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir(), '\\/') . DIRECTORY_SEPARATOR . 'phpfastcache';
 

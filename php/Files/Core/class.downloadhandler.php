@@ -112,14 +112,14 @@ class DownloadHandler
 					$tmpfile = tempnam(TMP_PATH, stripslashes(base64_encode($relNodeId)));
 					$initializedBackend->get_file($relNodeId, $tmpfile);
 					$filesize = filesize($tmpfile);
+					$mime = PathUtil::get_mime($tmpfile);
 				} else {
 					$gpi = $initializedBackend->gpi($relNodeId);
 					$stream = true;
 					$filesize = $gpi["getcontentlength"];
+					$mime = PathUtil::get_mime($relNodeId, 1);	
 				}
-
-				$mime = PathUtil::get_mime($relNodeId);
-
+				
 				// set headers here
 				if ((isset($_GET["inline"]) && $_GET["inline"] == "false") || (isset($_GET["contentDispositionType"]) && $_GET["contentDispositionType"] == "attachment")) {
 					header('Content-Disposition: attachment; filename="' . PathUtil::getFilenameFromPath($relNodeId) . '"');

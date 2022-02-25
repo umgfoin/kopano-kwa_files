@@ -92,10 +92,10 @@ class PathUtil
 		$last = array_pop($exploded);
 		$ext = strtolower($last);
 
-		if (function_exists('mime_content_type') && is_file($filename) && $mode == 0) {
+		if ($mode == 0 && function_exists('mime_content_type') && is_file($filename)) {
 			$mimetype = mime_content_type($filename);
 			return $mimetype;
-		} elseif (function_exists('finfo_open') && is_file($filename) && $mode == 0) {
+		} elseif ($mode == 0 && function_exists('finfo_open') && is_file($filename)) {
 			$finfo = finfo_open(FILEINFO_MIME);
 			$mimetype = finfo_file($finfo, $filename);
 			finfo_close($finfo);

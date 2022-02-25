@@ -38,8 +38,10 @@ class Account
 	 * @param       $backendConfig
 	 * @param array $features
 	 */
-	function __construct($id, $name, $status, $statusDescription, $backend, $backendConfig, $features = array(), $sequence, $cannot_change)
+	function __construct($id, $name, $status, $statusDescription, $backend, $backendConfig, $features, $sequence, $cannot_change)
 	{
+		if(!$features)
+			$features = array();
 		$this->id = $id;
 		$this->name = $name;
 		$this->status = $status;
