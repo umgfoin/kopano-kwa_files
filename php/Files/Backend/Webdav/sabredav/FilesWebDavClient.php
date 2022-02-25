@@ -37,7 +37,7 @@ class FilesWebDavClient extends \Sabre\DAV\Client {
 	 *
 	 * @return array
 	 */
-	public function getFile($url = '', $dstpath, $headers = array()) {
+	public function getFile($url = '', $dstpath = "", $headers = array()) {
 
 		$url = $this->getAbsoluteUrl($url);
 		$file_handle = fopen($dstpath, "w");
@@ -49,10 +49,10 @@ class FilesWebDavClient extends \Sabre\DAV\Client {
 		//straight up curl instead of sabredav here, sabredav put's the entire get result in memory
 		$curl = curl_init($url);
 
-		if ($this->verifyPeer !== null) {
+		if (property_exists($this, "verifyPeer") && $this->verifyPeer !== null) {
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $this->verifyPeer);
 		}
-		if ($this->trustedCertificates) {
+		if (property_exists($this, "trustedCertificates") && $this->trustedCertificates) {
 			curl_setopt($curl, CURLOPT_CAINFO, $this->trustedCertificates);
 		}
 
