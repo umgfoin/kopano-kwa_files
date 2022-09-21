@@ -10,6 +10,9 @@ namespace Files\Backend\Webdav\sabredav;
 include(__DIR__ . "/vendor/autoload.php");
 
 class FilesWebDavClient extends \Sabre\DAV\Client {
+	private $userName;
+	private $password;
+	
 	public function __construct(array $settings) {
 		if (isset($settings['userName'])) {
 			$this->userName = $settings['userName'];

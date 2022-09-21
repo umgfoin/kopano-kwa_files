@@ -28,6 +28,7 @@ class memcached extends DriverAbstract
      * @var \Memcached
      */
     public $instant;
+    public $checked;
 
     /**
      * phpFastCache_memcached constructor.

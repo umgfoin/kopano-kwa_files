@@ -14,6 +14,7 @@ require_once __DIR__ . "/interface.streaming.php";
 require_once __DIR__ . "/interface.sharing.php";
 require_once __DIR__ . "/interface.oauth.php";
 
+#[AllowDynamicProperties]
 abstract class AbstractBackend
 {
 	/**
@@ -30,11 +31,16 @@ abstract class AbstractBackend
 	 * @var string Version code of the backend implementation.
 	 */
 	public $backendVersion = "1.0";
-
+	
 	/**
 	 * @var string AccountID of the account that is using this backend.
 	 */
 	protected $accountID = null;
+	
+	/**
+	* @var string backendTransName Backend name used in translations
+	*/
+        protected $backendTransName;
 
 	/**
 	 * This function will initialize internal variables of the backend. It will receive the values in the
