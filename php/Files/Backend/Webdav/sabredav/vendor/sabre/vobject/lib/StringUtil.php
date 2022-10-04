@@ -44,7 +44,8 @@ class StringUtil
 
         switch ($encoding) {
             case 'ISO-8859-1':
-                $newStr = utf8_encode($str);
+            case 'WINDOWS-1252':
+                $newStr = mb_convert_encoding($str, "UTF-8", $encoding);
                 break;
             /* Unreachable code. Not sure yet how we can improve this
              * situation.

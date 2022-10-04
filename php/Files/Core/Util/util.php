@@ -8,10 +8,8 @@
  */
 function stringToUTF8Encode($str)
 {
-//	if (!mb_detect_encoding($str, "UTF-8", true)) {
-//		$str = utf8_encode($str);
-//	}
-	return $str;
+    // mb_convert_encoding($str, "UTF-8", mb_list_encodings());
+	  return $str;
 }
 
 
